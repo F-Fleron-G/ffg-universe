@@ -1,69 +1,57 @@
-# React + TypeScript + Vite
+# FFG Universe 🌌
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my personal universe — a hand-built portfolio that brings together my work as an **artist**, **author**, and **software engineer**.  
+It’s designed as an orbiting space: each page a planet, each project part of a larger whole.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⍟ Demo
+![FFG Universe Demo](./public/demo.gif)
 
-## Expanding the ESLint configuration
+Visit live: [ffg-universe.com](https://ffg-universe.com)  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ⎷ Features
+- Landing page with **orbiting navigation**
+- **Author page** with books and releases
+- **Artist page** with interactive flipbook of drawings
+- Integrated **contact forms** via FormSubmit
+- Responsive design with custom styling
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## ⚛︎ Tech Stack
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- React PageFlip (flipbook effect)
+- Deployed on **Vercel**
+
+---
+
+## ▹ Getting Started
+
+Clone and run locally:
+
+```bash
+git clone https://github.com/F-Fleron-G/ffg-universe.git
+cd ffg-universe
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Then open http://localhost:5173
+ in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ☺︎ Deployment
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Deployed with Vercel at [ffg-universe.com](https://ffg-universe.com)
+
+DNS managed with Porkbun. SSL handled automatically by Vercel.
+
+## ♖ License
+
+This project is for my personal portfolio. All rights reserved.
+
+(Feel free to explore the code for learning purposes.)

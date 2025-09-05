@@ -146,7 +146,11 @@ export default function App() {
         </div>
        
           <div className="flex space-x-6 mt-2 md:mt-0">
-            <a href="mailto:fleron.frederic@gmail.com" className="text-sky-300/60 hover:text-slate-200 transition" aria-label="Email">
+            <a
+              href="mailto:fleron.frederic@gmail.com?subject=Hello from FFG Universe&body=Hi Frederic,"
+              className="text-sky-300/60 hover:text-slate-200 transition"
+              aria-label="Email"
+            >
               <Mail className="h-5 w-5" />
             </a>
             <a href="https://instagram.com/fleronverse" target="_blank" rel="noreferrer" className="text-sky-300/60 hover:text-slate-200 transition" aria-label="Instagram">
