@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+    
+
+html { scroll-behavior: smooth; }
+
+/* Artist page custom styles */
+.page-paper {
+  background-color: white;                 /* solid base so no transparency */
+  background-image: url("/paper_bg.jpg");  /* your Canva texture */
+  background-size: cover;
+  background-position: center;
+}
