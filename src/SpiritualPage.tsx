@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, type ReactNode } from "react";
+import { useState, useEffect, useRef, type ReactNode, type CSSProperties } from "react";
 import { Link, useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import { Home, X, AlertTriangle, ChevronLeft, ChevronRight, Palette, BookOpen } from "lucide-react";
 import PageHead from "./components/PageHead";
@@ -17,6 +17,26 @@ const ORDER: TabId[] = ["self", "meditation", "living", "books"];
 const nextOf = (id: TabId) => ORDER[(ORDER.indexOf(id) + 1) % ORDER.length];
 const prevOf = (id: TabId) => ORDER[(ORDER.indexOf(id) + ORDER.length - 1) % ORDER.length];
 
+function useOrbit(degPerSec = 18) {
+  const [deg, setDeg] = useState(0);
+  const raf = useRef<number | null>(null);
+  const last = useRef<number | null>(null);
+
+  useEffect(() => {
+    const tick = (t: number) => {
+      if (last.current == null) last.current = t;
+      const dt = (t - last.current) / 1000;
+      last.current = t;
+      setDeg(d => (d + degPerSec * dt) % 360);
+      raf.current = requestAnimationFrame(tick);
+    };
+    raf.current = requestAnimationFrame(tick);
+    return () => { if (raf.current) cancelAnimationFrame(raf.current); };
+  }, [degPerSec]);
+
+  return deg;
+}
+
 export default function SpiritualPage() {
   const [active, setActive] = useState<TabId | null>(null);
 
@@ -25,6 +45,8 @@ export default function SpiritualPage() {
   const [params] = useSearchParams();
 
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const deg = useOrbit(18);
 
   useEffect(() => {
     const step = params.get("step") as TabId | null;
@@ -89,8 +111,8 @@ export default function SpiritualPage() {
             animation: orbit 28s linear infinite;
           }
           /* Pause whole ring on hover for easy clicking */
-          .ring:hover { animation-play-state: paused; }
-
+          /* .ring:hover { animation-play-state: paused; } */
+ 
           .ring-slot { 
             position: absolute;
             left: 50%;
@@ -135,9 +157,11 @@ export default function SpiritualPage() {
           @media (max-width: 360px) {
             .menu-circle { width: 52px; height: 52px; }
           }
-          @media (prefers-reduced-motion: reduce) {
+          /* @media (prefers-reduced-motion: reduce) {
             .ring, .ring-item-inner { animation: none !important; }
-          }
+          } */
+          
+            .ring, .ring-item-inner { will-change: transform; }
 
           /* ---------- Modal (smoke / fade-down) ---------- */
           @keyframes fade-down {
@@ -375,7 +399,6 @@ export default function SpiritualPage() {
           )}
         </header>
 
-
         {/* MAIN */}
         <main className="spiritual relative mx-auto max-w-6xl px-4 pt-14 md:pt-16 pb-28 md:pb-36 flex-1">
           <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "radial-gradient(ellipse at 50% 35%, rgba(120,150,255,0.10), transparent 60%)" }} />
@@ -392,7 +415,14 @@ export default function SpiritualPage() {
             </div>
 
             {/* orbit layer */}
-            <Ring className="ring absolute inset-0 rounded-full z-50">
+            <Ring
+              className="ring absolute inset-0 rounded-full z-50"
+              style={{
+                transform: `rotate(${deg}deg)`,
+                ["--rot" as any]: `${deg}deg`, 
+                animation: "none",
+              }}
+            >
               {TABS.map((t, idx) => (
                 <RingItem key={t.id} index={idx} total={TABS.length} onClick={() => openStep(t.id)} ariaLabel={t.label}>
                   <span className="menu-circle">
@@ -421,8 +451,7 @@ export default function SpiritualPage() {
               </div>
             </div>
 
-
-          {/* ABOUT ME */}
+          {/* ABOUT Section */}
           <section id="about"
             className="relative mt-8 md:mt-10 min-h-[460px] md:min-h-[560px] scroll-mt-24"
           >
@@ -449,7 +478,6 @@ export default function SpiritualPage() {
               <div className="pointer-events-none absolute inset-x-0 top-0 h-16 md:h-40 bg-gradient-to-b from-black via-black to-transparent" />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 md:h-40 bg-gradient-to-t from-black via-black to-transparent" />
 
-
             </div>
 
             {/* Content container */}
@@ -466,7 +494,7 @@ export default function SpiritualPage() {
                 What I share here is simple and practical: self-awareness, gentle meditation, everyday practices, and books that can support anyone who feels drawn to explore the art of living.
               `}
                 </p>
-                {/* bottom spacer so the last line never sits in the fade */}
+                {/* bottom spacer */}
                 <div aria-hidden className="h-8 md:h-12" style={{ height: 'max(4.5rem, env(safe-area-inset-bottom))' }} />
 
               </div>
@@ -797,26 +825,38 @@ export default function SpiritualPage() {
 }
 
 /* ---------- Orbit helpers ---------- */
-function Ring({ className = "", children }: { className?: string; children: ReactNode }) {
-   const ref = useRef<HTMLDivElement>(null);
-   useEffect(() => {
-     if (!ref.current) return;
-     const el = ref.current;
-     const compute = () => {
-       const rect = el.getBoundingClientRect();
-       const btn = el.querySelector<HTMLElement>(".menu-circle");
-       const btnSize = btn ? btn.getBoundingClientRect().width : 64;
-       const gap = 10; 
-       const radiusPx = Math.min(rect.width, rect.height) / 2 - btnSize / 2 - gap;
-       el.style.setProperty("--radius", `${Math.max(0, radiusPx)}px`);
-     };
-     const ro = new ResizeObserver(compute);
-     ro.observe(el);
-     compute();
-     return () => ro.disconnect();
-   }, []);
-   return <div ref={ref} className={className} aria-hidden>{children}</div>;
- }
+
+function Ring(
+  { className = "", style, children }: { className?: string; style?: CSSProperties; children: ReactNode }
+) {
+  const ringRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ringRef.current;
+    if (!el) return;
+
+    const compute = () => {
+      const rect = el.getBoundingClientRect();
+      const btn = el.querySelector<HTMLElement>(".menu-circle");
+      const btnSize = btn ? btn.getBoundingClientRect().width : 64;
+      const gap = 10;
+      const radiusPx = Math.min(rect.width, rect.height) / 2 - btnSize / 2 - gap;
+      el.style.setProperty("--radius", `${Math.max(0, radiusPx)}px`);
+    };
+
+    const ro = new ResizeObserver(compute);
+    ro.observe(el);
+    compute();
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <div ref={ringRef} className={className} style={style} aria-hidden={true}>
+      {children}
+    </div>
+  );
+}
+
 
 function RingItem({
   index,
