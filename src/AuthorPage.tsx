@@ -23,7 +23,7 @@ export default function AuthorPage() {
         title="Author – Frederic G. Fleron Grignard"
         description="Books, releases, and writings by Frederic G. Fleron Grignard."
         iconHref="/favicon.ico"
-        ogImage="/The Alien In Disguise.png"
+        ogImage="/the-alien-in-disguise.png"
       />
 
     <div className="author-page min-h-screen bg-[#f9f7f3] text-neutral-900 overflow-x-hidden">
@@ -141,6 +141,7 @@ export default function AuthorPage() {
                 onClick={() => setOpen(false)}
               >
                 <Home className="h-6 w-6 p-1 rounded-full border border-[#000000] hover:bg-black/5" />
+                <span>Home</span>
               </Link>
             </li>
             </ul>
@@ -243,7 +244,7 @@ export default function AuthorPage() {
               <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-start">            
                 <div className="aspect-[2/3] flex items-center justify-center p-3 overflow-hidden -mt-6 sm:-mt-5 md:-mt-6">
                   <img
-                    src="/The Alien In Disguise.png"
+                    src="/the-alien-in-disguise.png"
                     alt="The Alien In Disguise — Book cover"
                     className="max-w-full max-h-full object-contain"
                     loading="lazy"
@@ -256,8 +257,8 @@ export default function AuthorPage() {
                   src="/author_debut.png"
                   alt="Author debut — English edition"
                     className="
-                      absolute -right-8 -top-14 w-44 z-10       /* mobile: pin to top-right */
-                      md:-top-12 md:-right-6 md:w-40          /* desktop: your previous spot */
+                      absolute -right-8 -top-14 w-44 z-10 
+                      md:-top-12 md:-right-6 md:w-40
                       lg:-top-10
                       pointer-events-none select-none
                     "
@@ -331,7 +332,7 @@ export default function AuthorPage() {
               <div className="relative w-64 sm:w-56 md:w-60 aspect-[2/3] rounded-md overflow-hidden mx-auto
                       ">
                 <img
-                  src="/El Alien Disfrazado.png"
+                  src="/el-alien-disfrazado.png"
                   alt="El Alien Disfrazado — Book cover"
                   className="absolute inset-0 w-full h-full object-cover md:object-contain"
                   loading="lazy"
@@ -391,7 +392,7 @@ export default function AuthorPage() {
             <div className="group relative flex flex-col items-center">
               <div className="relative w-64 sm:w-56 md:w-60 aspect-[2/3] overflow-hidden mx-auto">
                 <img
-                  src="/Hi, I Am Dad.png"
+                  src="/hi-i-am-dad.png"
                   alt="Hi, I Am Dad — Book cover"
                   className="absolute inset-0 w-full h-full object-contain"
                   loading="lazy"
@@ -511,7 +512,7 @@ export default function AuthorPage() {
               {/* hidden config */}
               <input type="hidden" name="_subject" value="New message from AUTHOR page" />
               <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://ffg-universe.com/thank-you" />
+              <input type="hidden" name="_next" value="https://ffg-universe.com/author#contact" />
 
               {/* spam honeypot (kept invisible) */}
               <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />

@@ -1,4 +1,3 @@
-// ArtistPage.tsx – updated with new Piñatas layout & copy
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Home, User, PenTool, Palette, Mail, Candy, Sparkles, Paintbrush, Ruler, Clock, Image as ImageIcon } from "lucide-react";
@@ -110,6 +109,7 @@ export default function ArtistPage() {
           <div className="flex items-center gap-2 font-semibold tracking-wide select-none">
             <img src="/FG.png" alt="FG logo" className="h-16 md:h-32 w-auto"/>
           </div>
+
           {/* Desktop nav with icons */}
           <ul className="hidden md:flex gap-6 self-end">
             {sections.map((s) => (
@@ -124,6 +124,7 @@ export default function ArtistPage() {
               </li>
             ))}
           </ul>
+
           {/* Mobile burger */}
           <button
             type="button"
@@ -158,6 +159,7 @@ export default function ArtistPage() {
           </div>
         )}
       </header>
+
       {/* MAIN CONTENT */}
       <main className="relative mx-auto max-w-6xl px-4">   
         {/* About Section */}
@@ -167,7 +169,7 @@ export default function ArtistPage() {
             aria-hidden
             className="absolute inset-0 left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#728ca5] z-0"
           />
-          {/* your existing content, lifted above the bg */}
+
             <div className="relative z-10">
               <div className="grid md:grid-cols-2 gap-10 items-center">
                 <div className="order-2 md:order-1 text-center md:text-left">
@@ -203,7 +205,8 @@ export default function ArtistPage() {
             </div>
           </div>
         </div>  
-      </section>  
+      </section>
+
         {/* Drawings Section */}
         <section id="drawings" className="scroll-mt-24 py-24">
           <h2 className="text-3xl text-center mb-10">Ink Drawings</h2>
@@ -257,6 +260,7 @@ export default function ArtistPage() {
               <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                 <img src="/1.jpg" alt="Ink drawing of a small figure lifting upward against gravity with one hand raised toward the sky." className="max-h-full max-w-full object-contain mx-auto" />
               </div>
+
               {/* Page 3: Text */}             
              <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">  
                 <div className="h-full overflow-hidden pr-1">
@@ -280,6 +284,7 @@ export default function ArtistPage() {
               <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                 <img src="/2.jpg" alt="Ink drawing of a child hugging a large friendly monster while building a sandcastle." className="max-h-full max-w-full object-contain mx-auto" />
               </div>
+
               {/* Page 5: Text */}
               <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">  
                 <div className="h-full overflow-hidden pr-1">
@@ -304,6 +309,7 @@ export default function ArtistPage() {
               <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                 <img src="/3.jpg" alt="Ink drawing of a man carrying a guitar case, walking with a ball and chain tied to his ankle." className="max-h-full max-w-full object-contain mx-auto" />
               </div>
+
               {/* Page 7: Text */}
               <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">  
                 <div className="h-full overflow-hidden pr-1">
@@ -328,6 +334,7 @@ export default function ArtistPage() {
               <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                 <img src="/4.jpg" alt="Ink drawing of a person on a bicycle leaning into wind and rain with swirling lines around them." className="max-h-full max-w-full object-contain mx-auto" />
               </div>
+
               {/* Page 9: Text */}
               <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">  
                 <div className="h-full overflow-hidden pr-1">
@@ -351,6 +358,7 @@ export default function ArtistPage() {
               <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                 <img src="/5.jpg" alt="Ink drawing of a person in a tree feeding chili peppers to the sun, which sweats into clouds and rain over chili plants." className="max-h-full max-w-full object-contain mx-auto" />
               </div>
+
             </HTMLFlipBook>
               {showHint && (
                   <button
@@ -368,7 +376,8 @@ export default function ArtistPage() {
                 )}
           </div>
         </section>
-        {/* Curvy separator — centered only */}
+
+        {/* Separator — centered only */}
         <div className="my-8 sm:my-12 flex justify-center">
           <svg
             viewBox="0 0 800 100"
@@ -382,6 +391,7 @@ export default function ArtistPage() {
             <path d="M0 10 C 20 100, 300 100, 450 50 S 5 100, 800 100" />
           </svg>
         </div>
+
         {/* Piñatas Section */}
         <section id="pinatas" className="scroll-mt-24 py-24">
           <h2 className="text-3xl text-center mb-10">Piñatas</h2>
@@ -392,21 +402,21 @@ export default function ArtistPage() {
               <img src="/Snorlax-P.png" alt="Snorlax Piñata" className="max-h-96 lg:max-h-[32rem] xl:max-h-[34rem] w-auto object-contain drop-shadow-lg" />
             </div>
             <div className="flex justify-center">
-              <img src="/Ice Cream-P.png" alt="Ice Cream Piñata" className="max-h-96 lg:max-h-[30rem] xl:max-h-[34rem] w-auto object-contain drop-shadow-lg"/>
+              <img src="/ice-cream-p.png" alt="Ice Cream Piñata" className="max-h-96 lg:max-h-[30rem] xl:max-h-[34rem] w-auto object-contain drop-shadow-lg"/>
             </div>
             <div className="flex justify-center">
               <img src="/Pumpkin-P.png" alt="Halloween Pumpkin Piñata" className="max-h-96 lg:max-h-[32rem] xl:max-h-[36rem] w-auto object-contain drop-shadow-lg"/>
             </div>
           </div>
 
-          {/* NEW: The Story (above slider) */}
+
           <div className="relative mt-8">
-            {/* background that spans the full viewport width */}
+
             <div
               aria-hidden
               className="absolute inset-0 left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#cacaca]"
             />
-            {/* inner padding so content breathes on the band */}
+            {/* inner padding */}
           <div className="relative pt-12 pb-12 sm:pt-16 sm:pb-16">
           <div className="relative max-w-3xl mx-auto bg-white backdrop-blur-sm border-2 border-black rounded-xl px-6 py-8 sm:px-8 sm:py-10 shadow-[6px_6px_0_0_#000]">
             <h3 className="text-2xl text-center mb-4">The Story</h3>
@@ -415,8 +425,10 @@ export default function ArtistPage() {
             </p>
             </div>
           </div>
-          {/* generous breathing room between story and slider */}
+
+          {/* breathing room between story and slider */}
           <div className="h-12 sm:h-14 md:h-16" aria-hidden />
+
           {/* FULL-BLEED: Brush (left) • Slider (center) • Text (right) */}
           <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen">
             <div className="mx-auto max-w-[1280px] px-4">
@@ -426,6 +438,7 @@ export default function ArtistPage() {
                           md:[grid-template-columns:minmax(0,1fr)_minmax(300px,1fr)]
                           lg:[grid-template-columns:160px_minmax(0,1fr)_minmax(360px,1fr)]
                         ">
+
                 {/* Col 1: Brush — hidden on mobile */}
                 <div className="hidden lg:flex justify-start pr-0 lg:-mr-9 lg:-mt-5 z-10">
                   <img
@@ -434,45 +447,47 @@ export default function ArtistPage() {
                     className="lg:-rotate-10 lg:h-[26rem] xl:h-[30rem] w-auto drop-shadow-xl select-none pointer-events-none"
                   />
                 </div>
-            {/* Col 2: Slider — fills the middle column */}
-            <div className="w-full">
-              <div className="rounded-2xl bg-white p-[3px] shadow-[6px_6px_0_#000]">
-          {/* black frame with rounded corners */}
-          <div className="rounded-xl overflow-hidden border-4 border-black">
-              <FadeSlider
-                images={["/Mk-I.jpg", "/Mk-P.jpg", "/Mk-S.jpg"]}
-                heightClass="h-[88vw] sm:h-[72vw] md:h-[22rem] lg:h-[26rem] xl:h-[26rem]"
-                className="w-full"
-              />
-          </div>
-        </div>
-      </div>
 
-          {/* Col 3: Text */}
-          <div className="pt-2 md:pt-0">
-            <p className="leading-relaxed">
-              Each piñata is handmade with a simple flour-and-water papier-mâché paste
-              and lots of newspaper strips. I shape it with balloons or a custom cardboard
-              base so it stays light yet sturdy. A little hot glue here and there and—voilà!
-              Sometimes I reinforce them to give the kids more of a challenge… though that depends
-              on how strong the little challengers are.
-            </p>
-
-              <h4 className="mt-6 mb-3 font-semibold">A few of my personal twists:</h4>
-              <ul className="grid gap-3">
-                {/* Using your IconBullet component if present; otherwise keep the structure */}
-                <IconBullet icon={Paintbrush}>I use acrylic paint for a bright, glossy finish.</IconBullet>
-                <IconBullet icon={Candy}>Before the fun begins, I leave an opening to fill with sweets and goodies, then seal it all up for the big moment.</IconBullet>
-              </ul>
+                {/* Col 2: Slider */}
+                <div className="w-full">
+                  <div className="rounded-2xl bg-white p-[3px] shadow-[6px_6px_0_#000]">
+                    {/* black frame with rounded corners */}
+                    <div className="rounded-xl overflow-hidden border-4 border-black">
+                        <FadeSlider
+                          images={["/Mk-I.jpg", "/Mk-P.jpg", "/Mk-S.jpg"]}
+                          heightClass="h-[88vw] sm:h-[72vw] md:h-[22rem] lg:h-[26rem] xl:h-[26rem]"
+                          className="w-full"
+                        />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
+
+                {/* Col 3: Text */}
+                <div className="pt-2 md:pt-0">
+                  <p className="leading-relaxed">
+                    Each piñata is handmade with a simple flour-and-water papier-mâché paste
+                    and lots of newspaper strips. I shape it with balloons or a custom cardboard
+                    base so it stays light yet sturdy. A little hot glue here and there and—voilà!
+                    Sometimes I reinforce them to give the kids more of a challenge… though that depends
+                    on how strong the little challengers are.
+                  </p>
+
+                    <h4 className="mt-6 mb-3 font-semibold">A few of my personal twists:</h4>
+                    <ul className="grid gap-3">
+                
+                      <IconBullet icon={Paintbrush}>I use acrylic paint for a bright, glossy finish.</IconBullet>
+                      <IconBullet icon={Candy}>Before the fun begins, I leave an opening to fill with sweets and goodies, then seal it all up for the big moment.</IconBullet>
+                    </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
           <div className="h-10 sm:h-12" aria-hidden />
           </div>
-          {/* generous breathing room between slider/text and ordering instructions */}
+
           <div className="h-12 sm:h-14 md:h-16" aria-hidden />
-          {/* Ordering / inquiry section (icon bullets instead of list dashes) */}
+          
           <div className="relative max-w-3xl mx-auto rounded-xl border-2 border-black bg-white px-6 py-8 sm:px-8 sm:py-10 shadow-[6px_6px_0_0_#000]">
             <h3 className="text-2xl text-center mb-4">Want One Made Just for You?</h3>
             <p className="leading-relaxed text-center max-w-prose mx-auto mb-6">
@@ -487,7 +502,6 @@ export default function ArtistPage() {
           </div>
         </section>
 
-        {/* Contact moved to footer */}
       </main>
       {/* Footer */}
       <footer id="contact" className="relative bg-neutral-900 text-neutral-100 mt-20">
@@ -566,7 +580,7 @@ export default function ArtistPage() {
             {/* hidden config */}
             <input type="hidden" name="_subject" value="New message from ARTIST page" />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://ffg-universe.com/thank-you" />
+            <input type="hidden" name="_next" value="https://ffg-universe.com/artist#contact" />
 
             {/* spam honeypot */}
             <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />

@@ -11,6 +11,7 @@ interface MenuItem {
 const MENU: MenuItem[] = [
   { label: "Author", href: "/author", external: true },
   { label: "Artist", href: "/artist", external: true },
+  { label: "Spiritual Guide", href: "/spiritual", external: true }, 
   { label: "Software Engineer", href: "https://github.com/F-Fleron-G", external: true},
 ];
 

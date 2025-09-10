@@ -1,6 +1,6 @@
 # FFG Universe 🌌
 
-Welcome to my personal universe — a hand-built portfolio that brings together my work as an **artist**, **author**, and **software engineer**.  
+Welcome to my personal universe — a hand-built portfolio that brings together my work as an **artist**, **author**, **software engineer** and **spiritual guide**.  
 It’s designed as an orbiting space: each page a planet, each project part of a larger whole.
 
 ---
@@ -16,6 +16,7 @@ Visit live: [ffg-universe.com](https://ffg-universe.com)
 - Landing page with **orbiting navigation**
 - **Author page** with books and releases
 - **Artist page** with interactive flipbook of drawings
+- **Spiritual Guidance page** with four linked modals and responsive imagery
 - Integrated **contact forms** via FormSubmit
 - Responsive design with custom styling
 
