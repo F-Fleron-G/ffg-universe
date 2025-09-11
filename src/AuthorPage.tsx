@@ -408,7 +408,7 @@ export default function AuthorPage() {
                     rel="noopener noreferrer"
                     className={CTA}
                   >
-                    Take A Peek
+                    Descúbrelo
                   </a>
                 </div>
               </div>
