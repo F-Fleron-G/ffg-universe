@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Home } from "lucide-react";
+import { Home, CheckCircle2, AlertCircle } from "lucide-react";
 import PageHead from "./components/PageHead";
 
 const sections = [
@@ -17,13 +17,54 @@ export default function AuthorPage() {
   const [open, setOpen] = useState(false);
   const [showMoreRelease, setShowMoreRelease] = useState(false);
 
+  const [sending, setSending] = useState(false);
+  const [toast, setToast] = useState<null | { type: "success" | "error"; text: string }>(null);
+
+  async function handleAuthorSubmit(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const data = new FormData(form);
+
+  const action = form.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
+
+  setSending(true);
+  setToast(null);
+
+  try {
+    const res = await fetch(action, {
+      method: "POST",
+      body: data,
+      headers: { Accept: "application/json" },
+    });
+
+    if (res.ok) {
+      setToast({ type: "success", text: "Thanks! Your message was sent." });
+      form.reset();
+    } else {
+      let msg = "Sorry, something went wrong. Please try again.";
+      try {
+        const j = await res.json();
+        if (j?.message) msg = j.message;
+      } catch {}
+      setToast({ type: "error", text: msg });
+    }
+  } catch {
+    setToast({ type: "error", text: "Network error. Please try again." });
+  } finally {
+    setSending(false);
+    // auto-hide after a moment
+    setTimeout(() => setToast(null), 5000);
+  }
+}
+
+
   return (
        <>
       <PageHead
         title="Author – Frederic G. Fleron Grignard"
         description="Books, releases, and writings by Frederic G. Fleron Grignard."
         iconHref="/favicon.ico"
-        ogImage="/the-alien-in-disguise.png"
+        ogImage="/og/author.jpg"
       />
 
     <div className="author-page min-h-screen bg-[#f9f7f3] text-neutral-900 overflow-x-hidden">
@@ -478,6 +519,7 @@ export default function AuthorPage() {
             <form
               action="https://formsubmit.co/e3a4e25ccb1ba58c8eb4d9477175cdcb"
               method="POST"
+              onSubmit={handleAuthorSubmit}
               className="max-w-2xl mx-auto grid md:grid-cols-2 gap-6"
             >
               {/* visible fields */}
@@ -512,13 +554,17 @@ export default function AuthorPage() {
               {/* hidden config */}
               <input type="hidden" name="_subject" value="New message from AUTHOR page" />
               <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://ffg-universe.com/author#contact" />
+              <input type="hidden" name="_next" value="https://www.ffg-universe.com/author#contact" />
 
-              {/* spam honeypot (kept invisible) */}
+              {/* spam honeypot */}
               <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 
-              <button type="submit" className={`md:col-span-2 mx-auto ${CTA}`}>
-                Send Message
+              <button 
+              type="submit" 
+              disabled={sending}
+              className={`md:col-span-2 mx-auto ${CTA} disabled:opacity-60 disabled:cursor-not-allowed`}
+                  >
+                {sending ? "Sending..." : "Send Message"}
               </button>
             </form>
           </div>
@@ -605,6 +651,38 @@ export default function AuthorPage() {
         </div>
       </div>
       </footer>
+
+      {/* Toast */}
+      {toast && (
+        <div
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className="fixed z-[100] bottom-[max(1rem,env(safe-area-inset-bottom))] left-3 right-3 sm:left-auto sm:right-4"
+        >
+          <div className="mx-auto w-full max-w-[40rem]">
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 rounded-xl border border-[#5b5a59] bg-white/90 text-neutral-900 shadow-lg backdrop-blur px-4 py-3">
+              {toast.type === "success" ? (
+                <CheckCircle2 size={18} aria-hidden className="shrink-0" />
+              ) : (
+                <AlertCircle size={18} aria-hidden className="shrink-0" />
+              )}
+              <span className="font-medium">
+                {toast.type === "success" ? "Message sent" : "Something went wrong"}
+              </span>
+              <span className="opacity-80">{toast.text}</span>
+              <button
+                type="button"
+                onClick={() => setToast(null)}
+                className="ml-auto sm:ml-2 underline text-sm"
+                aria-label="Close notification"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
     </>
   );

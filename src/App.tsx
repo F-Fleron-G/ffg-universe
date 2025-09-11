@@ -38,8 +38,9 @@ export default function App() {
      <>
     <PageHead
       title="Home – Frederic G. Fleron Grignard"
-      description="Official website of Frederic G. Fleron Grignard – software engineer, author, and artist."
+      description="Official website of Frederic G. Fleron Grignard – software engineer, author, artist, spiritual guide."
       iconHref="/favicon.ico"
+      ogImage="/og/home.jpg"
     />
 
     <div className="min-h-screen bg-black text-slate-100 flex flex-col items-center justify-between px-6 pt-6 pb-6 gap-6 md:gap-10 relative overflow-hidden">

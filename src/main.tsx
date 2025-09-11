@@ -7,6 +7,12 @@ import ArtistPage from "./ArtistPage";
 import SpiritualPage from "./SpiritualPage"; 
 import "./index.css";
 
+const pending = sessionStorage.getItem('__redirect_to');
+if (pending) {
+  sessionStorage.removeItem('__redirect_to');
+  history.replaceState(null, '', pending);
+}
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>

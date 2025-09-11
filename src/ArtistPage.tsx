@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Home, User, PenTool, Palette, Mail, Candy, Sparkles, Paintbrush, Ruler, Clock, Image as ImageIcon } from "lucide-react";
+import { Home, User, PenTool, Palette, Mail, Candy, Sparkles, Paintbrush, Ruler, Clock, Image as ImageIcon, CheckCircle2, AlertCircle  } from "lucide-react";
 import HTMLFlipBook from "react-pageflip";
 import PageHead from "./components/PageHead";
 
@@ -63,8 +63,49 @@ function IconBullet({ icon: Icon, children }: { icon: any; children: React.React
 export default function ArtistPage() {
   const [open, setOpen] = useState(false);
 
+  const [sending, setSending] = useState(false);
+  const [toast, setToast] = useState<null | { type: "success" | "error"; text: string }>(null);
+
   const bookRef = useRef<any>(null);
   const [showHint, setShowHint] = useState(true);
+
+  async function handleArtistSubmit(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const data = new FormData(form);
+
+  const action = form.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
+
+  setSending(true);
+  setToast(null);
+
+  try {
+    const res = await fetch(action, {
+      method: "POST",
+      body: data,
+      headers: { Accept: "application/json" },
+    });
+
+    if (res.ok) {
+      setToast({ type: "success", text: "Thanks! Your message was sent." });
+      form.reset();
+    } else {
+      
+      let msg = "Sorry, something went wrong. Please try again.";
+      try {
+        const j = await res.json();
+        if (j?.message) msg = j.message;
+      } catch {}
+      setToast({ type: "error", text: msg });
+    }
+  } catch {
+    setToast({ type: "error", text: "Network error. Please try again." });
+  } finally {
+    setSending(false);
+    
+    setTimeout(() => setToast(null), 5000);
+  }
+}
 
   return (
         <>
@@ -72,7 +113,7 @@ export default function ArtistPage() {
               title="Artist – Frederic G. Fleron Grignard"
               description="Ink drawings, flip book stories, and piñata creations by Frederic G. Fleron Grignard."
               iconHref="/favicon.ico"
-              ogImage="/Snorlax-P.png"
+              ogImage="/og/artist.jpg"
             />
 
     <div id="top" className="artist-page min-h-screen text-neutral-900 overflow-x-hidden">
@@ -184,7 +225,7 @@ export default function ArtistPage() {
                     <p>
                       Piñatas arise for occasions. I build the idea and let it go: used, loved, broken open, finished. They’re made to be enjoyed and to end, like everything, cracked open and complete.
                     </p>
-                    <p className="text-2xl md:text-2xl font-semibold"> Welcome! I’m Frederic G. Fleron.</p>
+                    <p className="text-2xl md:text-2xl font-semibold"> Welcome! I’m Frederic G. Fleron Grignard.</p>
                     <p className="mt-6 text-[clamp(10px,3.2vw,14px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] opacity-90 text-[#cacaca] whitespace-nowrap">
                       Expressionist · Artist · Unmuted
                     </p>
@@ -409,7 +450,6 @@ export default function ArtistPage() {
             </div>
           </div>
 
-
           <div className="relative mt-8">
 
             <div
@@ -543,6 +583,7 @@ export default function ArtistPage() {
           <form
             action="https://formsubmit.co/5fbe1cd6ca420026a59128ebbea6c656"
             method="POST"
+            onSubmit={handleArtistSubmit}
             className="md:justify-self-end w-full max-w-md grid grid-cols-1 gap-3"
           >
             <input
@@ -580,21 +621,52 @@ export default function ArtistPage() {
             {/* hidden config */}
             <input type="hidden" name="_subject" value="New message from ARTIST page" />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://ffg-universe.com/artist#contact" />
+            <input type="hidden" name="_next" value="https://www.ffg-universe.com/artist#contact" />
 
             {/* spam honeypot */}
             <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 
             <button
               type="submit"
-              className="justify-self-start px-5 py-2 rounded-full bg-neutral-100 text-neutral-900 border-2 border-[#728ca5] hover:bg-white/90 hover:border-4 hover:border-|#728ca5] transition text-sm"
+              disabled={sending}
+              className="justify-self-start px-5 py-2 rounded-full bg-neutral-100 text-neutral-900 border-2 border-[#728ca5] hover:bg-white/90 hover:border-4 hover:border-|#728ca5] transition text-sm disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Send
+              {sending ? "Sending..." : "Send"}
             </button>
           </form>
 
         </div>
       </footer>
+
+      {/* Toast */}
+      {toast && (
+        <div
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className="fixed z-[100] bottom-4 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0"
+        >
+          <div className="flex items-center gap-3 rounded-xl border border-[#728ca5] bg-white/90 text-neutral-900 shadow-lg backdrop-blur px-4 py-3">
+            {toast.type === "success" ? (
+              <CheckCircle2 size={18} aria-hidden className="shrink-0" />
+            ) : (
+              <AlertCircle size={18} aria-hidden className="shrink-0" />
+            )}
+            <span className="font-medium">
+              {toast.type === "success" ? "Message sent" : "Something went wrong"}
+            </span>
+            <span className="opacity-80">{toast.text}</span>
+            <button
+              type="button"
+              onClick={() => setToast(null)}
+              className="ml-2 underline text-sm"
+              aria-label="Close notification"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
     </>
   );

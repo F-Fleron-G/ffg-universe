@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, type ReactNode, type CSSProperties } from "react";
 import { Link, useSearchParams, useNavigate, useLocation } from "react-router-dom";
-import { Home, X, AlertTriangle, ChevronLeft, ChevronRight, Palette, BookOpen } from "lucide-react";
+import { Home, X, AlertTriangle, ChevronLeft, ChevronRight, Palette, BookOpen, CheckCircle2, AlertCircle } from "lucide-react";
 import PageHead from "./components/PageHead";
 
 type TabId = "meditation" | "self" | "living" | "books";
@@ -46,6 +46,9 @@ export default function SpiritualPage() {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const [sending, setSending] = useState(false);
+  const [toast, setToast] = useState<null | { type: "success" | "error"; text: string }>(null);
+
   const deg = useOrbit(18);
 
   useEffect(() => {
@@ -75,13 +78,49 @@ export default function SpiritualPage() {
     return () => document.removeEventListener("click", onDocClick);
   }, [showDisclosure]);
 
+  async function handleSpiritualSubmit(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const data = new FormData(form);
+
+  const action = form.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
+
+  setSending(true);
+  setToast(null);
+
+  try {
+    const res = await fetch(action, {
+      method: "POST",
+      body: data,
+      headers: { Accept: "application/json" },
+    });
+
+    if (res.ok) {
+      setToast({ type: "success", text: "Thanks! Your message was sent." });
+      form.reset();
+    } else {
+      let msg = "Sorry, something went wrong. Please try again.";
+      try {
+        const j = await res.json();
+        if (j?.message) msg = j.message;
+      } catch {}
+      setToast({ type: "error", text: msg });
+    }
+  } catch {
+    setToast({ type: "error", text: "Network error. Please try again." });
+  } finally {
+    setSending(false);
+    setTimeout(() => setToast(null), 5000);
+  }
+}
+
   return (
     <>
       <PageHead
         title="Spiritual Guide – Frederic G. Fleron Grignard"
         description="Reflections, meditation, and the art of living — personal spiritual guidance by Frederic."
         iconHref="/favicon.ico"
-        ogImage="/og-spiritual.png"
+        ogImage="/og/spiritual.jpg"
       />
 
       <div id="top" className="spiritual min-h-screen bg-black text-[#ffffff85] overflow-x-hidden flex flex-col">
@@ -488,11 +527,14 @@ export default function SpiritualPage() {
 
               <div className="leading-relaxed max-w-2xl mr-auto text-left space-y-3">
                 <p className="mt-2 leading-relaxed whitespace-pre-line">
-              {`Hi, I’m Frederic G. Fleron Grignard. Titles are one way to define ourselves, but if I had to choose, I’d rather be known as a trusting friend than a “spiritual guide.” What I share here isn’t easy to sum up with labels. It’s less about definitions and more about experience — a collection of simple practices, reflections, and resources that have helped me along the way.
-                This space is where I offer my personal approach to self-awareness and meditation, along with a few books that deeply shaped my journey. None of them were ones I set out to buy; they found their way to me, each planting a small seed. Those seeds sparked my curiosity to look inward.
-                When I first sat down to meditate, I quickly noticed how restless my mind was, always stirring up thoughts into unpredictable outcomes. With time, I learned to sit with that movement instead of fighting it. Looking back, I sometimes think I could have saved myself a few obstacles if I had started earlier — but I also know that wandering is part of the process.
-                What I share here is simple and practical: self-awareness, gentle meditation, everyday practices, and books that can support anyone who feels drawn to explore the art of living.
-              `}
+                  {`Titles are one way to define ourselves, but if I had to choose, I’d rather be known as a trusting friend than a “spiritual guide.” What I share here isn’t easy to sum up with labels. It’s less about definitions and more about experience — a collection of simple practices, reflections, and resources that have helped me along the way.
+                    This space is where I offer my personal approach to self-awareness and meditation, along with a few books that deeply shaped my journey. None of them were ones I set out to buy; they found their way to me, each planting a small seed. Those seeds sparked my curiosity to look inward.
+                    When I first sat down to meditate, I quickly noticed how restless my mind was, always stirring up thoughts into unpredictable outcomes. With time, I learned to sit with that movement instead of fighting it. Looking back, I sometimes think I could have saved myself a few obstacles if I had started earlier — but I also know that wandering is part of the process.
+                  `}
+                </p>
+                <p className="font-semibold"> I’m Frederic G. Fleron Grignard.</p>
+                <p className="mt-6 text-[clamp(10px,2.8vw,13px)] md:text-sm tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.28em] opacity-90 text-[#cacaca] sm:whitespace-nowrap">
+                  Yogi · Guide · Meditator
                 </p>
                 {/* bottom spacer */}
                 <div aria-hidden className="h-8 md:h-12" style={{ height: 'max(4.5rem, env(safe-area-inset-bottom))' }} />
@@ -613,6 +655,7 @@ export default function SpiritualPage() {
               <form
                 action="https://formsubmit.co/5fbe1cd6ca420026a59128ebbea6c656"
                 method="POST"
+                onSubmit={handleSpiritualSubmit}
                 className="md:justify-self-end w-full max-w-md grid grid-cols-1 gap-3"
               >
                 <input type="text" name="name" required className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60" placeholder="Your Name" />
@@ -621,20 +664,55 @@ export default function SpiritualPage() {
                 <textarea name="message" required className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 h-28 resize-y text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60" placeholder="What would you like to share?" />
                 <input type="hidden" name="_subject" value="New message from SPIRITUAL page" />
                 <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_next" value="https://ffg-universe.com/spiritual#contact" />
+                <input type="hidden" name="_next" value="https://www.ffg-universe.com/spiritual#contact" />
                 <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
                 <button
                   type="submit"
+                  disabled={sending}
                   className="justify-self-start px-5 py-2 rounded-full bg-[#ffffff73] text-neutral-900
                             border-4 border-[#a28e72] hover:border-[#a28e72] border-transparent
                             hover:bg-[#ffffff92] transition-colors duration-200 text-sm 
-                            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a28e72]"
+                            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a28e72]
+                            disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send
+                  {sending ? "Sending..." : "Send"}
                 </button>
               </form>
             </div>
           </footer>
+         {/* Toast */}
+          {toast && (
+            <div
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+              className="fixed z-[100] bottom-[max(1rem,env(safe-area-inset-bottom))] left-3 right-3 sm:left-auto sm:right-4"
+            >
+              <div className="mx-auto w-full max-w-[40rem]">
+                <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 rounded-xl border border-[#728ca5] bg-white/90 text-neutral-900 shadow-lg backdrop-blur px-4 py-3">
+                  {toast.type === "success" ? (
+                    <CheckCircle2 size={18} aria-hidden className="shrink-0" />
+                  ) : (
+                    <AlertCircle size={18} aria-hidden className="shrink-0" />
+                  )}
+                  <span className="font-medium">
+                    {toast.type === "success" ? "Message sent" : "Something went wrong"}
+                  </span>
+                  <span className="opacity-80">
+                    {toast.text}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setToast(null)}
+                    className="ml-auto sm:ml-2 underline text-sm"
+                    aria-label="Close notification"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </main>
 
         {/* MODALS */}
