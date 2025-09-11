@@ -228,7 +228,7 @@ export default function AuthorPage() {
                 FREDERIC G. <br /> FLERON <br /> GRIGNARD
               </h1>
               <p className="mt-6 text-[clamp(10px,3.2vw,14px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] opacity-90 text-[#dec09a] whitespace-nowrap">
-                Author · Philospher · Soul Explorer
+                Author · Philosopher · Soul Explorer
               </p>
             </div>
           </div>
