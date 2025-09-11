@@ -55,7 +55,6 @@ export default function PageHead({
     setOG("og:description", ogDescription ?? description);
     setOG("og:image", ogImage);
 
-    // helper for <meta name="..."> (Twitter uses name=)
     const setName = (name: string, content?: string) => {
       if (!content) return;
       let el = document.querySelector<HTMLMetaElement>(`meta[name='${name}']`);
@@ -67,7 +66,6 @@ export default function PageHead({
       el.setAttribute("content", content);
     };
 
-    // Make og:image absolute so sharing bots can fetch it
     const absoluteImage =
       ogImage
         ? (ogImage.startsWith("http") ? ogImage : `${location.origin}${ogImage}`)
@@ -81,7 +79,7 @@ export default function PageHead({
     setOG("og:type", "website");
     setOG("og:site_name", "FFG Universe");
 
-    // Twitter (mirrors OG)
+    // Twitter
     setName("twitter:card", "summary_large_image");
     setName("twitter:title", ogTitle ?? title);
     setName("twitter:description", ogDescription ?? description);
