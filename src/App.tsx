@@ -10,8 +10,8 @@ interface MenuItem {
 
 const MENU: MenuItem[] = [
   { label: "Author", href: "/author", external: true },
-  { label: "Artist", href: "/artist", external: true },
   { label: "Spiritual Guide", href: "/spiritual", external: true }, 
+  { label: "Artist", href: "/artist", external: true },
   { label: "Software Engineer", href: "https://github.com/F-Fleron-G", external: true},
 ];
 
@@ -104,7 +104,7 @@ export default function App() {
           <Orbit3D
             items={MENU}
             radius={isMobile ? 110 : isTablet ? 150 : 200}
-            speedDegPerSec={20}
+            speedDegPerSec={30}
             centerOffsetPct={{ x: 50, y: 30 }}
             center={
             <div className="relative aspect-square w-[19rem] sm:w-[21rem] md:w-[25rem] lg:w-[29rem] xl:w-[32rem]">
