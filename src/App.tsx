@@ -322,11 +322,11 @@ function Orbit3D({
         position: "absolute",
         left: `${centerOffsetPct.x}%`,
         top: `${centerOffsetPct.y}%`,
-        transform: `translate(-50%, -50%) translateX(${x}px) scale(${scale})`,
+        transform: `translate(-50%, -50%) translate3d(${x}px, 0, 0) scale(${scale})`,
         transformOrigin: "center",
         opacity,
         zIndex,
-        transition: "opacity 150ms linear, transform 50ms linear",
+        transition: "none",
         willChange: "transform, opacity",
       };
       return { item, z, style } as const;
