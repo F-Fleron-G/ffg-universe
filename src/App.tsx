@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useEffect, useMemo, useRef, useState } from "react";
 import { Mail, Instagram, Github } from "lucide-react";
 import PageHead from "./components/PageHead";
 
@@ -53,8 +53,8 @@ export default function App() {
       {/* Universe background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 38%, rgba(120,150,255,0.08), transparent 60%)" }} />
-        <StarField count={140} />
-        <ShootingStars />
+        <StarField count={isMobile ? 60 : 140} />
+        <ShootingStars /> 
       </div>
 
       {/* INTRO (typewriter) */}
@@ -169,9 +169,11 @@ export default function App() {
   );
 }
 
-
 // ---------- Tiny components ----------
-function TypewriterParagraph({ text, speed = 50 }: { text: string; speed?: number }) {
+const TypewriterParagraph = memo(function TypewriterParagraph({
+  text,
+  speed = 60,
+}: { text: string; speed?: number }) {
   const [i, setI] = useState(0);
   useEffect(() => {
     if (i < text.length) {
@@ -195,7 +197,7 @@ function TypewriterParagraph({ text, speed = 50 }: { text: string; speed?: numbe
       ))}
     </div>
   );
-}
+});
 
 function StarField({ count = 120 }: { count?: number }) {
   const stars = useMemo(() => {
@@ -290,73 +292,78 @@ function Orbit3D({
   center: React.ReactNode;
   centerOffsetPct?: { x: number; y: number };
 }) {
-  const [deg, setDeg] = useState(0);
-  const raf = useRef<number | null>(null);
-  const last = useRef<number | null>(null);
-  const step = 360 / Math.max(items.length, 1);
+
+  const itemRefs = useRef<HTMLAnchorElement[]>([]);
+  itemRefs.current = [];
+
+  const baseAngles = useMemo(() => {
+    const step = 360 / Math.max(items.length, 1);
+    return items.map((_, i) => i * step);
+  }, [items.length]);
 
   useEffect(() => {
-    const loop = (ts: number) => {
-      if (last.current == null) last.current = ts;
-      const dt = (ts - last.current) / 1000;
-      last.current = ts;
-      setDeg((d) => (d + speedDegPerSec * dt) % 360);
-      raf.current = requestAnimationFrame(loop);
-    };
-    raf.current = requestAnimationFrame(loop);
-    return () => { if (raf.current) cancelAnimationFrame(raf.current); };
-  }, [speedDegPerSec]);
+    let raf = 0;
+    let start = performance.now();
 
-  const { back, front } = useMemo(() => {
-    const toRad = (a: number) => (a * Math.PI) / 180;
-    const list = items.map((item, i) => {
-      const aDeg = deg + i * step;
-      const a = toRad(aDeg);
-      const x = Math.cos(a) * radius;
-      const z = Math.sin(a) * radius;
-      const depth = (z + radius) / (2 * radius); // 0..1
-      const scale = 0.8 + depth * 0.4;
-      const opacity = 0.6 + depth * 0.4;
-      const zIndex = 50 + Math.round(depth * 100);
-      const style: React.CSSProperties = {
-        position: "absolute",
-        left: `${centerOffsetPct.x}%`,
-        top: `${centerOffsetPct.y}%`,
-        transform: `translate(-50%, -50%) translate3d(${x}px, 0, 0) scale(${scale})`,
-        transformOrigin: "center",
-        opacity,
-        zIndex,
-        transition: "none",
-        willChange: "transform, opacity",
-      };
-      return { item, z, style } as const;
-    });
-    return { back: list.filter((p) => p.z < 0), front: list.filter((p) => p.z >= 0) };
-  }, [items, radius, step, deg, centerOffsetPct.x, centerOffsetPct.y]);
+    const tick = (now: number) => {
+      const t = (now - start) / 1000;              
+      const degOffset = (t * speedDegPerSec) % 360;
+      const toRad = Math.PI / 180;
+
+      for (let i = 0; i < itemRefs.current.length; i++) {
+        const el = itemRefs.current[i];
+        if (!el) continue;
+
+        const aDeg = baseAngles[i] + degOffset;
+        const a = aDeg * toRad;
+
+        const x = Math.cos(a) * radius;
+        const z = Math.sin(a) * radius;
+        const y = 0;
+
+        const depth = (z + radius) / (2 * radius);
+        const scale = 0.8 + depth * 0.4;             
+        const opacity = 0.6 + depth * 0.4;           
+
+        const zIndex = (z >= 0 ? 300 : 100) + Math.round(depth * 100);
+
+        el.style.left = `${centerOffsetPct.x}%`;
+        el.style.top = `${centerOffsetPct.y}%`;
+        el.style.transform = `translate(-50%, -50%) translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+        el.style.opacity = String(opacity);
+        el.style.zIndex = String(zIndex);
+        el.style.transition = "none";
+        el.style.willChange = "transform, opacity";
+      }
+
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [baseAngles, centerOffsetPct.x, centerOffsetPct.y, radius, speedDegPerSec]);
 
   return (
     <div className="absolute inset-0" style={{ perspective: 1000, transformStyle: "preserve-3d" }}>
-      {/* Back half */}
-      {back.map(({ item, style }) => (
-        <a key={`back-${item.label}`} href={item.href} target={item.external ? "_blank" : undefined} rel={item.external ? "noopener noreferrer" : undefined} className="select-none" style={style}>
-          <Badge label={item.label} translucent />
-        </a>
-      ))}
-
-    {/* Portrait */}
-    <div
-      className="absolute"
-      style={{ left: "50%", top: "50%", transform: "translate(-50%, -50%)", zIndex: 100 }}
-    >
-      {center}
-    </div>
-
-      {/* Front half */}
-      {front.map(({ item, style }) => (
-        <a key={`front-${item.label}`} href={item.href} target={item.external ? "_blank" : undefined} rel={item.external ? "noopener noreferrer" : undefined} className="select-none" style={{ ...style, zIndex: Math.max((style.zIndex as number) ?? 0, 120) }}>
+      {items.map((item, i) => (
+        <a
+          key={item.label}
+          ref={(el) => { if (el) itemRefs.current[i] = el; }}
+          href={item.href}
+          target={item.external ? "_blank" : undefined}
+          rel={item.external ? "noopener noreferrer" : undefined}
+          className="select-none absolute"
+        >
           <Badge label={item.label} />
         </a>
       ))}
+
+      <div
+        className="absolute pointer-events-none"
+        style={{ left: "50%", top: "50%", transform: "translate(-50%, -50%)", zIndex: 200 }}
+      >
+        {center}
+      </div>
     </div>
   );
 }
