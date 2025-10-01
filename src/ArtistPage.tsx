@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Home, User, PenTool, Palette, Mail, Candy, Sparkles, Paintbrush, Ruler, Clock, Image as ImageIcon, CheckCircle2, AlertCircle  } from "lucide-react";
+import { Home, User, PenTool, Palette, Mail, Candy, Sparkles, Paintbrush, Ruler, Clock, Image as ImageIcon, CheckCircle2, AlertCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import HTMLFlipBook from "react-pageflip";
 import PageHead from "./components/PageHead";
 
@@ -28,7 +28,6 @@ function FadeSlider({
     }, 5000);
     return () => clearInterval(t);
   }, [images.length]);
-
 
   return (
 
@@ -60,14 +59,55 @@ function IconBullet({ icon: Icon, children }: { icon: any; children: React.React
   );
 }
 
+function PageNo({ n }: { n: number }) {
+  return (
+    <div
+      className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2
+                 text-[10px] sm:text-xs md:text-sm text-neutral-700
+                 "
+    >
+      {n}
+    </div>
+  );
+}
+
 export default function ArtistPage() {
+
+  const [showTip, setShowTip] = useState(false);
+
+  const [isSpread, setIsSpread] = useState(false);
+
   const [open, setOpen] = useState(false);
 
   const [sending, setSending] = useState(false);
   const [toast, setToast] = useState<null | { type: "success" | "error"; text: string }>(null);
 
   const bookRef = useRef<any>(null);
-  const [showHint, setShowHint] = useState(true);
+
+  const [page, setPage] = useState(0);
+  const [pageCount, setPageCount] = useState(0);
+
+  const canGoPrev = page > 0;
+  const canGoNext = page < pageCount - (isSpread ? 2 : 1);
+
+  const updateSpread = () => {
+  const api = bookRef.current?.pageFlip?.();
+
+  const mode = api?.getOrientation?.();
+  if (mode) {
+    setIsSpread(mode === "landscape");
+    return;
+  }
+
+  setIsSpread(window.innerWidth >= window.innerHeight);
+  };
+
+  const updateNav = () => {
+  const api = bookRef.current?.pageFlip?.();
+  if (!api) return;
+  setPage(api.getCurrentPageIndex?.() ?? 0);
+  setPageCount(api.getPageCount?.() ?? 0);
+  };
 
   async function handleArtistSubmit(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
@@ -107,6 +147,22 @@ export default function ArtistPage() {
   }
 }
 
+  useEffect(() => {
+    const onResize = () => updateSpread();
+    onResize(); // run once on mount
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+
+  useEffect(() => {
+    if (!showTip) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setShowTip(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [showTip]);
+
+
   return (
         <>
             <PageHead
@@ -118,7 +174,6 @@ export default function ArtistPage() {
 
     <div id="top" className="artist-page min-h-screen text-neutral-900 overflow-x-hidden">
     
-      {/* Custom fonts & overrides */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Patrick+Hand&display=swap');
         .artist-page h1, .artist-page h2, .artist-page h3 { font-family: "Montserrat", sans-serif; }
@@ -127,6 +182,14 @@ export default function ArtistPage() {
           .artist-page p { font-size: 16px; }
           .page-paper p { font-size: 18px; }
         }
+
+        /* Handwriting font helper for headings and small text blocks */
+        .hand-font,
+        .hand-font h1, .hand-font h2, .hand-font h3,
+        .hand-font p, .hand-font span {
+          font-family: 'Patrick Hand', cursive !important;
+        }
+
         .page-paper {
           background-image: url('/paper_bg.jpg');
           background-size: cover;
@@ -250,16 +313,57 @@ export default function ArtistPage() {
 
         {/* Drawings Section */}
         <section id="drawings" className="scroll-mt-24 py-24">
-          <h2 className="text-3xl text-center mb-10">Ink Drawings</h2>
+          <div className="relative mb-10">
+            <h2 className="text-3xl text-center">Ink Drawings</h2>
+
+            {/* Info button */}
+            <button
+              type="button"
+              aria-label="How to use the flipbook"
+              aria-expanded={showTip}
+              onClick={() => setShowTip(v => !v)}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-30 h-7 w-7 rounded-full
+                        border border-[#728ca5] bg-white/80 text-[#728ca5]
+                        flex items-center justify-center shadow-sm backdrop-blur
+                        hover:bg-white transition
+                        focus:outline-none focus-visible:ring-2 focus-visible:ring-[#728ca5]/60"
+            >
+              <span className="text-[11px] font-semibold">i</span>
+            </button>
+
+            {/* Tip popover */}
+            {showTip && (
+              <div
+                role="dialog"
+                aria-modal="false"
+                className="absolute right-0 top-full mt-2 z-30 max-w-xs rounded-xl border border-[#728ca5]
+                          bg-white/95 text-[#728ca5] p-3 text-xs sm:text-sm shadow-lg backdrop-blur
+                          leading-relaxed"
+              >
+                <p className="mb-2 !text-[14px]">
+                  Tip: Click the right page or the → button to flip forward, and the left page or the ← button to flip back.
+                </p>
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => setShowTip(false)}
+                    className="!text-[11px] sm:text-xs text-[#728ca5] hover:text-neutral-900 underline"
+                  >
+                    Got it
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
           <div className="relative flex justify-center">
-            <HTMLFlipBook
+           <HTMLFlipBook
               ref={bookRef}
               style={{}}
               width={400}
               height={500}
               size="stretch"
               minWidth={300}
-              maxWidth={600}  
+              maxWidth={600}
               minHeight={400}
               maxHeight={800}
               maxShadowOpacity={0.3}
@@ -277,7 +381,13 @@ export default function ArtistPage() {
               swipeDistance={30}
               showPageCorners
               disableFlipByClick={false}
+              onInit={() => {
+                updateNav();
+                updateSpread();
+              }}
+              onFlip={updateNav}
             >
+
               {/* Page 1: Text — with title + paragraphs */}
               <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">  
                 <div className="h-full overflow-hidden pr-1">
@@ -296,12 +406,12 @@ export default function ArtistPage() {
                     </p>
                   </div>
                 </div>
+                 <PageNo n={1} />
               </div>
               {/* Page 2: Drawing */}
               <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                 <img src="/1.jpg" alt="Ink drawing of a small figure lifting upward against gravity with one hand raised toward the sky." className="max-h-full max-w-full object-contain mx-auto" />
               </div>
-
               {/* Page 3: Text */}             
              <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">  
                 <div className="h-full overflow-hidden pr-1">
@@ -320,12 +430,12 @@ export default function ArtistPage() {
                   </p>
                   </div>
                 </div>
+                <PageNo n={2} />
               </div>
               {/* Page 4: Drawing */}
               <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                 <img src="/2.jpg" alt="Ink drawing of a child hugging a large friendly monster while building a sandcastle." className="max-h-full max-w-full object-contain mx-auto" />
               </div>
-
               {/* Page 5: Text */}
               <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">  
                 <div className="h-full overflow-hidden pr-1">
@@ -345,12 +455,12 @@ export default function ArtistPage() {
                   </p>
                   </div>
                 </div>
+                <PageNo n={3} />
               </div>
               {/* Page 6: Drawing */}
               <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                 <img src="/3.jpg" alt="Ink drawing of a man carrying a guitar case, walking with a ball and chain tied to his ankle." className="max-h-full max-w-full object-contain mx-auto" />
               </div>
-
               {/* Page 7: Text */}
               <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">  
                 <div className="h-full overflow-hidden pr-1">
@@ -370,12 +480,12 @@ export default function ArtistPage() {
                   </p>
                   </div>
                 </div>
+                <PageNo n={4} />
               </div>
               {/* Page 8: Drawing */}
               <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                 <img src="/4.jpg" alt="Ink drawing of a person on a bicycle leaning into wind and rain with swirling lines around them." className="max-h-full max-w-full object-contain mx-auto" />
               </div>
-
               {/* Page 9: Text */}
               <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">  
                 <div className="h-full overflow-hidden pr-1">
@@ -393,26 +503,43 @@ export default function ArtistPage() {
                       A strange loop of fire and water, irritation and delight, all bound in taste.
                   </p>
                   </div>
+                  <PageNo n={5} />
                 </div>
                 </div>
               {/* Page 10: Drawing */}
               <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                 <img src="/5.jpg" alt="Ink drawing of a person in a tree feeding chili peppers to the sun, which sweats into clouds and rain over chili plants." className="max-h-full max-w-full object-contain mx-auto" />
               </div>
-
             </HTMLFlipBook>
-              {showHint && (
+              {/* Back button */}
+                {canGoPrev && (
                   <button
                     type="button"
-                    onClick={() => {
-                      setShowHint(false);
-                      bookRef.current?.pageFlip?.().flipNext();
-                    }}
-                    className="absolute bottom-3 right-3 z-10 rounded-full bg-black/70 text-white/90 text-xs px-3 py-1.5 backdrop-blur-sm hover:bg-black/80 transition animate-pulse"
-                    aria-label="Turn the page"
-                    title="Turn the page"
+                    onClick={() => bookRef.current?.pageFlip?.().flipPrev()}
+                    className="absolute bottom-3 left-3 z-10 inline-flex items-center justify-center h-5 w-5 rounded-full
+                              bg-black/70 text-white/90 shadow-md backdrop-blur-sm
+                              hover:bg-black/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70
+                              transition animate-pulse"
+                    aria-label="Previous page"
+                    title="Previous page"
                   >
-                    Turn page →
+                    <ChevronLeft className="h-3 w-3" aria-hidden="true" />
+                  </button>
+                )}
+
+                {/* Next button */}
+                {canGoNext && (
+                  <button
+                    type="button"
+                    onClick={() => bookRef.current?.pageFlip?.().flipNext()}
+                    className="absolute bottom-3 right-3 z-10 inline-flex items-center justify-center h-5 w-5 rounded-full
+                              bg-black/70 text-white/90 shadow-md backdrop-blur-sm
+                              hover:bg-black/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70
+                              transition animate-pulse"
+                    aria-label="Next page"
+                    title="Next page"
+                  >
+                    <ChevronRight className="h-3 w-3" aria-hidden="true" />
                   </button>
                 )}
           </div>
@@ -439,16 +566,64 @@ export default function ArtistPage() {
 
           {/* top row of images */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
-            <div className="flex justify-center">
-              <img src="/Snorlax-P.png" alt="Snorlax Piñata" className="max-h-96 lg:max-h-[32rem] xl:max-h-[34rem] w-auto object-contain drop-shadow-lg" />
-            </div>
-            <div className="flex justify-center">
-              <img src="/ice-cream-p.png" alt="Ice Cream Piñata" className="max-h-96 lg:max-h-[30rem] xl:max-h-[34rem] w-auto object-contain drop-shadow-lg"/>
-            </div>
-            <div className="flex justify-center">
-              <img src="/Pumpkin-P.png" alt="Halloween Pumpkin Piñata" className="max-h-96 lg:max-h-[32rem] xl:max-h-[36rem] w-auto object-contain drop-shadow-lg"/>
-            </div>
+            {/* Category 1 — Pokémon-inspired */}
+            <figure className="text-center">
+              <img
+                src="/Snorlax-P.png"
+                alt="Custom Pokémon-inspired Snorlax piñata, handmade"
+                className="mx-auto max-h-96 lg:max-h-[32rem] xl:max-h-[34rem] w-auto object-contain drop-shadow-lg"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="mt-3 hand-font text-center">
+                <h3 className="text-base sm:text-lg font-normal leading-tight">
+                  Custom Pokémon-Inspired Piñatas
+                </h3>
+                <div className="text-[12px] sm:text-sm opacity-80 mt-0.5">
+                  (Snorlax & more)
+                </div>
+              </figcaption>
+            </figure>
+
+            {/* Category 2 — Personal/Birthday */}
+            <figure className="text-center">
+              <img
+                src="/ice-cream-p.png"
+                alt="Custom birthday piñata with ice-cream theme, handmade"
+                className="mx-auto max-h-96 lg:max-h-[30rem] xl:max-h-[34rem] w-auto object-contain drop-shadow-lg"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="mt-3 hand-font text-center">
+                <h3 className="text-base sm:text-lg font-normal leading-tight">
+                  Personalised Birthday Piñatas
+                </h3>
+                <div className="text-[12px] sm:text-sm opacity-80 mt-0.5">
+                  (Ice-Cream Theme)
+                </div>
+              </figcaption>
+            </figure>
+
+            {/* Category 3 — Halloween */}
+            <figure className="text-center">
+              <img
+                src="/Pumpkin-P.png"
+                alt="Custom Halloween pumpkin piñata, handmade"
+                className="mx-auto max-h-96 lg:max-h-[32rem] xl:max-h-[36rem] w-auto object-contain drop-shadow-lg"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="mt-3 hand-font text-center">
+                <h3 className="text-base sm:text-lg font-normal leading-tight">
+                  Custom Halloween Piñatas
+                </h3>
+                <div className="text-[12px] sm:text-sm opacity-80 mt-0.5">
+                  (Pumpkin)
+                </div>
+              </figcaption>
+            </figure>
           </div>
+
 
           <div className="relative mt-8">
 
@@ -623,7 +798,6 @@ export default function ArtistPage() {
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_next" value="https://www.ffg-universe.com/artist#contact" />
 
-            {/* spam honeypot */}
             <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 
             <button
