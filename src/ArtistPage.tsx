@@ -510,6 +510,33 @@ export default function ArtistPage() {
               <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                 <img src="/5.jpg" alt="Ink drawing of a person in a tree feeding chili peppers to the sun, which sweats into clouds and rain over chili plants." className="max-h-full max-w-full object-contain mx-auto" />
               </div>
+
+{/* Page 11: Text */}
+              <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">  
+                <div className="h-full overflow-hidden pr-1">
+                  <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
+                  Guardian Light
+                </h3>
+                  <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
+                    <p>
+                      There was a time when my dreams hung by a string, ready to snap at any moment.
+                      Far from home and without shelter, I tried to hold on to hope while reaching for music and theater.
+                      Then Sabrina, Liz and Bob Lampkin opened their home to me, giving me safety and a chance to finish high school.
+                    </p>
+                    <p>
+                      Without them, everything might have fallen away.
+                      Liz and Bob have since passed, but I will always hold them close to my heart as the angels who proved that
+                      compassion can change a life forever.
+                    </p>
+                  </div>
+                  <PageNo n={6} />
+                </div>
+                </div>
+              {/* Page 12: Drawing */}
+              <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
+                <img src="/6.jpg" alt="Ink drawing of a figure hanging from a guitar string beneath an angelic presence, symbolizing fragile dreams saved by compassion and light."
+                 className="max-h-full max-w-full object-contain mx-auto" />
+              </div>
             </HTMLFlipBook>
               {/* Back button */}
                 {canGoPrev && (
