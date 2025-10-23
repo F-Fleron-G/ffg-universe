@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Home, User, PenTool, Palette, Mail, Candy, Sparkles, Paintbrush, Ruler, Clock, Image as ImageIcon, CheckCircle2, AlertCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import { Home, User, PenTool, Palette, Mail, Candy, Sparkles, Paintbrush, Ruler, Clock, Info, Wrench, X as XIcon, Image as ImageIcon, CheckCircle2, AlertCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import HTMLFlipBook from "react-pageflip";
 import PageHead from "./components/PageHead";
 
@@ -45,6 +45,288 @@ function FadeSlider({
         />
       ))}
     </div>
+  );
+}
+
+// --- Polaroid-style slider ---
+function PolaroidSlider({
+  images,
+  labels,
+  details,
+  modalImages,
+  widthClass = "w-[180px] sm:w-[220px]",
+  className = "",
+}: {
+  images: string[];
+  labels?: string[];
+  details?: Array<{
+    why?: string;
+    time?: string;
+    materials?: string;
+  }>;
+  modalImages?: string[][]; 
+  widthClass?: string;
+  className?: string;
+}) {
+  const totalSeconds = Math.max(2, images.length * 2);
+  const count = Math.min(Math.max(images.length, 1), 4);
+  const tilts = ["-2deg", "1.5deg", "-1deg", "2deg"];
+
+  const [modalIndex, setModalIndex] = useState<number | null>(null);
+  // const openModal = (i: number) => setModalIndex(i);
+  const closeModal = () => setModalIndex(null);
+
+    // --- per-item gallery inside the modal ---
+  const [thumbIndex, setThumbIndex] = useState(0);
+
+  const getModalSet = (i: number | null): string[] => {
+    if (i === null) return [];
+    // If a gallery is provided for this item, use it; otherwise default to the clicked image only.
+    return modalImages?.[i] && modalImages[i]!.length
+      ? modalImages[i]!
+      : images[i] !== undefined
+      ? [images[i]]
+      : [];
+  };
+
+  const nextModal = () =>
+    setThumbIndex((t) => {
+      const set = getModalSet(modalIndex);
+      return set.length ? (t + 1) % set.length : 0;
+    });
+
+  const prevModal = () =>
+    setThumbIndex((t) => {
+      const set = getModalSet(modalIndex);
+      return set.length ? (t - 1 + set.length) % set.length : 0;
+    });
+
+  // When opening a modal for item i, start at first thumb
+  const openModal = (i: number) => {
+    setModalIndex(i);
+    setThumbIndex(0);
+  };
+
+
+
+  return (
+    <>
+      <div
+        className={[
+          "polaroid-gallery",
+          `polaroid-${count}`,
+          widthClass,
+          className,
+        ].join(" ")}
+        style={
+          { ["--dur" as any]: `${totalSeconds}s` } as React.CSSProperties
+        }
+      >
+        {images.map((src, i) => {
+          const isLast = i === images.length - 1;
+          const frameLabel = labels?.[i] ?? `Polaroid ${i + 1}`;
+          return (
+            <div
+              key={i}
+              className={`polaroid-frame${isLast ? " last" : ""}${
+                images.length < 2 ? " no-anim" : ""
+              } cursor-pointer`}
+              style={
+                {
+                  animationDelay: `-${i * 2}s`,
+                  animationDuration: `${totalSeconds}s`,
+                  ["--rot" as any]: tilts[i % tilts.length],
+                } as React.CSSProperties
+              }
+              onClick={() => openModal(i)}
+              role="button"
+              aria-label={`Open details: ${frameLabel}`}
+              title="Click for details"
+            >
+              <img src={src} alt={frameLabel} />
+              {frameLabel && <div className="polaroid-caption">{frameLabel}</div>}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* --- Compact Modal --- */}
+      {modalIndex !== null && (
+  <div
+    className="fixed inset-0 z-50 bg-black/70 backdrop-blur-[1px] flex items-center justify-center p-4"
+    onClick={closeModal}
+    role="dialog"
+    aria-modal="true"
+  >
+    <div
+      className="relative bg-[#728ca5] rounded-2xl shadow-2xl w-full max-w-4xl h-[92svh] md:max-h-[90vh] overflow-hidden"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Close */}
+      <button
+        onClick={closeModal}
+        className="absolute top-2 right-2 z-20 w-6 h-6 rounded-full bg-black text-white grid place-items-center shadow hover:opacity-90"
+        aria-label="Close"
+      >
+        <XIcon size={14} />
+      </button>
+
+      {/* Responsive layout */}
+      <div className="grid h-full grid-rows-[minmax(0,52vh)_minmax(0,1fr)] md:grid-rows-1 md:grid-cols-2">
+        {/* LEFT/TOP: big image + (optional) thumbnails for this item only */}
+        <div className="relative bg-white flex flex-col">
+          {/* Big image pane */}
+          <div className="flex-1 p-3 md:p-5 overflow-auto flex items-center justify-center select-none">
+            {(() => {
+              const set = getModalSet(modalIndex);
+              const src = set[thumbIndex];
+              const title =
+                labels?.[modalIndex] ??
+                labels?.[0] ??
+                `Image ${thumbIndex + 1}`;
+              return (
+                <img
+                  src={src}
+                  alt={title}
+                  className="max-h-[46vh] md:max-h-[78vh] w-full h-auto object-contain rounded-md"
+                />
+              );
+            })()}
+            {/* Arrows only if this item has multiple images */}
+            {getModalSet(modalIndex).length > 1 && (
+              <>
+                <button
+                  onClick={prevModal}
+                  aria-label="Previous image"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-white/90 text-black grid place-items-center shadow hover:bg-white"
+                >
+                  ‹
+                </button>
+                <button
+                  onClick={nextModal}
+                  aria-label="Next image"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-white/90 text-black grid place-items-center shadow hover:bg-white"
+                >
+                  ›
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Thumbnails row */}
+          {getModalSet(modalIndex).length > 1 && (
+          <div className="px-3 pb-5 md:px-5 md:pb-6">
+              <div className="flex flex-wrap justify-center gap-3">
+                {getModalSet(modalIndex).map((src, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setThumbIndex(i)}
+                    className={[
+                      "shrink-0 rounded-lg p-[2px] bg-white",
+                      "border border-black/10 transition focus-visible:outline-none",
+                      i === thumbIndex
+                        ? "ring-2 ring-[#728ca5] ring-offset-2 ring-offset-white shadow-md -translate-y-[1px]"
+                        : "hover:shadow hover:-translate-y-[1px]"
+                    ].join(" ")}
+                    aria-label={`Select image ${i + 1}`}
+                    title={`View angle ${i + 1}`}
+                  >
+                    <img
+                      src={src}
+                      alt=""
+                      className="h-16 w-16 object-cover rounded-md block"
+                      loading="lazy"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* RIGHT/BOTTOM: details */}
+        <div className="p-5 md:p-6 overflow-auto text-left text-black space-y-5">
+          {/* centered title */}
+          {labels?.[modalIndex] && (
+            <h4
+              className="text-xl font-semibold text-center pb-2 mb-3"
+              style={{ fontFamily: '"Bradley Hand", "Comic Sans MS", cursive' }}
+            >
+              {labels[modalIndex]}
+            </h4>
+          )}
+
+          {(() => {
+            const d = details?.[modalIndex] ?? details?.[0];
+            return (
+              <>
+                {/* Story */}
+                {d?.why && (
+                  <div className="flex items-start gap-2">
+                    <Info className="shrink-0 mt-[2px]" size={18} />
+                    <div>
+                      <div className="text-sm font-semibold">Story</div>
+                      <p className="text-sm leading-relaxed">{d.why}</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Build time + tips */}
+                {(d?.time || true) && (
+                  <div className="flex items-start gap-2">
+                    <Clock className="shrink-0 mt-[2px]" size={18} />
+                    <div>
+                      <div className="text-sm font-semibold">
+                        Build Time &amp; Drying Tips
+                      </div>
+                      {d?.time && (
+                        <p className="text-sm leading-relaxed">{d.time}</p>
+                      )}
+                      <p className="text-xs leading-relaxed opacity-80 mt-1">
+                        For best results I let the base layers air-dry overnight,
+                        then (if needed) I use a blow-dryer to speed things up.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Materials */}
+                {d?.materials && (
+                  <div className="flex items-start gap-2">
+                    <Wrench className="shrink-0 mt-[2px]" size={18} />
+                    <div>
+                      <div className="text-sm font-semibold">Materials</div>
+                      <p className="text-sm leading-relaxed whitespace-pre-line">
+                        {d.materials}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </>
+            );
+          })()}
+
+          {/* Decorative closing line */}
+          <div className="pt-3 flex justify-center">
+            <svg
+              viewBox="0 0 400 20"
+              preserveAspectRatio="none"
+              className="w-32 h-4 text-black/60"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <path d="M2 10 C 40 2, 80 18, 200 10 S 360 18, 398 10" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+    </>
   );
 }
 
@@ -149,7 +431,7 @@ export default function ArtistPage() {
 
   useEffect(() => {
     const onResize = () => updateSpread();
-    onResize(); // run once on mount
+    onResize();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
@@ -183,7 +465,7 @@ export default function ArtistPage() {
           .page-paper p { font-size: 18px; }
         }
 
-        /* Handwriting font helper for headings and small text blocks */
+        /* Handwriting font */
         .hand-font,
         .hand-font h1, .hand-font h2, .hand-font h3,
         .hand-font p, .hand-font span {
@@ -196,7 +478,214 @@ export default function ArtistPage() {
           background-position: center;
           font-family: Patrick Hand, cursive;
         }
+
+        /* ---------- Polaroid slider (infinite, CSS-only) ---------- */
+        .polaroid-gallery {
+          display: grid;
+          position: relative;
+        }
+
+        .polaroid-gallery .polaroid-frame {
+          grid-area: 1/1;
+          width: 100%;
+          aspect-ratio: 1;
+          background: #f8f8f8; /* lighter polaroid tone */
+          border: 8px solid #ffffff; /* clean white edge */
+          border-radius: 6px; /* optional: soft corners */
+          box-shadow:
+            0 6px 12px rgba(0, 0, 0, 0.2),
+            0 12px 24px rgba(0, 0, 0, 0.1); /* soft layered shadow */
+          position: relative;
+          overflow: hidden;
+          animation: slide-3 var(--dur, 6s) infinite linear;
+          transform: rotate(var(--rot, 0deg));
+        }
+        .polaroid-gallery .polaroid-frame:hover {
+          transform: rotate(var(--rot, 0deg)) translateY(-4px);
+          box-shadow:
+            0 8px 16px rgba(0, 0, 0, 0.25),
+            0 16px 32px rgba(0, 0, 0, 0.15);
+          transition: all 0.2s ease-in-out;
+        }
+        .polaroid-gallery .polaroid-frame.no-anim {
+          animation: none;
+        }
+        .polaroid-gallery .polaroid-frame img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          padding: clamp(6px, 4%, 14px);
+        }
+
+        /* per-count variants (2/3/4). We switch keyframes by changing the name. */
+        .polaroid-gallery.polaroid-2 .polaroid-frame { animation-name: slide-2; }
+        .polaroid-gallery.polaroid-2 .polaroid-frame.last { animation-name: slide-2-last; }
+
+        .polaroid-gallery.polaroid-3 .polaroid-frame { animation-name: slide-3; }
+        .polaroid-gallery.polaroid-3 .polaroid-frame.last { animation-name: slide-3-last; }
+
+        .polaroid-gallery.polaroid-4 .polaroid-frame { animation-name: slide-4; }
+        .polaroid-gallery.polaroid-4 .polaroid-frame.last { animation-name: slide-4-last; }
+
+        /* --- 2 images --- */
+        @keyframes slide-2 {
+          0%      { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+          25%     { transform: translateX(120%) rotate(var(--rot)); z-index: 2; }
+          25.01%  { transform: translateX(120%) rotate(var(--rot)); z-index: 1; }
+          50%     { transform: translateX(0%)   rotate(var(--rot)); z-index: 1; }
+          75%     { transform: translateX(0%)   rotate(var(--rot)); z-index: 1; }
+          75.01%  { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+          100%    { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+        }
+        @keyframes slide-2-last {
+          0%      { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+          25%     { transform: translateX(120%) rotate(var(--rot)); z-index: 2; }
+          25.01%  { transform: translateX(120%) rotate(var(--rot)); z-index: 1; }
+          50%     { transform: translateX(0%)   rotate(var(--rot)); z-index: 1; }
+          99.99%  { transform: translateX(0%)   rotate(var(--rot)); z-index: 1; }
+          100%    { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+        }
+
+        /* --- 3 images (your reference example adapted) --- */
+        @keyframes slide-3 {
+          0%      { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+          16.66%  { transform: translateX(120%) rotate(var(--rot)); z-index: 2; }
+          16.67%  { transform: translateX(120%) rotate(var(--rot)); z-index: 1; }
+          33.34%  { transform: translateX(0%)   rotate(var(--rot)); z-index: 1; }
+          66.33%  { transform: translateX(0%)   rotate(var(--rot)); z-index: 1; }
+          66.34%  { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+          100%    { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+        }
+        @keyframes slide-3-last {
+          0%      { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+          16.66%  { transform: translateX(120%) rotate(var(--rot)); z-index: 2; }
+          16.67%  { transform: translateX(120%) rotate(var(--rot)); z-index: 1; }
+          33.34%  { transform: translateX(0%)   rotate(var(--rot)); z-index: 1; }
+          83.33%  { transform: translateX(0%)   rotate(var(--rot)); z-index: 1; }
+          83.34%  { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+          100%    { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+        }
+
+        /* --- 4 images --- */
+        @keyframes slide-4 {
+          0%      { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+          12.5%   { transform: translateX(120%) rotate(var(--rot)); z-index: 2; }
+          12.51%  { transform: translateX(120%) rotate(var(--rot)); z-index: 1; }
+          25%     { transform: translateX(0%)   rotate(var(--rot)); z-index: 1; }
+          75%     { transform: translateX(0%)   rotate(var(--rot)); z-index: 1; }
+          75.01%  { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+          100%    { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+        }
+        @keyframes slide-4-last {
+          0%      { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+          12.5%   { transform: translateX(120%) rotate(var(--rot)); z-index: 2; }
+          12.51%  { transform: translateX(120%) rotate(var(--rot)); z-index: 1; }
+          25%     { transform: translateX(0%)   rotate(var(--rot)); z-index: 1; }
+          87.5%   { transform: translateX(0%)   rotate(var(--rot)); z-index: 1; }
+          87.51%  { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+          100%    { transform: translateX(0%)   rotate(var(--rot)); z-index: 2; }
+        }
+        .polaroid-tall .polaroid-frame {
+          aspect-ratio: 3 / 4;
+        }
+        /* --- caption inside the polaroid --- */
+        /* --- caption styling --- */
+        .polaroid-caption {
+          position: absolute;
+          bottom: 6px;
+          left: 0;
+          width: 100%;
+          text-align: center;
+          font-family: "Bradley Hand", "Comic Sans MS", cursive;
+          font-size: 0.9rem;
+          color: #333;
+          padding-bottom: 4px;
+          user-select: none;
+          pointer-events: none;
+          z-index: 3;
+          opacity: 0;
+        }
+
+        .polaroid-gallery.polaroid-2 .polaroid-frame .polaroid-caption {
+          animation: caption-2 var(--dur, 6s) infinite linear;
+        }
+        .polaroid-gallery.polaroid-2 .polaroid-frame.last .polaroid-caption {
+          animation-name: caption-2-last;
+        }
+
+        .polaroid-gallery.polaroid-3 .polaroid-frame .polaroid-caption {
+          animation: caption-3 var(--dur, 6s) infinite linear;
+        }
+        .polaroid-gallery.polaroid-3 .polaroid-frame.last .polaroid-caption {
+          animation-name: caption-3-last;
+        }
+
+        .polaroid-gallery.polaroid-4 .polaroid-frame .polaroid-caption {
+          animation: caption-4 var(--dur, 6s) infinite linear;
+        }
+        .polaroid-gallery.polaroid-4 .polaroid-frame.last .polaroid-caption {
+          animation-name: caption-4-last;
+        }
+
+        /* 2 images */
+        @keyframes caption-2 {
+          0%      { opacity: 1; }
+          25%     { opacity: 1; }
+          25.01%  { opacity: 0; }
+          75%     { opacity: 0; }
+          75.01%  { opacity: 1; }
+          100%    { opacity: 1; }
+        }
+        @keyframes caption-2-last {
+          0%      { opacity: 1; }
+          25%     { opacity: 1; }
+          25.01%  { opacity: 0; }
+          99.99%  { opacity: 0; }
+          100%    { opacity: 1; }
+        }
+
+        /* 3 images */
+        @keyframes caption-3 {
+          0%      { opacity: 1; }
+          16.66%  { opacity: 1; }
+          16.67%  { opacity: 0; }
+          66.33%  { opacity: 0; }
+          66.34%  { opacity: 1; }
+          100%    { opacity: 1; }
+        }
+        @keyframes caption-3-last {
+          0%      { opacity: 1; }
+          16.66%  { opacity: 1; }
+          16.67%  { opacity: 0; }
+          83.33%  { opacity: 0; }
+          83.34%  { opacity: 1; }
+          100%    { opacity: 1; }
+        }
+
+        /* 4 images */
+        @keyframes caption-4 {
+          0%      { opacity: 1; }
+          12.5%   { opacity: 1; }
+          12.51%  { opacity: 0; }
+          75%     { opacity: 0; }
+          75.01%  { opacity: 1; }
+          100%    { opacity: 1; }
+        }
+        @keyframes caption-4-last {
+          0%      { opacity: 1; }
+          12.5%   { opacity: 1; }
+          12.51%  { opacity: 0; }
+          87.5%   { opacity: 0; }
+          87.51%  { opacity: 1; }
+          100%    { opacity: 1; }
+        }
+        .polaroid-frame.no-anim .polaroid-caption {
+          opacity: 1;
+        }
       `}</style>
+
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b relative">
         <Link
@@ -268,7 +757,7 @@ export default function ArtistPage() {
       <main className="relative mx-auto max-w-6xl px-4">   
         {/* About Section */}
         <section id="about" className="relative scroll-mt-24 py-20">
-          {/* full-bleed background */}
+          {/* Full-bleed background */}
           <div
             aria-hidden
             className="absolute inset-0 left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#728ca5] z-0"
@@ -510,8 +999,7 @@ export default function ArtistPage() {
               <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                 <img src="/5.jpg" alt="Ink drawing of a person in a tree feeding chili peppers to the sun, which sweats into clouds and rain over chili plants." className="max-h-full max-w-full object-contain mx-auto" />
               </div>
-
-{/* Page 11: Text */}
+              {/* Page 11: Text */}
               <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">  
                 <div className="h-full overflow-hidden pr-1">
                   <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
@@ -589,68 +1077,102 @@ export default function ArtistPage() {
 
         {/* Piñatas Section */}
         <section id="pinatas" className="scroll-mt-24 py-24">
-          <h2 className="text-3xl text-center mb-10">Piñatas</h2>
+          <h2 className="text-3xl text-center mb-10">Handcrafted Piñata Art</h2>
+          <p className="max-w-xl mx-auto mb-10 text-center text-gray-700">
+            Unique handmade piñatas created from my own designs.  
+            Each piece is an imaginative work of art that can take several weeks to make.
+          </p>
 
           {/* top row of images */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
             {/* Category 1 — Pokémon-inspired */}
             <figure className="text-center">
-              <img
-                src="/Snorlax-P.png"
-                alt="Custom Pokémon-inspired Snorlax piñata, handmade"
-                className="mx-auto max-h-96 lg:max-h-[32rem] xl:max-h-[34rem] w-auto object-contain drop-shadow-lg"
-                loading="lazy"
-                decoding="async"
+              <PolaroidSlider
+                images={["/Snorlax-P.png"]}
+                labels={["Pokémon Snorlax"]}
+                details={[
+                  {
+                    why:
+                      "A surprise for my oldest son's birthday party — Snorlax was his favourite Pokémon.",
+                    time: "About one week (including drying, design, and paint).",
+                    materials:
+                      "Balloons for rounded forms; newspaper strips; recycled paper for easy moulding; flour–salt–water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
+                  },
+                ]}
+                widthClass="mx-auto w-[280px] sm:w-[320px]"
+                className="polaroid-tall"
               />
-              <figcaption className="mt-3 hand-font text-center">
-                <h3 className="text-base sm:text-lg font-normal leading-tight">
-                  Custom Pokémon-Inspired Piñatas
-                </h3>
-                <div className="text-[12px] sm:text-sm opacity-80 mt-0.5">
-                  (Snorlax & more)
-                </div>
-              </figcaption>
+             <figcaption className="mt-2 text-center">
+              <h3 className="text-sm sm:text-base font-medium tracking-wide text-neutral-800">
+                Pokémon-Inspired Piñatas
+              </h3>
+            </figcaption>
             </figure>
 
             {/* Category 2 — Personal/Birthday */}
             <figure className="text-center">
-              <img
-                src="/ice-cream-p.png"
-                alt="Custom birthday piñata with ice-cream theme, handmade"
-                className="mx-auto max-h-96 lg:max-h-[30rem] xl:max-h-[34rem] w-auto object-contain drop-shadow-lg"
-                loading="lazy"
-                decoding="async"
+             <PolaroidSlider
+                images={["/ice-cream-p.png"]}
+                labels={["N-ice Cream"]}
+                details={[
+                  {
+                    why:
+                      "Made for my youngest son's July birthday — a playful nod to summer and his love of colourful cones.",
+                    time: "4–5 days (with drying and painting stages).",
+                    materials:
+                      "Balloon for the scoop; rolled cardboard for the cone; newspaper strips; recycled paper for drip details & sprinkles; flour–salt–water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
+                  }
+                  ]}
+                widthClass="mx-auto w-[280px] sm:w-[320px]"
+                className="polaroid-tall"
               />
-              <figcaption className="mt-3 hand-font text-center">
-                <h3 className="text-base sm:text-lg font-normal leading-tight">
+              <figcaption className="mt-2 text-center">
+                <h3 className="text-sm sm:text-base font-medium tracking-wide text-neutral-800">
                   Personalised Birthday Piñatas
                 </h3>
-                <div className="text-[12px] sm:text-sm opacity-80 mt-0.5">
-                  (Ice-Cream Theme)
-                </div>
               </figcaption>
             </figure>
 
             {/* Category 3 — Halloween */}
             <figure className="text-center">
-              <img
-                src="/Pumpkin-P.png"
-                alt="Custom Halloween pumpkin piñata, handmade"
-                className="mx-auto max-h-96 lg:max-h-[32rem] xl:max-h-[36rem] w-auto object-contain drop-shadow-lg"
-                loading="lazy"
-                decoding="async"
+              <PolaroidSlider
+                images={[
+                  "/Pumpkin-P.png",
+                  "/Lovely-Witch-P1.png"
+                  ]}
+                  labels={["Pumpkin Wizard", "Lovely Witch"]}
+                  details={[
+                    {
+                      why:
+                        "Created for a Halloween party at my daughter's request — she wanted a pumpkin with a wizard hat.",
+                      time: "9 days (design, drying, and paint).",
+                      materials:
+                        "Kitchen-roll tubes and recycled paper for the pumpkin; cardboard to shape the wizard hat; newspaper strips; flour–salt–water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
+                    },
+                    {
+                      why: "Filled with humour and fun for all ages, I wanted it to feel Halloween-themed but still friendly and playful. The witch is flying on her broom, making a sharp braking motion that bends her broomstick, squashing her poor black cat flat! The cat’s cartoonish face, with its dizzy expression, added the touch of comedy I envisioned.",
+                      time: "Around 15 days (including design, drying, and painting).",
+                      materials: "Balloons for the head and body (and the cat’s head); kitchen roll tubes for the nose and chin; cardboard sheets for the hat; newspaper strips and recycled paper for layering, shaping, and texture; flour–salt–water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging."
+                    },
+                  ]}
+                  modalImages={[
+                    ["/Pumpkin-P.png"],
+                    [
+                      "/Lovely-Witch-P1.png",
+                      "/Lovely-Witch-P2.png",
+                      "/Lovely-Witch-P3.png"
+                    ]
+                  ]} 
+                  widthClass="mx-auto w-[280px] sm:w-[320px]"
+                  className="polaroid-tall"
               />
-              <figcaption className="mt-3 hand-font text-center">
-                <h3 className="text-base sm:text-lg font-normal leading-tight">
-                  Custom Halloween Piñatas
+              <figcaption className="mt-2 text-center">
+                <h3 className="text-sm sm:text-base font-medium tracking-wide text-neutral-800">
+                  Halloween Piñatas
                 </h3>
-                <div className="text-[12px] sm:text-sm opacity-80 mt-0.5">
-                  (Pumpkin)
-                </div>
               </figcaption>
             </figure>
           </div>
-
 
           <div className="relative mt-8">
 
@@ -658,7 +1180,7 @@ export default function ArtistPage() {
               aria-hidden
               className="absolute inset-0 left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#cacaca]"
             />
-            {/* inner padding */}
+            {/* Inner padding */}
           <div className="relative pt-12 pb-12 sm:pt-16 sm:pb-16">
           <div className="relative max-w-3xl mx-auto bg-white backdrop-blur-sm border-2 border-black rounded-xl px-6 py-8 sm:px-8 sm:py-10 shadow-[6px_6px_0_0_#000]">
             <h3 className="text-2xl text-center mb-4">The Story</h3>
@@ -668,7 +1190,7 @@ export default function ArtistPage() {
             </div>
           </div>
 
-          {/* breathing room between story and slider */}
+          {/* Breathing room between story and slider */}
           <div className="h-12 sm:h-14 md:h-16" aria-hidden />
 
           {/* FULL-BLEED: Brush (left) • Slider (center) • Text (right) */}
