@@ -1218,7 +1218,7 @@ export default function ArtistPage() {
                     {/* black frame with rounded corners */}
                     <div className="rounded-xl overflow-hidden border-4 border-black">
                         <FadeSlider
-                          images={["/Mk-I.jpg", "/Mk-P.jpg", "/Mk-S.jpg"]}
+                          images={["/Mk-I.jpg", "/Mk-P.jpg", "/Mk-S.jpg", "/Mk-W.jpg"]}
                           heightClass="h-[88vw] sm:h-[72vw] md:h-[22rem] lg:h-[26rem] xl:h-[26rem]"
                           className="w-full"
                         />
