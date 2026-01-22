@@ -231,7 +231,8 @@ export default function AuthorPage() {
                 Author · Philosopher · Soul Explorer
               </p>
 
-              <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+              <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 items-center md:items-start justify-center md:justify-start">
+
                 <a href="#release" className={CTA}>
                   Explore my books
                 </a>
