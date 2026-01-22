@@ -224,12 +224,47 @@ export default function AuthorPage() {
               <h2>"Writing My Way Through The Human Condition"</h2>
             </blockquote>
            
-              <h1 className="mt-4 leading-tight text-[#c4c3c0] text-5xl sm:text-5xl md:text-6xl">
+              <h1 className="mt-4 leading-tight text-[#c4c3c0] text-4xl">
                 FREDERIC G. <br /> FLERON <br /> GRIGNARD
               </h1>
               <p className="mt-6 text-[clamp(10px,3.2vw,14px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] opacity-90 text-[#dec09a] whitespace-nowrap">
                 Author · Philosopher · Soul Explorer
               </p>
+
+              <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+                <a href="#release" className={CTA}>
+                  Explore my books
+                </a>
+
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center h-10 w-44 rounded-full border-2 border-[#dec09a] text-[#dec09a] hover:bg-white/10 transition text-[14px] md:text-[13px] leading-none tracking-[0.02em]"
+                >
+                  Contact me
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full bg-[#0b0f15] border-t border-white/10">
+        <div className="max-w-[1100px] mx-auto px-6 py-6">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-[13px] tracking-[0.02em] text-[#c4c3c0]/80">
+    
+              <span className="inline-flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#dec09a]" />
+                Themes: meaning, identity, resilience
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#dec09a]" />
+                eBooks & Books
+              </span>
+            </div>
+
+            <div className="text-[13px] tracking-[0.02em] text-[#c4c3c0]/70">
+              Available on: <span className="text-[#dec09a]">Amazon</span>
             </div>
           </div>
         </div>
@@ -249,7 +284,7 @@ export default function AuthorPage() {
               </p>
               <p>
                 That mix shaped my worldview and my earliest experiences of
-                communication, belonging, and self-expression. Often misunderstood
+                communication, belonging, and self-expression. Often misunderstood at a younger age 
                 because of language confusion, I developed a deep compassion for
                 anyone who feels “different” or silenced by narrow definitions of
                 normality.
@@ -277,11 +312,28 @@ export default function AuthorPage() {
 
           {/* RELEASE */}
           <section id="release" className="relative scroll-mt-24 py-24">
-            <div className="rounded-[10px] border-4 bg-[#dec09a] border-[#5b5a59] px-8 py-12 md:px-10 md:py-14">              
+            <div className="rounded-[10px] border-4 bg-[#dec09a] border-[#5b5a59] px-8 py-12 md:px-10 md:py-14">  
+
+              <div className="text-center mb-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#5b5a59] bg-white/40 text-[12px] tracking-[0.18em] uppercase">
+                  Featured Book
+                </div>
+              </div>
+
               <h2 className="mb-2 text-center">
-                <span className="alien-title">DISCOVER THE ALIEN IN DISGUISE:</span>
+                <span className="alien-title">THE ALIEN IN DISGUISE</span>
               </h2>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-black tracking-wide mb-6 text-center">A Thought-Provoking Debut Memoir</h3>
+
+              <p className="text-base sm:text-lg md:text-xl tracking-wide mb-5 text-center">
+                A thought-provoking debut memoir
+              </p>
+
+              <div className="flex flex-wrap justify-center gap-2 mb-6">
+                <span className="px-3 py-1 rounded-full border-2 border-[#5b5a59] bg-white/35 text-[12px]">Memoir</span>
+                <span className="px-3 py-1 rounded-full border-2 border-[#5b5a59] bg-white/35 text-[12px]">Humor</span>
+                <span className="px-3 py-1 rounded-full border-2 border-[#5b5a59] bg-white/35 text-[12px]">Philosophy</span>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-start">            
                 <div className="aspect-[2/3] flex items-center justify-center p-3 overflow-hidden -mt-6 sm:-mt-5 md:-mt-6">
                   <img
@@ -345,21 +397,70 @@ export default function AuthorPage() {
                   {showMoreRelease ? 'Read Less' : 'Read More'}
                 </button>                  
                 </div>        
-              </div>            
-              <div className="mt-10 text-center">              
-                <div className="flex justify-center">
+              </div> 
+
+              <div className="mt-8 flex flex-col items-center gap-3">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <a
                     href="https://mybook.to/thealienindisguise"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={CTA}
                   >
-                    Check It Out!
+                    Buy on Amazon
                   </a>
-                </div>  
-              </div>  
+
+                  <a
+                    href="#books"
+                    className="inline-flex items-center justify-center h-10 w-44 rounded-full border-2 border-[#5b5a59] bg-white/30 text-[#2f2e2c] hover:bg-white/45 transition text-[14px] md:text-[13px] leading-none tracking-[0.02em]"
+                  >
+                    Read more books
+                  </a>
+                </div>
+
+                <p className="text-[12px] text-[#2f2e2c]/70 tracking-[0.02em] text-center">
+                  Curious? Scroll down to explore more.
+                </p>
+              </div>
             </div>       
-          </section>        
+          </section>     
+
+
+         <section className="relative scroll-mt-24 py-24">
+          <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-[#0b0f15] text-[#c4c3c0]">
+
+            <h2 className="text-3xl text-center mb-8">Reader Reflections</h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <figure className="border-2 border-[#5b5a59] rounded-[10px] p-5 bg-[#262626]">
+                <blockquote className="text-sm leading-relaxed">
+                  “Not the next alien book — but one that explains humanity. What happens when someone—or something—observes our lives without all the filters we use to numb ourselves? <em>Blob</em> isn’t a story about space. It’s one about you. Me. All of us. A silent mirror. Humorous. Direct. And deeper than you'd initially think. You don't need to be a science fiction fan. Just a person with a sense of what's real.”
+                </blockquote>
+                <figcaption className="mt-4 text-xs tracking-[0.18em] uppercase text-[#dec09a] opacity-90">
+                  ★ ★ ★ ★ ★
+                </figcaption>
+              </figure>
+
+              <figure className="border-2 border-[#5b5a59] rounded-[10px] p-5 bg-[#262626] flex flex-col justify-between">
+                <blockquote className="text-sm leading-relaxed">
+                  “Fabulous!”
+                </blockquote>
+                <figcaption className="mt-4 text-xs tracking-[0.18em] uppercase text-[#dec09a] opacity-90">
+                  ★ ★ ★ ★ ★
+                </figcaption>
+              </figure>
+
+              <figure className="border-2 border-[#5b5a59] rounded-[10px] p-5 bg-[#262626]">
+                <blockquote className="text-sm leading-relaxed">
+                  “A memoir that makes you laugh — and then makes you think.”
+                </blockquote>
+                <figcaption className="mt-4 text-xs tracking-[0.18em] uppercase text-[#dec09a] opacity-90">
+                  ★ ★ ★ ★ ★
+                </figcaption>   
+              </figure>
+            </div>
+          </div>
+         </section>
 
       {/* BOOKS — three preview covers with full-size overlay */}
       <section id="books" className="relative scroll-mt-24 py-24">
