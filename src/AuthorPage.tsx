@@ -427,41 +427,65 @@ export default function AuthorPage() {
           </section>     
 
 
-         <section className="relative scroll-mt-24 py-24">
+        <section className="relative scroll-mt-24 py-24">
           <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-[#0b0f15] text-[#c4c3c0]">
 
             <h2 className="text-3xl text-center mb-8">Reader Reflections</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <figure className="border-2 border-[#5b5a59] rounded-[10px] p-5 bg-[#262626]">
-                <blockquote className="text-sm leading-relaxed">
+
+              {/* Review 1 — Beau */}
+              <figure className="border-2 border-[#5b5a59] rounded-[10px] p-5 bg-[#262626] flex flex-col justify-between">
+                <blockquote className="text-sm leading-relaxed italic">
                   “Not the next alien book — but one that explains humanity. What happens when someone—or something—observes our lives without all the filters we use to numb ourselves? <em>Blob</em> isn’t a story about space. It’s one about you. Me. All of us. A silent mirror. Humorous. Direct. And deeper than you'd initially think. You don't need to be a science fiction fan. Just a person with a sense of what's real.”
                 </blockquote>
-                <figcaption className="mt-4 text-xs tracking-[0.18em] uppercase text-[#dec09a] opacity-90">
-                  ★ ★ ★ ★ ★
+
+                <figcaption className="mt-4 text-center">
+                  <div className="text-xs tracking-widest uppercase text-[#dec09a] opacity-90 mb-1">
+                    Beau
+                  </div>
+                  <div className="text-xs tracking-[0.18em] text-[#dec09a]">
+                    ★ ★ ★ ★ ★
+                  </div>
                 </figcaption>
               </figure>
 
+              {/* Review 2 — Alina Freund */}
               <figure className="border-2 border-[#5b5a59] rounded-[10px] p-5 bg-[#262626] flex flex-col justify-between">
-                <blockquote className="text-sm leading-relaxed">
+                <blockquote className="text-sm leading-relaxed italic">
                   “Fabulous!”
                 </blockquote>
-                <figcaption className="mt-4 text-xs tracking-[0.18em] uppercase text-[#dec09a] opacity-90">
-                  ★ ★ ★ ★ ★
+
+                <figcaption className="mt-4 text-center">
+                  <div className="text-xs tracking-widest uppercase text-[#dec09a] opacity-90 mb-1">
+                    Alina Freund
+                  </div>
+                  <div className="text-xs tracking-[0.18em] text-[#dec09a]">
+                    ★ ★ ★ ★ ★
+                  </div>
                 </figcaption>
               </figure>
 
-              <figure className="border-2 border-[#5b5a59] rounded-[10px] p-5 bg-[#262626]">
-                <blockquote className="text-sm leading-relaxed">
+              {/* Review 3 — Anonymous */}
+              <figure className="border-2 border-[#5b5a59] rounded-[10px] p-5 bg-[#262626] flex flex-col justify-between">
+                <blockquote className="text-sm leading-relaxed italic">
                   “A memoir that makes you laugh — and then makes you think.”
                 </blockquote>
-                <figcaption className="mt-4 text-xs tracking-[0.18em] uppercase text-[#dec09a] opacity-90">
-                  ★ ★ ★ ★ ★
-                </figcaption>   
+
+                <figcaption className="mt-4 text-center">
+                  <div className="text-xs tracking-widest uppercase text-[#dec09a] opacity-70 mb-1">
+                    Anonymous
+                  </div>
+                  <div className="text-xs tracking-[0.18em] text-[#dec09a]">
+                    ★ ★ ★ ★ ★
+                  </div>
+                </figcaption>
               </figure>
+
             </div>
           </div>
-         </section>
+        </section>
+
 
       {/* BOOKS — three preview covers with full-size overlay */}
       <section id="books" className="relative scroll-mt-24 py-24">
