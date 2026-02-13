@@ -67,7 +67,7 @@ export default function MusicianPage() {
       if (!el) return;
       if (id !== currentId && !el.paused) {
         el.pause();
-        el.currentTime = 0; // optional: resets; remove if you prefer resume
+        el.currentTime = 0;
       }
     });
   }, []);
@@ -87,13 +87,14 @@ export default function MusicianPage() {
     >
       <PageHead title="Musician — It sounds like you" />
 
-      {/* Sticky header */}
-      <header className="sticky top-0 z-50 bg-white/50 backdrop-blur border-b relative">
+      {/* Header */}
+      <header className="bg-white/50 backdrop-blur border-b relative">
+
         <Link
           to="/"
           aria-label="Back to landing page"
           title="Back to landing page"
-          className="hidden md:flex items-center justify-center h-10 w-10 rounded-full border border-black/15 hover:bg-black/5 transition absolute"
+          className="hidden md:flex items-center justify-center h-10 w-10 rounded-full border border-[#000000] hover:bg-black/5 transition absolute"
           style={{ top: 12, right: "calc((100vw - min(100vw, 72rem))/2 + 1rem)" }}
         >
           <Home className="h-5 w-5" />
