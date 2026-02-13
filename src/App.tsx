@@ -13,6 +13,7 @@ const MENU: MenuItem[] = [
   { label: "Spiritual Guide", href: "/spiritual", external: true }, 
   { label: "Artist", href: "/artist", external: true },
   { label: "Software Engineer", href: "https://github.com/F-Fleron-G", external: true},
+  { label: "Musician", href: "/musician", external: true},
 ];
 
 function useMediaQuery(query: string) {
