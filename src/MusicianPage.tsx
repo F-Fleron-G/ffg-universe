@@ -26,7 +26,43 @@ export default function MusicianPage() {
         title: "Bounce Around",
         file: "/music/previews/bounce_around.mp3",
         mood: "Upbeat / playful",
-        lyrics: `TODO: add lyrics`,
+        lyrics: `Verse 1
+        I can hear it — calling out to me
+        I can feel it — all over my skin
+        A breeze that brings back — good old memories
+        Comes and goes — dancing in the wind
+
+        If only I knew then what now I see clear — man it wouldn't have taken me years
+        So now I'll say — live day after day
+        Yes now I'll say — live day after day
+
+        Chorus
+        And go bounce, yes go bounce, go bounce around, go bounce somewhere
+        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
+
+        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
+        Go bounce, yes go bounce, go bounce around, go bounce somewhere
+
+        Verse 2
+        I sank beneath the surface — while trying to stay up-float
+        And when the whistle blew — that's when I saw the boat
+
+        Not knowing what I had is when I lost track and man it's messed up to end up like that
+        So now I'll say — live day after day
+        Yes now I'll say — live day after day
+
+        Final chorus
+        And go bounce, yes go bounce, go bounce around, go bounce somewhere
+        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
+
+        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
+        Go bounce, yes go bounce, go bounce around, go bounce somewhere
+
+        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
+        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
+        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
+        Go bounce, yes go bounce, go bounce around, go bounce somewhere`
+        ,
       },
       {
         id: "fast_train",
@@ -424,11 +460,11 @@ export default function MusicianPage() {
           }}
         >
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-          <div
-            className="relative w-full max-w-2xl rounded-3xl border border-white/20 bg-white/90 p-6 md:p-8 shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-            style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
-          >
+            <div
+              className="relative w-full max-w-2xl rounded-3xl border border-white/20 bg-white/90 p-6 md:p-8 shadow-xl"
+              onClick={(e) => e.stopPropagation()}
+              style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
+            >
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs uppercase tracking-[0.22em] opacity-70">Lyrics</p>
@@ -448,9 +484,45 @@ export default function MusicianPage() {
               </button>
             </div>
 
-            <div className="mt-6 whitespace-pre-wrap leading-relaxed text-base opacity-90">
-            {activeTrack?.lyrics || "Lyrics coming soon."}
-          </div>
+            <div className="mt-6 max-h-[60vh] overflow-auto pr-2">
+              <div className="md:columns-2 md:gap-12 [column-fill:balance]">
+                {(activeTrack?.lyrics ?? "Lyrics coming soon.")
+                  .replace(/^\s+/gm, "")
+                  .split("\n")
+                  .map((line, idx) => {
+                    const t = line.trim();
+
+                    const isHeading =
+                      t.length > 0 &&
+                      (t === "Chorus" ||
+                        t === "Final chorus" ||
+                        /^Verse\s+\d+$/i.test(t));
+
+                    // blank line spacer
+                    if (t.length === 0) {
+                      return <div key={idx} className="h-4 break-inside-avoid" />;
+                    }
+
+                    return isHeading ? (
+                      <div
+                        key={idx}
+                        className="mt-4 mb-2 text-xs uppercase tracking-widest font-semibold opacity-60 break-inside-avoid"
+                      >
+                        {t}
+                      </div>
+                    ) : (
+                      <div
+                        key={idx}
+                        className="text-sm md:text-[15px] leading-relaxed opacity-90 break-inside-avoid"
+                      >
+                        {t}
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+
+
           </div>
         </div>
       )}
