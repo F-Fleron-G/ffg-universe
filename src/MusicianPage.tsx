@@ -8,6 +8,7 @@ type Track = {
   title: string;
   file: string;
   mood?: string;
+  lyrics: string;
 };
 
 export default function MusicianPage() {
@@ -20,12 +21,48 @@ export default function MusicianPage() {
 
   const tracks: Track[] = useMemo(
     () => [
-      { id: "bounce_around", title: "Bounce Around", file: "/music/previews/bounce_around.mp3", mood: "Upbeat / playful" },
-      { id: "fast_train", title: "Fast Train", file: "/music/previews/fast_train.mp3", mood: "Driving / forward" },
-      { id: "feel_alive", title: "Feel Alive", file: "/music/previews/feel_alive.mp3", mood: "Bright / energetic" },
-      { id: "held_back", title: "Held Back", file: "/music/previews/held_back.mp3", mood: "Reflective / tense" },
-      { id: "lovely_in_the_sun", title: "Lovely in the Sun", file: "/music/previews/lovely_in_the_sun.mp3", mood: "Warm / open" },
-      { id: "my_home_is_in_heaven", title: "My Home Is in Heaven", file: "/music/previews/my_home_is_in_heaven.mp3", mood: "Spiritual / uplifting" },
+      {
+        id: "bounce_around",
+        title: "Bounce Around",
+        file: "/music/previews/bounce_around.mp3",
+        mood: "Upbeat / playful",
+        lyrics: `TODO: add lyrics`,
+      },
+      {
+        id: "fast_train",
+        title: "Fast Train",
+        file: "/music/previews/fast_train.mp3",
+        mood: "Driving / forward",
+        lyrics: `TODO: add lyrics`,
+      },
+      {
+        id: "feel_alive",
+        title: "Feel Alive",
+        file: "/music/previews/feel_alive.mp3",
+        mood: "Bright / energetic",
+        lyrics: `TODO: add lyrics`,
+      },
+      {
+        id: "held_back",
+        title: "Held Back",
+        file: "/music/previews/held_back.mp3",
+        mood: "Reflective / tense",
+        lyrics: `TODO: add lyrics`,
+      },
+      {
+        id: "lovely_in_the_sun",
+        title: "Lovely in the Sun",
+        file: "/music/previews/lovely_in_the_sun.mp3",
+        mood: "Warm / open",
+        lyrics: `TODO: add lyrics`,
+      },
+      {
+        id: "my_home_is_in_heaven",
+        title: "My Home Is in Heaven",
+        file: "/music/previews/my_home_is_in_heaven.mp3",
+        mood: "Spiritual / uplifting",
+        lyrics: `TODO: add lyrics`,
+      },
     ],
     []
   );
@@ -412,9 +449,8 @@ export default function MusicianPage() {
             </div>
 
             <div className="mt-6 whitespace-pre-wrap leading-relaxed text-base opacity-90">
-              {/* Replace this with real lyrics later */}
-              Lyrics will be added here.
-            </div>
+            {activeTrack?.lyrics || "Lyrics coming soon."}
+          </div>
           </div>
         </div>
       )}
