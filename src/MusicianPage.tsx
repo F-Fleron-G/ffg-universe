@@ -27,14 +27,21 @@ export default function MusicianPage() {
         file: "/music/previews/bounce_around.mp3",
         mood: "Upbeat / playful",
         lyrics: `Verse 1
-        I can hear it — calling out to me
-        I can feel it — all over my skin
-        A breeze that brings back — good old memories
-        Comes and goes — dancing in the wind
+        I can hear it
+        Calling out to me
+        I can feel it
+        All over my skin
+        A breeze that brings back 
+        Good old memories
+        Comes and goes
+        Dancing in the wind
 
-        If only I knew then what now I see clear — man it wouldn't have taken me years
-        So now I'll say — live day after day
-        Yes now I'll say — live day after day
+        If only I knew then what now I see clear
+        Man it wouldn't have taken me years
+        So now I'll say 
+        Live day after day
+        Yes now I'll say 
+        Live day after day
 
         Chorus
         And go bounce, yes go bounce, go bounce around, go bounce somewhere
@@ -44,12 +51,19 @@ export default function MusicianPage() {
         Go bounce, yes go bounce, go bounce around, go bounce somewhere
 
         Verse 2
-        I sank beneath the surface — while trying to stay up-float
-        And when the whistle blew — that's when I saw the boat
+        I sank beneath the surface
+        While trying to stay afloat
+        And when the whistle blew 
+        That's when I saw the boat
 
-        Not knowing what I had is when I lost track and man it's messed up to end up like that
-        So now I'll say — live day after day
-        Yes now I'll say — live day after day
+        Not knowing what I had
+        Is when I lost track
+        And man it's messed up
+        To end up like that
+        So now I'll say
+        Live day after day
+        Yes now I'll say
+        Live day after day
 
         Final chorus
         And go bounce, yes go bounce, go bounce around, go bounce somewhere
@@ -69,35 +83,361 @@ export default function MusicianPage() {
         title: "Fast Train",
         file: "/music/previews/fast_train.mp3",
         mood: "Driving / forward",
-        lyrics: `TODO: add lyrics`,
+        lyrics: `Verse 1
+        There goes another town
+        Flashing past
+        As I'm staring out the window
+        With my eyes fixed on the stars
+        I'm remembering things I've done
+        All those years have gone by
+        So many different places
+        I have left behind
+
+        Pre-chorus
+        I'm heading out somewhere
+        As far as this fast train will take me
+        Where I'm hoping that maybe
+        I will find some peace of mind
+
+        After hard times 
+        I can say that I'm ready 
+        To stay on course, keep it steady
+        And have a laugh
+        Yes live a while
+
+        Chorus
+        And oh I wish I had the cure
+        To avoid the pain 
+        I've had endure
+        And how my life had been much more
+        Than figuring out
+        How to go on 
+        How to go on
+
+        Verse 2
+        Here comes someone else 
+        With the need to talk
+        I'll ask the usual questions 
+        Like where're you coming from?
+        But I'll spice things up a bit
+        Tell me all about your dreams
+        Did you do all you wished for? 
+        Or is there more to see?
+
+        Pre-chorus
+        I'm heading out somewhere
+        As far as this fast train will take me
+        Where I'm hoping that maybe
+        I will find some peace of mind
+
+        After hard times 
+        I can say that I'm ready 
+        To stay on course, keep it steady
+        And have a laugh 
+        Yes live a while
+
+        Final chorus
+        And oh I wish I had the cure
+        To avoid the pain 
+        I've had endure
+        And how my life had been much more
+        Than figuring out
+        How to go on 
+        
+        And oh I wish I had the cure
+        To avoid the pain 
+        I've had endure
+        And how my life had been much more
+        Than figuring out
+        How to go on 
+        How to go on`
+        ,
       },
       {
         id: "feel_alive",
         title: "Feel Alive",
         file: "/music/previews/feel_alive.mp3",
         mood: "Bright / energetic",
-        lyrics: `TODO: add lyrics`,
+        lyrics: `Verse 1 
+        Fairy tales can happen sometimes 
+        So when they happen
+        Try to make them last 
+        Maybe that's what it's all about
+        Memories to cherish with a smile
+        
+        Chorus 
+        And maybe we could try
+        Only for a while
+        Laughing will bring the beauty out 
+        And hope that we can see 
+        Far beyond the clouds
+        That darkened our lives in the past
+        
+        Verse 2 
+        Lullabies were always sweet to tell
+        In soften whispers spoken to her ears 
+        Those were times 
+        I'd close my eyes and breathe
+        Every inch I felt of her skin 
+        
+        Bridge
+        'Cause for so long I couldn't help 
+        But scream at the sky 
+        And ask the rain to stop
+        Like the tears in my eyes 
+        So go on sunshine
+        And brake the night with light 
+        I want to feel alive 
+        
+        Final chorus 
+        And maybe we could try 
+        Only for a while 
+        Laughing will bring the beauty out 
+        And maybe we can see
+        Far beyond the clouds
+        That darkened our lives in the past`,
       },
       {
         id: "held_back",
         title: "Held Back",
         file: "/music/previews/held_back.mp3",
         mood: "Reflective / tense",
-        lyrics: `TODO: add lyrics`,
+        lyrics: `Chorus
+        So many times that I felt in life
+        Like I was given the chance to get what I want
+        But I held back
+        I held back
+
+        It makes it harder now to live with regret
+        Knowing after all it was my mistake
+        'Cause I held back
+        I held back
+
+        And who could I pass the blame to?
+        Oh, so selfish of me
+        And would it be worth to attempt to
+        After all this time do what I should?
+
+        Verse 1
+        I should have tried it out though it seemed insane
+        I should have asked her out or at least got her name
+        I should have spoken up when I was being blamed
+        Instead of doing nothing just to be afraid
+
+        I should have packed my things and travelled far away
+        I should have taken risks instead of playing it safe
+        I know I should do something before it gets too late
+        I can't go on like this, I've got to make a change
+
+        Post-chorus
+        'Cause I know
+        Ah, ah, ah
+        Yes I know
+        Ah, ah, ah
+        Yes I know
+        It's not too late
+
+        Yes I know
+        Ah, ah, ah
+        Yes I know
+        Ah, ah, ah
+        Yes I know
+        It's not too late
+
+        Chorus
+        So many times that I felt in life
+        Like I was given the chance to get what I want
+        But I held back
+        I held back
+
+        It makes it harder now to live with regret
+        Knowing after all it was my mistake
+        'Cause I held back
+        I held back
+
+        And who could I pass the blame to?
+        Oh, so selfish of me
+        And would it be worth to attempt to
+        After all this time do what I should?
+
+        Verse 2
+        I should have stopped trying being someone else
+        I should have spent more time deep within myself
+        I should ignore all the nonsense in my head
+        And accept the fact being me is okay
+
+        I should resist the urge to be a hypocrite
+        And care so much about what other people think
+        To live my life just the way it is
+        Instead of doing quite the opposite
+
+        Post-chorus
+        'Cause I know
+        Ah, ah, ah
+        Yes I know
+        Ah, ah, ah
+        Yes I know
+        It's not too late
+
+        Yes I know
+        Ah, ah, ah
+        Yes I know
+        Ah, ah, ah
+        Yes I know
+        It's not too late
+
+        Final chorus
+        So many times that I felt in life
+        Like I was given the chance to get what I want
+        But I held back
+        I held back`
+        ,
       },
       {
         id: "lovely_in_the_sun",
         title: "Lovely in the Sun",
         file: "/music/previews/lovely_in_the_sun.mp3",
         mood: "Warm / open",
-        lyrics: `TODO: add lyrics`,
+        lyrics: `Verse 1
+        Suddenly it's come to me
+        What I searched, a remedy
+        I walked the miles and lived quite wild
+        Among the mess is where I found
+        That nothing is what's supposed to be
+        And that is how I've learned to see
+        He or she can join the game
+        The rules apply to all the same
+        
+        Chorus
+        In the sun is lovely
+        Lovely, lovely, lovely
+        In the sun is lovely
+        Lovely, in the sun
+
+        In the sun is lovely
+        Lovely, lovely, lovely
+        In the sun is lovely
+        Lovely, in the sun
+
+        Verse 2
+        I plant good seeds for Heaven's sakes
+        On harvest day we'll celebrate
+        What we sow is what we reap
+        So share the joy with who we meet
+        Call our friends and families
+        Let us be in harmony
+        Pass the laughs hand in hand
+        And play the songs that make us dance
+
+        Chorus
+        In the sun is lovely
+        Lovely, lovely, lovely
+        In the sun is lovely
+        Lovely, in the sun
+
+        In the sun is lovely
+        Lovely, lovely, lovely
+        In the sun is lovely
+        Lovely, in the sun
+
+        Bridge
+        Oh I know
+        If we help a bit it comes right back
+        Like all, we do
+        Has the same effect of the boomerang
+        
+        So walk along
+        The path of love 
+        I'll be waiting on
+        For you
+        Now come
+        If you want
+
+        Chorus
+        In the sun is lovely
+        Lovely, lovely, lovely
+        In the sun is lovely
+        Lovely, in the sun
+
+        In the sun is lovely
+        Lovely, lovely, lovely
+        In the sun is lovely
+        Lovely, in the sun
+
+        In the sun is lovely
+        Lovely, lovely, lovely
+        In the sun is lovely
+        Lovely, in the sun
+
+        In the sun is lovely
+        Lovely, lovely, lovely
+        In the sun is lovely
+        Lovely, in the sun
+        `,
       },
       {
         id: "my_home_is_in_heaven",
         title: "My Home Is in Heaven",
         file: "/music/previews/my_home_is_in_heaven.mp3",
         mood: "Spiritual / uplifting",
-        lyrics: `TODO: add lyrics`,
+        lyrics: `Verse 1
+        I sold my soul
+        For a short-lived reputation
+        But now I'm old
+        I owe my debt to the Devil
+        Now he don't care
+        About my good intentions
+        He'll drag me down to Hell
+        Though my home's in Heaven
+        
+        Verse 2
+        I've done you wrong Lord
+        Won't you give me redemption?
+        You know I was young
+        Ruled by temptations
+        Now he don't care
+        About love and affection
+        He'll drag me down to Hell
+        Though my home's in Heaven
+
+        Chorus
+        I've been walking down the line, Lord
+        Night and day
+        Stepped into the dark
+        Kept one foot in grace
+        And if the Devil comes calling
+        I will shout your name
+        Lord have mercy please
+        Before it's too late
+
+        Verse 3
+        I shook his hand
+        In the burn of desire
+        He promised me gold
+        I got to feeding the fire
+        Now he don't care 
+        About those I inspire
+        He'll drag me down to Hell
+        Though my home's in Heaven
+
+        Chorus
+        I've been walking down the line, Lord
+        Night and day
+        Stepped into the dark
+        Kept one foot in grace
+        And if the Devil comes calling
+        I will shout your name
+        Lord have mercy please
+        Before it's too late
+
+        I've been walking down the line, Lord
+        Night and day
+        Stepped into the dark
+        Kept one foot in grace
+        And if the Devil comes calling
+        I will shout your name
+        Lord have mercy please
+        Before it's too late`,
       },
     ],
     []
@@ -355,7 +695,7 @@ export default function MusicianPage() {
                 ref={(el) => {
                   audioRefs.current[t.id] = el;
                   if (el) {
-                    el.volume = 0.6; // default medium volume
+                    el.volume = 0.6;
                   }
                 }}
                 onPlay={() => pauseOthers(t.id)}
@@ -487,16 +827,18 @@ export default function MusicianPage() {
             <div className="mt-6 max-h-[60vh] overflow-auto pr-2">
               <div className="md:columns-2 md:gap-12 [column-fill:balance]">
                 {(activeTrack?.lyrics ?? "Lyrics coming soon.")
-                  .replace(/^\s+/gm, "")
+                  .replace(/^[ \t]+/gm, "")
                   .split("\n")
                   .map((line, idx) => {
                     const t = line.trim();
 
                     const isHeading =
-                      t.length > 0 &&
-                      (t === "Chorus" ||
-                        t === "Final chorus" ||
-                        /^Verse\s+\d+$/i.test(t));
+                    /^Verse\s+\d+$/i.test(t) ||
+                    /^Pre-chorus$/i.test(t) ||
+                    /^Post-chorus$/i.test(t) ||
+                    /^Bridge$/i.test(t) ||
+                    /^Chorus$/i.test(t) ||
+                    /^Final chorus$/i.test(t);
 
                     // blank line spacer
                     if (t.length === 0) {
