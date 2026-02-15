@@ -36,19 +36,29 @@ export default function MusicianPage() {
         Comes and goes
         Dancing in the wind
 
-        If only I knew then what now I see clear
-        Man it wouldn't have taken me years
+        If only I knew then
+        What now I see clear
+        Man it wouldn't have
+        Taken me years
         So now I'll say 
         Live day after day
         Yes now I'll say 
         Live day after day
 
         Chorus
-        And go bounce, yes go bounce, go bounce around, go bounce somewhere
-        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
+        And go bounce, yes go bounce
+        Go bounce around
+        Go bounce somewhere
+        Yes go bounce, yes go bounce
+        Go bounce around
+        Go bounce somewhere
 
-        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
-        Go bounce, yes go bounce, go bounce around, go bounce somewhere
+        Yes go bounce, yes go bounce 
+        Go bounce around
+        Go bounce somewhere
+        Hey go bounce, yes go bounce 
+        Go bounce around 
+        Go bounce somewhere
 
         Verse 2
         I sank beneath the surface
@@ -66,16 +76,33 @@ export default function MusicianPage() {
         Live day after day
 
         Final chorus
-        And go bounce, yes go bounce, go bounce around, go bounce somewhere
-        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
+        And go bounce, yes go bounce
+        Go bounce around
+        Go bounce somewhere
+        Yes go bounce, yes go bounce
+        Go bounce around
+        Go bounce somewhere
 
-        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
-        Go bounce, yes go bounce, go bounce around, go bounce somewhere
+        Yes go bounce, yes go bounce 
+        Go bounce around
+        Go bounce somewhere
+        Hey go bounce, yes go bounce 
+        Go bounce around 
+        Go bounce somewhere
 
-        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
-        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
-        Yes go bounce, yes go bounce, go bounce around, go bounce somewhere
-        Go bounce, yes go bounce, go bounce around, go bounce somewhere`
+        Yes go bounce, yes go bounce
+        Go bounce around
+        Go bounce somewhere
+        Yes go bounce, yes go bounce 
+        Go bounce around 
+        Go bounce somewhere
+        
+        Yes go bounce, yes go bounce
+        Go bounce around 
+        Go bounce somewhere
+        Hey go bounce, yes go bounce
+        Go bounce around 
+        Go bounce somewhere`
         ,
       },
       {
@@ -203,13 +230,17 @@ export default function MusicianPage() {
         file: "/music/previews/held_back.mp3",
         mood: "Reflective / Tense",
         lyrics: `Chorus
-        So many times that I felt in life
-        Like I was given the chance to get what I want
+        So many times
+        That I felt in life
+        Like I was given the chance
+        To get what I want
         But I held back
         I held back
 
-        It makes it harder now to live with regret
-        Knowing after all it was my mistake
+        It makes it harder now
+        To live with regret
+        Knowing after all
+        It was my mistake
         'Cause I held back
         I held back
 
@@ -219,15 +250,23 @@ export default function MusicianPage() {
         After all this time do what I should?
 
         Verse 1
-        I should have tried it out though it seemed insane
-        I should have asked her out or at least got her name
-        I should have spoken up when I was being blamed
-        Instead of doing nothing just to be afraid
+        I should have tried it out
+        Though it seemed insane
+        I should have asked her out
+        Or at least got her name
+        I should have spoken up
+        When I was being blamed
+        Instead of doing nothing
+        Just to be afraid
 
-        I should have packed my things and travelled far away
-        I should have taken risks instead of playing it safe
-        I know I should do something before it gets too late
-        I can't go on like this, I've got to make a change
+        I should have packed my things
+        And travelled far away
+        I should have taken risks
+        Instead of playing it safe
+        I know I should do something
+        Before it gets too late
+        I can't go on like this
+        I've got to make a change
 
         Post-chorus
         'Cause I know
@@ -245,13 +284,17 @@ export default function MusicianPage() {
         It's not too late
 
         Chorus
-        So many times that I felt in life
-        Like I was given the chance to get what I want
+        So many times
+        That I felt in life
+        Like I was given the chance
+        To get what I want
         But I held back
         I held back
 
-        It makes it harder now to live with regret
-        Knowing after all it was my mistake
+        It makes it harder now
+        To live with regret
+        Knowing after all
+        It was my mistake
         'Cause I held back
         I held back
 
@@ -261,15 +304,23 @@ export default function MusicianPage() {
         After all this time do what I should?
 
         Verse 2
-        I should have stopped trying being someone else
-        I should have spent more time deep within myself
-        I should ignore all the nonsense in my head
-        And accept the fact being me is okay
+        I should have stopped trying
+        Being someone else
+        I should have spent more time
+        Deep within myself
+        I should ignore
+        All the nonsense in my head
+        And accept the fact
+        Being me is okay
 
-        I should resist the urge to be a hypocrite
-        And care so much about what other people think
-        To live my life just the way it is
-        Instead of doing quite the opposite
+        I should resist the urge
+        To be a hypocrite
+        And care so much about
+        What other people think
+        To live my life
+        Just the way it is
+        Instead of doing
+        Quite the opposite
 
         Post-chorus
         'Cause I know
@@ -287,8 +338,10 @@ export default function MusicianPage() {
         It's not too late
 
         Final chorus
-        So many times that I felt in life
-        Like I was given the chance to get what I want
+        So many times
+        That I felt in life
+        Like I was given the chance
+        To get what I want
         But I held back
         I held back`
         ,
@@ -342,9 +395,11 @@ export default function MusicianPage() {
 
         Bridge
         Oh I know
-        If we help a bit it comes right back
+        If we help a bit
+        It comes right back
         Like all, we do
-        Has the same effect of the boomerang
+        Has the same effect
+        Of the boomerang
         
         So walk along
         The path of love 
@@ -377,7 +432,7 @@ export default function MusicianPage() {
       },
       {
         id: "my_home_is_in_heaven",
-        title: "My Home Is in Heaven",
+        title: "My Home is in Heaven",
         file: "/music/previews/my_home_is_in_heaven.mp3",
         mood: "Spiritual / Uplifting",
         lyrics: `Verse 1
