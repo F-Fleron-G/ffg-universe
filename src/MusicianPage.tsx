@@ -643,7 +643,7 @@ export default function MusicianPage() {
           <div className="md:justify-self-end">
             <div className="rounded-3xl border border-black/10 bg-white/40 p-3 shadow-sm">
               <img
-                src="/music/cover.png"
+                src="/music/cover.jpg"
                 alt="Album cover — It sounds like you"
                 className="w-full max-w-[420px] rounded-2xl object-cover"
               />
