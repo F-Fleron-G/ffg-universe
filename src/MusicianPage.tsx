@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { Home, Mail, Music2 } from "lucide-react";
+import { Home, Mail, Music2, Info, X } from "lucide-react";
 import PageHead from "./components/PageHead";
 
 type Track = {
@@ -676,19 +676,20 @@ export default function MusicianPage() {
       {/* Songs */}
       <section ref={sections.songs} className="mx-auto max-w-6xl px-6 py-10">
         <h2 className="text-2xl md:text-3xl">Preview tracks</h2>
-        <p
-          className="mt-2 opacity-75"
-          style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
-        >
-          35–40 second previews. Full tracks are shared privately upon purchase.{" "}
+        <div className="flex items-center justify-between gap-4 text-sm md:text-base text-black/70">
+          <p>
+            35–40 second previews. Full tracks are shared privately upon purchase.
+          </p>
+
           <button
             type="button"
             onClick={() => setLegalOpen(true)}
-            className="underline underline-offset-4 hover:opacity-80 transition"
+            className="shrink-0 inline-flex items-center justify-center p-2 rounded-full hover:bg-black/5 transition"
+            aria-label="More details"
           >
-            More details…
+            <Info className="h-5 w-5 opacity-70 hover:opacity-100 transition" />
           </button>
-        </p>
+        </div>
 
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
           {tracks.map((t) => (
@@ -830,14 +831,15 @@ export default function MusicianPage() {
                 </h3>
               </div>
               <button
-                aria-label="Close lyrics"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-black/15 bg-white/70 hover:bg-white transition"
+                aria-label="Close lyrics"         
+                className="ml-3 inline-flex h-8 w-8 items-center justify-center rounded-full ring-1 ring-black/10 
+                bg-white/70 hover:bg-black/5 transition"
                 onClick={() => {
                   setLyricsOpen(false);
                   setActiveTrack(null);
                 }}
               >
-                ✕
+                <X className="h-4 w-4 opacity-70" />
               </button>
             </div>
 
@@ -911,11 +913,11 @@ export default function MusicianPage() {
                 </h3>
               </div>
               <button
-                aria-label="Close legal"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-black/15 bg-white/70 hover:bg-white transition"
                 onClick={() => setLegalOpen(false)}
+                className="ml-3 inline-flex h-8 w-8 items-center justify-center rounded-full ring-1 ring-black/10 bg-white/70 hover:bg-black/5 transition"
+                aria-label="Close"
               >
-                ✕
+                <X className="h-4 w-4 opacity-70" />
               </button>
             </div>
 
