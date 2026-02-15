@@ -516,7 +516,7 @@ export default function MusicianPage() {
         <nav className="mx-auto max-w-6xl px-4 pt-3 pb-[2px] flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2 font-semibold tracking-wide select-none">
-            <img src="/FG.png" alt="Musician logo" className="h-16 md:h-32 w-auto" />
+            <img src="/music/logo.png" alt="Musician logo" className="h-16 md:h-32 w-auto" />
           </div>
 
           {/* Desktop nav */}
