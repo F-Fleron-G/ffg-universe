@@ -25,7 +25,7 @@ export default function MusicianPage() {
         id: "bounce_around",
         title: "Bounce Around",
         file: "/music/previews/bounce_around.mp3",
-        mood: "Upbeat / playful",
+        mood: "Upbeat / Playful",
         lyrics: `Verse 1
         I can hear it
         Calling out to me
@@ -82,7 +82,7 @@ export default function MusicianPage() {
         id: "fast_train",
         title: "Fast Train",
         file: "/music/previews/fast_train.mp3",
-        mood: "Driving / forward",
+        mood: "Driving / Forward",
         lyrics: `Verse 1
         There goes another town
         Flashing past
@@ -157,7 +157,7 @@ export default function MusicianPage() {
         id: "feel_alive",
         title: "Feel Alive",
         file: "/music/previews/feel_alive.mp3",
-        mood: "Bright / energetic",
+        mood: "Bright / Energetic",
         lyrics: `Verse 1 
         Fairy tales can happen sometimes 
         So when they happen
@@ -201,7 +201,7 @@ export default function MusicianPage() {
         id: "held_back",
         title: "Held Back",
         file: "/music/previews/held_back.mp3",
-        mood: "Reflective / tense",
+        mood: "Reflective / Tense",
         lyrics: `Chorus
         So many times that I felt in life
         Like I was given the chance to get what I want
@@ -297,7 +297,7 @@ export default function MusicianPage() {
         id: "lovely_in_the_sun",
         title: "Lovely in the Sun",
         file: "/music/previews/lovely_in_the_sun.mp3",
-        mood: "Warm / open",
+        mood: "Warm / Open",
         lyrics: `Verse 1
         Suddenly it's come to me
         What I searched, a remedy
@@ -379,7 +379,7 @@ export default function MusicianPage() {
         id: "my_home_is_in_heaven",
         title: "My Home Is in Heaven",
         file: "/music/previews/my_home_is_in_heaven.mp3",
-        mood: "Spiritual / uplifting",
+        mood: "Spiritual / Uplifting",
         lyrics: `Verse 1
         I sold my soul
         For a short-lived reputation
@@ -489,11 +489,7 @@ export default function MusicianPage() {
     <main
       className="min-h-screen musician-page"
       style={{
-        
-        background:
-          "radial-gradient(1200px 600px at 20% 10%, rgba(253, 230, 215, 0.75), transparent 60%)," +
-          "radial-gradient(900px 500px at 80% 20%, rgba(226, 232, 255, 0.65), transparent 55%)," +
-          "linear-gradient(180deg, rgba(255,255,255,0.90), rgba(255,255,255,0.78))",
+        backgroundColor: "#efe6d8",
       }}
     >
       <div id="home" />
@@ -649,10 +645,10 @@ export default function MusicianPage() {
               />
             </div>
             <p
-              className="mt-3 text-xs opacity-70 text-center md:text-right"
+              className="mt-3 text-xs text-black/50 text-center md:text-right"
               style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
             >
-              Album artwork (placeholder)
+              Original composition & artwork
             </p>
           </div>
         </div>
@@ -785,7 +781,7 @@ export default function MusicianPage() {
         </div>
       </section>
 
-      <footer className="relative border-t border-black/10 bg-white/40 backdrop-blur">
+      <footer className="relative bg-black/5 border-t border-black/10 backdrop-blur">
 
           <a
             href="#home"
