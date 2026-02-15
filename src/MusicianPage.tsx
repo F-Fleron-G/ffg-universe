@@ -489,9 +489,9 @@ export default function MusicianPage() {
 
   return (
     <main
-      className="min-h-screen"
+      className="min-h-screen musician-page"
       style={{
-        fontFamily: pageFont,
+        
         background:
           "radial-gradient(1200px 600px at 20% 10%, rgba(253, 230, 215, 0.75), transparent 60%)," +
           "radial-gradient(900px 500px at 80% 20%, rgba(226, 232, 255, 0.65), transparent 55%)," +
@@ -499,6 +499,23 @@ export default function MusicianPage() {
       }}
     >
       <PageHead title="Musician — It sounds like you" />
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
+
+        .musician-page {
+          font-family: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        }
+
+        .musician-page h1,
+        .musician-page h2,
+        .musician-page h3 {
+          font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", serif;
+          font-weight: 500;
+          letter-spacing: 0.02em;
+        }
+
+      `}</style>
+
 
       {/* Header */}
       <header className="bg-white/50 backdrop-blur border-b relative">
