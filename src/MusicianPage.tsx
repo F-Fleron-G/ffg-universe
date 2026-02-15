@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { Home, Mail, Music2, Info, X } from "lucide-react";
+import { Home, Mail, Music2, Info, X, ChevronUp } from "lucide-react";
 import PageHead from "./components/PageHead";
 
 type Track = {
@@ -485,8 +485,6 @@ export default function MusicianPage() {
     });
   }, []);
 
-  const pageFont = `"Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", serif`;
-
   return (
     <main
       className="min-h-screen musician-page"
@@ -498,6 +496,7 @@ export default function MusicianPage() {
           "linear-gradient(180deg, rgba(255,255,255,0.90), rgba(255,255,255,0.78))",
       }}
     >
+      <div id="home" />
       <PageHead title="Musician — It sounds like you" />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
@@ -518,7 +517,7 @@ export default function MusicianPage() {
 
 
       {/* Header */}
-      <header className="bg-white/50 backdrop-blur border-b relative">
+      <header className="bg-black/5 backdrop-blur border-b border-black/10 relative">
 
         <Link
           to="/"
@@ -786,7 +785,33 @@ export default function MusicianPage() {
         </div>
       </section>
 
-      <footer className="border-t border-black/10 bg-white/40 backdrop-blur">
+      <footer className="relative border-t border-black/10 bg-white/40 backdrop-blur">
+
+          <a
+            href="#home"
+            aria-label="Back to top"
+            title="Back to top"
+            className="
+              absolute left-1/2 -translate-x-1/2 -top-6 z-20
+              inline-flex items-center justify-center h-12 w-12 rounded-full
+              bg-neutral-900 text-white border border-black/20
+              hover:bg-neutral-700 transition-colors
+            "
+          >
+            <svg
+              className="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 15l7-7 7 7" />
+            </svg>
+          </a>
+
         <div className="mx-auto max-w-6xl px-6 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <p
             className="text-sm opacity-75"
@@ -882,8 +907,6 @@ export default function MusicianPage() {
                   })}
               </div>
             </div>
-
-
           </div>
         </div>
       )}
