@@ -816,9 +816,9 @@ export default function MusicianPage() {
             setActiveTrack(null);
           }}
         >
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/60 backdrop-blur-md" />
             <div
-              className="relative w-full max-w-2xl rounded-3xl border border-white/20 bg-white/90 p-6 md:p-8 shadow-xl"
+              className="relative w-full max-w-2xl rounded-3xl bg-[#fbfaf7] ring-1 ring-black/10 shadow-[0_35px_110px_-40px_rgba(0,0,0,0.65)] p-6 md:p-8"
               onClick={(e) => e.stopPropagation()}
               style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
             >
@@ -841,8 +841,8 @@ export default function MusicianPage() {
               </button>
             </div>
 
-            <div className="mt-6 max-h-[60vh] overflow-auto pr-2">
-              <div className="md:columns-2 md:gap-12 [column-fill:balance]">
+            <div className="mt-6 pt-6 border-t border-black/10 max-h-[60vh] overflow-auto pr-2">
+              <div className="md:columns-2 md:gap-12 [column-fill:balance] text-[15px] md:text-[16px] text-black/80">
                 {(activeTrack?.lyrics ?? "Lyrics coming soon.")
                   .replace(/^[ \t]+/gm, "")
                   .split("\n")
