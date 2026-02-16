@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { Home, Mail, Music2, Info, X, ChevronUp } from "lucide-react";
+import { Home, Music2, Info, X, ChevronUp, Mail, CheckCircle2, AlertCircle } from "lucide-react";
+
 import PageHead from "./components/PageHead";
 
 type Track = {
@@ -509,7 +510,15 @@ export default function MusicianPage() {
 
   const [lyricsOpen, setLyricsOpen] = useState(false);
   const [activeTrack, setActiveTrack] = useState<Track | null>(null);
+  
   const [legalOpen, setLegalOpen] = useState(false);
+  
+  const [sending, setSending] = useState(false);
+  const [toast, setToast] = useState<null | { type: "success" | "error"; text: string }>(null);
+
+  const [contactPreset, setContactPreset] = useState<null | { subject?: string; message?: string }>(null);
+  const [contactSubject, setContactSubject] = useState("");
+  const [contactMessage, setContactMessage] = useState("");
 
   const audioRefs = useRef<Record<string, HTMLAudioElement | null>>({});
 
@@ -526,6 +535,12 @@ export default function MusicianPage() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  useEffect(() => {
+    if (!contactPreset) return;
+    if (contactPreset.subject !== undefined) setContactSubject(contactPreset.subject);
+    if (contactPreset.message !== undefined) setContactMessage(contactPreset.message);
+  }, [contactPreset]);
+
   function scrollTo(ref: React.RefObject<HTMLElement | null>) {
     ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
@@ -539,6 +554,39 @@ export default function MusicianPage() {
       }
     });
   }, []);
+
+  async function handleMusicianSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (sending) return;
+
+    setSending(true);
+    setToast(null);
+
+    const form = e.currentTarget;
+
+    try {
+      const formData = new FormData(form);
+
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (!res.ok) throw new Error("Request failed");
+
+      setToast({ type: "success", text: "Thanks! Your message was sent." });
+      form.reset();
+      setContactSubject("");
+      setContactMessage("");
+      setContactPreset(null);
+    } catch {
+      setToast({ type: "error", text: "Please try again in a moment." });
+    } finally {
+      setSending(false);
+      window.setTimeout(() => setToast(null), 6000);
+    }
+  }
 
   return (
     <main
@@ -819,44 +867,114 @@ export default function MusicianPage() {
         </div>
       </section>
 
-      {/* Album */}
-      <section ref={sections.album} className="mx-auto max-w-6xl px-6 py-10">
-        <div className="rounded-3xl border border-black/10 bg-white/55 p-6 md:p-10 shadow-sm">
-          <h2 className="text-2xl md:text-3xl">Full 7-song album</h2>
-          <p className="mt-3 opacity-80" style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}>
-            Want the full set of seven songs? You can request an album purchase and I’ll share details privately
-            (delivery + pricing) and send the full tracks after confirmation.
-          </p>
-          <button
-            onClick={() => scrollTo(sections.contact)}
-            className="mt-6 rounded-full border border-black/15 bg-white/60 px-5 py-2 text-sm hover:bg-white/80 transition"
-            style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
-          >
-            Request album purchase
-          </button>
-        </div>
-      </section>
+      {/* Album + Contact */}
+      <div className="mx-auto max-w-6xl px-6 py-10">
+        <div className="grid gap-6 md:grid-cols-2 md:items-stretch">
 
-      {/* Contact */}
-      <section ref={sections.contact} className="mx-auto max-w-6xl px-6 pt-10 pb-20">
-        <div className="rounded-3xl border border-black/10 bg-white/55 p-6 md:p-10 shadow-sm">
-          <h2 className="text-2xl md:text-3xl">Contact</h2>
-          <p className="mt-3 opacity-80" style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}>
-            For now we’ll keep this simple: a direct email request. Next step we can add a real form (Formspree/Resend)
-            if you want.
-          </p>
+          {/* Album */}
+          <section ref={sections.album} className="h-full">
+            <div className="h-full rounded-3xl border border-black/10 bg-white/55 p-6 md:p-10 shadow-sm">
+              <h2 className="text-2xl md:text-3xl">Full 7-song album</h2>
+              <p
+                className="mt-3 opacity-80"
+                style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
+              >
+                Want the full set of seven songs? You can request an album purchase and I’ll share details privately
+                (delivery + pricing) and send the full tracks after confirmation.
+              </p>
 
-          {/* Replace this email with yours */}
-          <a
-            href="mailto:you@example.com?subject=Music%20purchase%20request&body=Hi%20Frederic%2C%0A%0AI'm%20interested%20in%3A%0A-%20%5BIndividual%20song%20licensing%20/%20Full%20album%5D%0A-%20Track%20name%20(if%20applicable)%3A%20%0A%0AThank%20you!"
-            className="mt-6 inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/60 px-5 py-2 text-sm hover:bg-white/80 transition"
-            style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
-          >
-            <Mail className="h-4 w-4" />
-            Email me
-          </a>
+              <button
+                onClick={() => {
+                  setContactPreset({
+                    subject: "Album purchase request",
+                    message:
+                      "Hi Frederic,\n\nI would love to purchase the full 7-song album. Please let me know the details.\n\nThank you,",
+                  });
+                  scrollTo(sections.contact);
+                }}
+                className="mt-6 rounded-full border border-black/15 bg-white/60 px-5 py-2 text-sm hover:bg-white/80 transition"
+                style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
+              >
+                Request album purchase
+              </button>
+            </div>
+          </section>
+
+          {/* Contact */}
+          <section ref={sections.contact} className="h-full">
+            <div className="h-full rounded-3xl border border-black/10 bg-white/55 p-6 md:p-10 shadow-sm">
+              <h2 className="text-2xl md:text-3xl">Contact</h2>
+              <p
+                className="mt-3 opacity-80"
+                style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
+              >
+                For now we’ll keep this simple: a direct email request. Next step we can add a real form (Formspree/Resend)
+                if you want.
+              </p>
+
+              <form
+                action="https://formsubmit.co/5fbe1cd6ca420026a59128ebbea6c656"
+                method="POST"
+                onSubmit={handleMusicianSubmit}
+                className="mt-6 grid grid-cols-1 gap-3"
+              >
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Your name"
+                  className="rounded-xl border border-black/15 bg-white/70 px-3 py-2 text-sm text-neutral-900
+                            focus:outline-none focus:ring-2 focus:ring-black/30 focus:border-black/30 transition"
+                />
+
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  autoComplete="email"
+                  placeholder="Your email"
+                  className="rounded-xl border border-black/15 bg-white/70 px-3 py-2 text-sm text-neutral-900
+                            focus:outline-none focus:ring-2 focus:ring-black/30 focus:border-black/30 transition"
+                />
+
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Subject (optional)"
+                  value={contactSubject}
+                  onChange={(e) => setContactSubject(e.target.value)}
+                  className="rounded-xl border border-black/15 bg-white/70 px-3 py-2 text-sm text-neutral-900
+                            focus:outline-none focus:ring-2 focus:ring-black/30 focus:border-black/30 transition"
+                />
+
+                <textarea
+                  name="message"
+                  required
+                  placeholder="Message"
+                  value={contactMessage}
+                  onChange={(e) => setContactMessage(e.target.value)}
+                  className="rounded-xl border border-black/15 bg-white/70 px-3 py-2 text-sm text-neutral-900 h-28 resize-y
+                            focus:outline-none focus:ring-2 focus:ring-black/30 focus:border-black/30 transition"
+                />
+
+                {/* hidden config */}
+                <input type="hidden" name="_subject" value="New message from MUSICIAN page" />
+                <input type="hidden" name="_captcha" value="false" />            
+                <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+
+               <button
+                type="submit"
+                disabled={sending}
+                className="justify-self-start inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/60 px-5 py-2 text-sm hover:bg-white/80 transition disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                <Mail className="h-4 w-4" />
+                {sending ? "Sending..." : "Send"}
+              </button>
+              </form>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
 
       <footer className="relative bg-black/5 border-t border-black/10 backdrop-blur">
 
@@ -1034,6 +1152,42 @@ export default function MusicianPage() {
                 <strong>Respectful use:</strong> Please do not upload these previews to other platforms or share direct files publicly.
               </p>
             </div>
+          </div>
+        </div>
+      )}
+     
+      {/* Toast */}
+      {toast && (
+        <div
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className="fixed z-[100] bottom-[max(1rem,env(safe-area-inset-bottom))] left-3 right-3 sm:left-auto sm:right-4 sm:bottom-4"
+        >
+          <div className="flex items-start gap-3 rounded-xl border border-black/15 bg-white/90 text-neutral-900 shadow-lg backdrop-blur px-4 py-3">
+            {toast.type === "success" ? (
+              <CheckCircle2 size={18} aria-hidden className="shrink-0" />
+            ) : (
+              <AlertCircle size={18} aria-hidden className="shrink-0" />
+            )}
+
+            <div className="min-w-0 flex-1">
+              <div className="font-medium">
+                {toast.type === "success" ? "Message sent" : "Something went wrong"}
+              </div>
+              <div className="opacity-80 break-words">
+                {toast.text}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setToast(null)}
+              className="ml-2 underline text-sm shrink-0"
+              aria-label="Close notification"
+            >
+              Close
+            </button>
           </div>
         </div>
       )}
