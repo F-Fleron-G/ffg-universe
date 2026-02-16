@@ -1367,22 +1367,27 @@ export default function ArtistPage() {
           role="status"
           aria-live="polite"
           aria-atomic="true"
-          className="fixed z-[100] bottom-4 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0"
+          className="fixed z-[100] bottom-[max(1rem,env(safe-area-inset-bottom))] left-3 right-3 sm:left-auto sm:right-4 sm:bottom-4"
         >
-          <div className="flex items-center gap-3 rounded-xl border border-[#728ca5] bg-white/90 text-neutral-900 shadow-lg backdrop-blur px-4 py-3">
+          <div className="flex items-start gap-3 rounded-xl border border-[#728ca5] bg-white/90 text-neutral-900 shadow-lg backdrop-blur px-4 py-3">
             {toast.type === "success" ? (
               <CheckCircle2 size={18} aria-hidden className="shrink-0" />
             ) : (
               <AlertCircle size={18} aria-hidden className="shrink-0" />
             )}
-            <span className="font-medium">
-              {toast.type === "success" ? "Message sent" : "Something went wrong"}
-            </span>
-            <span className="opacity-80">{toast.text}</span>
+            <div className="min-w-0 flex-1">
+              <div className="font-medium">
+                {toast.type === "success" ? "Message sent" : "Something went wrong"}
+              </div>
+              <div className="opacity-80 break-words">
+                {toast.text}
+              </div>
+            </div>
+
             <button
               type="button"
               onClick={() => setToast(null)}
-              className="ml-2 underline text-sm"
+              className="ml-2 underline text-sm shrink-0"
               aria-label="Close notification"
             >
               Close
