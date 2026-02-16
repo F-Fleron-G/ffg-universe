@@ -671,7 +671,7 @@ export default function MusicianPage() {
         </nav>
 
         {open && (
-          <div className="md:hidden border-t border-black/10 bg-white/80 backdrop-blur">
+          <div className="md:hidden border-t border-black/10 bg-black/5">
             <ul className="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3">
               {navSections.map((s) => (
                 <li key={s.id}>
@@ -904,7 +904,7 @@ export default function MusicianPage() {
 
           {/* Contact */}
           <section ref={sections.contact} className="h-full">
-            <div className="h-full rounded-3xl border border-black/10 bg-white/55 p-6 md:p-10 shadow-sm">
+            <div className="h-full rounded-3xl border border-black/10 bg-black/5 p-6 md:p-10 shadow-sm">
               <h2 className="text-2xl md:text-3xl">Contact</h2>
               <p
                 className="mt-3 opacity-80"
