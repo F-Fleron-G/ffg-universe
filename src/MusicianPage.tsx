@@ -715,16 +715,16 @@ export default function MusicianPage() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
 
       {/* Profile image */}
-      <div className="flex justify-center md:justify-start">
+      <div className="flex justify-center md:justify-start items-end -mb-10 md:-mb-10">
         <img
           src="/music/about.png"
           alt="Frederic G. Fleron Grignard"
-          className="w-64 md:w-80 h-auto rounded-2xl shadow-sm"
+          className="w-full max-w-[600px] h-auto"
         />
       </div>
 
       {/* About text */}
-      <div>
+      <div className="mt-4 md:mt-4">
         <h2 className="text-2xl md:text-3xl">About</h2>
           <p className="mt-3 text-[15px] md:text-base opacity-85" style={{ lineHeight: "1.5" }}>
             Music is how my soul sounds when it speaks. It carries the footsteps of the places I have walked, the faces that stayed with me, and the feelings that asked to be heard. Each song arrives like a memory returning, dressed in melody, shaped into words, and offered as it came to me.
@@ -733,7 +733,10 @@ export default function MusicianPage() {
             <br /><br />
             Welcome. I’m Frederic G. Fleron Grignard.
             <br /><br />
-            <span className="opacity-70">
+            <span
+              className="block mt-4 text-[clamp(10px,3.2vw,14px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] opacity-90 text-[#454949]"
+              style={{ fontFamily: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif" }}
+            >
               Musician · Backpacker · Songweaver
             </span>
           </p>
