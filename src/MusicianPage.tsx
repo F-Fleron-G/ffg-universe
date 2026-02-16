@@ -708,7 +708,7 @@ export default function MusicianPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           {/* Text */}
           <div>
-            <p className="text-sm uppercase tracking-[0.22em] opacity-70">Musician</p>
+            <p className="text-sm uppercase tracking-[0.22em] opacity-70">Album</p>
             <h1 className="mt-3 text-4xl md:text-6xl leading-tight">
               It sounds like you
             </h1>
@@ -717,7 +717,7 @@ export default function MusicianPage() {
               style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
             >
               Short previews of original songs — written to give voice, tone, and melody to the things life puts us through.
-              If something resonates, you can request to purchase a song or the full 7-song album.
+              If something resonates, you can request to purchase a song or the full 6-song album.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -758,47 +758,49 @@ export default function MusicianPage() {
       </section>
 
       {/* About */}
-      <section ref={sections.about} className="mx-auto max-w-6xl px-6 py-10">
-        <div className="rounded-3xl border border-black/10 bg-white/55 p-6 md:p-10 shadow-sm">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+      <section ref={sections.about} className="py-12 md:py-16">
+        <div className="bg-black/5 border-y border-black/10">
+          <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
 
-      {/* Profile image */}
-      <div className="flex justify-center md:justify-start items-end -mb-10 md:-mb-10">
-        <img
-          src="/music/about.png"
-          alt="Frederic G. Fleron Grignard"
-          className="w-full max-w-[600px] h-auto"
-        />
-      </div>
+            {/* Profile image */}
+            <div className="flex justify-center md:justify-start items-end -mb-10 md:-mb-10">
+              <img
+                src="/music/about.png"
+                alt="Frederic G. Fleron Grignard"
+                className="w-full max-w-[600px] h-auto"
+              />
+            </div>
 
-      {/* About text */}
-      <div className="mt-4 md:mt-4">
-        <h2 className="text-2xl md:text-3xl">About</h2>
-          <p className="mt-3 text-[15px] md:text-base opacity-85" style={{ lineHeight: "1.5" }}>
-            Music is how my soul sounds when it speaks. It carries the footsteps of the places I have walked, the faces that stayed with me, and the feelings that asked to be heard. Each song arrives like a memory returning, dressed in melody, shaped into words, and offered as it came to me.
-            <br /><br />
-            These songs are pieces of a lived life, carried by melody, shaped by time, and left open so each listener may find their own reflection inside them.
-            <br /><br />
-            Welcome. I’m Frederic G. Fleron Grignard.
-            <br /><br />
-            <span
-              className="block mt-4 text-[clamp(10px,3.2vw,14px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] opacity-90 text-[#454949]"
-              style={{ fontFamily: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif" }}
-            >
-              Musician · Backpacker · Songweaver
-            </span>
-          </p>
+            {/* About text */}
+            <div className="mt-4 md:mt-4">
+              <h2 className="text-2xl md:text-3xl">About</h2>
+                <p className="mt-3 text-[15px] md:text-base opacity-85" style={{ lineHeight: "1.5" }}>
+                  Music is how my soul sounds when it speaks. It carries the footsteps of the places I have walked, the faces that stayed with me, and the feelings that asked to be heard. Each song arrives like a memory returning, dressed in melody, shaped into words, and offered as it came to me.
+                  <br /><br />
+                  These songs are pieces of a lived life, carried by melody, shaped by time, and left open so each listener may find their own reflection inside them.
+                  <br /><br />
+                  Welcome. I’m Frederic G. Fleron Grignard.
+                  <br /><br />
+                  <span
+                    className="block mt-4 text-[clamp(10px,3.2vw,14px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] opacity-90 text-[#454949]"
+                    style={{ fontFamily: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif" }}
+                  >
+                    Musician · Backpacker · Songweaver
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
       {/* Songs */}
       <section ref={sections.songs} className="mx-auto max-w-6xl px-6 py-10">
         <h2 className="text-2xl md:text-3xl">Preview tracks</h2>
         <div className="flex items-center justify-between gap-4 text-sm md:text-base text-black/70">
           <p>
-            35–40 second previews. Full tracks are shared privately upon purchase.
+            35–45 second previews. Full tracks are shared privately upon purchase.
           </p>
 
           <button
@@ -874,7 +876,7 @@ export default function MusicianPage() {
           {/* Album */}
           <section ref={sections.album} className="h-full">
             <div className="h-full rounded-3xl border border-black/10 bg-white/55 p-6 md:p-10 shadow-sm">
-              <h2 className="text-2xl md:text-3xl">Full 7-song album</h2>
+              <h2 className="text-2xl md:text-3xl">Full 6-song album</h2>
               <p
                 className="mt-3 opacity-80"
                 style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
