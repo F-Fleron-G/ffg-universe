@@ -96,7 +96,7 @@ export default function MusicianPage() {
         Yes go bounce, yes go bounce 
         Go bounce around 
         Go bounce somewhere
-        
+
         Yes go bounce, yes go bounce
         Go bounce around 
         Go bounce somewhere
@@ -712,16 +712,35 @@ export default function MusicianPage() {
       {/* About */}
       <section ref={sections.about} className="mx-auto max-w-6xl px-6 py-10">
         <div className="rounded-3xl border border-black/10 bg-white/55 p-6 md:p-10 shadow-sm">
-          <h2 className="text-2xl md:text-3xl">About</h2>
-          <p
-            className="mt-4 text-base md:text-lg opacity-85"
-            style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
-          >
-            These songs were written over time — through delays, detours, responsibilities, and the strange humor of
-            “almost making it.” They’re not here to compete with perfection. They’re here to connect.
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+
+      {/* Profile image */}
+      <div className="flex justify-center md:justify-start">
+        <img
+          src="/music/about.png"
+          alt="Frederic G. Fleron Grignard"
+          className="w-64 md:w-80 h-auto rounded-2xl shadow-sm"
+        />
+      </div>
+
+      {/* About text */}
+      <div>
+        <h2 className="text-2xl md:text-3xl">About</h2>
+          <p className="mt-3 text-[15px] md:text-base opacity-85" style={{ lineHeight: "1.5" }}>
+            Music is how my soul sounds when it speaks. It carries the footsteps of the places I have walked, the faces that stayed with me, and the feelings that asked to be heard. Each song arrives like a memory returning, dressed in melody, shaped into words, and offered as it came to me.
+            <br /><br />
+            These songs are pieces of a lived life, carried by melody, shaped by time, and left open so each listener may find their own reflection inside them.
+            <br /><br />
+            Welcome. I’m Frederic G. Fleron Grignard.
+            <br /><br />
+            <span className="opacity-70">
+              Musician · Backpacker · Songweaver
+            </span>
           </p>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
       {/* Songs */}
       <section ref={sections.songs} className="mx-auto max-w-6xl px-6 py-10">
