@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { Home, Music2, Music4, Info, X, ChevronUp, Mail, CheckCircle2, AlertCircle, Scale } from "lucide-react";
+import { Home, Music4, Info, X, Mail, CheckCircle2, AlertCircle, Scale } from "lucide-react";
 
 import PageHead from "./components/PageHead";
 
