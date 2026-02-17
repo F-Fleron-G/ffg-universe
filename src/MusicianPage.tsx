@@ -869,10 +869,12 @@ export default function MusicianPage() {
           <section ref={sections.album} className="h-full">
             <div className="h-full rounded-3xl border border-black/10 bg-black/5 p-6 md:p-10 shadow-sm">
               <h2 className="text-2xl md:text-3xl">Full 6-song album</h2>
+              <p className="mt-4 text-black/80 max-w-md">
+                This debut collection brings together six original songs written and recorded independently. Created as part of an ongoing artistic practice, the album explores voice, atmosphere, and personal narrative through minimal production.
+              </p>
               <p className="mt-3 opacity-80"
               >
-                Want the full set of six songs? You can request an album purchase and I'll share details privately
-                (delivery + pricing) and send the full tracks after confirmation.
+                Want the full set of six songs? Send a request using the contact form and you will receive a secure PayPal link by email. After payment, the full album will be delivered personally as a private download.
               </p>
 
               <button
@@ -880,7 +882,7 @@ export default function MusicianPage() {
                   setContactPreset({
                     subject: "Album purchase request",
                     message:
-                      "Hi Frederic,\n\nI would love to purchase the full 7-song album. Please let me know the details.\n\nThank you,",
+                      "Hi Frederic,\n\nI would love to purchase the full 6-song album. Please let me know the details.\n\nThank you,",
                   });
                   scrollTo(sections.contact);
                 }}
