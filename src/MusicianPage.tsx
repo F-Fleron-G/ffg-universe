@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { Home, Music2, Info, X, ChevronUp, Mail, CheckCircle2, AlertCircle } from "lucide-react";
+import { Home, Music2, Music4, Info, X, ChevronUp, Mail, CheckCircle2, AlertCircle, Scale } from "lucide-react";
 
 import PageHead from "./components/PageHead";
 
@@ -648,7 +648,6 @@ export default function MusicianPage() {
                     if (s.id === "contact") scrollTo(sections.contact);
                   }}
                   className="relative block pb-2 text-sm tracking-wide after:absolute after:left-0 after:bottom-0 after:h-[3px] after:w-full after:rounded-full after:bg-neutral-800 after:origin-left after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100 focus-visible:after:scale-x-100"
-                  style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
                 >
                   {s.label}
                 </button>
@@ -678,7 +677,6 @@ export default function MusicianPage() {
                   <button
                     type="button"
                     className="flex w-full items-center gap-2 py-2 text-sm hover:opacity-70"
-                    style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
                     onClick={() => {
                       setOpen(false);
                       if (s.id === "about") scrollTo(sections.about);
@@ -713,8 +711,7 @@ export default function MusicianPage() {
               It sounds like you
             </h1>
             <p
-              className="mt-5 max-w-2xl text-base md:text-lg opacity-80"
-              style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
+              className="mt-5 max-w-2xl text-base md:text-base opacity-80"
             >
               Short previews of original songs — written to give voice, tone, and melody to the things life puts us through.
               If something resonates, you can request to purchase a song or the full 6-song album.
@@ -724,14 +721,12 @@ export default function MusicianPage() {
               <button
                 onClick={() => scrollTo(sections.songs)}
                 className="rounded-full border border-black/15 bg-white/60 px-5 py-2 text-sm hover:bg-white/80 transition"
-                style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
               >
                 Listen to previews
               </button>
               <button
                 onClick={() => scrollTo(sections.contact)}
                 className="rounded-full border border-black/15 bg-black/5 px-5 py-2 text-sm hover:bg-black/10 transition"
-                style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
               >
                 Request purchase
               </button>
@@ -749,7 +744,6 @@ export default function MusicianPage() {
             </div>
             <p
               className="mt-3 text-xs text-black/50 text-center md:text-right"
-              style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
             >
               Original composition & artwork
             </p>
@@ -774,16 +768,16 @@ export default function MusicianPage() {
 
             {/* About text */}
             <div className="mt-4 md:mt-4">
-              <h2 className="text-2xl md:text-3xl">About</h2>
-                <p className="mt-3 text-[15px] md:text-base opacity-85" style={{ lineHeight: "1.5" }}>
+              <h2 className="text-3xl md:text-4xl">About</h2>
+                <p className="mt-3 text-sm md:text-base opacity-85" style={{ lineHeight: "1.5" }}>
                   Music is how my soul sounds when it speaks. It carries the footsteps of the places I have walked, the faces that stayed with me, and the feelings that asked to be heard. Each song arrives like a memory returning, dressed in melody, shaped into words, and offered as it came to me.
                   <br /><br />
                   These songs are pieces of a lived life, carried by melody, shaped by time, and left open so each listener may find their own reflection inside them.
                   <br /><br />
-                  Welcome. I’m Frederic G. Fleron Grignard.
-                  <br /><br />
+                  Welcome. I'm Frederic G. Fleron Grignard.
+                  <br />
                   <span
-                    className="block mt-4 text-[clamp(10px,3.2vw,14px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] opacity-90 text-[#454949]"
+                    className="block mt-4 text-[clamp(8px,3.2vw,12px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] opacity-90 text-[#7a8b93]"
                     style={{ fontFamily: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif" }}
                   >
                     Musician · Backpacker · Songweaver
@@ -797,7 +791,7 @@ export default function MusicianPage() {
 
       {/* Songs */}
       <section ref={sections.songs} className="mx-auto max-w-6xl px-6 py-10">
-        <h2 className="text-2xl md:text-3xl">Preview tracks</h2>
+        <h2 className="text-3xl md:text-4xl">Preview tracks</h2>
         <div className="flex items-center justify-between gap-4 text-sm md:text-base text-black/70">
           <p>
             35–45 second previews. Full tracks are shared privately upon purchase.
@@ -820,7 +814,7 @@ export default function MusicianPage() {
                 <div>
                   <h3 className="text-xl">{t.title}</h3>
                   {t.mood && (
-                    <p className="mt-1 text-sm opacity-70" style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}>
+                    <p className="mt-1 text-sm opacity-70">
                       {t.mood}
                     </p>
                   )}
@@ -848,7 +842,6 @@ export default function MusicianPage() {
                 <button
                   onClick={() => scrollTo(sections.contact)}
                   className="rounded-full border border-black/15 bg-white/60 px-4 py-2 text-sm hover:bg-white/80 transition"
-                  style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
                 >
                   Inquire about this song
                 </button>
@@ -859,7 +852,6 @@ export default function MusicianPage() {
                     setLyricsOpen(true);
                   }}
                   className="rounded-full border border-black/15 bg-black/5 px-4 py-2 text-sm hover:bg-black/10 transition"
-                  style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
                 >
                   Lyrics
                 </button>
@@ -870,18 +862,16 @@ export default function MusicianPage() {
       </section>
 
       {/* Album + Contact */}
-      <div className="mx-auto max-w-6xl px-6 py-10">
+      <div className="mx-auto max-w-6xl px-6 py-10 pb-20">
         <div className="grid gap-6 md:grid-cols-2 md:items-stretch">
 
           {/* Album */}
           <section ref={sections.album} className="h-full">
-            <div className="h-full rounded-3xl border border-black/10 bg-white/55 p-6 md:p-10 shadow-sm">
+            <div className="h-full rounded-3xl border border-black/10 bg-black/5 p-6 md:p-10 shadow-sm">
               <h2 className="text-2xl md:text-3xl">Full 6-song album</h2>
-              <p
-                className="mt-3 opacity-80"
-                style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
+              <p className="mt-3 opacity-80"
               >
-                Want the full set of seven songs? You can request an album purchase and I’ll share details privately
+                Want the full set of six songs? You can request an album purchase and I'll share details privately
                 (delivery + pricing) and send the full tracks after confirmation.
               </p>
 
@@ -895,7 +885,6 @@ export default function MusicianPage() {
                   scrollTo(sections.contact);
                 }}
                 className="mt-6 rounded-full border border-black/15 bg-white/60 px-5 py-2 text-sm hover:bg-white/80 transition"
-                style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
               >
                 Request album purchase
               </button>
@@ -904,16 +893,8 @@ export default function MusicianPage() {
 
           {/* Contact */}
           <section ref={sections.contact} className="h-full">
-            <div className="h-full rounded-3xl border border-black/10 bg-black/5 p-6 md:p-10 shadow-sm">
+            <div className="h-full rounded-3xl border border-black/10 bg-[#a5adaf] p-6 md:p-10 shadow-sm">
               <h2 className="text-2xl md:text-3xl">Contact</h2>
-              <p
-                className="mt-3 opacity-80"
-                style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
-              >
-                For now we’ll keep this simple: a direct email request. Next step we can add a real form (Formspree/Resend)
-                if you want.
-              </p>
-
               <form
                 action="https://formsubmit.co/5fbe1cd6ca420026a59128ebbea6c656"
                 method="POST"
@@ -978,7 +959,7 @@ export default function MusicianPage() {
         </div>
       </div>
 
-      <footer className="relative bg-black/5 border-t border-black/10 backdrop-blur">
+      <footer className="relative text-[#e3d9cd] bg-neutral-900 border-t border-black/10 backdrop-blur">
 
           <a
             href="#home"
@@ -987,8 +968,8 @@ export default function MusicianPage() {
             className="
               absolute left-1/2 -translate-x-1/2 -top-6 z-20
               inline-flex items-center justify-center h-12 w-12 rounded-full
-              bg-neutral-900 text-white border border-black/20
-              hover:bg-neutral-700 transition-colors
+              bg-[#e3d9cd] text-neutral-900 border border-neutral-900
+              hover:bg-[#efe5d8] transition-colors
             "
           >
             <svg
@@ -1005,23 +986,39 @@ export default function MusicianPage() {
             </svg>
           </a>
 
-        <div className="mx-auto max-w-6xl px-6 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <p
-            className="text-sm opacity-75"
-            style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
-          >
-            © {new Date().getFullYear()} Frederic G. Fleron Grignard. All rights reserved.
-          </p>
+      <div className="mx-auto max-w-6xl px-6 py-20">
+  <div className="grid gap-8 md:grid-cols-3 md:items-center">
 
-          <button
-            type="button"
-            onClick={() => setLegalOpen(true)}
-            className="rounded-full border border-black/15 bg-white/60 px-4 py-2 text-sm hover:bg-white/80 transition"
-            style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
-          >
-            Legal / Terms of use
-          </button>
-        </div>
+    {/* Left: extra touch */}
+    <div className="flex items-center justify-center md:justify-start gap-3 text-sm opacity-80">
+      <Music4 className="h-5 w-5 shrink-0 opacity-80" />
+      <div className="italic leading-snug">
+        More songs will come<br />
+        When they are ready
+      </div>
+    </div>
+
+    {/* Center: copyright */}
+    <div className="text-center text-xs opacity-90">
+      <div>© {new Date().getFullYear()} Frederic G. Fleron Grignard</div>
+      <div>All rights reserved</div>
+    </div>
+
+    {/* Right: Legal */}
+    <div className="flex justify-center md:justify-end">
+      <button
+        type="button"
+        onClick={() => setLegalOpen(true)}
+        className="inline-flex items-center gap-2 rounded-full border border-[#e3d9cd] px-5 py-2 text-xs hover:bg-[#262626] transition"
+      >
+        <Scale className="h-4 w-4 opacity-80" />
+        Legal / Terms of use
+      </button>
+    </div>
+
+  </div>
+</div>
+
       </footer>
 
       {lyricsOpen && (
@@ -1039,7 +1036,6 @@ export default function MusicianPage() {
             <div
               className="relative w-full max-w-2xl rounded-3xl bg-[#fbfaf7] ring-1 ring-black/10 shadow-[0_35px_110px_-40px_rgba(0,0,0,0.65)] p-6 md:p-8"
               onClick={(e) => e.stopPropagation()}
-              style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
             >
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -1116,7 +1112,6 @@ export default function MusicianPage() {
           <div
             className="relative w-full max-w-3xl rounded-3xl border border-white/20 bg-white/90 p-6 md:p-8 shadow-xl"
             onClick={(e) => e.stopPropagation()}
-            style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" }}
           >
             <div className="flex items-start justify-between gap-4">
               <div>
