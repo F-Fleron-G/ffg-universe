@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { Home, Music4, Info, X, Mail, CheckCircle2, AlertCircle, Scale } from "lucide-react";
+import { Home, Music4, Info, X, Mail, CheckCircle, CircleCheckBig, AlertCircle, Scale } from "lucide-react";
 
 import PageHead from "./components/PageHead";
 
@@ -794,7 +794,7 @@ export default function MusicianPage() {
         <h2 className="text-3xl md:text-4xl">Preview tracks</h2>
         <div className="flex items-center justify-between gap-4 text-sm md:text-base text-black/70">
           <p>
-            35–45 second previews. Full tracks are shared privately upon purchase.
+            35-45 second previews. Full tracks are shared privately upon purchase.
           </p>
 
           <button
@@ -955,6 +955,14 @@ export default function MusicianPage() {
                 <Mail className="h-4 w-4" />
                 {sending ? "Sending..." : "Send"}
               </button>
+              <div className="mt-4 flex items-start gap-2 text-xs text-black/60">
+                <div className="flex h-4 w-4 items-center justify-center">
+                  <CircleCheckBig size={14} strokeWidth={1.5} />
+                </div>
+                <p>
+                  After you submit your request, you will receive a secure PayPal link by email.
+                </p>
+              </div>
               </form>
             </div>
           </section>
