@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { Home, Music4, Info, X, Mail, CircleCheckBig, AlertCircle, Scale, CheckCircle2 } from "lucide-react";
+import { Home, Music4, Info, X, Mail, CircleCheckBig, AlertCircle, Scale, CheckCircle2, CircleAlert } from "lucide-react";
 
 import PageHead from "./components/PageHead";
 
@@ -887,7 +887,7 @@ export default function MusicianPage() {
               </p>
               <p className="mt-3 opacity-80"
               >
-                Want the full set of six songs? Send a request using the contact form and you will receive a secure PayPal link by email. After payment, the full album will be delivered personally as a private download.
+                Want the full set of six songs? Send a request using the contact form. After payment, the full album will be delivered personally as a private download.
               </p>
 
               <button
@@ -1010,37 +1010,37 @@ export default function MusicianPage() {
           </a>
 
       <div className="mx-auto max-w-6xl px-6 py-20">
-  <div className="grid gap-8 md:grid-cols-3 md:items-center">
+        <div className="grid gap-8 md:grid-cols-3 md:items-center">
 
-    {/* Left: extra touch */}
-    <div className="flex items-center justify-center md:justify-start gap-3 text-xs opacity-80">
-      <Music4 className="h-4 w-4 shrink-0 opacity-80" />
-      <div className="italic leading-snug">
-        More songs will come<br />
-        When they are ready
+          {/* Left: extra touch */}
+          <div className="flex items-center justify-center md:justify-start gap-3 text-xs opacity-80">
+            <Music4 className="h-4 w-4 shrink-0 opacity-80" />
+            <div className="italic leading-snug">
+              More songs will come<br />
+              When they are ready
+            </div>
+          </div>
+
+          {/* Center: copyright */}
+          <div className="text-center text-xs opacity-90">
+            <div>© {new Date().getFullYear()} Frederic G. Fleron Grignard</div>
+            <div>All rights reserved</div>
+          </div>
+
+          {/* Right: Legal */}
+          <div className="flex justify-center md:justify-end">
+            <button
+              type="button"
+              onClick={() => setLegalOpen(true)}
+              className="inline-flex items-center gap-2 rounded-full border border-[#e3d9cd] px-5 py-2 text-xs hover:bg-[#262626] transition"
+            >
+              <Scale className="h-4 w-4 opacity-80" />
+              Legal / Terms of use
+            </button>
+          </div>
+
+        </div>
       </div>
-    </div>
-
-    {/* Center: copyright */}
-    <div className="text-center text-xs opacity-90">
-      <div>© {new Date().getFullYear()} Frederic G. Fleron Grignard</div>
-      <div>All rights reserved</div>
-    </div>
-
-    {/* Right: Legal */}
-    <div className="flex justify-center md:justify-end">
-      <button
-        type="button"
-        onClick={() => setLegalOpen(true)}
-        className="inline-flex items-center gap-2 rounded-full border border-[#e3d9cd] px-5 py-2 text-xs hover:bg-[#262626] transition"
-      >
-        <Scale className="h-4 w-4 opacity-80" />
-        Legal / Terms of use
-      </button>
-    </div>
-
-  </div>
-</div>
 
       </footer>
 
@@ -1063,7 +1063,7 @@ export default function MusicianPage() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs uppercase tracking-[0.22em] opacity-70">Lyrics</p>
-                <h3 className="mt-2 text-2xl" style={{ fontFamily: `"Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", serif` }}>
+                <h3 className="mt-2 text-2xl">
                   {activeTrack?.title ?? "Song"}
                 </h3>
               </div>
@@ -1125,52 +1125,56 @@ export default function MusicianPage() {
 
       {legalOpen && (
         <div
-          className="fixed inset-0 z-[110] flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
           role="dialog"
           aria-modal="true"
           aria-label="Legal terms dialog"
           onClick={() => setLegalOpen(false)}
         >
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/60 backdrop-blur-md" />
+
           <div
-            className="relative w-full max-w-3xl rounded-3xl border border-white/20 bg-white/90 p-6 md:p-8 shadow-xl"
+            className="relative w-full max-w-2xl rounded-3xl bg-[#fbfaf7] ring-1 ring-black/10 shadow-[0_35px_110px_-40px_rgba(0,0,0,0.65)] p-6 md:p-8"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs uppercase tracking-[0.22em] opacity-70">Legal</p>
-                <h3
-                  className="mt-2 text-2xl"
-                  style={{ fontFamily: `"Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", serif` }}
-                >
-                  Terms of use & copyright
-                </h3>
+                <h3 className="mt-2 text-2xl">Terms of use &amp; Copyright</h3>
               </div>
+
               <button
-                onClick={() => setLegalOpen(false)}
+                type="button"
+                aria-label="Close legal"
                 className="ml-3 inline-flex h-8 w-8 items-center justify-center rounded-full ring-1 ring-black/10 bg-white/70 hover:bg-black/5 transition"
-                aria-label="Close"
+                onClick={() => setLegalOpen(false)}
               >
                 <X className="h-4 w-4 opacity-70" />
               </button>
             </div>
 
-            <div className="mt-6 space-y-4 leading-relaxed text-sm md:text-base opacity-90">
-              <p>
-                <strong>Preview-only listening:</strong> The audio on this page consists of short previews intended for evaluation.
-                Full tracks are shared privately upon purchase.
-              </p>
-              <p>
-                <strong>Copyright:</strong> All music, lyrics, and recordings are protected by copyright. No part of these previews
-                may be reproduced, redistributed, sampled, or used in other works without written permission.
-              </p>
-              <p>
-                <strong>Purchasing / licensing:</strong> If you want to purchase a song or the full album, please contact me.
-                Terms (pricing, usage, delivery format) are confirmed privately.
-              </p>
-              <p>
-                <strong>Respectful use:</strong> Please do not upload these previews to other platforms or share direct files publicly.
-              </p>
+            <div className="mt-6 pt-6 border-t border-black/10">
+              <div className="space-y-4 text-[15px] md:text-[16px] text-black/80">
+                <p className="leading-relaxed opacity-90">
+                  <strong>Preview-only listening:</strong> The audio on this page consists of short previews intended for
+                  evaluation. Full tracks are shared privately upon purchase.
+                </p>
+
+                <p className="leading-relaxed opacity-90">
+                  <strong>Copyright:</strong> All music, lyrics, and recordings are protected by copyright. No part of these
+                  previews may be reproduced, redistributed, sampled, or used in other works without written permission.
+                </p>
+
+                <p className="leading-relaxed opacity-90">
+                  <strong>Purchasing / licensing:</strong> If you want to purchase a song or the full album, please contact
+                  me. Terms (pricing, usage, delivery format) are confirmed privately.
+                </p>
+
+                <p className="leading-relaxed opacity-90">
+                  <strong>Respectful use:</strong> Please do not upload these previews to other platforms or share direct
+                  files publicly.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1178,48 +1182,100 @@ export default function MusicianPage() {
 
       {howItWorksOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label="How it works dialog"
           onClick={() => setHowItWorksOpen(false)}
         >
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/60 backdrop-blur-md" />
+
           <div
-            className="relative w-full max-w-md rounded-lg bg-white p-6 shadow-lg"
+            className="relative w-full max-w-2xl rounded-3xl bg-[#fbfaf7] ring-1 ring-black/10 shadow-[0_35px_110px_-40px_rgba(0,0,0,0.65)] p-6 md:p-8"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={() => setHowItWorksOpen(false)}
-              className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full border border-black/15 text-black/70 hover:bg-black/5"
-              aria-label="Close"
-            >
-              <X size={14} strokeWidth={1.5} />
-            </button>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.22em] opacity-70">How it works</p>
+                <h3 className="mt-2 text-2xl">Pricing & Delivery</h3>
+              </div>
 
-            <h2 className="mb-3 text-base font-medium">How it works</h2>
-
-            <div className="space-y-3 text-sm text-black/80">
-
-              <p>
-                You can request either a single song or the full album using the contact form.
-              </p>
-
-              <p>
-                After your request, you will receive a secure PayPal link by email with the details.
-              </p>
-
-              <p>
-                Once payment is confirmed, the selected tracks will be delivered privately as a download.
-              </p>
-
-              <p className="text-xs text-black/60">
-                Preview clips on this page are shortened versions.
-              </p>
-
+              <button
+                type="button"
+                aria-label="Close how it works"
+                className="ml-3 inline-flex h-8 w-8 items-center justify-center rounded-full ring-1 ring-black/10 bg-white/70 hover:bg-black/5 transition"
+                onClick={() => setHowItWorksOpen(false)}
+              >
+                <X className="h-4 w-4 opacity-70" />
+              </button>
             </div>
 
+            <div className="mt-6 pt-6 border-t border-black/10">
+              <div className="space-y-4 text-[15px] md:text-[16px] text-black/80">
+                <div className="rounded-2xl border border-black/10 bg-[#efe5d8] p-4">
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="font-medium">Single song</span>
+                    <span>€3</span>
+                  </div>
+                  <div className="mt-1 flex items-center justify-between gap-4">
+                    <span className="font-medium">Full 6-song album</span>
+                    <span>€10</span>
+                  </div>
+                </div>
+
+                <div className="mt-3 flex items-center justify-end gap-2 text-xs opacity-60">
+                  <img
+                    src="/paypal-mark.svg"
+                    alt="PayPal"
+                    className="h-3 w-auto opacity-70"
+                  />
+                  <span>Secure payment</span>
+                </div>
+
+                <div className="pt-5 space-y-3">
+                  <div className="flex gap-3">
+                    <div className="mt-[2px] flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full ring-1 ring-black/10 bg-white/70 text-xs opacity-80">
+                      1
+                    </div>
+                    <div className="leading-relaxed opacity-90">
+                      Send a request using the contact form (single song or full album).
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <div className="mt-[2px] flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full ring-1 ring-black/10 bg-white/70 text-xs opacity-80">
+                      2
+                    </div>
+                    <div className="leading-relaxed opacity-90">
+                      You'll receive a secure PayPal link by email with the details.
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <div className="mt-[2px] flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full ring-1 ring-black/10 bg-white/70 text-xs opacity-80">
+                      3
+                    </div>
+                    <div className="leading-relaxed opacity-90">
+                      After payment, your download is delivered privately.
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pb-5 mt-4 flex items-start gap-2 text-xs text-black/60">
+                  <div className="flex h-4 w-4 items-center justify-center">
+                    <CircleAlert size={14} strokeWidth={1.5} />
+                  </div>
+                  <p>
+                    Preview clips on this page are shortened versions.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
 
-     
+  
       {/* Toast */}
       {toast && (
         <div
