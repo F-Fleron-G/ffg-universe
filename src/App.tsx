@@ -12,7 +12,7 @@ const MENU: MenuItem[] = [
   { label: "Author", href: "/author", external: true },
   { label: "Philosopher", href: "/spiritual", external: true }, 
   { label: "Artist", href: "/artist", external: true },
-  { label: "Software Engineer", href: "https://github.com/F-Fleron-G", external: true},
+  { label: "Engineer", href: "https://github.com/F-Fleron-G", external: true},
   { label: "Musician", href: "/musician", external: true},
 ];
 
