@@ -1175,8 +1175,11 @@ export default function MusicianPage() {
                 </p>
 
                 <p className="leading-relaxed opacity-90">
-                  <strong>Purchasing / licensing:</strong> If you want to purchase a song or the full album, please contact
-                  me. Terms (pricing, usage, delivery format) are confirmed privately.
+                  <strong>Purchasing:</strong> Purchased songs are provided for personal listening only.
+                </p>
+                <p className="leading-relaxed opacity-90">
+                  <strong>Licensing:</strong> Licensing for film, video, or other projects is available upon request.
+                  Terms and pricing are confirmed privately.
                 </p>
 
                 <p className="leading-relaxed opacity-90">
