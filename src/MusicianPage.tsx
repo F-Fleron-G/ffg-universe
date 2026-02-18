@@ -802,7 +802,7 @@ export default function MusicianPage() {
 
       {/* Songs */}
       <section ref={sections.songs} className="mx-auto max-w-6xl px-6 py-10">
-        <h2 className="text-3xl md:text-4xl">Preview tracks</h2>
+        <h2 className="text-3xl md:text-4xl">Preview Tracks</h2>
         <div className="flex items-center justify-between gap-4 text-sm md:text-base text-black/70">
           <p>
             35-45 second previews. Full tracks are shared privately upon purchase.
@@ -889,7 +889,16 @@ export default function MusicianPage() {
               >
                 Want the full set of six songs? Send a request using the contact form. After payment, the full album will be delivered personally as a private download.
               </p>
-
+              <p className="mt-3 text-xs text-black/60">
+                For Pricing & Delivery see{" "}
+                <button
+                  type="button"
+                  onClick={() => setHowItWorksOpen(true)}
+                  className="underline underline-offset-4 hover:no-underline transition"
+                >
+                  here
+                </button>.
+              </p>
               <button
                 onClick={() => {
                   setContactPreset({
@@ -1035,7 +1044,7 @@ export default function MusicianPage() {
               className="inline-flex items-center gap-2 rounded-full border border-[#e3d9cd] px-5 py-2 text-xs hover:bg-[#262626] transition"
             >
               <Scale className="h-4 w-4 opacity-80" />
-              Legal / Terms of use
+              Legal / Terms of Use
             </button>
           </div>
 
@@ -1140,7 +1149,7 @@ export default function MusicianPage() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs uppercase tracking-[0.22em] opacity-70">Legal</p>
-                <h3 className="mt-2 text-2xl">Terms of use &amp; Copyright</h3>
+                <h3 className="mt-2 text-2xl">Terms of Use &amp; Copyright</h3>
               </div>
 
               <button
