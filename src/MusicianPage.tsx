@@ -722,7 +722,7 @@ export default function MusicianPage() {
                   className="ml-2 inline-flex h-6 w-6 translate-y-[2px] items-center justify-center rounded-full border border-black/15 text-black/70 hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
                   aria-label="How it works"
                 >
-                  <Info size={13} strokeWidth={1.5} />
+                  <Info size={20} strokeWidth={1.5} />
                 </button>
               </p>
 
@@ -808,14 +808,16 @@ export default function MusicianPage() {
             35-45 second previews. Full tracks are shared privately upon purchase.
           </p>
 
-          <button
-            type="button"
-            onClick={() => setLegalOpen(true)}
-            className="shrink-0 inline-flex items-center justify-center p-1 rounded-full border border-black/20 hover:bg-black/5 transition opacity-80"
-            aria-label="More details"
-          >
-            <Scale className="h-4 w-4 hover:opacity-100 transition" />
-          </button>
+         <button
+          type="button"
+          onClick={() => setLegalOpen(true)}
+          className="ml-2 inline-flex h-6 w-6 translate-y-[2px] items-center justify-center rounded-full border border-black/15 hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
+          aria-label="Legal terms"
+        >
+          <span className="flex h-4 w-4 items-center justify-center rounded-full border border-black/70">
+            <Scale size={10} strokeWidth={1.5} className="text-black/70" />
+          </span>
+        </button>
         </div>
 
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
