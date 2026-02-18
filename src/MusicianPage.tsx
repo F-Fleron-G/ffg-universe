@@ -433,7 +433,7 @@ export default function MusicianPage() {
       },
       {
         id: "my_home_is_in_heaven",
-        title: "My Home is in Heaven",
+        title: "My Home's in Heaven",
         file: "/music/previews/my_home_is_in_heaven.mp3",
         mood: "Spiritual / Uplifting",
         lyrics: `Verse 1
