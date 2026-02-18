@@ -508,6 +508,8 @@ export default function MusicianPage() {
     { id: "contact", label: "Contact" },
   ] as const;
 
+  const [howItWorksOpen, setHowItWorksOpen] = useState(false);
+  
   const [lyricsOpen, setLyricsOpen] = useState(false);
   const [activeTrack, setActiveTrack] = useState<Track | null>(null);
   
@@ -528,6 +530,7 @@ export default function MusicianPage() {
         setLyricsOpen(false);
         setActiveTrack(null);
         setLegalOpen(false);
+        setHowItWorksOpen(false);
       }
     }
 
@@ -710,12 +713,20 @@ export default function MusicianPage() {
             <h1 className="mt-3 text-4xl md:text-6xl leading-tight">
               It sounds like you
             </h1>
-            <p
-              className="mt-5 max-w-2xl text-base md:text-base opacity-80"
-            >
-              Short previews of original songs — written to give voice, tone, and melody to the things life puts us through.
-              If something resonates, you can request to purchase a song or the full 6-song album.
-            </p>
+            <div className="mt-4 flex items-start gap-2 max-w-xl text-black/80">
+              <p className="mt-4 max-w-xl text-black/80">
+                Short previews of original songs — written to give voice, tone, and melody to the things life puts us through. If something resonates, you can request to purchase a song or the full 6-song album.
+                <button
+                  type="button"
+                  onClick={() => setHowItWorksOpen(true)}
+                  className="ml-2 inline-flex h-6 w-6 translate-y-[2px] items-center justify-center rounded-full border border-black/15 text-black/70 hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
+                  aria-label="How it works"
+                >
+                  <Info size={13} strokeWidth={1.5} />
+                </button>
+              </p>
+
+            </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <button
@@ -800,10 +811,10 @@ export default function MusicianPage() {
           <button
             type="button"
             onClick={() => setLegalOpen(true)}
-            className="shrink-0 inline-flex items-center justify-center p-2 rounded-full hover:bg-black/5 transition"
+            className="shrink-0 inline-flex items-center justify-center p-1 rounded-full border border-black/20 hover:bg-black/5 transition opacity-80"
             aria-label="More details"
           >
-            <Info className="h-5 w-5 opacity-70 hover:opacity-100 transition" />
+            <Scale className="h-4 w-4 hover:opacity-100 transition" />
           </button>
         </div>
 
@@ -1000,8 +1011,8 @@ export default function MusicianPage() {
   <div className="grid gap-8 md:grid-cols-3 md:items-center">
 
     {/* Left: extra touch */}
-    <div className="flex items-center justify-center md:justify-start gap-3 text-sm opacity-80">
-      <Music4 className="h-5 w-5 shrink-0 opacity-80" />
+    <div className="flex items-center justify-center md:justify-start gap-3 text-xs opacity-80">
+      <Music4 className="h-4 w-4 shrink-0 opacity-80" />
       <div className="italic leading-snug">
         More songs will come<br />
         When they are ready
@@ -1162,6 +1173,50 @@ export default function MusicianPage() {
           </div>
         </div>
       )}
+
+      {howItWorksOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+          onClick={() => setHowItWorksOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-md rounded-lg bg-white p-6 shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setHowItWorksOpen(false)}
+              className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full border border-black/15 text-black/70 hover:bg-black/5"
+              aria-label="Close"
+            >
+              <X size={14} strokeWidth={1.5} />
+            </button>
+
+            <h2 className="mb-3 text-base font-medium">How it works</h2>
+
+            <div className="space-y-3 text-sm text-black/80">
+
+              <p>
+                You can request either a single song or the full album using the contact form.
+              </p>
+
+              <p>
+                After your request, you will receive a secure PayPal link by email with the details.
+              </p>
+
+              <p>
+                Once payment is confirmed, the selected tracks will be delivered privately as a download.
+              </p>
+
+              <p className="text-xs text-black/60">
+                Preview clips on this page are shortened versions.
+              </p>
+
+            </div>
+
+          </div>
+        </div>
+      )}
+
      
       {/* Toast */}
       {toast && (
