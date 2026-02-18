@@ -117,8 +117,8 @@ export default function SpiritualPage() {
   return (
     <>
       <PageHead
-        title="Spiritual Guide – Frederic G. Fleron Grignard"
-        description="Reflections, meditation, and the art of living — personal spiritual guidance by Frederic."
+        title="Philosopher - Frederic G. Fleron Grignard"
+        description="Reflections on self-awareness, meditation, philosophy, and the art of living."
         iconHref="/favicon.ico"
         ogImage="/og/spiritual.jpg"
       />
