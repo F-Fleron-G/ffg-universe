@@ -449,7 +449,7 @@ export default function SpiritualPage() {
             </h1>
 
             <p className="mt-4 text-base md:text-lg text-white/80 leading-relaxed">
-              A space for reflection, awareness, and open conversation.
+               A space for reflection, awareness, and open conversation.
             </p>
           </section>
 
@@ -547,7 +547,7 @@ export default function SpiritualPage() {
                 </p>
                 <p className="font-semibold"> I'm Frederic G. Fleron Grignard.</p>
                 <p className="mt-6 text-[clamp(10px,2.8vw,13px)] md:text-sm tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.28em] opacity-90 text-[#cacaca] sm:whitespace-nowrap">
-                  Yogi · Guide · Meditator
+                  Philosopher · Meditator · Seeker
                 </p>
                 {/* bottom spacer */}
                 <div aria-hidden className="h-8 md:h-12" style={{ height: 'max(4.5rem, env(safe-area-inset-bottom))' }} />
