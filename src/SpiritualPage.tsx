@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, type ReactNode, type CSSProperties } from "react";
 import { Link, useSearchParams, useNavigate, useLocation } from "react-router-dom";
-import { Home, X, AlertTriangle, ChevronLeft, ChevronRight, Palette, BookOpen, CheckCircle2, AlertCircle } from "lucide-react";
+import { Home, X, AlertTriangle, ChevronLeft, ChevronRight, Palette, BookOpen, CheckCircle2, AlertCircle, Music4 } from "lucide-react";
 import PageHead from "./components/PageHead";
 
 type TabId = "meditation" | "self" | "living" | "books";
@@ -634,6 +634,18 @@ export default function SpiritualPage() {
                     >
                       <BookOpen className="h-5 w-5" />
                     </a>
+
+                    {/* Musician link */}
+                    <a
+                      href="https://www.ffg-universe.com/musician"
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="Musician page"
+                      className="btn-orbit btn-orbit--sm text-neutral-900"
+                      title="Musician"
+                    >
+                      <Music4 className="h-5 w-5" />
+                    </a>
                   </div>
 
                   {/* Small pop-up card */}
@@ -691,6 +703,7 @@ export default function SpiritualPage() {
               </form>
             </div>
           </footer>
+
          {/* Toast */}
           {toast && (
             <div
