@@ -196,8 +196,8 @@ export default function AuthorPage() {
           <div className="grid md:grid-cols-2 items-center gap-12 md:gap-16">
 
             {/* Portrait image first on mobile */}
-            <div className="order-1 md:order-2 flex justify-center">
-              <div className="w-[72vw] sm:w-72 md:w-96 aspect-square rounded-full shadow-lg overflow-hidden">
+            <div className="order-1 md:order-2 flex justify-center md:justify-end">
+              <div className="w-[72vw] sm:w-72 md:w-80 aspect-[4/5] rounded-xl shadow-md overflow-hidden">
                 <img
                   src="/Author_image.jpg"
                   alt="Author portrait of Frederic G. Fleron Grignard"
