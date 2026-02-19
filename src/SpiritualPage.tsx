@@ -442,8 +442,21 @@ export default function SpiritualPage() {
         <main className="spiritual relative mx-auto max-w-6xl px-4 pt-14 md:pt-16 pb-28 md:pb-36 flex-1">
           <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "radial-gradient(ellipse at 50% 35%, rgba(120,150,255,0.10), transparent 60%)" }} />
 
+          {/* Page Title */}
+          <section className="mx-auto max-w-2xl text-center pb-8 md:pb-12">
+            <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+              Philosophy & Inner Life
+            </h1>
+
+            <p className="mt-4 text-base md:text-lg text-white/80 leading-relaxed">
+              A space for reflection, awareness, and open conversation.
+            </p>
+          </section>
+
           {/* portrait + orbit */}
           <section id="cycle" className="relative mx-auto w-[min(86vw,560px)] aspect-square scroll-mt-24">
+
+
             <div className="absolute inset-0 rounded-full overflow-hidden">
               <img
                 src="/spiritual/content/spiritual-frederic.png"
@@ -527,12 +540,12 @@ export default function SpiritualPage() {
 
               <div className="leading-relaxed max-w-2xl mr-auto text-left space-y-3">
                 <p className="mt-2 leading-relaxed whitespace-pre-line">
-                  {`Titles are one way to define ourselves, but if I had to choose, I’d rather be known as a trusting friend than a “spiritual guide.” What I share here isn’t easy to sum up with labels. It’s less about definitions and more about experience — a collection of simple practices, reflections, and resources that have helped me along the way.
+                  {`Titles are one way to define ourselves, but if I had to choose, I'd rather be known as a trusting friend than a “spiritual guide.” What I share here isn't easy to sum up with labels. It's less about definitions and more about experience — a collection of simple practices, reflections, and resources that have helped me along the way.
                     This space is where I offer my personal approach to self-awareness and meditation, along with a few books that deeply shaped my journey. None of them were ones I set out to buy; they found their way to me, each planting a small seed. Those seeds sparked my curiosity to look inward.
                     When I first sat down to meditate, I quickly noticed how restless my mind was, always stirring up thoughts into unpredictable outcomes. With time, I learned to sit with that movement instead of fighting it. Looking back, I sometimes think I could have saved myself a few obstacles if I had started earlier — but I also know that wandering is part of the process.
                   `}
                 </p>
-                <p className="font-semibold"> I’m Frederic G. Fleron Grignard.</p>
+                <p className="font-semibold"> I'm Frederic G. Fleron Grignard.</p>
                 <p className="mt-6 text-[clamp(10px,2.8vw,13px)] md:text-sm tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.28em] opacity-90 text-[#cacaca] sm:whitespace-nowrap">
                   Yogi · Guide · Meditator
                 </p>
@@ -581,7 +594,7 @@ export default function SpiritualPage() {
               <div>
                 <h2 className="text-2xl mb-3">Reach Out</h2>
                 <p className="opacity-90 mb-6 max-w-prose">
-                  If you’re curious or simply seeking a nudge toward stillness — send me a note and I'll get back to you.
+                  If you're curious or simply seeking a nudge toward stillness — send me a note and I'll get back to you.
                 </p>
 
                 {/* Icons row + disclosure popover */}
