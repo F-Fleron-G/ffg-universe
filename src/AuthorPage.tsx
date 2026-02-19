@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Home, CheckCircle2, AlertCircle } from "lucide-react";
+import { Home, CheckCircle2, AlertCircle, BookOpen } from "lucide-react";
 import PageHead from "./components/PageHead";
 
 const sections = [
@@ -317,25 +317,26 @@ export default function AuthorPage() {
           <section id="release" className="relative scroll-mt-24 py-24">
             <div className="rounded-[10px] border-4 bg-[#dec09a] border-[#5b5a59] px-8 py-12 md:px-10 md:py-14">  
 
-              <div className="text-center mb-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border-2 border-[#5b5a59] bg-white/40 text-[12px] tracking-[0.18em] uppercase">
-                  Featured Book
-                </div>
+              <div className="mb-4 flex items-center justify-center gap-3 text-[12px] tracking-[0.22em] uppercase text-[#2f2e2c]/70">
+                <span className="h-px w-10 bg-[#2f2e2c]/25" aria-hidden="true" />
+                <span className="inline-flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" aria-hidden="true" />
+                  Featured book
+                </span>
+                <span className="h-px w-10 bg-[#2f2e2c]/25" aria-hidden="true" />
               </div>
 
               <h2 className="mb-2 text-center">
                 <span className="alien-title">THE ALIEN IN DISGUISE</span>
               </h2>
 
-              <p className="text-base sm:text-lg md:text-xl tracking-wide mb-5 text-center">
+              <p className="text-base sm:text-lg md:text-xl tracking-wide mb-3 text-center">
                 A thought-provoking debut memoir
               </p>
 
-              <div className="flex flex-wrap justify-center gap-2 mb-6">
-                <span className="px-3 py-1 rounded-full border-2 border-[#5b5a59] bg-white/35 text-[12px]">Memoir</span>
-                <span className="px-3 py-1 rounded-full border-2 border-[#5b5a59] bg-white/35 text-[12px]">Humor</span>
-                <span className="px-3 py-1 rounded-full border-2 border-[#5b5a59] bg-white/35 text-[12px]">Philosophy</span>
-              </div>
+              <p className="text-[12px] sm:text-[13px] tracking-[0.18em] uppercase text-[#2f2e2c]/70 text-center mb-6">
+                Memoir · Humor · Philosophy
+              </p>
 
               <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-start">            
                 <div className="aspect-[2/3] flex items-center justify-center p-3 overflow-hidden -mt-6 sm:-mt-5 md:-mt-6">
