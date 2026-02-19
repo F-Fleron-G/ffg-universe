@@ -39,7 +39,7 @@ export default function App() {
      <>
     <PageHead
       title="Home – Frederic G. Fleron Grignard"
-      description="Official website of Frederic G. Fleron Grignard – software engineer, author, artist, spiritual guide."
+      description="Official website of Frederic G. Fleron Grignard – engineer, author, artist, musician, and philosopher."
       iconHref="/favicon.ico"
       ogImage="/og/home.jpg"
     />
