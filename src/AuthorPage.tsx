@@ -241,7 +241,7 @@ export default function AuthorPage() {
 
                 <a
                   href="#contact"
-                  className="inline-flex items-center justify-center h-10 w-44 rounded-full border-2 border-[#dec09a] text-[#dec09a] hover:bg-white/10 transition text-[14px] md:text-[13px] leading-none tracking-[0.02em]"
+                  className="btn-cta inline-flex items-center justify-center h-10 w-44 rounded-full border border-[#dec09a]/70 text-[#dec09a] hover:bg-white/10 transition text-[14px] md:text-[13px] leading-none tracking-[0.02em]"
                 >
                   Contact me
                 </a>
@@ -416,7 +416,7 @@ export default function AuthorPage() {
 
                   <a
                     href="#books"
-                    className="inline-flex items-center justify-center h-10 w-44 rounded-full border-2 border-[#5b5a59] bg-white/30 text-[#2f2e2c] hover:bg-white/45 transition text-[14px] md:text-[13px] leading-none tracking-[0.02em]"
+                    className="btn-cta inline-flex items-center justify-center h-10 w-44 rounded-full border border-[#5b5a59]/60 bg-white/30 text-[#2f2e2c] hover:bg-white/45 transition text-[14px] md:text-[13px] leading-none tracking-[0.02em]"
                   >
                     Read more books
                   </a>
