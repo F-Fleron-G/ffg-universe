@@ -507,51 +507,44 @@ export default function SpiritualPage() {
           <section id="about"
             className="relative mt-8 md:mt-10 min-h-[460px] md:min-h-[560px] scroll-mt-24"
           >
-            <div className="relative z-10 mx-auto max-w-6xl px-0 py-10 md:py-14 text-neutral-900"></div>
-            {/* Full-bleed background layer */}
-            <div className="pointer-events-none absolute inset-y-0 left-1/2 right-1/2 -mx-[50vw] z-0">
-              <picture>
-                <source
-                  srcSet="/spiritual/content/about-silhouette-640.webp"
-                  media="(max-width: 640px)"
-                />
-                <source
-                  srcSet="/spiritual/content/about-silhouette-1152.webp"
-                  media="(max-width: 1152px)"
-                />
-                <img
-                  src="/spiritual/content/about-silhouette-2304.webp"
-                  alt="Silhouette walking on a winding path toward the horizon"
-                  className="absolute inset-0 h-full w-full object-contain object-bottom translate-y-0 sm:translate-y-[-6%] md:translate-y-[-12%]"
-                />
-              </picture>
-
-              <div className="absolute inset-0 bg-[#ffffff73]" aria-hidden />
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-16 md:h-40 bg-gradient-to-b from-black via-black to-transparent" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 md:h-40 bg-gradient-to-t from-black via-black to-transparent" />
-
-            </div>
-
+            
             {/* Content container */}
-            <div className="relative z-10 mx-auto max-w-6xl px-0 py-12 md:py-20 text-neutral-900">
-              <h2 className="text-2xl md:text-2xl font-semibold mb-3">
-                About This Path
-              </h2>
+            <div className="relative z-10 mx-auto max-w-6xl px-4 py-12 md:py-20">
+               <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
 
-              <div className="leading-relaxed max-w-2xl mr-auto text-left space-y-3">
-                <p className="mt-2 leading-relaxed whitespace-pre-line">
-                  {`Titles are one way to define ourselves, but if I had to choose, I'd rather be known as a trusting friend than any title at all. What I share here isn't easy to sum up with labels. It's less about definitions and more about experience — a collection of simple practices, reflections, and resources that have helped me along the way.
-                    This space is where I offer my personal approach to self-awareness and meditation, along with a few books that deeply shaped my journey. None of them were ones I set out to buy; they found their way to me, each planting a small seed. Those seeds sparked my curiosity to look inward.
-                    When I first sat down to meditate, I quickly noticed how restless my mind was, always stirring up thoughts into unpredictable outcomes. With time, I learned to sit with that movement instead of fighting it. Looking back, I sometimes think I could have saved myself a few obstacles if I had started earlier — but I also know that wandering is part of the process.
-                  `}
-                </p>
-                <p className="font-semibold"> I'm Frederic G. Fleron Grignard.</p>
-                <p className="mt-6 text-[clamp(10px,2.8vw,13px)] md:text-sm tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.28em] opacity-90 text-[#cacaca] sm:whitespace-nowrap">
-                  Philosopher · Meditator · Seeker
-                </p>
-                {/* bottom spacer */}
-                <div aria-hidden className="h-8 md:h-12" style={{ height: 'max(4.5rem, env(safe-area-inset-bottom))' }} />
+                {/* LEFT — TEXT */}
+                <div className="text-left max-w-xl">                
+                  <h2 className="text-2xl font-semibold mb-4 text-white">
+                    About This Path
+                  </h2>
 
+                  <div className="leading-relaxed space-y-4 text-white/90">
+                    <p className="whitespace-pre-line">
+                      {`Titles are one way to define ourselves, but if I had to choose, I'd rather be known as a trusting friend than any title at all. What I share here isn't easy to sum up with labels. It's less about definitions and more about experience — a collection of simple practices, reflections, and resources that have helped me along the way.
+
+                      This space is where I offer my personal approach to self-awareness and meditation, along with a few books that deeply shaped my journey. None of them were ones I set out to buy; they found their way to me, each planting a small seed. Those seeds sparked my curiosity to look inward.
+
+                      When I first sat down to meditate, I quickly noticed how restless my mind was, always stirring up thoughts into unpredictable outcomes. With time, I learned to sit with that movement instead of fighting it. Looking back, I sometimes think I could have saved myself a few obstacles if I had started earlier — but I also know that wandering is part of the process.`}
+                    </p>
+                    
+                    <p className="font-semibold">
+                      I'm Frederic G. Fleron Grignard.
+                    </p>
+                  
+                    <p className="text-sm tracking-wider opacity-80">
+                      Philosopher · Meditator · Seeker
+                    </p>
+                  </div>
+                </div>
+
+                {/* RIGHT — IMAGE */}
+                <div className="flex justify-center">
+                  <img
+                    src="/spiritual/content/about-silhouette-1152.webp"
+                    alt="Walking a path toward the horizon"
+                    className="w-full max-w-md rounded-lg object-cover"
+                  />
+                </div>
               </div>
             </div>
           </section>
