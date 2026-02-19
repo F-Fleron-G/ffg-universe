@@ -540,7 +540,7 @@ export default function SpiritualPage() {
 
               <div className="leading-relaxed max-w-2xl mr-auto text-left space-y-3">
                 <p className="mt-2 leading-relaxed whitespace-pre-line">
-                  {`Titles are one way to define ourselves, but if I had to choose, I'd rather be known as a trusting friend than a “spiritual guide.” What I share here isn't easy to sum up with labels. It's less about definitions and more about experience — a collection of simple practices, reflections, and resources that have helped me along the way.
+                  {`Titles are one way to define ourselves, but if I had to choose, I'd rather be known as a trusting friend than any title at all. What I share here isn't easy to sum up with labels. It's less about definitions and more about experience — a collection of simple practices, reflections, and resources that have helped me along the way.
                     This space is where I offer my personal approach to self-awareness and meditation, along with a few books that deeply shaped my journey. None of them were ones I set out to buy; they found their way to me, each planting a small seed. Those seeds sparked my curiosity to look inward.
                     When I first sat down to meditate, I quickly noticed how restless my mind was, always stirring up thoughts into unpredictable outcomes. With time, I learned to sit with that movement instead of fighting it. Looking back, I sometimes think I could have saved myself a few obstacles if I had started earlier — but I also know that wandering is part of the process.
                   `}
