@@ -540,8 +540,8 @@ export default function SpiritualPage() {
                 {/* RIGHT — IMAGE */}
                 <div className="flex justify-center">
                   <img
-                    src="/spiritual/content/about-silhouette-1152.webp"
-                    alt="Walking a path toward the horizon"
+                    src="/spiritual/content/about-fatherhood.jpg"
+                    alt="Walking uphill with my son in the forest"
                     className="w-full max-w-md rounded-lg object-cover"
                   />
                 </div>
