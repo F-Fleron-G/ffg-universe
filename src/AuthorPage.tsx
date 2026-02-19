@@ -278,14 +278,20 @@ export default function AuthorPage() {
         {/* ABOUT */}
         <section id="about" className="relative scroll-mt-24 pt-24 pb-0">
           <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-white">
-            <h2 className="text-3xl text-center mb-8">Entre les Mots et Moi</h2>
+            <h2 className="text-3xl text-center mb-2">About the Author</h2>
+            <p className="text-center text-[12px] tracking-[0.22em] uppercase text-[#2f2e2c]/70 mb-8">
+              Entre les Mots et Moi
+            </p>
             <div className="space-y-4 mx-auto max-w-[50ch] text-[17px] text-center leading-6">
               <p>
-                I’m a trilingual lyricist, author, and thinker. Raised in Spain, I
-                grew up navigating a complex cultural identity—Spanish at home, French
-                with family, and English at school.
+                I'm Frederic G. Fleron Grignard — a trilingual author and lyricist, and the writer of the memoir <em>The Alien in Disguise</em>.
               </p>
               <p>
+                The book is also available in Spanish—not as a literal translation, but as a rewritten edition shaped to preserve the humor, tone, and cultural nuance of the original. I also wrote <em>Hi, I am Dad</em>, inspired by fatherhood and the quiet transformation it brings.
+              </p>
+
+              <p>
+                Raised in Spain, I grew up navigating a complex cultural identity—Spanish at home, French with family, and English at school. 
                 That mix shaped my worldview and my earliest experiences of
                 communication, belonging, and self-expression. Often misunderstood at a younger age 
                 because of language confusion, I developed a deep compassion for
