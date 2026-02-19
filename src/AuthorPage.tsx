@@ -258,16 +258,16 @@ export default function AuthorPage() {
     
               <span className="inline-flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#dec09a]" />
-                Themes: meaning, identity, resilience
+                Memoir themes: identity, meaning, resilience
               </span>
               <span className="inline-flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#dec09a]" />
-                eBooks & Books
+                Available in eBook and paperback
               </span>
             </div>
 
             <div className="text-[13px] tracking-[0.02em] text-[#c4c3c0]/70">
-              Available on: <span className="text-[#dec09a]">Amazon</span>
+              Books by <span className="text-[#dec09a]">Frederic G. Fleron Grignard</span>
             </div>
           </div>
         </div>
