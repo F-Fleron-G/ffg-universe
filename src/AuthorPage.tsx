@@ -197,10 +197,12 @@ export default function AuthorPage() {
 
             {/* Portrait image first on mobile */}
             <div className="order-1 md:order-2 flex justify-center">
-              <div className="w-[72vw] sm:w-72 md:w-96 aspect-square rounded-full border-2 border-[#dec09a] shadow-lg overflow-hidden">
+              <div className="w-[72vw] sm:w-72 md:w-96 aspect-square rounded-full shadow-lg overflow-hidden">
                 <img
                   src="/Author_image.jpg"
                   alt="Author portrait of Frederic G. Fleron Grignard"
+                  width={800}
+                  height={1000}
                   className="w-full h-full object-cover object-top"
                   loading="eager"
                   decoding="async"
@@ -228,7 +230,7 @@ export default function AuthorPage() {
                 FREDERIC G. <br /> FLERON <br /> GRIGNARD
               </h1>
               <p className="mt-6 text-[clamp(10px,3.2vw,14px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] opacity-90 text-[#dec09a] whitespace-nowrap">
-                Author · Philosopher · Soul Explorer
+                Author · Storyteller · Soul Explorer
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 items-center md:items-start justify-center md:justify-start">
