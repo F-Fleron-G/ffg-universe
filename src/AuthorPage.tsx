@@ -214,20 +214,22 @@ export default function AuthorPage() {
             {/* Text beneath on mobile */}
             <div className="order-2 md:order-1 text-center md:text-left">
 
-          <blockquote
+            <blockquote
               className="
                 mx-auto md:mx-0 max-w-[28ch] md:max-w-none
-                text-1xl md:text-1xl italic leading-snug
+                italic leading-snug
                 text-center md:text-left text-[#dec09a]
                 pl-4 sm:pl-5 border-l-2 border-[#dec09a]
-                space-y-1
               "
             >
-              <h2>"Writing My Way Through The Human Condition"</h2>
+              <p>
+                “Writing My Way Through The Human Condition”
+              </p>
             </blockquote>
            
               <h1 className="mt-4 leading-tight text-[#c4c3c0] text-4xl">
-                FREDERIC G. <br /> FLERON <br /> GRIGNARD
+                Frederic G. <br /> Fleron <br /> Grignard
+                <span className="sr-only"> — Author</span>
               </h1>
               <p className="mt-6 text-[clamp(10px,3.2vw,14px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] opacity-90 text-[#dec09a] whitespace-nowrap">
                 Author · Storyteller · Soul Explorer
