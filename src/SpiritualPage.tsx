@@ -655,9 +655,7 @@ export default function SpiritualPage() {
 
                       <h3 className="text-1xl mb-3">IMPORTANT PLEASE READ</h3>
                       <p className="text-sm leading-relaxed pr-8">
-                        I am not a psychologist, psychiatrist, or medical doctor. If you need medical or mental-health
-                        support, please consult a qualified professional. What I offer here is spiritual guidance drawn
-                        from lived experience, study, and personal philosophy.
+                        I am not a psychologist, psychiatrist, or medical doctor. If you need medical or mental-health support, please consult a qualified professional. What I share here comes from personal experience, reflection, and study, and is offered simply as a space for thought and open conversation.
                       </p>
                     </div>
                   )}
