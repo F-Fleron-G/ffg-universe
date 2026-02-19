@@ -19,7 +19,7 @@ Visit live: [ffg-universe.com](https://ffg-universe.com)
 
 A custom animated orbit interface where each identity completes the phrase:
 
-> “I think, therefore I am a…”
+> “I think, therefore I am a/n…”
 
 - Artist  
 - Author  
@@ -31,7 +31,7 @@ A custom animated orbit interface where each identity completes the phrase:
 
 ### Musician Page
 
-Includes a complete purchase flow for original guitar compositions**:
+Includes a complete purchase flow for original guitar compositions:
 
 - PayPal.me payment link
 - Direct artist delivery via email
