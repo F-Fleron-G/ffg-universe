@@ -62,7 +62,8 @@ export default function AuthorPage() {
        <>
       <PageHead
         title="Author – Frederic G. Fleron Grignard"
-        description="Books, releases, and writings by Frederic G. Fleron Grignard."
+        description="Official author page of Frederic G. Fleron Grignard, writer of The Alien in Disguise and Hi, I am Dad. Explore books, biography, and latest releases."
+        canonicalHref="https://www.ffg-universe.com/author"
         iconHref="/favicon.ico"
         ogImage="/og/author.jpg"
       />
