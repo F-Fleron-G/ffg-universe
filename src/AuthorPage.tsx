@@ -444,232 +444,238 @@ export default function AuthorPage() {
             </div>       
           </section>     
 
+        {/* READER REFLECTIONS */}
+<section className="relative scroll-mt-24 py-24">
+  <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-[#0b0f15] text-[#c4c3c0]">
+    <h2 className="text-3xl text-center mb-2">Reader Reflections</h2>
 
-        <section className="relative scroll-mt-24 py-24">
-          <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-[#0b0f15] text-[#c4c3c0]">
-
-            <h2 className="text-3xl text-center mb-8">Reader Reflections</h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-              {/* Review 1 — Beau */}
-              <figure className="border-2 border-[#5b5a59] rounded-[10px] p-5 bg-[#262626] flex flex-col justify-between">
-                <blockquote className="text-sm leading-relaxed italic">
-                  “Not the next alien book — but one that explains humanity. What happens when someone—or something—observes our lives without all the filters we use to numb ourselves? <em>Blob</em> isn’t a story about space. It’s one about you. Me. All of us. A silent mirror. Humorous. Direct. And deeper than you'd initially think. You don't need to be a science fiction fan. Just a person with a sense of what's real.”
-                </blockquote>
-
-                <figcaption className="mt-4 text-center">
-                  <div className="text-xs tracking-widest uppercase text-[#dec09a] opacity-90 mb-1">
-                    Beau
-                  </div>
-                  <div className="text-xs tracking-[0.18em] text-[#dec09a]">
-                    ★ ★ ★ ★ ★
-                  </div>
-                </figcaption>
-              </figure>
-
-              {/* Review 2 — Alina Freund */}
-              <figure className="border-2 border-[#5b5a59] rounded-[10px] p-5 bg-[#262626] flex flex-col justify-between">
-                <blockquote className="text-sm leading-relaxed italic">
-                  “Fabulous!”
-                </blockquote>
-
-                <figcaption className="mt-4 text-center">
-                  <div className="text-xs tracking-widest uppercase text-[#dec09a] opacity-90 mb-1">
-                    Alina Freund
-                  </div>
-                  <div className="text-xs tracking-[0.18em] text-[#dec09a]">
-                    ★ ★ ★ ★ ★
-                  </div>
-                </figcaption>
-              </figure>
-
-              {/* Review 3 — Anonymous */}
-              <figure className="border-2 border-[#5b5a59] rounded-[10px] p-5 bg-[#262626] flex flex-col justify-between">
-                <blockquote className="text-sm leading-relaxed italic">
-                  “A memoir that makes you laugh — and then makes you think.”
-                </blockquote>
-
-                <figcaption className="mt-4 text-center">
-                  <div className="text-xs tracking-widest uppercase text-[#dec09a] opacity-70 mb-1">
-                    Anonymous
-                  </div>
-                  <div className="text-xs tracking-[0.18em] text-[#dec09a]">
-                    ★ ★ ★ ★ ★
-                  </div>
-                </figcaption>
-              </figure>
-
-            </div>
-          </div>
-        </section>
-
-
-        {/* BOOKS — Now & Next */}
-<section id="books" className="relative scroll-mt-24 py-24">
-  <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-[#5b5a59]">
-    <h2 className="text-3xl text-center mb-3 text-[#c4c3c0]">Books: Now & Next</h2>
-
-    {/* SEO-friendly intro line (subtle, editorial) */}
     <p className="text-center text-[13px] leading-6 text-[#c4c3c0]/80 mb-10 max-w-[70ch] mx-auto">
-      Current releases include <em>El Alien Disfrazado</em> (Spanish edition of <em>The Alien in Disguise</em>) and
-      <em> Hi, I am Dad</em>. A new book is in progress for 2026.
+      A few early reactions to <em>The Alien in Disguise</em> — honest, thoughtful, and warmly encouraging.
     </p>
 
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center">
-      {/* Card 1 — Spanish edition */}
-      <article className="group relative flex flex-col items-center w-64 sm:w-56 md:w-60">
-        <div className="relative w-full aspect-[2/3] rounded-md overflow-hidden">
-          <img
-            src="/el-alien-disfrazado.png"
-            alt="El Alien Disfrazado — Spanish edition of The Alien in Disguise (book cover)"
-            className="absolute inset-0 w-full h-full object-contain"
-            loading="lazy"
-            decoding="async"
-            fetchPriority="low"
-          />
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Review 1 — Beau */}
+      <figure className="rounded-[12px] border border-white/10 bg-white/[0.06] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+        <blockquote className="text-[13px] leading-6 text-[#c4c3c0]/90">
+          <p className="italic">
+            “Not the next alien book — but one that explains humanity. What happens when someone—or something—observes our lives
+            without all the filters we use to numb ourselves? <em>Blob</em> isn’t a story about space. It’s one about you. Me. All of us.
+            A silent mirror. Humorous. Direct. And deeper than you&apos;d initially think. You don&apos;t need to be a science fiction fan.
+            Just a person with a sense of what&apos;s real.”
+          </p>
+        </blockquote>
 
-          {/* Desktop hover excerpt (bonus, not required for meaning) */}
-          <div
-            className="hidden md:flex absolute inset-0 rounded-md bg-[rgba(255,255,255,0.82)] text-neutral-900 backdrop-blur-sm
-                       shadow-[0_10px_28px_rgba(0,0,0,0.28)] p-5 flex-col items-center justify-center
-                       opacity-0 translate-y-2 pointer-events-none transition duration-300 border border-black/30
-                       group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
-            aria-hidden="true"
-          >
-            <p className="text-[12px] tracking-[0.18em] uppercase text-neutral-800/70 mb-3">
-              Excerpt preview
-            </p>
-
-            <div className="w-full max-h-[52%]">
-              <img
-                src="/Peek_Image_ES.png"
-                alt="Excerpt preview from El Alien Disfrazado"
-                className="w-full h-full object-contain rounded"
-                loading="lazy"
-                decoding="async"
-                fetchPriority="low"
-              />
-            </div>
-
-            <p className="text-sm leading-5 text-center mt-3 px-2">
-              ¿Qué pasa cuando un “blob” alienígena se mete en un cuerpo humano y trata de entender la vida en la Tierra?
-            </p>
+        <figcaption className="mt-6 flex flex-col items-center gap-2">
+          <div className="text-[12px] tracking-[0.22em] uppercase text-[#dec09a]/90">
+            <cite className="not-italic">Beau</cite>
           </div>
-        </div>
-
-        {/* Always-visible metadata (SEO + consistent layout) */}
-        <div className="mt-5 text-center text-[#c4c3c0]">
-          <h3 className="text-[12px] tracking-[0.18em] uppercase text-[#dec09a]">
-            El Alien Disfrazado
-          </h3>
-          <p className="mt-2 text-[13px] leading-6 text-[#c4c3c0]/90">
-            Spanish edition of <em>The Alien in Disguise</em> — rewritten for tone, humor, and cultural nuance (not a literal translation).
-          </p>
-
-          <a
-            href="https://mybook.to/elaliendisfrazado"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${CTA} mt-5`}
-          >
-            Descúbrelo
-          </a>
-        </div>
-      </article>
-
-      {/* Card 2 — Hi, I am Dad */}
-      <article className="group relative flex flex-col items-center w-64 sm:w-56 md:w-60">
-        <div className="relative w-full aspect-[2/3] rounded-md overflow-hidden">
-          <img
-            src="/hi-i-am-dad.png"
-            alt="Hi, I am Dad — book cover"
-            className="absolute inset-0 w-full h-full object-contain"
-            loading="lazy"
-            decoding="async"
-            fetchPriority="low"
-          />
-
-          {/* Desktop hover excerpt (bonus) */}
-          <div
-            className="hidden md:flex absolute inset-0 rounded-md bg-[rgba(255,255,255,0.82)] text-neutral-900 backdrop-blur-sm
-                       shadow-[0_10px_28px_rgba(0,0,0,0.28)] p-5 flex-col items-center justify-center
-                       opacity-0 translate-y-2 pointer-events-none transition duration-300 border border-black/30
-                       group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
-            aria-hidden="true"
-          >
-            <p className="text-[12px] tracking-[0.18em] uppercase text-neutral-800/70 mb-3">
-              Excerpt preview
-            </p>
-
-            <div className="w-full max-h-[52%]">
-              <img
-                src="/C1-Loyalty.png"
-                alt="Excerpt preview from Hi, I am Dad"
-                className="w-full h-full object-contain rounded"
-                loading="lazy"
-                decoding="async"
-                fetchPriority="low"
-              />
-            </div>
-
-            <p className="text-sm leading-5 text-center mt-3 px-2">
-              “You are more than what you produce. You are more than what you solve. You are worthy, even when you stop.”
-            </p>
+          <div className="text-[12px] tracking-[0.18em] text-[#dec09a]">
+            ★★★★★
           </div>
-        </div>
+        </figcaption>
+      </figure>
 
-        {/* Always-visible metadata */}
-        <div className="mt-5 text-center text-[#c4c3c0]">
-          <h3 className="text-[12px] tracking-[0.18em] uppercase text-[#dec09a]">
-            Hi, I am Dad
-          </h3>
-          <p className="mt-2 text-[13px] leading-6 text-[#c4c3c0]/90">
-            A fatherhood-inspired book about loyalty, values, and the quiet transformation that happens at home.
-          </p>
+      {/* Review 2 — Alina Freund */}
+      <figure className="rounded-[12px] border border-white/10 bg-white/[0.06] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+        <blockquote className="text-[13px] leading-6 text-[#c4c3c0]/90">
+          <p className="italic">“Fabulous!”</p>
+        </blockquote>
 
-          <a
-            href="https://mybook.to/hiamdad-fgf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${CTA} mt-5`}
-          >
-            Take a peek
-          </a>
-        </div>
-      </article>
+        <figcaption className="mt-6 flex flex-col items-center gap-2">
+          <div className="text-[12px] tracking-[0.22em] uppercase text-[#dec09a]/90">
+            <cite className="not-italic">Alina Freund</cite>
+          </div>
+          <div className="text-[12px] tracking-[0.18em] text-[#dec09a]">
+            ★★★★★
+          </div>
+        </figcaption>
+      </figure>
 
-      {/* Card 3 — Next release */}
-      <article className="relative flex flex-col items-center w-64 sm:w-56 md:w-60">
-        <div className="relative w-full aspect-[2/3] overflow-hidden rounded-md">
-          <img
-            src="/NBR_2026.png"
-            alt="Next book release (2026) — cover teaser"
-            className="absolute inset-0 w-full h-full object-contain"
-            loading="lazy"
-            decoding="async"
-            fetchPriority="low"
-          />
-        </div>
+      {/* Review 3 — Anonymous */}
+      <figure className="rounded-[12px] border border-white/10 bg-white/[0.06] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+        <blockquote className="text-[13px] leading-6 text-[#c4c3c0]/90">
+          <p className="italic">“A memoir that makes you laugh — and then makes you think.”</p>
+        </blockquote>
 
-        <div className="mt-5 text-center text-[#c4c3c0]">
-          <h3 className="text-[12px] tracking-[0.18em] uppercase text-[#dec09a]">
-            Next release (2026)
-          </h3>
-          <p className="mt-2 text-[13px] leading-6 text-[#c4c3c0]/90">
-            A new book in progress. For updates and early previews, reach out via the contact section.
-          </p>
-
-          {/* “Get updates” is a jump to your contact section */}
-          <a href="#contact" className={`${CTA} mt-5`}>
-            Get updates
-          </a>
-        </div>
-      </article>
+        <figcaption className="mt-6 flex flex-col items-center gap-2">
+          <div className="text-[12px] tracking-[0.22em] uppercase text-[#dec09a]/70">
+            <cite className="not-italic">Anonymous</cite>
+          </div>
+          <div className="text-[12px] tracking-[0.18em] text-[#dec09a]">
+            ★★★★★
+          </div>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
-</div>
+
+        {/* BOOKS — Now & Next */}
+        <section id="books" className="relative scroll-mt-24 py-24">
+          <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-[#5b5a59]">
+            <h2 className="text-3xl text-center mb-3 text-[#c4c3c0]">Books: Now & Next</h2>
+
+            {/* SEO-friendly intro line (subtle, editorial) */}
+            <p className="text-center text-[13px] leading-6 text-[#c4c3c0]/80 mb-10 max-w-[70ch] mx-auto">
+              Current releases include <em>El Alien Disfrazado</em> (Spanish edition of <em>The Alien in Disguise</em>) and
+              <em> Hi, I am Dad</em>. A new book is in progress for 2026.
+            </p>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center">
+              {/* Card 1 — Spanish edition */}
+              <article className="group relative flex flex-col items-center w-64 sm:w-56 md:w-60">
+                <div className="relative w-full aspect-[2/3] rounded-md overflow-hidden">
+                  <img
+                    src="/el-alien-disfrazado.png"
+                    alt="El Alien Disfrazado — Spanish edition of The Alien in Disguise (book cover)"
+                    className="absolute inset-0 w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                  />
+
+                  {/* Desktop hover excerpt (bonus, not required for meaning) */}
+                  <div
+                    className="hidden md:flex absolute inset-0 rounded-md bg-[rgba(255,255,255,0.82)] text-neutral-900 backdrop-blur-sm
+                              shadow-[0_10px_28px_rgba(0,0,0,0.28)] p-5 flex-col items-center justify-center
+                              opacity-0 translate-y-2 pointer-events-none transition duration-300 border border-black/30
+                              group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
+                    aria-hidden="true"
+                  >
+                    <p className="text-[12px] tracking-[0.18em] uppercase text-neutral-800/70 mb-3">
+                      Excerpt preview
+                    </p>
+
+                    <div className="w-full max-h-[52%]">
+                      <img
+                        src="/Peek_Image_ES.png"
+                        alt="Excerpt preview from El Alien Disfrazado"
+                        className="w-full h-full object-contain rounded"
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="low"
+                      />
+                    </div>
+
+                    <p className="text-sm leading-5 text-center mt-3 px-2">
+                      ¿Qué pasa cuando un “blob” alienígena se mete en un cuerpo humano y trata de entender la vida en la Tierra?
+                    </p>
+                  </div>
+                </div>
+
+                {/* Always-visible metadata (SEO + consistent layout) */}
+                <div className="mt-5 text-center text-[#c4c3c0]">
+                  <h3 className="text-[12px] tracking-[0.18em] uppercase text-[#dec09a]">
+                    El Alien Disfrazado
+                  </h3>
+                  <p className="mt-2 text-[13px] leading-6 text-[#c4c3c0]/90">
+                    Spanish edition of <em>The Alien in Disguise</em> — rewritten for tone, humor, and cultural nuance (not a literal translation).
+                  </p>
+
+                  <a
+                    href="https://mybook.to/elaliendisfrazado"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${CTA} mt-5`}
+                  >
+                    Descúbrelo
+                  </a>
+                </div>
+              </article>
+
+              {/* Card 2 — Hi, I am Dad */}
+              <article className="group relative flex flex-col items-center w-64 sm:w-56 md:w-60">
+                <div className="relative w-full aspect-[2/3] rounded-md overflow-hidden">
+                  <img
+                    src="/hi-i-am-dad.png"
+                    alt="Hi, I am Dad — book cover"
+                    className="absolute inset-0 w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                  />
+
+                  {/* Desktop hover excerpt (bonus) */}
+                  <div
+                    className="hidden md:flex absolute inset-0 rounded-md bg-[rgba(255,255,255,0.82)] text-neutral-900 backdrop-blur-sm
+                              shadow-[0_10px_28px_rgba(0,0,0,0.28)] p-5 flex-col items-center justify-center
+                              opacity-0 translate-y-2 pointer-events-none transition duration-300 border border-black/30
+                              group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
+                    aria-hidden="true"
+                  >
+                    <p className="text-[12px] tracking-[0.18em] uppercase text-neutral-800/70 mb-3">
+                      Excerpt preview
+                    </p>
+
+                    <div className="w-full max-h-[52%]">
+                      <img
+                        src="/C1-Loyalty.png"
+                        alt="Excerpt preview from Hi, I am Dad"
+                        className="w-full h-full object-contain rounded"
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="low"
+                      />
+                    </div>
+
+                    <p className="text-sm leading-5 text-center mt-3 px-2">
+                      “You are more than what you produce. You are more than what you solve. You are worthy, even when you stop.”
+                    </p>
+                  </div>
+                </div>
+
+                {/* Always-visible metadata */}
+                <div className="mt-5 text-center text-[#c4c3c0]">
+                  <h3 className="text-[12px] tracking-[0.18em] uppercase text-[#dec09a]">
+                    Hi, I am Dad
+                  </h3>
+                  <p className="mt-2 text-[13px] leading-6 text-[#c4c3c0]/90">
+                    A fatherhood-inspired book about loyalty, values, and the quiet transformation that happens at home.
+                  </p>
+
+                  <a
+                    href="https://mybook.to/hiamdad-fgf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${CTA} mt-5`}
+                  >
+                    Take a peek
+                  </a>
+                </div>
+              </article>
+
+              {/* Card 3 — Next release */}
+              <article className="relative flex flex-col items-center w-64 sm:w-56 md:w-60">
+                <div className="relative w-full aspect-[2/3] overflow-hidden rounded-md">
+                  <img
+                    src="/NBR_2026.png"
+                    alt="Next book release (2026) — cover teaser"
+                    className="absolute inset-0 w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                  />
+                </div>
+
+                <div className="mt-5 text-center text-[#c4c3c0]">
+                  <h3 className="text-[12px] tracking-[0.18em] uppercase text-[#dec09a]">
+                    Next release (2026)
+                  </h3>
+                  <p className="mt-2 text-[13px] leading-6 text-[#c4c3c0]/90">
+                    A new book in progress. For updates and early previews, reach out via the contact section.
+                  </p>
+
+                  {/* “Get updates” is a jump to your contact section */}
+                  <a href="#contact" className={`${CTA} mt-5`}>
+                    Get updates
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+        </div>
+       
         {/* Connector */}
         <div aria-hidden className="mx-auto w-[2px] h-24 bg-[#5b5a59]" />
 
