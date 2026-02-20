@@ -915,6 +915,66 @@ export default function SpiritualPage() {
             </li>
           </ol>
 
+          <div className="mt-6">
+            <div className="flex items-center gap-4 my-6 max-w-xl">
+              <span className="flex-1 h-px bg-[#a28e72]/40"></span>
+              <h3 className="text-sm tracking-[0.25em] text-[#a28e72] uppercase whitespace-nowrap">
+                My Books
+              </h3>
+              <span className="flex-1 h-px bg-[#a28e72]/40"></span>
+            </div>
+
+            <p className="mt-2 text-sm text-white/85">
+              If you'd like to see my writing, you can find my books on the{" "}
+              <a
+                href="/author"
+                className="text-[#a28e72] hover:underline decoration-current underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a28e72]"
+              >
+                Author page
+              </a>
+              .
+            </p>
+
+          <div className="mt-5 mx-auto grid w-full max-w-lg grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 place-items-center">
+            <a
+              href="/author"
+              className="group relative w-full max-w-[240px] sm:max-w-[220px]"
+            >
+
+              {/* soft backdrop/glow */}
+              <div className="absolute inset-0 -z-10 rounded-2xl bg-white/10 blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
+
+              {/* card */}
+              <div className="p-3">
+                <img
+                  src="/the-alien-in-disguise.png"
+                  alt="The Alien in Disguise — book by Frederic G. Fleron Grignard"
+                  className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+              </div>
+            </a>
+
+            <a
+              href="/author"
+              className="group relative w-full max-w-[240px] sm:max-w-[220px]"
+            >
+              {/* soft backdrop/glow */}
+              <div className="absolute inset-0 -z-10 rounded-2xl bg-white/10 blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
+
+              {/* card */}
+              <div className="p-3">
+                <img
+                  src="/hi-i-am-dad.png"
+                  alt="Hi, I am Dad — book by Frederic G. Fleron Grignard"
+                  className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+              </div>
+            </a>
+          </div>
+        </div>
+
             <p> 
               Books like these are not ends in themselves, but openings — pointers back to your own 
               experience. And so, in the spirit of the cycle, they return us to where we began:  {" "}
