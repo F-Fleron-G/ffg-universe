@@ -888,23 +888,26 @@ export default function SpiritualPage() {
 
           <ol className="list-decimal list-inside space-y-2">
             <li>
-              <strong className="text-[#a28e72]">The Alchemist</strong> by Paulo Coelho — A tale that reminds us everything we 
-              seek is already close at hand, yet the journey outward is often what helps us realise it.
-            </li>
-            <li>
-              <strong className="text-[#a28e72]">The Fear Project</strong> by Jaimal Yogis — A clear-eyed look at fear, showing 
-              how it is often misunderstood or misused, and how we can return to fear as a form of 
-              intuition rather than insecurity.
-            </li>
-            <li>
-              <strong className="text-[#a28e72]">The Power of Now</strong> by Eckhart Tolle — A modern classic. It brings home 
-              a simple truth: the past is gone, the future is not here, and life can only be lived now.
-            </li>
-            <li>
               <strong className="text-[#a28e72]">Tao Te Ching</strong> by Lao Tzu — Seemingly simple, yet endlessly deep. It 
               challenges the mind and, at the same time, invites us to let go of concepts and return 
               to what we are at the core.
             </li>
+            <li>
+              <strong className="text-[#a28e72]">The Daily Stoic</strong> by Ryan Holiday — A practical daily guide to Stoic wisdom, built around short reflections that help you train attention, character, and resilience over time.
+            </li>  
+            <li>
+              <strong className="text-[#a28e72]">The Alchemist</strong> by Paulo Coelho — A tale that reminds us everything we 
+              seek is already close at hand, yet the journey outward is often what helps us realise it.
+            </li>
+             <li>
+              <strong className="text-[#a28e72]">The Power of Now</strong> by Eckhart Tolle — A modern classic. It brings home 
+              a simple truth: the past is gone, the future is not here, and life can only be lived now.
+            </li> 
+            <li>
+              <strong className="text-[#a28e72]">The Fear Project</strong> by Jaimal Yogis — A clear-eyed look at fear, showing 
+              how it is often misunderstood or misused, and how we can return to fear as a form of 
+              intuition rather than insecurity.
+            </li>               
             <li>
               <strong className="text-[#a28e72]">Think and Grow Rich</strong> by Napoleon Hill — On the surface, it’s about 
               wealth. But beneath that, it reveals how what we manifest depends less on possessions 
