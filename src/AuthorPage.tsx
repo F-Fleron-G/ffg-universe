@@ -445,77 +445,76 @@ export default function AuthorPage() {
           </section>     
 
         {/* READER REFLECTIONS */}
-<section className="relative scroll-mt-24 py-24">
-  <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-[#0b0f15] text-[#c4c3c0]">
-    <h2 className="text-3xl text-center mb-2">Reader Reflections</h2>
+        <section className="relative scroll-mt-24 py-24">
+          <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-[#0b0f15] text-[#c4c3c0]">
+            <h2 className="text-3xl text-center mb-2">Reader Reflections</h2>
 
-    <p className="text-center text-[13px] leading-6 text-[#c4c3c0]/80 mb-10 max-w-[70ch] mx-auto">
-      A few early reactions to <em>The Alien in Disguise</em> — honest, thoughtful, and warmly encouraging.
-    </p>
+            <p className="text-center text-[13px] leading-6 text-[#c4c3c0]/80 mb-10 max-w-[70ch] mx-auto">
+              A few early reactions to <em>The Alien in Disguise</em> — honest, thoughtful, and warmly encouraging.
+            </p>
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {/* Review 1 — Beau */}
-      <figure className="rounded-[12px] border border-white/10 bg-white/[0.06] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
-        <blockquote className="text-[13px] leading-6 text-[#c4c3c0]/90">
-          <p className="italic">
-            “Not the next alien book — but one that explains humanity. What happens when someone—or something—observes our lives
-            without all the filters we use to numb ourselves? <em>Blob</em> isn’t a story about space. It’s one about you. Me. All of us.
-            A silent mirror. Humorous. Direct. And deeper than you&apos;d initially think. You don&apos;t need to be a science fiction fan.
-            Just a person with a sense of what&apos;s real.”
-          </p>
-        </blockquote>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Review 1 — Beau */}
+              <figure className="rounded-[12px] border border-white/10 bg-white/[0.06] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+                <blockquote className="text-[13px] leading-6 text-[#c4c3c0]/90">
+                  <p className="italic">
+                    “Not the next alien book — but one that explains humanity. What happens when someone—or something—observes our lives
+                    without all the filters we use to numb ourselves? <em>Blob</em> isn’t a story about space. It’s one about you. Me. All of us.
+                    A silent mirror. Humorous. Direct. And deeper than you&apos;d initially think. You don&apos;t need to be a science fiction fan.
+                    Just a person with a sense of what&apos;s real.”
+                  </p>
+                </blockquote>
 
-        <figcaption className="mt-6 flex flex-col items-center gap-2">
-          <div className="text-[12px] tracking-[0.22em] uppercase text-[#dec09a]/90">
-            <cite className="not-italic">Beau</cite>
+                <figcaption className="mt-6 flex flex-col items-center gap-2">
+                  <div className="text-[12px] tracking-[0.22em] uppercase text-[#dec09a]/90">
+                    <cite className="not-italic">Beau</cite>
+                  </div>
+                  <div className="text-[12px] tracking-[0.18em] text-[#dec09a]">
+                    ★★★★★
+                  </div>
+                </figcaption>
+              </figure>
+
+              {/* Review 2 — Alina Freund */}
+              <figure className="rounded-[12px] border border-white/10 bg-white/[0.06] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+                <blockquote className="text-[13px] leading-6 text-[#c4c3c0]/90">
+                  <p className="italic">“Fabulous!”</p>
+                </blockquote>
+
+                <figcaption className="mt-6 flex flex-col items-center gap-2">
+                  <div className="text-[12px] tracking-[0.22em] uppercase text-[#dec09a]/90">
+                    <cite className="not-italic">Alina Freund</cite>
+                  </div>
+                  <div className="text-[12px] tracking-[0.18em] text-[#dec09a]">
+                    ★★★★★
+                  </div>
+                </figcaption>
+              </figure>
+
+              {/* Review 3 — Anonymous */}
+              <figure className="rounded-[12px] border border-white/10 bg-white/[0.06] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+                <blockquote className="text-[13px] leading-6 text-[#c4c3c0]/90">
+                  <p className="italic">“A memoir that makes you laugh — and then makes you think.”</p>
+                </blockquote>
+
+                <figcaption className="mt-6 flex flex-col items-center gap-2">
+                  <div className="text-[12px] tracking-[0.22em] uppercase text-[#dec09a]/70">
+                    <cite className="not-italic">Anonymous</cite>
+                  </div>
+                  <div className="text-[12px] tracking-[0.18em] text-[#dec09a]">
+                    ★★★★★
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
           </div>
-          <div className="text-[12px] tracking-[0.18em] text-[#dec09a]">
-            ★★★★★
-          </div>
-        </figcaption>
-      </figure>
-
-      {/* Review 2 — Alina Freund */}
-      <figure className="rounded-[12px] border border-white/10 bg-white/[0.06] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
-        <blockquote className="text-[13px] leading-6 text-[#c4c3c0]/90">
-          <p className="italic">“Fabulous!”</p>
-        </blockquote>
-
-        <figcaption className="mt-6 flex flex-col items-center gap-2">
-          <div className="text-[12px] tracking-[0.22em] uppercase text-[#dec09a]/90">
-            <cite className="not-italic">Alina Freund</cite>
-          </div>
-          <div className="text-[12px] tracking-[0.18em] text-[#dec09a]">
-            ★★★★★
-          </div>
-        </figcaption>
-      </figure>
-
-      {/* Review 3 — Anonymous */}
-      <figure className="rounded-[12px] border border-white/10 bg-white/[0.06] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
-        <blockquote className="text-[13px] leading-6 text-[#c4c3c0]/90">
-          <p className="italic">“A memoir that makes you laugh — and then makes you think.”</p>
-        </blockquote>
-
-        <figcaption className="mt-6 flex flex-col items-center gap-2">
-          <div className="text-[12px] tracking-[0.22em] uppercase text-[#dec09a]/70">
-            <cite className="not-italic">Anonymous</cite>
-          </div>
-          <div className="text-[12px] tracking-[0.18em] text-[#dec09a]">
-            ★★★★★
-          </div>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
+        </section>
 
         {/* BOOKS — Now & Next */}
         <section id="books" className="relative scroll-mt-24 py-24">
           <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-[#5b5a59]">
             <h2 className="text-3xl text-center mb-3 text-[#c4c3c0]">Books: Now & Next</h2>
 
-            {/* SEO-friendly intro line (subtle, editorial) */}
             <p className="text-center text-[13px] leading-6 text-[#c4c3c0]/80 mb-10 max-w-[70ch] mx-auto">
               Current releases include <em>El Alien Disfrazado</em> (Spanish edition of <em>The Alien in Disguise</em>) and
               <em> Hi, I am Dad</em>. A new book is in progress for 2026.
@@ -534,7 +533,7 @@ export default function AuthorPage() {
                     fetchPriority="low"
                   />
 
-                  {/* Desktop hover excerpt (bonus, not required for meaning) */}
+                  {/* Desktop hover excerpt */}
                   <div
                     className="hidden md:flex absolute inset-0 rounded-md bg-[rgba(255,255,255,0.82)] text-neutral-900 backdrop-blur-sm
                               shadow-[0_10px_28px_rgba(0,0,0,0.28)] p-5 flex-col items-center justify-center
@@ -563,7 +562,7 @@ export default function AuthorPage() {
                   </div>
                 </div>
 
-                {/* Always-visible metadata (SEO + consistent layout) */}
+                {/* Always-visible metadata */}
                 <div className="mt-5 text-center text-[#c4c3c0]">
                   <h3 className="text-[12px] tracking-[0.18em] uppercase text-[#dec09a]">
                     El Alien Disfrazado
@@ -595,7 +594,7 @@ export default function AuthorPage() {
                     fetchPriority="low"
                   />
 
-                  {/* Desktop hover excerpt (bonus) */}
+                  {/* Desktop hover excerpt */}
                   <div
                     className="hidden md:flex absolute inset-0 rounded-md bg-[rgba(255,255,255,0.82)] text-neutral-900 backdrop-blur-sm
                               shadow-[0_10px_28px_rgba(0,0,0,0.28)] p-5 flex-col items-center justify-center
@@ -630,7 +629,7 @@ export default function AuthorPage() {
                     Hi, I am Dad
                   </h3>
                   <p className="mt-2 text-[13px] leading-6 text-[#c4c3c0]/90">
-                    A fatherhood-inspired book about loyalty, values, and the quiet transformation that happens at home.
+                   A fatherhood-inspired reflection on the Ten Commandments—reframed as parental guidance, clarifying their intent.
                   </p>
 
                   <a
@@ -665,7 +664,6 @@ export default function AuthorPage() {
                     A new book in progress. For updates and early previews, reach out via the contact section.
                   </p>
 
-                  {/* “Get updates” is a jump to your contact section */}
                   <a href="#contact" className={`${CTA} mt-5`}>
                     Get updates
                   </a>
@@ -692,7 +690,7 @@ export default function AuthorPage() {
               onSubmit={handleAuthorSubmit}
               className="max-w-2xl mx-auto grid md:grid-cols-2 gap-6"
             >
-              {/* visible fields */}
+             
               <input
                 type="text"
                 name="name"
