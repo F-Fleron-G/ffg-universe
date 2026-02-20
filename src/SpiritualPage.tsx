@@ -7,10 +7,21 @@ type TabId = "meditation" | "self" | "living" | "books";
 type TabDef = { id: TabId; label: string; iconSrc: string; alt: string };
 
 const TABS: TabDef[] = [
-  { id: "meditation", label: "Meditation",        iconSrc: "/spiritual/icons/Meditation.svg",         alt: "Meditation" },
-  { id: "self",       label: "Self-Awareness",    iconSrc: "/spiritual/icons/Awareness.svg",          alt: "Self-Awareness" },
-  { id: "living",     label: "Art of Living",     iconSrc: "/spiritual/icons/Art-Of-Living.svg",      alt: "Art of Living" },
-  { id: "books",      label: "Recommended Books", iconSrc: "/spiritual/icons/Recommended-Books.svg",  alt: "Recommended Books" },
+  { id: "meditation", label: "Meditation",        
+    iconSrc: "/spiritual/icons/Meditation.svg",         
+    alt: "Meditation" },
+  { id: "self",       
+    label: "Self-Awareness",    
+    iconSrc: "/spiritual/icons/Awareness.svg",          
+    alt: "Self-Awareness" },
+  { id: "living",     
+    label: "Art of Living",     
+    iconSrc: "/spiritual/icons/Art-Of-Living.svg",      
+    alt: "Art of Living" },
+  { id: "books",      
+    label: "Recommended Books", 
+    iconSrc: "/spiritual/icons/Recommended-Books.svg",  
+    alt: "Recommended Books" },
 ];
 
 const ORDER: TabId[] = ["self", "meditation", "living", "books"];
