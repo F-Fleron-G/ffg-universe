@@ -678,65 +678,104 @@ export default function AuthorPage() {
         <div aria-hidden className="mx-auto w-[2px] h-24 bg-[#5b5a59]" />
 
         {/* CONTACT */}
-        <section id="contact" className="relative scroll-mt-24 pt-0 pb-24">
-          <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-white">
-            <h2 className="text-3xl text-center mb-2">Drop Me a Line</h2>
-            <p className="text-center mb-8 opacity-80">
-              If something resonates with you — or if you're just curious — don't hesitate to get in touch.
-            </p>
-            <form
-              action="https://formsubmit.co/e3a4e25ccb1ba58c8eb4d9477175cdcb"
-              method="POST"
-              onSubmit={handleAuthorSubmit}
-              className="max-w-2xl mx-auto grid md:grid-cols-2 gap-6"
-            >
-             
-              <input
-                type="text"
-                name="name"
-                required
-                className="rounded-[10px] border bg-white p-3 focus:outline-none focus:ring-1 focus:ring-[#dec09a]/60 focus:border-[#dec09a] transition text-sm"
-                placeholder="Your Name"
-              />
-              <input
-                type="email"
-                name="email"
-                autoComplete="email"
-                required
-                className="rounded-[10px] border bg-white p-3 focus:outline-none focus:ring-1 focus:ring-[#dec09a]/60 focus:border-[#dec09a] transition text-sm"
-                placeholder="Your Email *"
-              />
-              <input
-                type="text"
-                name="subject"
-                className="rounded-[10px] border bg-white p-3 md:col-span-2 focus:outline-none focus:ring-1 focus:ring-[#dec09a]/60 focus:border-[#dec09a] transition text-sm"
-                placeholder="Subject"
-              />
-              <textarea
-                name="message"
-                required
-                className="rounded-[10px] border bg-white p-3 md:col-span-2 h-40 focus:outline-none focus:ring-1 focus:ring-[#dec09a]/60 focus:border-[#dec09a] transition resize-y text-sm"
-                placeholder="What's on your mind?"
-              />
+          <section id="contact" className="relative scroll-mt-24 pt-0 pb-24">
+            <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-white">
+              <h2 className="text-3xl text-center mb-2">Drop Me a Line</h2>
+              <p className="text-center mb-2 opacity-80">
+                If something resonates with you — or if you're just curious — don't hesitate to get in touch.
+              </p>
+              <p className="text-center mb-8 text-[13px] text-neutral-700/70">
+                I read everything personally. Please allow a little time for replies.
+              </p>
 
-              {/* hidden config */}
-              <input type="hidden" name="_subject" value="New message from AUTHOR page" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://www.ffg-universe.com/author#contact" />
+              <form
+                action="https://formsubmit.co/e3a4e25ccb1ba58c8eb4d9477175cdcb"
+                method="POST"
+                onSubmit={handleAuthorSubmit}
+                className="max-w-2xl mx-auto grid md:grid-cols-2 gap-6"
+              >
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="author-name" className="text-[12px] tracking-[0.14em] uppercase text-neutral-700/80">
+                    Name
+                  </label>
+                  <input
+                    id="author-name"
+                    type="text"
+                    name="name"
+                    required
+                    minLength={2}
+                    autoComplete="name"
+                    className="rounded-[10px] border bg-white p-3 focus:outline-none focus:ring-1 focus:ring-[#dec09a]/60 focus:border-[#dec09a] transition text-sm"
+                    placeholder="Your name"
+                  />
+                </div>
 
-              {/* spam honeypot */}
-              <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="author-email" className="text-[12px] tracking-[0.14em] uppercase text-neutral-700/80">
+                    Email
+                  </label>
+                  <input
+                    id="author-email"
+                    type="email"
+                    name="email"
+                    autoComplete="email"
+                    required
+                    className="rounded-[10px] border bg-white p-3 focus:outline-none focus:ring-1 focus:ring-[#dec09a]/60 focus:border-[#dec09a] transition text-sm"
+                    placeholder="you@example.com"
+                  />
+                </div>
 
-              <button 
-              type="submit" 
-              disabled={sending}
-              className={`md:col-span-2 mx-auto ${CTA} disabled:opacity-60 disabled:cursor-not-allowed`}
-                  >
-                {sending ? "Sending..." : "Send Message"}
-              </button>
-            </form>
-          </div>
-        </section>
+                <div className="flex flex-col gap-2 md:col-span-2">
+                  <label htmlFor="author-subject" className="text-[12px] tracking-[0.14em] uppercase text-neutral-700/80">
+                    Subject <span className="normal-case tracking-normal text-neutral-700/60">(optional)</span>
+                  </label>
+                  <input
+                    id="author-subject"
+                    type="text"
+                    name="subject"
+                    className="rounded-[10px] border bg-white p-3 focus:outline-none focus:ring-1 focus:ring-[#dec09a]/60 focus:border-[#dec09a] transition text-sm"
+                    placeholder="What’s this about?"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2 md:col-span-2">
+                  <label htmlFor="author-message" className="text-[12px] tracking-[0.14em] uppercase text-neutral-700/80">
+                    Message
+                  </label>
+                  <textarea
+                    id="author-message"
+                    name="message"
+                    required
+                    minLength={10}
+                    className="rounded-[10px] border bg-white p-3 h-40 focus:outline-none focus:ring-1 focus:ring-[#dec09a]/60 focus:border-[#dec09a] transition resize-y text-sm"
+                    placeholder="What’s on your mind?"
+                  />
+                  <p className="text-[12px] text-neutral-700/60">
+                    Tip: If you’re writing about a specific book, mention the title.
+                  </p>
+                </div>
+
+                {/* hidden config */}
+                <input type="hidden" name="_subject" value="New message from AUTHOR page" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value="https://www.ffg-universe.com/author#contact" />
+
+                {/* spam honeypot */}
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor="company">Company</label>
+                  <input id="company" type="text" name="_honey" tabIndex={-1} autoComplete="off" />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={sending}
+                  className={`md:col-span-2 mx-auto ${CTA} disabled:opacity-60 disabled:cursor-not-allowed`}
+                >
+                  {sending ? "Sending..." : "Send Message"}
+                </button>
+              </form>
+            </div>
+          </section>
       </main>
 
       <footer className="relative bg-[#5b5a59] text-neutral-100">
