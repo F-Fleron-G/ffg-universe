@@ -549,7 +549,7 @@ export default function SpiritualPage() {
                 </div>
 
                 {/* RIGHT — IMAGE */}
-                <div className="flex justify-center">
+                <div className="flex justify-center md:justify-end">
                   <img
                     src="/spiritual/content/about-fatherhood.jpg"
                     alt="Walking uphill with my son in the forest"
