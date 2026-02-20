@@ -877,8 +877,6 @@ export default function SpiritualPage() {
           title="Recommended Books"
           topImageSrc="/spiritual/content/Book-Bg.png"
           topImageAlt="Recommended books: Self-Awareness, Meditation, Art of Living."
-          bottomImageSrc="/spiritual/content/Bottom-Book-Rec.png"
-          bottomImageAlt="Stack of favourite books with soft light"
           onPrev={() => openStep(prevOf("books"))}
           onNext={() => openStep(nextOf("books"))}
           stepText={`Part ${ORDER.indexOf("books")+1} of ${ORDER.length} • loops`}
@@ -914,6 +912,22 @@ export default function SpiritualPage() {
               and more on clarity, self-awareness, presence, and joy.
             </li>
           </ol>
+
+          <div className="mt-12 mb-8 flex justify-center">
+            <div className="relative w-full max-w-xl">
+
+              {/* Glow layer */}
+              <div className="absolute inset-0 -z-10 bg-white/5 blur-2xl opacity-50" />
+
+              {/* Image */}
+              <img
+                src="/spiritual/content/Bottom-Book-Rec.png"
+                alt="Recommended books stack"
+                className="w-full object-contain"
+              />
+
+            </div>
+          </div>
 
           <div className="mt-6">
             <div className="flex items-center gap-4 my-6 max-w-xl">
