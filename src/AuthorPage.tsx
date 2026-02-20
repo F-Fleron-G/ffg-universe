@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Home, CheckCircle2, AlertCircle, BookOpen } from "lucide-react";
+import { Home, CheckCircle2, AlertCircle, BookOpen, BookMarked } from "lucide-react";
 import PageHead from "./components/PageHead";
 
 const sections = [
@@ -347,16 +347,24 @@ export default function AuthorPage() {
               </p>
 
               <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-start">            
-                <div className="aspect-[2/3] flex items-center justify-center p-3 overflow-hidden -mt-6 sm:-mt-5 md:-mt-6">
-                  <img
-                    src="/the-alien-in-disguise.png"
-                    alt="The Alien In Disguise — Book cover"
-                    className="max-w-full max-h-full object-contain"
-                    loading="lazy"
-                  />
+                <div className="flex flex-col items-center justify-start p-3 overflow-hidden -mt-6 sm:-mt-5 md:-mt-6">
+  
+                  <div className="flex items-center justify-center w-full">
+                    <img
+                      src="/the-alien-in-disguise.png"
+                      alt="The Alien In Disguise — Book cover"
+                      className="w-full max-w-[360px] object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="-mt-4 sm:-mt-5 md:-mt-6 flex items-center justify-center gap-2 text-[12px] tracking-[0.10em] uppercase text-[#2f2e2c]/70">
+                    <BookMarked className="h-4 w-4 text-[#5b5a59]" aria-hidden="true" />
+                    <span>Available in eBook & Paperback</span>
+                  </div>
                 </div>
 
-                <div className="relative -mt-3 sm:-mt-4 md:mt-0 space-y-3 md:space-y-4 leading-6 text-neutral-900 text-center md:text-left md:max-w-prose md:ml-auto">
+    
+                <div className="relative mt-4 sm:-mt-4 md:mt-0 space-y-3 md:space-y-4 leading-6 text-neutral-900 text-center md:text-left md:max-w-prose md:ml-auto">
                   
                   <img
                   src="/author_debut.png"
@@ -498,150 +506,161 @@ export default function AuthorPage() {
         </section>
 
 
-      {/* BOOKS — three preview covers with full-size overlay */}
-      <section id="books" className="relative scroll-mt-24 py-24">
-        <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-[#5b5a59]">
-          <h2 className="text-3xl text-center mb-10 text-[#c4c3c0]">Books: Now & Next</h2>
+        {/* BOOKS — three preview covers with full-size overlay */}
+        <section id="books" className="relative scroll-mt-24 py-24">
+          <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-[#5b5a59]">
+            <h2 className="text-3xl text-center mb-10 text-[#c4c3c0]">Books: Now & Next</h2>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
-            {/* Card 1 */}
-            <div className="group relative flex flex-col items-center">
-              {/* Base cover */}
-              <div className="relative w-64 sm:w-56 md:w-60 aspect-[2/3] rounded-md overflow-hidden mx-auto
-                      ">
-                <img
-                  src="/el-alien-disfrazado.png"
-                  alt="El Alien Disfrazado — Book cover"
-                  className="absolute inset-0 w-full h-full object-cover md:object-contain"
-                  loading="lazy"
-                  decoding="async"
-                  fetchPriority="low"
-                />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+              {/* Card 1 */}
+              <div className="group relative flex flex-col items-center">
+                {/* Base cover */}
+                <div className="relative w-64 sm:w-56 md:w-60 aspect-[2/3] rounded-md overflow-hidden mx-auto
+                        ">
+                  <img
+                    src="/el-alien-disfrazado.png"
+                    alt="El Alien Disfrazado — Book cover"
+                    className="absolute inset-0 w-full h-full object-cover md:object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                  />
 
-                {/* Desktop overlay */}
-                <div
-                  className="hidden md:flex absolute inset-0 rounded-md bg-[rgba(255,255,255,0.8)] text-neutral-900 backdrop-blur-sm
-                            shadow-[0_8px_24px_rgba(0,0,0,0.25)] p-4 flex-col items-center justify-center
-                            opacity-0 translate-y-2 pointer-events-none transition border-2 border-[#000000]
-                            group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
-                  aria-hidden="true"
-                >
-                  <div className="w-full max-h-[50%]">
-                    <img 
-                      src="/Peek_Image_ES.png" 
-                      alt="Image from book El Alien Disfrazado" 
-                      className="w-full h-full object-contain rounded" 
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="low"
-                      />
+                  {/* Desktop overlay */}
+                  <div
+                    className="hidden md:flex absolute inset-0 rounded-md bg-[rgba(255,255,255,0.8)] text-neutral-900 backdrop-blur-sm
+                              shadow-[0_8px_24px_rgba(0,0,0,0.25)] p-4 flex-col items-center justify-center
+                              opacity-0 translate-y-2 pointer-events-none transition border-2 border-[#000000]
+                              group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
+                    aria-hidden="true"
+                  >
+                    <div className="w-full max-h-[50%]">
+                      <img 
+                        src="/Peek_Image_ES.png" 
+                        alt="Image from book El Alien Disfrazado" 
+                        className="w-full h-full object-contain rounded" 
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="low"
+                        />
+                    </div>
+                    <p className="text-sm leading-5 text-center mt-2 px-2 p-2">
+                      ¿Qué pasa cuando un “blob” alienígena se mete en un cuerpo humano y trata de entender la vida en la Tierra?
+                    </p>
+                    <a
+                      href="https://mybook.to/elaliendisfrazado"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={CTA}
+                    >
+                      Descúbrelo
+                    </a>
                   </div>
-                  <p className="text-sm leading-5 text-center mt-2 px-2 p-2">
-                    ¿Qué pasa cuando un “blob” alienígena se mete en un cuerpo humano y trata de entender la vida en la Tierra?
-                  </p>
-                  <a
-                    href="https://mybook.to/elaliendisfrazado"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={CTA}
-                  >
-                    Descúbrelo
-                  </a>
                 </div>
-              </div>
 
-              {/* Mobile details */}
-             <div className="md:hidden text-center w-64 sm:w-56 mx-auto mt-0 space-y-6">
-                  <p className="text-m leading-6 my-0">
-                    ¿Qué pasa cuando un “blob” alienígena se mete en un cuerpo humano y trata de entender la vida en la Tierra?
-                  </p>
-                  <a
-                    href="https://mybook.to/elaliendisfrazado"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={CTA}
-                  >
-                    Descúbrelo
-                  </a>
-              </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="group relative flex flex-col items-center">
-              <div className="relative w-64 sm:w-56 md:w-60 aspect-[2/3] overflow-hidden mx-auto">
-                <img
-                  src="/hi-i-am-dad.png"
-                  alt="Hi, I Am Dad — Book cover"
-                  className="absolute inset-0 w-full h-full object-contain"
-                  loading="lazy"
-                  decoding="async"
-                  fetchPriority="low"
-                />
-                <div
-                  className="hidden md:flex absolute inset-0 rounded-md bg-[rgba(255,255,255,0.8)] text-neutral-900 backdrop-blur-sm
-                            shadow-[0_8px_24px_rgba(0,0,0,0.25)] p-4 flex-col items-center justify-center
-                            opacity-0 translate-y-2 pointer-events-none transition border-2 border-[#000000]
-                            group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
-                  aria-hidden="true"
-                >
-                  <div className="w-full max-h-[50%]">
-                    <img 
-                      src="/C1-Loyalty.png" 
-                      alt="Image from book Hi, I Am Dad" 
-                      className="w-full h-full object-contain rounded"
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="low"
-                      />
-                  </div>
-
-                  <p className="text-sm leading-5 text-center mt-2 px-2 p-2">
-                    "You are more than what you produce. You are more than what you solve. You are worthy, even when you stop.”
-                  </p>
-                  <a
-                    href="https://mybook.to/hiamdad-fgf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={CTA}
-                  >
-                    Take A Peek
-                  </a>
-                </div>
-              </div>
-
+                {/* Mobile details */}
               <div className="md:hidden text-center w-64 sm:w-56 mx-auto mt-0 space-y-6">
-                  <p className="text-m leading-6 my-0">
-                    "You are more than what you produce. You are more than what you solve. You are worthy, even when you stop.”
-                  </p>
-                  <a
-                    href="https://mybook.to/hiamdad-fgf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={CTA}
-                  >
-                    Take A Peek
-                  </a>
+                    <p className="text-m leading-6 my-0">
+                      ¿Qué pasa cuando un “blob” alienígena se mete en un cuerpo humano y trata de entender la vida en la Tierra?
+                    </p>
+                    <a
+                      href="https://mybook.to/elaliendisfrazado"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={CTA}
+                    >
+                      Descúbrelo
+                    </a>
+                </div>
               </div>
-            </div>
 
-            {/* Card 3 */}
-            <div className="group relative flex flex-col items-center">
-              <div className="relative w-64 sm:w-56 md:w-60 aspect-[2/3] overflow-hidden mx-auto">
-                <img
-                  src="/NBR_2026.png"
-                  alt="Future Release 2026"
-                  className="absolute inset-0 w-full h-full object-contain"
-                  loading="lazy"
-                  decoding="async"
-                  fetchPriority="low"
-                />
+              {/* Card 2 */}
+              <div className="group relative flex flex-col items-center">
+                <div className="relative w-64 sm:w-56 md:w-60 aspect-[2/3] overflow-hidden mx-auto">
+                  <img
+                    src="/hi-i-am-dad.png"
+                    alt="Hi, I Am Dad — Book cover"
+                    className="absolute inset-0 w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                  />
+                  <div
+                    className="hidden md:flex absolute inset-0 rounded-md bg-[rgba(255,255,255,0.8)] text-neutral-900 backdrop-blur-sm
+                              shadow-[0_8px_24px_rgba(0,0,0,0.25)] p-4 flex-col items-center justify-center
+                              opacity-0 translate-y-2 pointer-events-none transition border-2 border-[#000000]
+                              group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
+                    aria-hidden="true"
+                  >
+                    <div className="w-full max-h-[50%]">
+                      <img 
+                        src="/C1-Loyalty.png" 
+                        alt="Image from book Hi, I Am Dad" 
+                        className="w-full h-full object-contain rounded"
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="low"
+                        />
+                    </div>
+
+                    <p className="text-sm leading-5 text-center mt-2 px-2 p-2">
+                      "You are more than what you produce. You are more than what you solve. You are worthy, even when you stop.”
+                    </p>
+                    <a
+                      href="https://mybook.to/hiamdad-fgf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={CTA}
+                    >
+                      Take A Peek
+                    </a>
+                  </div>
+                </div>
+
+                <div className="md:hidden text-center w-64 sm:w-56 mx-auto mt-0 space-y-6">
+                    <p className="text-m leading-6 my-0">
+                      "You are more than what you produce. You are more than what you solve. You are worthy, even when you stop.”
+                    </p>
+                    <a
+                      href="https://mybook.to/hiamdad-fgf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={CTA}
+                    >
+                      Take A Peek
+                    </a>
+                </div>
               </div>
-              
+
+              {/* Card 3 */}
+              <div className="relative flex flex-col items-center w-64 sm:w-56 md:w-60">
+                <div className="relative w-full aspect-[2/3] overflow-hidden rounded-md">
+                  <img
+                    src="/NBR_2026.png"
+                    alt="Next book release (2026) — cover teaser"
+                    className="absolute inset-0 w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                  />
+                </div>
+
+                <div className="mt-3 text-center text-[#c4c3c0]">
+                  <h3 className="text-[12px] tracking-[0.18em] uppercase text-[#dec09a]">
+                    Next release
+                  </h3>
+                  <p className="mt-2 text-[13px] leading-6 text-[#c4c3c0]/90">
+                    A new book in progress for 2026. Updates and previews will appear here.
+                  </p>
+                  <a href="#contact" className="mt-5 inline-flex justify-center w-44 btn-cta">
+                    Get updates
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-        </div>
+        </section>
+          </div>
 
         {/* Connector */}
         <div aria-hidden className="mx-auto w-[2px] h-24 bg-[#5b5a59]" />
@@ -651,7 +670,7 @@ export default function AuthorPage() {
           <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-white">
             <h2 className="text-3xl text-center mb-2">Drop Me a Line</h2>
             <p className="text-center mb-8 opacity-80">
-              If something resonates with you — or if you’re just curious — don’t hesitate to get in touch.
+              If something resonates with you — or if you're just curious — don't hesitate to get in touch.
             </p>
             <form
               action="https://formsubmit.co/e3a4e25ccb1ba58c8eb4d9477175cdcb"
