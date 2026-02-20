@@ -601,11 +601,38 @@ export default function MusicianPage() {
       <div id="home" />
       <PageHead
         title="Musician — It sounds like you"
-        description="Short previews of original songs by Frederic G. Fleron Grignard. Listen to 35-45 second clips and request to purchase a song or the full 6-song album."
+        description="Short previews of original songs by Frederic G. Fleron Grignard. Listen to 35–45 second clips and request to purchase a song or the full 6-song album."
         canonicalHref="https://www.ffg-universe.com/musician"
         ogTitle="Musician — It sounds like you"
-        ogDescription="Short previews of original songs by Frederic G. Fleron Grignard. Listen to 35-45 second clips and request to purchase a song or the full 6-song album."
+        ogDescription="Short previews of original songs by Frederic G. Fleron Grignard. Listen to 35–45 second clips and request to purchase a song or the full 6-song album."
         ogImage="https://www.ffg-universe.com/og/musician.jpg"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "MusicGroup",
+              "@id": "https://www.ffg-universe.com/#musicgroup",
+              "name": "Frederic G. Fleron Grignard",
+              "url": "https://www.ffg-universe.com/musician",
+              "image": "https://www.ffg-universe.com/og/musician.jpg",
+            },
+            {
+              "@type": "MusicAlbum",
+              "@id": "https://www.ffg-universe.com/musician#album",
+              "name": "It sounds like you",
+              "byArtist": { "@id": "https://www.ffg-universe.com/#musicgroup" },
+              "image": "https://www.ffg-universe.com/music/cover.jpg",
+              "url": "https://www.ffg-universe.com/musician",
+              "numTracks": 6,
+              "track": tracks.map((t, index) => ({
+                "@type": "MusicRecording",
+                "position": index + 1,
+                "name": t.title,
+                "url": `https://www.ffg-universe.com/musician#${t.id}`,
+              })),
+            },
+          ],
+        }}
       />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
