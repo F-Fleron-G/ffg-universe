@@ -8,6 +8,7 @@ type Props = {
   ogDescription?: string;
   ogImage?: string;
   canonicalHref?: string;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 };
 
 export default function PageHead({
@@ -18,6 +19,7 @@ export default function PageHead({
   ogDescription,
   ogImage,
   canonicalHref,
+  jsonLd,
 }: Props) {
   useEffect(() => {
     document.title = title;
@@ -98,8 +100,23 @@ export default function PageHead({
     setName("twitter:description", ogDescription ?? description);
     setName("twitter:image", absoluteImage);
 
+        // Structured data (JSON-LD)
+    const existingJsonLd = document.querySelector<HTMLScriptElement>(
+      "script[data-ffg='jsonld']"
+    );
 
-  }, [title, description, iconHref, ogTitle, ogDescription, ogImage, canonicalHref]);
+    if (jsonLd) {
+      const script = existingJsonLd ?? document.createElement("script");
+      script.type = "application/ld+json";
+      script.setAttribute("data-ffg", "jsonld");
+      script.text = JSON.stringify(jsonLd);
+      if (!existingJsonLd) document.head.appendChild(script);
+    } else if (existingJsonLd) {
+      existingJsonLd.remove();
+    }
+
+
+  }, [title, description, iconHref, ogTitle, ogDescription, ogImage, canonicalHref, jsonLd]);
 
   return null;
 }
