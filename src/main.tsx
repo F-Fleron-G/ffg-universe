@@ -23,6 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/artist" element={<ArtistPage />} />
         <Route path="/musician" element={<MusicianPage />} />
         <Route path="/spiritual" element={<SpiritualPage />} />
+        <Route path="/philosopher" element={<SpiritualPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

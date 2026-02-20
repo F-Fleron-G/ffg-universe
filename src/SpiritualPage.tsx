@@ -7,10 +7,21 @@ type TabId = "meditation" | "self" | "living" | "books";
 type TabDef = { id: TabId; label: string; iconSrc: string; alt: string };
 
 const TABS: TabDef[] = [
-  { id: "meditation", label: "Meditation",        iconSrc: "/spiritual/icons/Meditation.svg",         alt: "Meditation" },
-  { id: "self",       label: "Self-Awareness",    iconSrc: "/spiritual/icons/Awareness.svg",          alt: "Self-Awareness" },
-  { id: "living",     label: "Art of Living",     iconSrc: "/spiritual/icons/Art-Of-Living.svg",      alt: "Art of Living" },
-  { id: "books",      label: "Recommended Books", iconSrc: "/spiritual/icons/Recommended-Books.svg",  alt: "Recommended Books" },
+  { id: "meditation", label: "Meditation",        
+    iconSrc: "/spiritual/icons/Meditation.svg",         
+    alt: "Meditation" },
+  { id: "self",       
+    label: "Self-Awareness",    
+    iconSrc: "/spiritual/icons/Awareness.svg",          
+    alt: "Self-Awareness" },
+  { id: "living",     
+    label: "Art of Living",     
+    iconSrc: "/spiritual/icons/Art-Of-Living.svg",      
+    alt: "Art of Living" },
+  { id: "books",      
+    label: "Recommended Books", 
+    iconSrc: "/spiritual/icons/Recommended-Books.svg",  
+    alt: "Recommended Books" },
 ];
 
 const ORDER: TabId[] = ["self", "meditation", "living", "books"];
@@ -538,7 +549,7 @@ export default function SpiritualPage() {
                 </div>
 
                 {/* RIGHT — IMAGE */}
-                <div className="flex justify-center">
+                <div className="flex justify-center md:justify-end">
                   <img
                     src="/spiritual/content/about-fatherhood.jpg"
                     alt="Walking uphill with my son in the forest"
@@ -866,8 +877,6 @@ export default function SpiritualPage() {
           title="Recommended Books"
           topImageSrc="/spiritual/content/Book-Bg.png"
           topImageAlt="Recommended books: Self-Awareness, Meditation, Art of Living."
-          bottomImageSrc="/spiritual/content/Bottom-Book-Rec.png"
-          bottomImageAlt="Stack of favourite books with soft light"
           onPrev={() => openStep(prevOf("books"))}
           onNext={() => openStep(nextOf("books"))}
           stepText={`Part ${ORDER.indexOf("books")+1} of ${ORDER.length} • loops`}
@@ -877,29 +886,108 @@ export default function SpiritualPage() {
 
           <ol className="list-decimal list-inside space-y-2">
             <li>
+              <strong className="text-[#a28e72]">Tao Te Ching</strong> by Lao Tzu — Seemingly simple, yet endlessly deep. It 
+              challenges the mind and, at the same time, invites us to let go of concepts and return 
+              to what we are at the core.
+            </li>
+            <li>
+              <strong className="text-[#a28e72]">The Daily Stoic</strong> by Ryan Holiday — A practical daily guide to Stoic wisdom, built around short reflections that help you train attention, character, and resilience over time.
+            </li>  
+            <li>
               <strong className="text-[#a28e72]">The Alchemist</strong> by Paulo Coelho — A tale that reminds us everything we 
               seek is already close at hand, yet the journey outward is often what helps us realise it.
             </li>
+             <li>
+              <strong className="text-[#a28e72]">The Power of Now</strong> by Eckhart Tolle — A modern classic. It brings home 
+              a simple truth: the past is gone, the future is not here, and life can only be lived now.
+            </li> 
             <li>
               <strong className="text-[#a28e72]">The Fear Project</strong> by Jaimal Yogis — A clear-eyed look at fear, showing 
               how it is often misunderstood or misused, and how we can return to fear as a form of 
               intuition rather than insecurity.
-            </li>
-            <li>
-              <strong className="text-[#a28e72]">The Power of Now</strong> by Eckhart Tolle — A modern classic. It brings home 
-              a simple truth: the past is gone, the future is not here, and life can only be lived now.
-            </li>
-            <li>
-              <strong className="text-[#a28e72]">The Dao</strong> by Lao Tzu — Seemingly simple, yet endlessly deep. It 
-              challenges the mind and, at the same time, invites us to let go of concepts and return 
-              to what we are at the core.
-            </li>
+            </li>               
             <li>
               <strong className="text-[#a28e72]">Think and Grow Rich</strong> by Napoleon Hill — On the surface, it’s about 
               wealth. But beneath that, it reveals how what we manifest depends less on possessions 
               and more on clarity, self-awareness, presence, and joy.
             </li>
           </ol>
+
+          <div className="mt-12 mb-8 flex justify-center">
+            <div className="relative w-full max-w-xl">
+
+              {/* Glow layer */}
+              <div className="absolute inset-0 -z-10 bg-white/5 blur-2xl opacity-50" />
+
+              {/* Image */}
+              <img
+                src="/spiritual/content/Bottom-Book-Rec.png"
+                alt="Recommended books stack"
+                className="w-full object-contain"
+              />
+
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <div className="flex items-center gap-4 my-6 max-w-xl">
+              <span className="flex-1 h-px bg-[#a28e72]/40"></span>
+              <h3 className="text-sm tracking-[0.25em] text-[#a28e72] uppercase whitespace-nowrap">
+                My Books
+              </h3>
+              <span className="flex-1 h-px bg-[#a28e72]/40"></span>
+            </div>
+
+            <p className="mt-2 text-sm text-white/85">
+              If you'd like to see my writing, you can find my books on the{" "}
+              <a
+                href="/author"
+                className="text-[#a28e72] hover:underline decoration-current underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a28e72]"
+              >
+                Author page
+              </a>
+              .
+            </p>
+
+          <div className="mt-5 mx-auto grid w-full max-w-lg grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 place-items-center">
+            <a
+              href="/author"
+              className="group relative w-full max-w-[240px] sm:max-w-[220px]"
+            >
+
+              {/* soft backdrop/glow */}
+              <div className="absolute inset-0 -z-10 rounded-2xl bg-white/10 blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
+
+              {/* card */}
+              <div className="p-3">
+                <img
+                  src="/the-alien-in-disguise.png"
+                  alt="The Alien in Disguise — book by Frederic G. Fleron Grignard"
+                  className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+              </div>
+            </a>
+
+            <a
+              href="/author"
+              className="group relative w-full max-w-[240px] sm:max-w-[220px]"
+            >
+              {/* soft backdrop/glow */}
+              <div className="absolute inset-0 -z-10 rounded-2xl bg-white/10 blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
+
+              {/* card */}
+              <div className="p-3">
+                <img
+                  src="/hi-i-am-dad.png"
+                  alt="Hi, I am Dad — book by Frederic G. Fleron Grignard"
+                  className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+              </div>
+            </a>
+          </div>
+        </div>
 
             <p> 
               Books like these are not ends in themselves, but openings — pointers back to your own 
