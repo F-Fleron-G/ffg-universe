@@ -7,6 +7,7 @@ type Props = {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  canonicalHref?: string;
 };
 
 export default function PageHead({
@@ -16,9 +17,21 @@ export default function PageHead({
   ogTitle,
   ogDescription,
   ogImage,
+  canonicalHref,
 }: Props) {
   useEffect(() => {
     document.title = title;
+
+    // Canonical URL
+    if (canonicalHref) {
+      let link = document.querySelector<HTMLLinkElement>("link[rel='canonical']");
+      if (!link) {
+        link = document.createElement("link");
+        link.setAttribute("rel", "canonical");
+        document.head.appendChild(link);
+      }
+      link.setAttribute("href", canonicalHref);
+    }
 
     if (description) {
       let el = document.querySelector<HTMLMetaElement>('meta[name="description"]');
@@ -86,7 +99,7 @@ export default function PageHead({
     setName("twitter:image", absoluteImage);
 
 
-  }, [title, description, iconHref, ogTitle, ogDescription, ogImage]);
+  }, [title, description, iconHref, ogTitle, ogDescription, ogImage, canonicalHref]);
 
   return null;
 }
