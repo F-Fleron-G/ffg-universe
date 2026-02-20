@@ -605,7 +605,7 @@ export default function MusicianPage() {
         canonicalHref="https://www.ffg-universe.com/musician"
         ogTitle="Musician — It sounds like you"
         ogDescription="Short previews of original songs by Frederic G. Fleron Grignard. Listen to 35-45 second clips and request to purchase a song or the full 6-song album."
-        ogImage="/music/cover.jpg"
+        ogImage="https://www.ffg-universe.com/music/cover.jpg"
       />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
