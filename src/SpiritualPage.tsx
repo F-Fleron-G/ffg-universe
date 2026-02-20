@@ -901,7 +901,7 @@ export default function SpiritualPage() {
               a simple truth: the past is gone, the future is not here, and life can only be lived now.
             </li>
             <li>
-              <strong className="text-[#a28e72]">The Dao</strong> by Lao Tzu — Seemingly simple, yet endlessly deep. It 
+              <strong className="text-[#a28e72]">Tao Te Ching</strong> by Lao Tzu — Seemingly simple, yet endlessly deep. It 
               challenges the mind and, at the same time, invites us to let go of concepts and return 
               to what we are at the core.
             </li>
