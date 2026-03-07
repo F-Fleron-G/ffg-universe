@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from "react";
-import { Mail, Instagram, Github } from "lucide-react";
+import { Mail, Instagram, Github, Compass } from "lucide-react";
 import PageHead from "./components/PageHead";
 
 interface MenuItem {
@@ -108,7 +108,7 @@ export default function App() {
             speedDegPerSec={30}
             centerOffsetPct={{ x: 50, y: 30 }}
             center={
-            <div className="relative aspect-square w-[19rem] sm:w-[21rem] md:w-[25rem] lg:w-[29rem] xl:w-[32rem]">
+            <div className="relative aspect-square w-[min(19rem,78vw)] sm:w-[21rem] md:w-[25rem] lg:w-[29rem] xl:w-[32rem]">
               {/* Faint orbit ring */}
               <div 
                 className="absolute -inset-1 rounded-full border border-sky-400/25 pointer-events-none"
@@ -136,6 +136,11 @@ export default function App() {
             </div>
           }
           />
+        </div>
+        <div className="mt-4 md:mt-6 text-center text-sm md:text-base text-slate-300/60">
+          <p>
+            Discover my books, music, art, philosophy, and software engineering through the orbit above.
+          </p>
         </div>
       </section>
       
