@@ -38,8 +38,8 @@ export default function App() {
 
      <>
     <PageHead
-      title="Home – Frederic G. Fleron Grignard"
-      description="Official website of Frederic G. Fleron Grignard – engineer, author, artist, musician, and philosopher."
+      title="Home - Frederic G. Fleron Grignard"
+      description="Official website of Frederic G. Fleron Grignard - engineer, author, artist, musician, and philosopher."
       iconHref="/favicon.ico"
       ogImage="/og/home.jpg"
     />
@@ -65,7 +65,7 @@ export default function App() {
         </h1>
         <TypewriterParagraph
           text={
-            "Welcome to my Universe — a hand‑built space where you can explore my work."
+            "Welcome to my Universe — a hand-built space where you can explore my work."
           }
         />
       </section>
@@ -88,7 +88,7 @@ export default function App() {
           <div
             role="dialog"
             aria-modal="false"
-            className="absolute top-12 left-3 z-20 max-w-xs rounded-xl border border-white/15 bg-black/80 text-slate-100 p-3 text-sm shadow-lg backdrop-blur flex flex-col"  // ← added flex flex-col
+            className="absolute top-12 left-3 z-20 max-w-xs rounded-xl border border-white/15 bg-black/80 text-slate-100 p-3 text-sm shadow-lg backdrop-blur flex flex-col"
           >
               Tip: the labels orbiting my portrait are clickable — tap one to dive in. 
               <button
@@ -186,16 +186,29 @@ const TypewriterParagraph = memo(function TypewriterParagraph({
   const visible = text.slice(0, i);
   const parts = visible.split("\n\n");
 
-  return (
-    <div className="text-center md:text-center leading-relaxed whitespace-pre-line">
-      {parts.map((p, idx) => (
-        <p key={idx} className={idx === 0 ? "text-lg md:text-xl" : "mt-4 text-slate-300"}>
-          {p}
-          {idx === parts.length - 1 && i < text.length && (
-            <span className="border-r border-white/70 ml-0.5" style={{ animation: "blink 1s step-end infinite" }} />
-          )}
-        </p>
-      ))}
+    return (
+    <div className="relative text-center md:text-center leading-relaxed whitespace-pre-line">
+      <div className="invisible">
+        {text.split("\n\n").map((p, idx) => (
+          <p key={idx} className={idx === 0 ? "text-lg md:text-xl" : "mt-4 text-slate-300"}>
+            {p}
+          </p>
+        ))}
+      </div>
+
+      <div className="absolute inset-0">
+        {parts.map((p, idx) => (
+          <p key={idx} className={idx === 0 ? "text-lg md:text-xl" : "mt-4 text-slate-300"}>
+            {p}
+            {idx === parts.length - 1 && i < text.length && (
+              <span
+                className="border-r border-white/70 ml-0.5"
+                style={{ animation: "blink 1s step-end infinite" }}
+              />
+            )}
+          </p>
+        ))}
+      </div>
     </div>
   );
 });
