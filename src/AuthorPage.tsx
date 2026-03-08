@@ -5,8 +5,9 @@ import PageHead from "./components/PageHead";
 
 const sections = [
   { id: "about", label: "About Me" },
-  { id: "release", label: "Release" },
-  { id: "books", label: "Books" },
+  { id: "new-release", label: "New Release" },
+  { id: "release", label: "Debut Book" },
+  { id: "books", label: "More Books" },
   { id: "contact", label: "Contact Me" },
 ];
 
@@ -239,7 +240,7 @@ export default function AuthorPage() {
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 items-center md:items-start justify-center md:justify-start">
 
-                <a href="#release" className={CTA}>
+                <a href="#new-release" className={CTA}>
                   Explore my books
                 </a>
 
@@ -323,7 +324,7 @@ export default function AuthorPage() {
             className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-[#5b5a59]"
           />
 
-          {/* RELEASE */}
+          {/* NEW RELEASE */}
           <section id="new-release" className="relative scroll-mt-24 py-24">
             <div className="rounded-[10px] border-4 bg-[#9daca5] border-[#5b5a59] px-8 py-12 md:px-10 md:py-14"> 
 
