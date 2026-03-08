@@ -63,7 +63,7 @@ export default function AuthorPage() {
        <>
       <PageHead
         title="Author - Frederic G. Fleron Grignard"
-        description="Official author page of Frederic G. Fleron Grignard, writer of The Alien in Disguise and Hi, I am Dad. Explore books, biography, and latest releases."
+        description="Official author page of Frederic G. Fleron Grignard, author of Before the Reaction, The Alien in Disguise, and Hi, I am Dad. Explore books, biography, and latest releases."
         canonicalHref="https://www.ffg-universe.com/author"
         iconHref="/favicon.ico"
         ogImage="/og/author.jpg"
@@ -291,7 +291,7 @@ export default function AuthorPage() {
                 I'm Frederic G. Fleron Grignard — a trilingual author and lyricist, and the writer of the memoir <em>The Alien in Disguise</em>.
               </p>
               <p>
-                The book is also available in Spanish—not as a literal translation, but as a rewritten edition shaped to preserve the humor, tone, and cultural nuance of the original. I also wrote <em>Hi, I am Dad</em>, inspired by fatherhood and the quiet transformation it brings.
+                The book is also available in Spanish—not as a literal translation, but as a rewritten edition shaped to preserve the humor, tone, and cultural nuance of the original. I also wrote <em>Hi, I am Dad</em>, a modern reflection on the Ten Commandments told through the voice of a Divine Parent.
               </p>
 
               <p>
@@ -341,7 +341,7 @@ export default function AuthorPage() {
               </h2>
 
               <p className="text-base sm:text-lg md:text-xl tracking-wide mb-3 text-center">
-                A psychological novel about consciousness and the voice in our mind
+                A psychological novel about consciousness and the voice within
               </p>
 
               <p className="text-[12px] sm:text-[13px] tracking-[0.18em] uppercase text-[#2f2e2c]/70 text-center mb-6">
@@ -626,14 +626,14 @@ export default function AuthorPage() {
         {/* BOOKS — Now & Next */}
         <section id="books" className="relative scroll-mt-24 py-24">
           <div className="rounded-[10px] border-4 border-[#5b5a59] px-8 py-12 md:px-10 md:py-14 bg-[#5b5a59]">
-            <h2 className="text-3xl text-center mb-3 text-[#c4c3c0]">Books: Now & Next</h2>
+            <h2 className="text-3xl text-center mb-3 text-[#c4c3c0]">More Books</h2>
 
-            <p className="text-center text-[13px] leading-6 text-[#c4c3c0]/80 mb-10 max-w-[70ch] mx-auto">
-              Current releases include <em>El Alien Disfrazado</em> (Spanish edition of <em>The Alien in Disguise</em>) and
-              <em> Hi, I am Dad</em>. A new book is in progress for 2026.
+            <p className="text-center text-[13px] leading-6 text-[#c4c3c0]/80 mb-10 max-w-[75ch] mx-auto">
+             Additional titles include <em>El Alien Disfrazado</em> (Spanish edition of <em>The Alien in Disguise</em>) and
+            <em> Hi, I am Dad</em>, a modern reflection on the Ten Commandments told through the voice of a Divine Parent.
             </p>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center">
+            <div className="grid sm:grid-cols-2 gap-10 place-items-center max-w-2xl mx-auto">
               {/* Card 1 — Spanish edition */}
               <article className="group relative flex flex-col items-center w-64 sm:w-56 md:w-60">
                 <div className="relative w-full aspect-[2/3] rounded-md overflow-hidden">
@@ -756,32 +756,6 @@ export default function AuthorPage() {
                 </div>
               </article>
 
-              {/* Card 3 — Next release */}
-              <article className="relative flex flex-col items-center w-64 sm:w-56 md:w-60">
-                <div className="relative w-full aspect-[2/3] overflow-hidden rounded-md">
-                  <img
-                    src="/NBR_2026.png"
-                    alt="Next book release (2026) — cover teaser"
-                    className="absolute inset-0 w-full h-full object-contain"
-                    loading="lazy"
-                    decoding="async"
-                    fetchPriority="low"
-                  />
-                </div>
-
-                <div className="mt-5 text-center text-[#c4c3c0]">
-                  <h3 className="text-[12px] tracking-[0.18em] uppercase text-[#dec09a]">
-                    Next release (2026)
-                  </h3>
-                  <p className="mt-2 text-[13px] leading-6 text-[#c4c3c0]/90">
-                    A new book in progress. For updates and early previews, reach out via the contact section.
-                  </p>
-
-                  <a href="#contact" className={`${CTA} mt-5`}>
-                    Get updates
-                  </a>
-                </div>
-              </article>
             </div>
           </div>
         </section>
