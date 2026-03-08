@@ -16,6 +16,7 @@ const CTA = "btn-cta inline-flex items-center justify-center h-10 w-44 rounded-f
 export default function AuthorPage() {
   const [open, setOpen] = useState(false);
   const [showMoreRelease, setShowMoreRelease] = useState(false);
+  const [showMoreNewRelease, setShowMoreNewRelease] = useState(false);
 
   const [sending, setSending] = useState(false);
   const [toast, setToast] = useState<null | { type: "success" | "error"; text: string }>(null);
@@ -321,6 +322,132 @@ export default function AuthorPage() {
             aria-hidden
             className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-[#5b5a59]"
           />
+
+
+
+ {/* RELEASE */}
+          <section id="new-release" className="relative scroll-mt-24 py-24">
+            <div className="rounded-[10px] border-4 bg-[#9daca5] border-[#5b5a59] px-8 py-12 md:px-10 md:py-14"> 
+
+              <div className="mb-4 flex items-center justify-center gap-3 text-[12px] tracking-[0.22em] uppercase text-[#2f2e2c]/70">
+                <span className="h-px w-10 bg-[#2f2e2c]/25" aria-hidden="true" />
+                <span className="inline-flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" aria-hidden="true" />
+                  New release
+                </span>
+                <span className="h-px w-10 bg-[#2f2e2c]/25" aria-hidden="true" />
+              </div>
+
+              <h2 className="mb-2 text-center">
+                <span className="alien-title">BEFORE THE REACTION</span>
+              </h2>
+
+              <p className="text-base sm:text-lg md:text-xl tracking-wide mb-3 text-center">
+                A psychological novel about consciousness and the voice in our mind
+              </p>
+
+              <p className="text-[12px] sm:text-[13px] tracking-[0.18em] uppercase text-[#2f2e2c]/70 text-center mb-6">
+                Psychological Fiction · Consciousness · Identity
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-start">            
+                <div className="flex flex-col items-center justify-start p-3 overflow-hidden -mt-6 sm:-mt-5 md:-mt-6">
+  
+                  <div className="flex items-center justify-center w-full">
+                    <img
+                      src="/before-the-reaction-cover.png"
+                      alt="Before the Reaction — Book cover"
+                      className="w-full max-w-[360px] object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="-mt-4 sm:-mt-5 md:-mt-6 flex items-center justify-center gap-2 text-[12px] tracking-[0.10em] uppercase text-[#2f2e2c]/70">
+                    <BookMarked className="h-4 w-4 text-[#5b5a59]" aria-hidden="true" />
+                    <span>Available in all formats</span>
+                  </div>
+                </div>
+ 
+                <div className="relative mt-6 sm:mt-2 md:mt-2 space-y-3 md:space-y-4 leading-6 text-neutral-900 text-center md:text-left md:max-w-prose md:ml-auto">
+                  
+                  <p className="mt-2 md:mt-3">
+                  What if the voice in your mind wasn't really you?
+                  </p>
+
+                  <p>
+                  For most of his life, the narrator has lived with a quiet negotiation inside his own head — a second voice that calculates, judges, and reacts before he has time to think. It helps him navigate the world, but it also slowly replaces something else: the simple ability to live without constant inner commentary.
+                  </p>
+
+                {/* Collapsible content */}
+                <div
+                  id="new-release-more"
+                  className={`${showMoreNewRelease ? 'block' : 'hidden'} space-y-4`}
+                  aria-hidden={!showMoreNewRelease}
+                >
+                  <p>
+                    Then he discovers a man named Daniel Hale — someone who claims to live without the constant voice of thought that dominates most minds. What begins as curiosity slowly turns into obsession.
+                  </p>
+                  <p>
+                    As the narrator prepares to attend a small retreat in the north, he begins to question the voice that has guided him for years. Is it really helping him survive — or has it quietly taken control?
+                  </p>
+                </div>
+
+                {/* Toggle button */}
+                <button
+                  type="button"
+                  className="
+                    inline-block text-sm leading-5
+                    no-underline hover:underline
+                    decoration-neutral-800 decoration-[3px]
+                    underline-offset-4
+                    focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5b5a59]
+                  "
+                  aria-expanded={showMoreNewRelease}
+                  aria-controls="new-release-more"
+                  onClick={() => setShowMoreNewRelease(v => !v)}
+                >
+                  {showMoreNewRelease ? 'Read Less' : 'Read More'}
+                </button>                  
+                </div>        
+              </div> 
+
+              <div className="mt-8 flex flex-col items-center gap-3">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                  <a
+                    href="https://www.amazon.com/dp/B0GRNKW2ZK"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={CTA}
+                  >
+                    Buy on Amazon
+                  </a>
+
+                  <a
+                    href="#books"
+                    className="btn-cta inline-flex items-center justify-center h-10 w-44 rounded-full border border-[#5b5a59]/60 bg-white/30 text-[#2f2e2c] hover:bg-white/45 transition text-[14px] md:text-[13px] leading-none tracking-[0.02em]"
+                  >
+                    Read more books
+                  </a>
+                </div>
+
+                <p className="text-[12px] text-[#2f2e2c]/70 tracking-[0.02em] text-center">
+                  Curious? Scroll down to explore more.
+                </p>
+              </div>
+            </div>       
+          </section>     
+
+
+
+
+
+
+
+
+
+
+
+
+
 
           {/* RELEASE */}
           <section id="release" className="relative scroll-mt-24 py-24">
