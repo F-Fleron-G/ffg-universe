@@ -323,9 +323,7 @@ export default function AuthorPage() {
             className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-[#5b5a59]"
           />
 
-
-
- {/* RELEASE */}
+          {/* RELEASE */}
           <section id="new-release" className="relative scroll-mt-24 py-24">
             <div className="rounded-[10px] border-4 bg-[#9daca5] border-[#5b5a59] px-8 py-12 md:px-10 md:py-14"> 
 
@@ -436,28 +434,15 @@ export default function AuthorPage() {
             </div>       
           </section>     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
           {/* RELEASE */}
           <section id="release" className="relative scroll-mt-24 py-24">
-            <div className="rounded-[10px] border-4 bg-[#dec09a] border-[#5b5a59] px-8 py-12 md:px-10 md:py-14">  
+            <div className="rounded-[10px] border-4 bg-[#d8c2a6] border-[#5b5a59] px-8 py-10 md:px-10 md:py-12">  
 
               <div className="mb-4 flex items-center justify-center gap-3 text-[12px] tracking-[0.22em] uppercase text-[#2f2e2c]/70">
                 <span className="h-px w-10 bg-[#2f2e2c]/25" aria-hidden="true" />
                 <span className="inline-flex items-center gap-2">
                   <BookOpen className="h-4 w-4" aria-hidden="true" />
-                  Featured book
+                  Author debut
                 </span>
                 <span className="h-px w-10 bg-[#2f2e2c]/25" aria-hidden="true" />
               </div>
@@ -474,24 +459,24 @@ export default function AuthorPage() {
                 Memoir · Humor · Philosophy
               </p>
 
-              <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-start">            
-                <div className="flex flex-col items-center justify-start p-3 overflow-hidden -mt-6 sm:-mt-5 md:-mt-6">
+              <div className="grid md:grid-cols-[280px_minmax(0,1fr)] gap-4 sm:gap-6 md:gap-3 items-start">     
+                <div className="flex flex-col items-center md:items-start justify-start p-3 overflow-hidden -mt-6 sm:-mt-5 md:-mt-6 md:-ml-14">
   
                   <div className="flex items-center justify-center w-full">
                     <img
                       src="/the-alien-in-disguise.png"
                       alt="The Alien In Disguise — Book cover"
-                      className="w-full max-w-[360px] object-contain"
+                      className="w-full max-w-[240px] object-contain"
                       loading="lazy"
                     />
                   </div>
-                  <div className="-mt-4 sm:-mt-5 md:-mt-6 flex items-center justify-center gap-2 text-[12px] tracking-[0.10em] uppercase text-[#2f2e2c]/70">
+                  <div className="-mt-4 sm:-mt-5 md:-mt-6 flex w-full max-w-[240px] md:max-w-none items-center justify-center gap-2 text-[10px] tracking-[0.10em] uppercase text-[#2f2e2c]/70">
                     <BookMarked className="h-4 w-4 text-[#5b5a59]" aria-hidden="true" />
                     <span>Available in eBook & Paperback</span>
                   </div>
                 </div>
  
-                <div className="relative mt-4 sm:-mt-4 md:mt-0 space-y-3 md:space-y-4 leading-6 text-neutral-900 text-center md:text-left md:max-w-prose md:ml-auto">
+                <div className="relative mt-4 sm:-mt-4 md:mt-0 space-y-3 md:space-y-4 leading-6 text-neutral-900 text-center md:text-left md:max-w-[74ch] md:-ml-6">
                   
                   <img
                   src="/author_debut.png"
@@ -520,7 +505,7 @@ export default function AuthorPage() {
                   aria-hidden={!showMoreRelease}
                 >
                   <p>
-                    Told through the perspective of Blob—a curious, adaptable being from another planet—the book reflects on the confusion, contradictions, and beauty of human behaviour, emotions, and society. Blob isn’t here to conquer; only to understand. But fitting in proves far more difficult than anticipated.
+                    Through the eyes of Blob, a curious outsider, the story explores the humor and contradictions of being human.
                   </p>
                   <p>
                     This is a book for anyone who has ever felt out of place, misunderstood, or a little alien in their own world.
