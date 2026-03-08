@@ -137,7 +137,7 @@ export default function App() {
           }
           />
         </div>
-        <div className="mt-4 md:mt-6 text-center text-sm md:text-base text-slate-300/60 font-heading">
+        <div className="mt-4 md:mt-6 text-center text-sm md:text-base text-slate-300/60 font-heading tracking-wide">
           <p>
             Discover my books, music, art, philosophy, and software engineering through the orbit above.
           </p>
