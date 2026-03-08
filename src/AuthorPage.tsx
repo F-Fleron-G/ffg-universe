@@ -62,8 +62,8 @@ export default function AuthorPage() {
   return (
        <>
       <PageHead
-        title="Author - Frederic G. Fleron Grignard"
-        description="Official author page of Frederic G. Fleron Grignard, author of Before the Reaction, The Alien in Disguise, and Hi, I am Dad. Explore books, biography, and latest releases."
+        title="Frederic G. Fleron Grignard — Author | Official Website"
+        description="Official website of author Frederic G. Fleron Grignard, writer of Before the Reaction, The Alien in Disguise, and Hi, I am Dad. Discover books, biography, and latest releases."
         canonicalHref="https://www.ffg-universe.com/author"
         iconHref="/favicon.ico"
         ogImage="/og/author.jpg"
@@ -262,11 +262,11 @@ export default function AuthorPage() {
     
               <span className="inline-flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#dec09a]" />
-                Memoir themes: identity, meaning, resilience
+                Stories about identity and the human condition
               </span>
               <span className="inline-flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#dec09a]" />
-                Available in eBook and paperback
+                Available in eBook, paperback, and hardcover
               </span>
             </div>
 
@@ -286,12 +286,12 @@ export default function AuthorPage() {
             <p className="text-center text-[12px] tracking-[0.22em] uppercase text-[#2f2e2c]/70 mb-8">
               Entre les Mots et Moi
             </p>
-            <div className="space-y-4 mx-auto max-w-[50ch] text-[17px] text-center leading-6">
+            <div className="space-y-4 mx-auto max-w-[66ch] md:max-w-[68ch] text-[17px] text-center leading-6">
               <p>
-                I'm Frederic G. Fleron Grignard — a trilingual author and lyricist, and the writer of the memoir <em>The Alien in Disguise</em>.
+                I'm Frederic G. Fleron Grignard — a trilingual author and lyricist exploring identity, consciousness, and the human condition through story.
               </p>
               <p>
-                The book is also available in Spanish—not as a literal translation, but as a rewritten edition shaped to preserve the humor, tone, and cultural nuance of the original. I also wrote <em>Hi, I am Dad</em>, a modern reflection on the Ten Commandments told through the voice of a Divine Parent.
+                My books include the memoir <em>The Alien in Disguise</em>, its Spanish adaptation <em>El Alien Disfrazado</em>, the philosophical reflection <em>Hi, I am Dad</em>, and the psychological novel <em>Before the Reaction</em>.
               </p>
 
               <p>
@@ -902,8 +902,8 @@ export default function AuthorPage() {
             space-y-1
           "
         >
-          <p className="m-0">“New words are on the way.</p>
-          <p className="m-0">Check back for the next release!”</p>
+          <p className="m-0">“Stories written. Stories shared.</p>
+          <p className="m-0">Stories waiting to be discovered.”</p>
         </blockquote>
 
         {/* Center: copyright */}
