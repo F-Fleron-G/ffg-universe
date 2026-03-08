@@ -345,7 +345,7 @@ export default function AuthorPage() {
               </p>
 
               <p className="text-[12px] sm:text-[13px] tracking-[0.18em] uppercase text-[#2f2e2c]/70 text-center mb-6">
-                Psychological Fiction · Consciousness · Identity
+                Mind · Identity · Consciousness
               </p>
 
               <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-start">            
@@ -505,7 +505,7 @@ export default function AuthorPage() {
                   aria-hidden={!showMoreRelease}
                 >
                   <p>
-                    Through the eyes of Blob, a curious outsider, the story explores the humor and contradictions of being human.
+                    Through the eyes of Blob, a curious outsider, the story explores the humor and contradictions of being human. 
                   </p>
                   <p>
                     This is a book for anyone who has ever felt out of place, misunderstood, or a little alien in their own world.
