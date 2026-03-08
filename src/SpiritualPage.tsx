@@ -497,9 +497,9 @@ export default function SpiritualPage() {
           </section>
 
           <section className="mt-10 md:mt-12 block text-center max-w-2xl mx-auto">
-            <h3 className="uppercase tracking-wide">Start anywhere: it’s a cycle</h3>
+            <h3 className="uppercase tracking-wide">Start anywhere: it's a cycle</h3>
             <p className="mt-2 leading-relaxed whitespace-pre-line">
-              {"Self-Awareness, Meditation, the Art of Living, and the right Books continually feed each other.\nPick what calls you — you can’t start in the wrong place."}
+              {"Self-Awareness, Meditation, the Art of Living, and the right Books continually feed each other.\nPick what calls you — you can't start in the wrong place."}
             </p>
           </section>
 
@@ -949,7 +949,24 @@ export default function SpiritualPage() {
               .
             </p>
 
-          <div className="mt-5 mx-auto grid w-full max-w-lg grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 place-items-center">
+          <div className="mt-5 mx-auto grid w-full max-w-3xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 place-items-center">
+            <a
+              href="/author"
+              className="group relative w-full max-w-[240px] sm:max-w-[220px]"
+            >
+              {/* soft backdrop/glow */}
+              <div className="absolute inset-0 -z-10 rounded-2xl bg-white/10 blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
+
+              {/* card */}
+              <div className="p-3">
+                <img
+                  src="/before-the-reaction-cover.png"
+                  alt="Before the Reaction — book by Frederic G. Fleron Grignard"
+                  className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+              </div>
+            </a>
             <a
               href="/author"
               className="group relative w-full max-w-[240px] sm:max-w-[220px]"
