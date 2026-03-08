@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from "react";
-import { Mail, Instagram, Github, Compass } from "lucide-react";
+import { Mail, Instagram, Github } from "lucide-react";
 import PageHead from "./components/PageHead";
 
 interface MenuItem {
@@ -137,7 +137,7 @@ export default function App() {
           }
           />
         </div>
-        <div className="mt-4 md:mt-6 text-center text-sm md:text-base text-slate-300/60">
+        <div className="mt-4 md:mt-6 text-center text-sm md:text-base text-slate-300/60 font-heading">
           <p>
             Discover my books, music, art, philosophy, and software engineering through the orbit above.
           </p>
