@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from "react";
-import { Mail, Instagram, Github } from "lucide-react";
+import { Mail, Github, X, Check } from "lucide-react";
 import PageHead from "./components/PageHead";
 
 interface MenuItem {
@@ -30,9 +30,52 @@ function useMediaQuery(query: string) {
 
 export default function App() {
   const [showTip, setShowTip] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   const isMobile = useMediaQuery("(max-width: 640px)");
   const isTablet = useMediaQuery("(min-width: 641px) and (max-width: 1024px)");
+
+  const [sending, setSending] = useState(false);
+  const [formStatus, setFormStatus] = useState<null | { type: "success" | "error"; text: string }>(null);
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSending(true);
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      await fetch("https://formsubmit.co/fleron.frederic@gmail.com", {
+        method: "POST",
+        body: data,
+      });
+
+      setFormStatus({
+        type: "success",
+        text: "Your message has been sent.",
+      });
+
+      form.reset();
+    } catch {
+      setFormStatus({
+        type: "error",
+        text: "Something went wrong. Please try again.",
+      });
+    } finally {
+      setSending(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!formStatus) return;
+
+    const timeout = setTimeout(() => {
+      setFormStatus(null);
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, [formStatus]);
 
   return (
 
@@ -90,13 +133,100 @@ export default function App() {
             aria-modal="false"
             className="absolute top-12 left-3 z-20 max-w-xs rounded-xl border border-white/15 bg-black/80 text-slate-100 p-3 text-sm shadow-lg backdrop-blur flex flex-col"
           >
-              Tip: the labels orbiting my portrait are clickable — tap one to dive in. 
+              <div className="flex flex-col gap-2">
+                <span>
+                  Tip: the labels orbiting my portrait are clickable — tap one to dive in.
+                </span>
+
+                <span className="text-[11px] text-slate-300/60 italic flex flex-col leading-relaxed">
+                  <span>Sometimes, a shooting star passes by.</span>
+                  <span>If you see it… make a quiet wish.</span>
+                </span>
+              </div>
               <button
             onClick={() => setShowTip(false)}
             className="mt-2 self-end text-xs text-sky-300/60 hover:text-slate-100"
           >
             Got it
           </button>
+          </div>
+        )}
+
+        {showContactModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur">
+            <div className="w-full max-w-md mx-4 rounded-xl border border-white/15 bg-black/80 text-slate-100 p-6 shadow-lg">
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  aria-label="Close contact"
+                  onClick={() => setShowContactModal(false)}
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition"
+                >
+                  <X className="h-4 w-4 text-white/70" />
+                </button>
+              </div>
+              <form onSubmit={handleContactSubmit} className="flex flex-col gap-3">
+                
+                <h2 className="font-heading tracking-wide text-sky-300/60 text-lg mb-2">
+                  Contact
+                </h2>
+
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                  className="w-full rounded-md bg-white/5 border border-white/10 px-3 py-2 text-sm placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-sky-300/30 focus:border-sky-300/40"
+                />
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your email"
+                  required
+                  className="w-full rounded-md bg-white/5 border border-white/10 px-3 py-2 text-sm placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-sky-300/30 focus:border-sky-300/40"
+                />
+
+                <textarea
+                  name="message"
+                  placeholder="Your message"
+                  required
+                  rows={4}
+                  className="w-full rounded-md bg-white/5 border border-white/10 px-3 py-2 text-sm placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-sky-300/30 focus:border-sky-300/40"
+                />
+
+                <input type="hidden" name="_subject" value="New message from LANDING page" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+
+                <button
+                  type="submit"
+                  disabled={sending}
+                  className="mt-2 rounded-md bg-sky-400/20 border border-sky-300/40 px-4 py-2 text-sm text-slate-100 hover:bg-sky-400/30 transition disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {sending ? "Sending..." : "Send"}
+                </button>
+
+                {formStatus && (
+                  <div
+                    role="status"
+                    aria-live="polite"
+                    className={`mt-2 rounded-md border px-3 py-2 text-sm flex items-center gap-2 ${
+                      formStatus.type === "success"
+                        ? "border-sky-300/30 bg-sky-400/10 text-slate-100"
+                        : "border-red-400/30 bg-red-400/10 text-slate-100"
+                    }`}
+                  >
+                    {formStatus.type === "success" && (
+                      <Check className="h-4 w-4 text-sky-300/80 shrink-0" />
+                    )}
+
+                    <span>{formStatus.text}</span>
+                  </div>
+                )}
+
+              </form>
+            </div>
           </div>
         )}
 
@@ -154,17 +284,18 @@ export default function App() {
         </div>
        
           <div className="flex space-x-6 mt-2 md:mt-0">
-            <a
-              href="mailto:fleron.frederic@gmail.com?subject=Hello from FFG Universe&body=Hi Frederic,"
-              className="text-sky-300/60 hover:text-slate-200 transition"
+            <button
+              type="button"
+              onClick={() => {
+                setFormStatus(null);
+                setShowContactModal(true);
+              }}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sky-300/60 transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/50 hover:bg-sky-300/10 hover:text-slate-100"
               aria-label="Email"
             >
               <Mail className="h-5 w-5" />
-            </a>
-            <a href="https://instagram.com/fleronverse" target="_blank" rel="noreferrer" className="text-sky-300/60 hover:text-slate-200 transition" aria-label="Instagram">
-              <Instagram className="h-5 w-5" />
-            </a>
-            <a href="https://github.com/F-Fleron-G" target="_blank" rel="noreferrer" className="text-sky-300/60 hover:text-slate-200 transition" aria-label="GitHub">
+            </button>
+            <a href="https://github.com/F-Fleron-G" target="_blank" rel="noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sky-300/60 transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/50 hover:bg-sky-300/10 hover:text-slate-100" aria-label="GitHub">
               <Github className="h-5 w-5" />
             </a>
           </div>
