@@ -148,8 +148,8 @@ export default function App() {
         )}
 
         {showContactModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur">
-            <div className="w-full max-w-md mx-4 rounded-xl border border-white/15 bg-black/80 text-slate-100 p-6 shadow-lg">
+          <div className="fixed inset-0 z-50 flex rounded-3xl border-none items-center justify-center bg-black/90 backdrop-blur-md">
+            <div className="w-full max-w-md mx-4 rounded-xl border border-sky-300/40 bg-black/80 text-slate-100 p-6 shadow-lg">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-heading tracking-wide text-sky-300/60 text-[22px]">
                   Contact
