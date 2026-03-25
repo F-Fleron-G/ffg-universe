@@ -137,11 +137,6 @@ export default function App() {
                 <span>
                   Tip: the labels orbiting my portrait are clickable — tap one to dive in.
                 </span>
-
-                <span className="text-[11px] text-slate-300/60 italic flex flex-col leading-relaxed">
-                  <span>Sometimes, a shooting star passes by.</span>
-                  <span>If you see it… make a quiet wish.</span>
-                </span>
               </div>
               <button
             onClick={() => setShowTip(false)}
@@ -155,7 +150,11 @@ export default function App() {
         {showContactModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur">
             <div className="w-full max-w-md mx-4 rounded-xl border border-white/15 bg-black/80 text-slate-100 p-6 shadow-lg">
-              <div className="flex justify-end">
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="font-heading tracking-wide text-sky-300/80 text-2xl">
+                  Contact
+                </h2>
+
                 <button
                   type="button"
                   aria-label="Close contact"
@@ -165,11 +164,8 @@ export default function App() {
                   <X className="h-4 w-4 text-white/70" />
                 </button>
               </div>
+
               <form onSubmit={handleContactSubmit} className="flex flex-col gap-3">
-                
-                <h2 className="font-heading tracking-wide text-sky-300/60 text-lg mb-2">
-                  Contact
-                </h2>
 
                 <input
                   type="text"
