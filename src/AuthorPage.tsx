@@ -123,7 +123,7 @@ export default function AuthorPage() {
         >
           <Home className="h-5 w-5" />
         </a>
-        <nav className="mx-auto max-w-6xl px-4 pt-3 pb-[2px] flex items-center justify-between">
+        <nav className="mx-auto max-w-6xl px-4 pt-3 pb-2 md:pb-3 flex items-center justify-between">
           {/* Logo + Brand */}
           <div className="flex items-center gap-2 font-semibold tracking-wide select-none">
             <img
