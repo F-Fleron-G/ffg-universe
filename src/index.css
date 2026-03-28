@@ -12,6 +12,11 @@
 
 html { scroll-behavior: smooth; }
 
+html,
+body {
+  background-color: #000000;
+}
+
 /* Artist page custom styles */
 .page-paper {
   background-color: white;               
