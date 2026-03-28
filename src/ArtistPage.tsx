@@ -454,7 +454,7 @@ export default function ArtistPage() {
               ogImage="/og/artist.jpg"
             />
 
-    <div id="top" className="artist-page min-h-screen text-neutral-900 overflow-x-hidden">
+    <div id="top" className="artist-page min-h-screen text-neutral-900 overflow-x-hidden bg-white">
     
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Patrick+Hand&display=swap');
