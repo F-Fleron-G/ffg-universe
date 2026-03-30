@@ -107,8 +107,6 @@ function PolaroidSlider({
     setThumbIndex(0);
   };
 
-
-
   return (
     <>
       <div
@@ -361,6 +359,8 @@ export default function ArtistPage() {
 
   const [open, setOpen] = useState(false);
 
+  const [zoomedImage, setZoomedImage] = useState<null | { src: string; alt: string }>(null);
+
   const [sending, setSending] = useState(false);
   const [toast, setToast] = useState<null | { type: "success" | "error"; text: string }>(null);
 
@@ -371,6 +371,40 @@ export default function ArtistPage() {
 
   const canGoPrev = page > 0;
   const canGoNext = page < pageCount - (isSpread ? 2 : 1);
+
+  const drawingPages = [
+    {
+      src: "/1.jpg",
+      alt: "Ink drawing of a small figure lifting upward against gravity with one hand raised toward the sky.",
+    },
+    {
+      src: "/2.jpg",
+      alt: "Ink drawing of a child hugging a large friendly monster while building a sandcastle.",
+    },
+    {
+      src: "/3.jpg",
+      alt: "Ink drawing of a man carrying a guitar case, walking with a ball and chain tied to his ankle.",
+    },
+    {
+      src: "/4.jpg",
+      alt: "Ink drawing of a person on a bicycle leaning into wind and rain with swirling lines around them.",
+    },
+    {
+      src: "/5.jpg",
+      alt: "Ink drawing of a person in a tree feeding chili peppers to the sun, which sweats into clouds and rain over chili plants.",
+    },
+    {
+      src: "/6.jpg",
+      alt: "Ink drawing of a figure hanging from a guitar string beneath an angelic presence, symbolizing fragile dreams saved by compassion and light.",
+    },
+  ] as const;
+
+  const getCurrentDrawing = () => {
+    if (page % 2 === 1) {
+      return drawingPages[Math.floor(page / 2)] ?? null;
+    }
+    return null;
+  };
 
   const updateSpread = () => {
   const api = bookRef.current?.pageFlip?.();
@@ -438,11 +472,15 @@ export default function ArtistPage() {
 
 
   useEffect(() => {
-    if (!showTip) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setShowTip(false); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setShowTip(false);
+        setZoomedImage(null);
+      }
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [showTip]);
+  }, []);
 
 
   return (
@@ -1026,6 +1064,25 @@ export default function ArtistPage() {
                  className="max-h-full max-w-full object-contain mx-auto" />
               </div>
             </HTMLFlipBook>
+
+              {getCurrentDrawing() && (
+                <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 z-10">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const drawing = getCurrentDrawing();
+                      if (drawing) setZoomedImage(drawing);
+                    }}
+                    className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/90 px-3 py-1.5 text-xs text-neutral-900 shadow-sm backdrop-blur hover:bg-white transition"
+                    aria-label="Tap to zoom in"
+                    title="Tap to zoom in"
+                  >
+                    <ImageIcon className="h-3.5 w-3.5" aria-hidden="true" />
+                    Tap to zoom in
+                  </button>
+                </div>
+              )}
+
               {/* Back button */}
                 {canGoPrev && (
                   <button
@@ -1042,7 +1099,7 @@ export default function ArtistPage() {
                   </button>
                 )}
 
-                {/* Next button */}
+              {/* Next button */}
                 {canGoNext && (
                   <button
                     type="button"
@@ -1058,7 +1115,8 @@ export default function ArtistPage() {
                   </button>
                 )}
           </div>
-        </section>
+        <div className="h-10" aria-hidden />
+      </section>
 
         {/* Separator — centered only */}
         <div className="my-8 sm:my-12 flex justify-center">
@@ -1396,6 +1454,39 @@ export default function ArtistPage() {
         </div>
       )}
     </div>
+
+    {zoomedImage && (
+      <div
+        className="fixed inset-0 z-[120] bg-white flex items-center justify-center p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Expanded artwork image"
+        onClick={() => setZoomedImage(null)}
+      >
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setZoomedImage(null);
+          }}
+          className="fixed top-3 right-3 z-[130] inline-flex h-8 w-8 items-center justify-center rounded-full bg-black text-white shadow hover:bg-white/80 transition"
+          aria-label="Close expanded image"
+        >
+          <XIcon size={16} />
+        </button>
+
+        <div
+          className="relative max-h-[92dvh] max-w-[92vw] overflow-auto"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <img
+            src={zoomedImage.src}
+            alt={zoomedImage.alt}
+            className="block h-auto max-h-[92dvh] w-auto max-w-none object-contain"
+          />
+        </div>
+      </div>
+    )}
     </>
   );
 }
