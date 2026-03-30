@@ -1168,7 +1168,7 @@ export default function MusicianPage() {
 
       {legalOpen && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto p-3 sm:p-4"
           role="dialog"
           aria-modal="true"
           aria-label="Legal terms dialog"
@@ -1177,7 +1177,7 @@ export default function MusicianPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/60 backdrop-blur-md" />
 
           <div
-            className="relative w-full max-w-2xl rounded-3xl bg-[#fbfaf7] ring-1 ring-black/10 shadow-[0_35px_110px_-40px_rgba(0,0,0,0.65)] p-6 md:p-8"
+            className="relative w-full max-w-2xl max-h-[calc(100dvh-2rem)] overflow-hidden rounded-3xl bg-[#fbfaf7] ring-1 ring-black/10 shadow-[0_35px_110px_-40px_rgba(0,0,0,0.65)] p-5 md:p-8"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
@@ -1196,8 +1196,8 @@ export default function MusicianPage() {
               </button>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-black/10">
-              <div className="space-y-4 text-[15px] md:text-[16px] text-black/80">
+            <div className="mt-6 border-t border-black/10 pt-6 pb-6 max-h-[calc(100dvh-10rem)] overflow-y-auto pr-3">
+             <div className="space-y-4 text-[15px] md:text-[16px] text-black/80">
                 <p className="leading-relaxed opacity-90">
                   <strong>Preview-only listening:</strong> The audio on this page consists of short previews intended for
                   evaluation. Full tracks are shared privately upon purchase.
