@@ -131,13 +131,13 @@ export default function AuthorPage() {
           >
             <Home className="h-5 w-5" />
           </a>
-          <nav className="mx-auto max-w-6xl px-4 pt-3 pb-2 md:pb-3 flex items-center justify-between">
+          <nav className="mx-auto max-w-6xl px-4 pt-3 pb-[2px] min-h-[90px] md:min-h-[142px] flex items-center justify-between">
             {/* Logo + Brand */}
             <div className="flex items-center gap-2 font-semibold tracking-wide select-none">
               <img
                 src="/FGF_Logo.png"
                 alt="FGF logo"
-                className="h-10 md:h-[84px] w-auto"
+                className="h-14 md:h-24 w-auto"
                 loading="lazy"
                 decoding="async"
                 fetchPriority="low"
@@ -183,7 +183,7 @@ export default function AuthorPage() {
           </nav>
 
           {open && (
-            <div className="md:hidden border-t border-black/10 bg-white/95 backdrop-blur">
+            <div className="md:hidden border-t border-black/10 bg-white/80 backdrop-blur">
               <ul className="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3">
                 {sections.map((s) => (
                   <li key={s.id}>
