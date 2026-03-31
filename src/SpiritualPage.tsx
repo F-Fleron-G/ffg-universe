@@ -407,7 +407,7 @@ export default function SpiritualPage() {
             <Home className="h-5 w-5" />
           </a>
 
-          <nav className="mx-auto max-w-6xl px-4 pt-3 pb-[2px] flex items-center justify-between">
+          <nav className="mx-auto max-w-6xl px-4 pt-3 pb-[2px] min-h-[78px] md:min-h-[142px] flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-2 select-none">
               <img
@@ -465,7 +465,7 @@ export default function SpiritualPage() {
 
           {/* Mobile drawer */}
           {menuOpen && (
-            <div className="md:hidden border-t border-white/10 bg-black/80 backdrop-blur">
+            <div className="md:hidden border-t border-white/10 bg-black/60 backdrop-blur">
               <ul className="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3">
                 {[
                   { id: "cycle", label: "Cycle" },
