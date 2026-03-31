@@ -1,6 +1,17 @@
 import { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { Home, Music4, Info, X, Mail, CircleCheckBig, AlertCircle, Scale, CheckCircle2, CircleAlert } from "lucide-react";
+import {
+  Home,
+  Music4,
+  Info,
+  X,
+  Mail,
+  CircleCheckBig,
+  AlertCircle,
+  Scale,
+  CheckCircle2,
+  CircleAlert,
+} from "lucide-react";
 
 import PageHead from "./components/PageHead";
 
@@ -103,8 +114,7 @@ export default function MusicianPage() {
         Go bounce somewhere
         Hey go bounce, yes go bounce
         Go bounce around 
-        Go bounce somewhere`
-        ,
+        Go bounce somewhere`,
       },
       {
         id: "fast_train",
@@ -178,8 +188,7 @@ export default function MusicianPage() {
         And how my life had been much more
         Than figuring out
         How to go on 
-        How to go on`
-        ,
+        How to go on`,
       },
       {
         id: "feel_alive",
@@ -344,8 +353,7 @@ export default function MusicianPage() {
         Like I was given the chance
         To get what I want
         But I held back
-        I held back`
-        ,
+        I held back`,
       },
       {
         id: "lovely_in_the_sun",
@@ -496,7 +504,7 @@ export default function MusicianPage() {
         Before it's too late`,
       },
     ],
-    []
+    [],
   );
 
   const [open, setOpen] = useState(false);
@@ -509,16 +517,22 @@ export default function MusicianPage() {
   ] as const;
 
   const [howItWorksOpen, setHowItWorksOpen] = useState(false);
-  
+
   const [lyricsOpen, setLyricsOpen] = useState(false);
   const [activeTrack, setActiveTrack] = useState<Track | null>(null);
-  
-  const [legalOpen, setLegalOpen] = useState(false);
-  
-  const [sending, setSending] = useState(false);
-  const [toast, setToast] = useState<null | { type: "success" | "error"; text: string }>(null);
 
-  const [contactPreset, setContactPreset] = useState<null | { subject?: string; message?: string }>(null);
+  const [legalOpen, setLegalOpen] = useState(false);
+
+  const [sending, setSending] = useState(false);
+  const [toast, setToast] = useState<null | {
+    type: "success" | "error";
+    text: string;
+  }>(null);
+
+  const [contactPreset, setContactPreset] = useState<null | {
+    subject?: string;
+    message?: string;
+  }>(null);
   const [contactSubject, setContactSubject] = useState("");
   const [contactMessage, setContactMessage] = useState("");
 
@@ -540,8 +554,10 @@ export default function MusicianPage() {
 
   useEffect(() => {
     if (!contactPreset) return;
-    if (contactPreset.subject !== undefined) setContactSubject(contactPreset.subject);
-    if (contactPreset.message !== undefined) setContactMessage(contactPreset.message);
+    if (contactPreset.subject !== undefined)
+      setContactSubject(contactPreset.subject);
+    if (contactPreset.message !== undefined)
+      setContactMessage(contactPreset.message);
   }, [contactPreset]);
 
   function scrollTo(ref: React.RefObject<HTMLElement | null>) {
@@ -612,23 +628,23 @@ export default function MusicianPage() {
             {
               "@type": "MusicGroup",
               "@id": "https://www.ffg-universe.com/#musicgroup",
-              "name": "Frederic G. Fleron Grignard",
-              "url": "https://www.ffg-universe.com/musician",
-              "image": "https://www.ffg-universe.com/og/musician.jpg",
+              name: "Frederic G. Fleron Grignard",
+              url: "https://www.ffg-universe.com/musician",
+              image: "https://www.ffg-universe.com/og/musician.jpg",
             },
             {
               "@type": "MusicAlbum",
               "@id": "https://www.ffg-universe.com/musician#album",
-              "name": "It sounds like you",
-              "byArtist": { "@id": "https://www.ffg-universe.com/#musicgroup" },
-              "image": "https://www.ffg-universe.com/music/cover.jpg",
-              "url": "https://www.ffg-universe.com/musician",
-              "numTracks": 6,
-              "track": tracks.map((t, index) => ({
+              name: "It sounds like you",
+              byArtist: { "@id": "https://www.ffg-universe.com/#musicgroup" },
+              image: "https://www.ffg-universe.com/music/cover.jpg",
+              url: "https://www.ffg-universe.com/musician",
+              numTracks: 6,
+              track: tracks.map((t, index) => ({
                 "@type": "MusicRecording",
-                "position": index + 1,
-                "name": t.title,
-                "url": `https://www.ffg-universe.com/musician#${t.id}`,
+                position: index + 1,
+                name: t.title,
+                url: `https://www.ffg-universe.com/musician#${t.id}`,
               })),
             },
           ],
@@ -651,16 +667,17 @@ export default function MusicianPage() {
 
       `}</style>
 
-
       {/* Header */}
       <header className="bg-black/5 backdrop-blur border-b border-black/10 relative">
-
         <Link
           to="/"
           aria-label="Back to landing page"
           title="Back to landing page"
           className="hidden md:flex items-center justify-center h-10 w-10 rounded-full border border-[#000000] hover:bg-black/5 transition absolute"
-          style={{ top: 12, right: "calc((100vw - min(100vw, 72rem))/2 + 1rem)" }}
+          style={{
+            top: 12,
+            right: "calc((100vw - min(100vw, 72rem))/2 + 1rem)",
+          }}
         >
           <Home className="h-5 w-5" />
         </Link>
@@ -668,7 +685,11 @@ export default function MusicianPage() {
         <nav className="mx-auto max-w-6xl px-4 pt-3 pb-[2px] flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2 font-semibold tracking-wide select-none">
-            <img src="/music/logo.png" alt="Musician logo" className="h-16 md:h-32 w-auto" />
+            <img
+              src="/music/logo.png"
+              alt="Musician logo"
+              className="h-16 md:h-32 w-auto"
+            />
           </div>
 
           {/* Desktop nav */}
@@ -700,7 +721,14 @@ export default function MusicianPage() {
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <svg
+              className="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
               <path d="M3 6h18M3 12h18M3 18h18" />
             </svg>
           </button>
@@ -728,7 +756,11 @@ export default function MusicianPage() {
               ))}
 
               <li className="pt-2 mt-1 border-t border-black/10">
-                <Link to="/" className="flex items-center gap-2 py-2 text-sm hover:opacity-70" onClick={() => setOpen(false)}>
+                <Link
+                  to="/"
+                  className="flex items-center gap-2 py-2 text-sm hover:opacity-70"
+                  onClick={() => setOpen(false)}
+                >
                   <Home className="h-6 w-6 p-1 rounded-full border border-black/15 hover:bg-black/5" />
                   Home
                 </Link>
@@ -743,13 +775,18 @@ export default function MusicianPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           {/* Text */}
           <div>
-            <p className="text-sm uppercase tracking-[0.22em] opacity-70">Album</p>
+            <p className="text-sm uppercase tracking-[0.22em] opacity-70">
+              Album
+            </p>
             <h1 className="mt-3 text-4xl md:text-6xl leading-tight">
               It sounds like you
             </h1>
             <div className="mt-4 flex items-start gap-2 max-w-xl text-black/80">
               <p className="mt-4 max-w-xl text-black/80">
-                Short previews of original songs — written to give voice, tone, and melody to the things life puts us through. If something resonates, you can request to purchase a song or the full 6-song album.
+                Short previews of original songs — written to give voice, tone,
+                and melody to the things life puts us through. If something
+                resonates, you can request to purchase a song or the full 6-song
+                album.
                 <button
                   type="button"
                   onClick={() => setHowItWorksOpen(true)}
@@ -759,7 +796,6 @@ export default function MusicianPage() {
                   <Info size={20} strokeWidth={1.5} />
                 </button>
               </p>
-
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -787,9 +823,7 @@ export default function MusicianPage() {
                 className="w-full max-w-[420px] rounded-2xl object-cover"
               />
             </div>
-            <p
-              className="mt-3 text-xs text-black/50 text-center md:text-right"
-            >
+            <p className="mt-3 text-xs text-black/50 text-center md:text-right">
               Original composition & artwork
             </p>
           </div>
@@ -801,29 +835,42 @@ export default function MusicianPage() {
         <div className="bg-black/5 border-y border-black/10">
           <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
             <div className="grid md:grid-cols-2 gap-8 items-center">
+              {/* Profile image */}
+              <div className="flex justify-center md:justify-start items-end -mb-10 md:-mb-10">
+                <img
+                  src="/music/about.png"
+                  alt="Frederic G. Fleron Grignard"
+                  className="w-full max-w-[600px] h-auto"
+                />
+              </div>
 
-            {/* Profile image */}
-            <div className="flex justify-center md:justify-start items-end -mb-10 md:-mb-10">
-              <img
-                src="/music/about.png"
-                alt="Frederic G. Fleron Grignard"
-                className="w-full max-w-[600px] h-auto"
-              />
-            </div>
-
-            {/* About text */}
-            <div className="mt-4 md:mt-4">
-              <h2 className="text-3xl md:text-4xl">About</h2>
-                <p className="mt-3 text-sm md:text-base opacity-85" style={{ lineHeight: "1.5" }}>
-                  Music is how my soul sounds when it speaks. It carries the footsteps of the places I have walked, the faces that stayed with me, and the feelings that asked to be heard. Each song arrives like a memory returning, dressed in melody, shaped into words, and offered as it came to me.
-                  <br /><br />
-                  These songs are pieces of a lived life, carried by melody, shaped by time, and left open so each listener may find their own reflection inside them.
-                  <br /><br />
+              {/* About text */}
+              <div className="mt-4 md:mt-4">
+                <h2 className="text-3xl md:text-4xl">About</h2>
+                <p
+                  className="mt-3 text-sm md:text-base opacity-85"
+                  style={{ lineHeight: "1.5" }}
+                >
+                  Music is how my soul sounds when it speaks. It carries the
+                  footsteps of the places I have walked, the faces that stayed
+                  with me, and the feelings that asked to be heard. Each song
+                  arrives like a memory returning, dressed in melody, shaped
+                  into words, and offered as it came to me.
+                  <br />
+                  <br />
+                  These songs are pieces of a lived life, carried by melody,
+                  shaped by time, and left open so each listener may find their
+                  own reflection inside them.
+                  <br />
+                  <br />
                   Welcome. I'm Frederic G. Fleron Grignard.
                   <br />
                   <span
                     className="block mt-4 text-[clamp(8px,3.2vw,12px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] opacity-90 text-[#7a8b93]"
-                    style={{ fontFamily: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif" }}
+                    style={{
+                      fontFamily:
+                        "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
+                    }}
                   >
                     Musician · Backpacker · Songweaver
                   </span>
@@ -839,31 +886,33 @@ export default function MusicianPage() {
         <h2 className="text-3xl md:text-4xl">Preview Tracks</h2>
         <div className="flex items-center justify-between gap-4 text-sm md:text-base text-black/70">
           <p>
-            35-45 second previews. Full tracks are shared privately upon purchase.
+            35-45 second previews. Full tracks are shared privately upon
+            purchase.
           </p>
 
-         <button
-          type="button"
-          onClick={() => setLegalOpen(true)}
-          className="ml-2 inline-flex h-6 w-6 translate-y-[2px] items-center justify-center rounded-full border border-black/15 hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
-          aria-label="Legal terms"
-        >
-          <span className="flex h-4 w-4 items-center justify-center rounded-full border border-black/70">
-            <Scale size={10} strokeWidth={1.5} className="text-black/70" />
-          </span>
-        </button>
+          <button
+            type="button"
+            onClick={() => setLegalOpen(true)}
+            className="ml-2 inline-flex h-6 w-6 translate-y-[2px] items-center justify-center rounded-full border border-black/15 hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
+            aria-label="Legal terms"
+          >
+            <span className="flex h-4 w-4 items-center justify-center rounded-full border border-black/70">
+              <Scale size={10} strokeWidth={1.5} className="text-black/70" />
+            </span>
+          </button>
         </div>
 
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
           {tracks.map((t) => (
-            <article key={t.id} className="rounded-3xl border border-black/10 bg-white/55 p-5 md:p-6 shadow-sm">
+            <article
+              key={t.id}
+              className="rounded-3xl border border-black/10 bg-white/55 p-5 md:p-6 shadow-sm"
+            >
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <h3 className="text-xl">{t.title}</h3>
                   {t.mood && (
-                    <p className="mt-1 text-sm opacity-70">
-                      {t.mood}
-                    </p>
+                    <p className="mt-1 text-sm opacity-70">{t.mood}</p>
                   )}
                 </div>
               </div>
@@ -911,17 +960,20 @@ export default function MusicianPage() {
       {/* Album + Contact */}
       <div className="mx-auto max-w-6xl px-6 py-10 pb-20">
         <div className="grid gap-6 md:grid-cols-2 md:items-stretch">
-
           {/* Album */}
           <section ref={sections.album} className="h-full">
             <div className="h-full rounded-3xl border border-black/10 bg-black/5 p-6 md:p-10 shadow-sm">
               <h2 className="text-2xl md:text-3xl">Full 6-song album</h2>
               <p className="mt-4 text-black/80 max-w-md">
-                This debut collection brings together six original songs written and recorded independently. Created as part of an ongoing artistic practice, the album explores voice, atmosphere, and personal narrative through minimal production.
+                This debut collection brings together six original songs written
+                and recorded independently. Created as part of an ongoing
+                artistic practice, the album explores voice, atmosphere, and
+                personal narrative through minimal production.
               </p>
-              <p className="mt-3 opacity-80"
-              >
-                Want the full set of six songs? Send a request using the contact form. After payment, the full album will be delivered personally as a private download.
+              <p className="mt-3 opacity-80">
+                Want the full set of six songs? Send a request using the contact
+                form. After payment, the full album will be delivered personally
+                as a private download.
               </p>
               <p className="mt-3 text-xs text-black/60">
                 For Pricing & Delivery see{" "}
@@ -931,7 +983,8 @@ export default function MusicianPage() {
                   className="underline underline-offset-4 hover:no-underline transition"
                 >
                   here
-                </button>.
+                </button>
+                .
               </p>
               <button
                 onClick={() => {
@@ -999,26 +1052,37 @@ export default function MusicianPage() {
                 />
 
                 {/* hidden config */}
-                <input type="hidden" name="_subject" value="New message from MUSICIAN page" />
-                <input type="hidden" name="_captcha" value="false" />            
-                <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New message from MUSICIAN page"
+                />
+                <input type="hidden" name="_captcha" value="false" />
+                <input
+                  type="text"
+                  name="_honey"
+                  style={{ display: "none" }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
 
-               <button
-                type="submit"
-                disabled={sending}
-                className="justify-self-start inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/60 px-5 py-2 text-sm hover:bg-white/80 transition disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                <Mail className="h-4 w-4" />
-                {sending ? "Sending..." : "Send"}
-              </button>
-              <div className="mt-4 flex items-start gap-2 text-xs text-black/60">
-                <div className="flex h-4 w-4 items-center justify-center">
-                  <CircleCheckBig size={14} strokeWidth={1.5} />
+                <button
+                  type="submit"
+                  disabled={sending}
+                  className="justify-self-start inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/60 px-5 py-2 text-sm hover:bg-white/80 transition disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  <Mail className="h-4 w-4" />
+                  {sending ? "Sending..." : "Send"}
+                </button>
+                <div className="mt-4 flex items-start gap-2 text-xs text-black/60">
+                  <div className="flex h-4 w-4 items-center justify-center">
+                    <CircleCheckBig size={14} strokeWidth={1.5} />
+                  </div>
+                  <p>
+                    After you submit your request, you will receive a secure
+                    PayPal link by email.
+                  </p>
                 </div>
-                <p>
-                  After you submit your request, you will receive a secure PayPal link by email.
-                </p>
-              </div>
               </form>
             </div>
           </section>
@@ -1026,65 +1090,64 @@ export default function MusicianPage() {
       </div>
 
       <footer className="relative text-[#e3d9cd] bg-neutral-900 border-t border-black/10 backdrop-blur">
-
-          <a
-            href="#home"
-            aria-label="Back to top"
-            title="Back to top"
-            className="
+        <a
+          href="#home"
+          aria-label="Back to top"
+          title="Back to top"
+          className="
               absolute left-1/2 -translate-x-1/2 -top-6 z-20
               inline-flex items-center justify-center h-12 w-12 rounded-full
               bg-[#e3d9cd] text-neutral-900 border border-neutral-900
               hover:bg-[#efe5d8] transition-colors
             "
+        >
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
           >
-            <svg
-              className="h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M5 15l7-7 7 7" />
-            </svg>
-          </a>
+            <path d="M5 15l7-7 7 7" />
+          </svg>
+        </a>
 
-      <div className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid gap-8 md:grid-cols-3 md:items-center">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="grid gap-8 md:grid-cols-3 md:items-center">
+            {/* Left: extra touch */}
+            <div className="flex items-center justify-center md:justify-start gap-3 text-xs opacity-80">
+              <Music4 className="h-4 w-4 shrink-0 opacity-80" />
+              <div className="italic leading-snug">
+                More songs will come
+                <br />
+                When they are ready
+              </div>
+            </div>
 
-          {/* Left: extra touch */}
-          <div className="flex items-center justify-center md:justify-start gap-3 text-xs opacity-80">
-            <Music4 className="h-4 w-4 shrink-0 opacity-80" />
-            <div className="italic leading-snug">
-              More songs will come<br />
-              When they are ready
+            {/* Center: copyright */}
+            <div className="text-center text-xs opacity-90">
+              <div>
+                © {new Date().getFullYear()} Frederic G. Fleron Grignard
+              </div>
+              <div>All rights reserved</div>
+            </div>
+
+            {/* Right: Legal */}
+            <div className="flex justify-center md:justify-end">
+              <button
+                type="button"
+                onClick={() => setLegalOpen(true)}
+                className="inline-flex items-center gap-2 rounded-full border border-[#e3d9cd] px-5 py-2 text-xs hover:bg-[#262626] transition"
+              >
+                <Scale className="h-4 w-4 opacity-80" />
+                Legal / Terms of Use
+              </button>
             </div>
           </div>
-
-          {/* Center: copyright */}
-          <div className="text-center text-xs opacity-90">
-            <div>© {new Date().getFullYear()} Frederic G. Fleron Grignard</div>
-            <div>All rights reserved</div>
-          </div>
-
-          {/* Right: Legal */}
-          <div className="flex justify-center md:justify-end">
-            <button
-              type="button"
-              onClick={() => setLegalOpen(true)}
-              className="inline-flex items-center gap-2 rounded-full border border-[#e3d9cd] px-5 py-2 text-xs hover:bg-[#262626] transition"
-            >
-              <Scale className="h-4 w-4 opacity-80" />
-              Legal / Terms of Use
-            </button>
-          </div>
-
         </div>
-      </div>
-
       </footer>
 
       {lyricsOpen && (
@@ -1099,19 +1162,21 @@ export default function MusicianPage() {
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/60 backdrop-blur-md" />
-            <div
-              className="relative w-full max-w-2xl rounded-3xl bg-[#fbfaf7] ring-1 ring-black/10 shadow-[0_35px_110px_-40px_rgba(0,0,0,0.65)] p-6 md:p-8"
-              onClick={(e) => e.stopPropagation()}
-            >
+          <div
+            className="relative w-full max-w-2xl rounded-3xl bg-[#fbfaf7] ring-1 ring-black/10 shadow-[0_35px_110px_-40px_rgba(0,0,0,0.65)] p-6 md:p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-xs uppercase tracking-[0.22em] opacity-70">Lyrics</p>
+                <p className="text-xs uppercase tracking-[0.22em] opacity-70">
+                  Lyrics
+                </p>
                 <h3 className="mt-2 text-2xl">
                   {activeTrack?.title ?? "Song"}
                 </h3>
               </div>
               <button
-                aria-label="Close lyrics"         
+                aria-label="Close lyrics"
                 className="ml-3 inline-flex h-8 w-8 items-center justify-center rounded-full ring-1 ring-black/10 
                 bg-white/70 hover:bg-black/5 transition"
                 onClick={() => {
@@ -1132,16 +1197,18 @@ export default function MusicianPage() {
                     const t = line.trim();
 
                     const isHeading =
-                    /^Verse\s+\d+$/i.test(t) ||
-                    /^Pre-chorus$/i.test(t) ||
-                    /^Post-chorus$/i.test(t) ||
-                    /^Bridge$/i.test(t) ||
-                    /^Chorus$/i.test(t) ||
-                    /^Final chorus$/i.test(t);
+                      /^Verse\s+\d+$/i.test(t) ||
+                      /^Pre-chorus$/i.test(t) ||
+                      /^Post-chorus$/i.test(t) ||
+                      /^Bridge$/i.test(t) ||
+                      /^Chorus$/i.test(t) ||
+                      /^Final chorus$/i.test(t);
 
                     // blank line spacer
                     if (t.length === 0) {
-                      return <div key={idx} className="h-4 break-inside-avoid" />;
+                      return (
+                        <div key={idx} className="h-4 break-inside-avoid" />
+                      );
                     }
 
                     return isHeading ? (
@@ -1182,7 +1249,9 @@ export default function MusicianPage() {
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-xs uppercase tracking-[0.22em] opacity-70">Legal</p>
+                <p className="text-xs uppercase tracking-[0.22em] opacity-70">
+                  Legal
+                </p>
                 <h3 className="mt-2 text-2xl">Terms of Use &amp; Copyright</h3>
               </div>
 
@@ -1197,28 +1266,33 @@ export default function MusicianPage() {
             </div>
 
             <div className="mt-6 border-t border-black/10 pt-6 pb-6 max-h-[calc(100dvh-10rem)] overflow-y-auto pr-3">
-             <div className="space-y-4 text-[15px] md:text-[16px] text-black/80">
+              <div className="space-y-4 text-[15px] md:text-[16px] text-black/80">
                 <p className="leading-relaxed opacity-90">
-                  <strong>Preview-only listening:</strong> The audio on this page consists of short previews intended for
-                  evaluation. Full tracks are shared privately upon purchase.
+                  <strong>Preview-only listening:</strong> The audio on this
+                  page consists of short previews intended for evaluation. Full
+                  tracks are shared privately upon purchase.
                 </p>
 
                 <p className="leading-relaxed opacity-90">
-                  <strong>Copyright:</strong> All music, lyrics, and recordings are protected by copyright. No part of these
-                  previews may be reproduced, redistributed, sampled, or used in other works without written permission.
+                  <strong>Copyright:</strong> All music, lyrics, and recordings
+                  are protected by copyright. No part of these previews may be
+                  reproduced, redistributed, sampled, or used in other works
+                  without written permission.
                 </p>
 
                 <p className="leading-relaxed opacity-90">
-                  <strong>Purchasing:</strong> Purchased songs are provided for personal listening only.
+                  <strong>Purchasing:</strong> Purchased songs are provided for
+                  personal listening only.
                 </p>
                 <p className="leading-relaxed opacity-90">
-                  <strong>Licensing:</strong> Licensing for film, video, or other projects is available upon request.
-                  Terms and pricing are confirmed privately.
+                  <strong>Licensing:</strong> Licensing for film, video, or
+                  other projects is available upon request. Terms and pricing
+                  are confirmed privately.
                 </p>
 
                 <p className="leading-relaxed opacity-90">
-                  <strong>Respectful use:</strong> Please do not upload these previews to other platforms or share direct
-                  files publicly.
+                  <strong>Respectful use:</strong> Please do not upload these
+                  previews to other platforms or share direct files publicly.
                 </p>
               </div>
             </div>
@@ -1242,7 +1316,9 @@ export default function MusicianPage() {
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-xs uppercase tracking-[0.22em] opacity-70">How it works</p>
+                <p className="text-xs uppercase tracking-[0.22em] opacity-70">
+                  How it works
+                </p>
                 <h3 className="mt-2 text-2xl">Pricing & Delivery</h3>
               </div>
 
@@ -1284,7 +1360,8 @@ export default function MusicianPage() {
                       1
                     </div>
                     <div className="leading-relaxed opacity-90">
-                      Send a request using the contact form (single song or full album).
+                      Send a request using the contact form (single song or full
+                      album).
                     </div>
                   </div>
 
@@ -1293,7 +1370,8 @@ export default function MusicianPage() {
                       2
                     </div>
                     <div className="leading-relaxed opacity-90">
-                      You'll receive a secure PayPal link by email with the details.
+                      You'll receive a secure PayPal link by email with the
+                      details.
                     </div>
                   </div>
 
@@ -1311,9 +1389,7 @@ export default function MusicianPage() {
                   <div className="flex h-4 w-4 items-center justify-center">
                     <CircleAlert size={14} strokeWidth={1.5} />
                   </div>
-                  <p>
-                    Preview clips on this page are shortened versions.
-                  </p>
+                  <p>Preview clips on this page are shortened versions.</p>
                 </div>
               </div>
             </div>
@@ -1321,7 +1397,6 @@ export default function MusicianPage() {
         </div>
       )}
 
-  
       {/* Toast */}
       {toast && (
         <div
@@ -1339,11 +1414,11 @@ export default function MusicianPage() {
 
             <div className="min-w-0 flex-1">
               <div className="font-medium">
-                {toast.type === "success" ? "Message sent" : "Something went wrong"}
+                {toast.type === "success"
+                  ? "Message sent"
+                  : "Something went wrong"}
               </div>
-              <div className="opacity-80 break-words">
-                {toast.text}
-              </div>
+              <div className="opacity-80 break-words">{toast.text}</div>
             </div>
 
             <button
@@ -1357,7 +1432,6 @@ export default function MusicianPage() {
           </div>
         </div>
       )}
-
     </main>
   );
 }

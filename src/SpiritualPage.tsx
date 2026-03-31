@@ -1,32 +1,64 @@
-import { useState, useEffect, useRef, type ReactNode, type CSSProperties } from "react";
-import { Link, useSearchParams, useNavigate, useLocation } from "react-router-dom";
-import { Home, X, AlertTriangle, ChevronLeft, ChevronRight, Palette, BookOpen, CheckCircle2, AlertCircle, Music4 } from "lucide-react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  type ReactNode,
+  type CSSProperties,
+} from "react";
+import {
+  Link,
+  useSearchParams,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
+import {
+  Home,
+  X,
+  AlertTriangle,
+  ChevronLeft,
+  ChevronRight,
+  Palette,
+  BookOpen,
+  CheckCircle2,
+  AlertCircle,
+  Music4,
+} from "lucide-react";
 import PageHead from "./components/PageHead";
 
 type TabId = "meditation" | "self" | "living" | "books";
 type TabDef = { id: TabId; label: string; iconSrc: string; alt: string };
 
 const TABS: TabDef[] = [
-  { id: "meditation", label: "Meditation",        
-    iconSrc: "/spiritual/icons/Meditation.svg",         
-    alt: "Meditation" },
-  { id: "self",       
-    label: "Self-Awareness",    
-    iconSrc: "/spiritual/icons/Awareness.svg",          
-    alt: "Self-Awareness" },
-  { id: "living",     
-    label: "Art of Living",     
-    iconSrc: "/spiritual/icons/Art-Of-Living.svg",      
-    alt: "Art of Living" },
-  { id: "books",      
-    label: "Recommended Books", 
-    iconSrc: "/spiritual/icons/Recommended-Books.svg",  
-    alt: "Recommended Books" },
+  {
+    id: "meditation",
+    label: "Meditation",
+    iconSrc: "/spiritual/icons/Meditation.svg",
+    alt: "Meditation",
+  },
+  {
+    id: "self",
+    label: "Self-Awareness",
+    iconSrc: "/spiritual/icons/Awareness.svg",
+    alt: "Self-Awareness",
+  },
+  {
+    id: "living",
+    label: "Art of Living",
+    iconSrc: "/spiritual/icons/Art-Of-Living.svg",
+    alt: "Art of Living",
+  },
+  {
+    id: "books",
+    label: "Recommended Books",
+    iconSrc: "/spiritual/icons/Recommended-Books.svg",
+    alt: "Recommended Books",
+  },
 ];
 
 const ORDER: TabId[] = ["self", "meditation", "living", "books"];
 const nextOf = (id: TabId) => ORDER[(ORDER.indexOf(id) + 1) % ORDER.length];
-const prevOf = (id: TabId) => ORDER[(ORDER.indexOf(id) + ORDER.length - 1) % ORDER.length];
+const prevOf = (id: TabId) =>
+  ORDER[(ORDER.indexOf(id) + ORDER.length - 1) % ORDER.length];
 
 function useOrbit(degPerSec = 18) {
   const [deg, setDeg] = useState(0);
@@ -38,11 +70,13 @@ function useOrbit(degPerSec = 18) {
       if (last.current == null) last.current = t;
       const dt = (t - last.current) / 1000;
       last.current = t;
-      setDeg(d => (d + degPerSec * dt) % 360);
+      setDeg((d) => (d + degPerSec * dt) % 360);
       raf.current = requestAnimationFrame(tick);
     };
     raf.current = requestAnimationFrame(tick);
-    return () => { if (raf.current) cancelAnimationFrame(raf.current); };
+    return () => {
+      if (raf.current) cancelAnimationFrame(raf.current);
+    };
   }, [degPerSec]);
 
   return deg;
@@ -58,18 +92,24 @@ export default function SpiritualPage() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const [sending, setSending] = useState(false);
-  const [toast, setToast] = useState<null | { type: "success" | "error"; text: string }>(null);
+  const [toast, setToast] = useState<null | {
+    type: "success" | "error";
+    text: string;
+  }>(null);
 
   const deg = useOrbit(18);
 
   useEffect(() => {
     const step = params.get("step") as TabId | null;
-    if (step && TABS.some(t => t.id === step)) setActive(step);
+    if (step && TABS.some((t) => t.id === step)) setActive(step);
   }, [params]);
 
   const openStep = (id: TabId) => {
     setActive(id);
-    navigate({ pathname: location.pathname, search: `?step=${id}` }, { replace: false });
+    navigate(
+      { pathname: location.pathname, search: `?step=${id}` },
+      { replace: false },
+    );
   };
   const closeStep = () => {
     setActive(null);
@@ -90,40 +130,40 @@ export default function SpiritualPage() {
   }, [showDisclosure]);
 
   async function handleSpiritualSubmit(e: React.FormEvent<HTMLFormElement>) {
-  e.preventDefault();
-  const form = e.currentTarget;
-  const data = new FormData(form);
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
 
-  const action = form.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
+    const action = form.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
 
-  setSending(true);
-  setToast(null);
+    setSending(true);
+    setToast(null);
 
-  try {
-    const res = await fetch(action, {
-      method: "POST",
-      body: data,
-      headers: { Accept: "application/json" },
-    });
+    try {
+      const res = await fetch(action, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
 
-    if (res.ok) {
-      setToast({ type: "success", text: "Thanks! Your message was sent." });
-      form.reset();
-    } else {
-      let msg = "Sorry, something went wrong. Please try again.";
-      try {
-        const j = await res.json();
-        if (j?.message) msg = j.message;
-      } catch {}
-      setToast({ type: "error", text: msg });
+      if (res.ok) {
+        setToast({ type: "success", text: "Thanks! Your message was sent." });
+        form.reset();
+      } else {
+        let msg = "Sorry, something went wrong. Please try again.";
+        try {
+          const j = await res.json();
+          if (j?.message) msg = j.message;
+        } catch {}
+        setToast({ type: "error", text: msg });
+      }
+    } catch {
+      setToast({ type: "error", text: "Network error. Please try again." });
+    } finally {
+      setSending(false);
+      setTimeout(() => setToast(null), 5000);
     }
-  } catch {
-    setToast({ type: "error", text: "Network error. Please try again." });
-  } finally {
-    setSending(false);
-    setTimeout(() => setToast(null), 5000);
   }
-}
 
   return (
     <>
@@ -134,7 +174,10 @@ export default function SpiritualPage() {
         ogImage="/og/spiritual.jpg"
       />
 
-      <div id="top" className="spiritual min-h-screen bg-black text-[#ffffff85] overflow-x-hidden flex flex-col">
+      <div
+        id="top"
+        className="spiritual min-h-screen bg-black text-[#ffffff85] overflow-x-hidden flex flex-col"
+      >
         <style>{`
           @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600&family=Source+Sans+3:wght@400;500;600&display=swap');
 
@@ -349,7 +392,6 @@ export default function SpiritualPage() {
           }
         `}</style>
 
-
         {/* Top nav */}
         <header className="sticky top-0 z-50 bg-black/60 backdrop-blur relative">
           <a
@@ -359,7 +401,7 @@ export default function SpiritualPage() {
             className="hidden md:flex items-center justify-center h-10 w-10 rounded-full border border-white/20 hover:bg-white/10 transition absolute"
             style={{
               top: 12,
-              right: 'calc((100vw - min(100vw, 72rem))/2 + 1rem)',
+              right: "calc((100vw - min(100vw, 72rem))/2 + 1rem)",
             }}
           >
             <Home className="h-5 w-5" />
@@ -380,9 +422,9 @@ export default function SpiritualPage() {
 
             <ul className="hidden md:flex gap-6 self-end">
               {[
-                { id: 'cycle',  label: 'Cycle' },
-                { id: 'about',  label: 'Intro'  },
-                { id: 'contact',label: 'Contact'},
+                { id: "cycle", label: "Cycle" },
+                { id: "about", label: "Intro" },
+                { id: "contact", label: "Contact" },
               ].map((s) => (
                 <li key={s.id}>
                   <a
@@ -408,7 +450,14 @@ export default function SpiritualPage() {
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((v) => !v)}
             >
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <svg
+                className="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              >
                 <path d="M3 6h18M3 12h18M3 18h18" />
               </svg>
             </button>
@@ -419,9 +468,9 @@ export default function SpiritualPage() {
             <div className="md:hidden border-t border-white/10 bg-black/80 backdrop-blur">
               <ul className="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3">
                 {[
-                  { id: 'cycle',  label: 'Cycle' },
-                  { id: 'about',  label: 'Intro'  },
-                  { id: 'contact',label: 'Contact'},
+                  { id: "cycle", label: "Cycle" },
+                  { id: "about", label: "Intro" },
+                  { id: "contact", label: "Contact" },
                 ].map((s) => (
                   <li key={s.id}>
                     <a
@@ -451,7 +500,14 @@ export default function SpiritualPage() {
 
         {/* MAIN */}
         <main className="spiritual relative mx-auto max-w-6xl px-4 pt-14 md:pt-16 pb-28 md:pb-36 flex-1">
-          <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "radial-gradient(ellipse at 50% 35%, rgba(120,150,255,0.10), transparent 60%)" }} />
+          <div
+            aria-hidden
+            className="absolute inset-0 -z-10"
+            style={{
+              background:
+                "radial-gradient(ellipse at 50% 35%, rgba(120,150,255,0.10), transparent 60%)",
+            }}
+          />
 
           {/* Page Title */}
           <section className="mx-auto max-w-2xl text-center pb-8 md:pb-12">
@@ -460,14 +516,15 @@ export default function SpiritualPage() {
             </h1>
 
             <p className="mt-4 text-base md:text-lg text-white/80 leading-relaxed">
-               A space for reflection, awareness, and open conversation.
+              A space for reflection, awareness, and open conversation.
             </p>
           </section>
 
           {/* portrait + orbit */}
-          <section id="cycle" className="relative mx-auto w-[min(86vw,560px)] aspect-square scroll-mt-24">
-
-
+          <section
+            id="cycle"
+            className="relative mx-auto w-[min(86vw,560px)] aspect-square scroll-mt-24"
+          >
             <div className="absolute inset-0 rounded-full overflow-hidden">
               <img
                 src="/spiritual/content/spiritual-frederic.png"
@@ -482,14 +539,24 @@ export default function SpiritualPage() {
               className="ring absolute inset-0 rounded-full z-50"
               style={{
                 transform: `rotate(${deg}deg)`,
-                ["--rot" as any]: `${deg}deg`, 
+                ["--rot" as any]: `${deg}deg`,
                 animation: "none",
               }}
             >
               {TABS.map((t, idx) => (
-                <RingItem key={t.id} index={idx} total={TABS.length} onClick={() => openStep(t.id)} ariaLabel={t.label}>
+                <RingItem
+                  key={t.id}
+                  index={idx}
+                  total={TABS.length}
+                  onClick={() => openStep(t.id)}
+                  ariaLabel={t.label}
+                >
                   <span className="menu-circle">
-                    <img src={t.iconSrc} alt={`${t.alt} icon`} className="h-full w-full object-contain" />
+                    <img
+                      src={t.iconSrc}
+                      alt={`${t.alt} icon`}
+                      className="h-full w-full object-contain"
+                    />
                   </span>
                 </RingItem>
               ))}
@@ -497,34 +564,41 @@ export default function SpiritualPage() {
           </section>
 
           <section className="mt-10 md:mt-12 block text-center max-w-2xl mx-auto">
-            <h3 className="uppercase tracking-wide">Start anywhere: it's a cycle</h3>
+            <h3 className="uppercase tracking-wide">
+              Start anywhere: it's a cycle
+            </h3>
             <p className="mt-2 leading-relaxed whitespace-pre-line">
-              {"Self-Awareness, Meditation, the Art of Living, and the right Books continually feed each other.\nPick what calls you — you can't start in the wrong place."}
+              {
+                "Self-Awareness, Meditation, the Art of Living, and the right Books continually feed each other.\nPick what calls you — you can't start in the wrong place."
+              }
             </p>
           </section>
 
           {/* Divider above ABOUT */}
-            <div className="mx-auto max-w-6xl px-4 mt-12 md:mt-16">
-              <div className="flex items-center justify-center">
-                <span className="h-px flex-1 bg-white/10 rounded-full mr-3" />
-                <span className="inline-flex items-center justify-center h-9 w-9 bg-black/30 backdrop-blur-sm">
-                  <img src="/spiritual/icons/separator.svg" alt="Lotus" className="h-5 w-5 object-contain" />
-                </span>
-                <span className="h-px flex-1 bg-white/10 rounded-full ml-3" />
-              </div>
+          <div className="mx-auto max-w-6xl px-4 mt-12 md:mt-16">
+            <div className="flex items-center justify-center">
+              <span className="h-px flex-1 bg-white/10 rounded-full mr-3" />
+              <span className="inline-flex items-center justify-center h-9 w-9 bg-black/30 backdrop-blur-sm">
+                <img
+                  src="/spiritual/icons/separator.svg"
+                  alt="Lotus"
+                  className="h-5 w-5 object-contain"
+                />
+              </span>
+              <span className="h-px flex-1 bg-white/10 rounded-full ml-3" />
             </div>
+          </div>
 
           {/* ABOUT Section */}
-          <section id="about"
+          <section
+            id="about"
             className="relative mt-8 md:mt-10 min-h-[460px] md:min-h-[560px] scroll-mt-24"
           >
-            
             {/* Content container */}
             <div className="relative z-10 mx-auto max-w-6xl px-4 py-12 md:py-20">
-               <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-
+              <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
                 {/* LEFT — TEXT */}
-                <div className="text-left max-w-xl">                
+                <div className="text-left max-w-xl">
                   <h2 className="text-2xl font-semibold mb-4 text-white">
                     About This Path
                   </h2>
@@ -537,11 +611,11 @@ export default function SpiritualPage() {
 
                       When I first sat down to meditate, I quickly noticed how restless my mind was, always stirring up thoughts into unpredictable outcomes. With time, I learned to sit with that movement instead of fighting it. Looking back, I sometimes think I could have saved myself a few obstacles if I had started earlier — but I also know that wandering is part of the process.`}
                     </p>
-                    
+
                     <p className="font-semibold">
                       I'm Frederic G. Fleron Grignard.
                     </p>
-                  
+
                     <p className="text-sm tracking-wider opacity-80">
                       Philosopher · Meditator · Seeker
                     </p>
@@ -594,11 +668,12 @@ export default function SpiritualPage() {
 
           {/* Footer / Contact */}
           <footer id="contact" className="mt-10 md:mt-14">
-            <div className="mx-auto max-w-6xl px-0 pt-8 pb-6 grid gap-10 md:grid-cols-2 items-start">           
+            <div className="mx-auto max-w-6xl px-0 pt-8 pb-6 grid gap-10 md:grid-cols-2 items-start">
               <div>
                 <h2 className="text-2xl mb-3">Reach Out</h2>
                 <p className="opacity-90 mb-6 max-w-prose">
-                  If you're curious or simply seeking a nudge toward stillness — send me a note and I'll get back to you.
+                  If you're curious or simply seeking a nudge toward stillness —
+                  send me a note and I'll get back to you.
                 </p>
 
                 {/* Icons row + disclosure popover */}
@@ -609,7 +684,7 @@ export default function SpiritualPage() {
                       type="button"
                       aria-label="Important disclosure"
                       aria-expanded={showDisclosure}
-                      onClick={() => setShowDisclosure(v => !v)}
+                      onClick={() => setShowDisclosure((v) => !v)}
                       className="btn-orbit btn-orbit--sm text-neutral-900"
                     >
                       <AlertTriangle className="h-5 w-5" />
@@ -658,8 +733,11 @@ export default function SpiritualPage() {
                       role="dialog"
                       aria-label="Important disclosure"
                       className="smoke-panel absolute bottom-[120%] left-0 w-[min(90vw,36rem)] rounded-xl p-4 md:p-5 z-[60]"
-                      style={{ animation: 'modal-in var(--modal-dur) var(--modal-ease) both' }}
-                    >      
+                      style={{
+                        animation:
+                          "modal-in var(--modal-dur) var(--modal-ease) both",
+                      }}
+                    >
                       <button
                         type="button"
                         aria-label="Close disclosure"
@@ -671,12 +749,20 @@ export default function SpiritualPage() {
 
                       <h3 className="text-1xl mb-3">IMPORTANT PLEASE READ</h3>
                       <p className="text-sm leading-relaxed pr-8">
-                        I am not a psychologist, psychiatrist, or medical doctor. If you need medical or mental-health support, please consult a qualified professional. What I share here comes from personal experience, reflection, and study, and is offered simply as a space for thought and open conversation.
+                        I am not a psychologist, psychiatrist, or medical
+                        doctor. If you need medical or mental-health support,
+                        please consult a qualified professional. What I share
+                        here comes from personal experience, reflection, and
+                        study, and is offered simply as a space for thought and
+                        open conversation.
                       </p>
                     </div>
                   )}
                 </div>
-                <div className="mt-6 text-sm text-[#ffffff85] opacity-80">© {new Date().getFullYear()} Frederic G. Fleron Grignard | All rights reserved</div>
+                <div className="mt-6 text-sm text-[#ffffff85] opacity-80">
+                  © {new Date().getFullYear()} Frederic G. Fleron Grignard | All
+                  rights reserved
+                </div>
               </div>
 
               <form
@@ -685,14 +771,51 @@ export default function SpiritualPage() {
                 onSubmit={handleSpiritualSubmit}
                 className="md:justify-self-end w-full max-w-md grid grid-cols-1 gap-3"
               >
-                <input type="text" name="name" required className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60" placeholder="Your Name" />
-                <input type="email" name="email" required autoComplete="email" className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60" placeholder="Your Email *" />
-                <input type="text" name="subject" className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60" placeholder="Subject" />
-                <textarea name="message" required className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 h-28 resize-y text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60" placeholder="What would you like to share?" />
-                <input type="hidden" name="_subject" value="New message from SPIRITUAL page" />
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60"
+                  placeholder="Your Name"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  autoComplete="email"
+                  className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60"
+                  placeholder="Your Email *"
+                />
+                <input
+                  type="text"
+                  name="subject"
+                  className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60"
+                  placeholder="Subject"
+                />
+                <textarea
+                  name="message"
+                  required
+                  className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 h-28 resize-y text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60"
+                  placeholder="What would you like to share?"
+                />
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New message from SPIRITUAL page"
+                />
                 <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_next" value="https://www.ffg-universe.com/spiritual#contact" />
-                <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://www.ffg-universe.com/spiritual#contact"
+                />
+                <input
+                  type="text"
+                  name="_honey"
+                  style={{ display: "none" }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
                 <button
                   type="submit"
                   disabled={sending}
@@ -708,7 +831,7 @@ export default function SpiritualPage() {
             </div>
           </footer>
 
-         {/* Toast */}
+          {/* Toast */}
           {toast && (
             <div
               role="status"
@@ -724,11 +847,11 @@ export default function SpiritualPage() {
                     <AlertCircle size={18} aria-hidden className="shrink-0" />
                   )}
                   <span className="font-medium">
-                    {toast.type === "success" ? "Message sent" : "Something went wrong"}
+                    {toast.type === "success"
+                      ? "Message sent"
+                      : "Something went wrong"}
                   </span>
-                  <span className="opacity-80">
-                    {toast.text}
-                  </span>
+                  <span className="opacity-80">{toast.text}</span>
                   <button
                     type="button"
                     onClick={() => setToast(null)}
@@ -752,40 +875,48 @@ export default function SpiritualPage() {
           topImageAlt="Meditation-Hands resiting in meditation"
           onPrev={() => openStep(prevOf("meditation"))}
           onNext={() => openStep(nextOf("meditation"))}
-          stepText={`Part ${ORDER.indexOf("meditation")+1} of ${ORDER.length} • loops`}
+          stepText={`Part ${ORDER.indexOf("meditation") + 1} of ${ORDER.length} • loops`}
         >
           <div className="space-y-4">
             <p>
-              A short note on how I came to meditation. There was a period when life lost its shape. 
-              I felt neither sad nor worried — just numb, yet strangely present. I sensed I needed 
-              stillness but did not know where to begin. Without really seeking it, I found myself 
-              at a ten-day silent Vipassana retreat.
+              A short note on how I came to meditation. There was a period when
+              life lost its shape. I felt neither sad nor worried — just numb,
+              yet strangely present. I sensed I needed stillness but did not
+              know where to begin. Without really seeking it, I found myself at
+              a ten-day silent Vipassana retreat.
             </p>
             <p>
-              Vipassana meditation is a bit like rediscovering something we already know. 
-              When we are stressed or anxious, we often pause and breathe. 
-              Without realising it, we do the right thing — and Vipassana confirms that intuition. 
-              This is where self-awareness joins in, because meditation and self-awareness always walk 
-              hand in hand.
-             </p>
-             <p> 
-              The practice begins with the breath, sharpening focus one layer at a time, like peeling an onion. 
-              Once the mind feels settled, the attention expands and gently scans through the whole body. 
-              With practice, our sense of presence becomes clearer, and we notice that the “auto-pilot” we often 
-              live on can be switched off at will. That is when life begins to feel more vivid, more conscious, and 
-              more fully lived.
+              Vipassana meditation is a bit like rediscovering something we
+              already know. When we are stressed or anxious, we often pause and
+              breathe. Without realising it, we do the right thing — and
+              Vipassana confirms that intuition. This is where self-awareness
+              joins in, because meditation and self-awareness always walk hand
+              in hand.
             </p>
-            <p> 
-              And this is where meditation naturally flows into the {" "}
+            <p>
+              The practice begins with the breath, sharpening focus one layer at
+              a time, like peeling an onion. Once the mind feels settled, the
+              attention expands and gently scans through the whole body. With
+              practice, our sense of presence becomes clearer, and we notice
+              that the “auto-pilot” we often live on can be switched off at
+              will. That is when life begins to feel more vivid, more conscious,
+              and more fully lived.
+            </p>
+            <p>
+              And this is where meditation naturally flows into the{" "}
               <a
                 href="#living"
-                onClick={(e) => { e.preventDefault(); openStep("living"); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  openStep("living");
+                }}
                 className="text-[#a28e72] hover:underline decoration-current underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a28e72]"
               >
-                Art of Living 
-              </a> — carrying awareness into the choices that shape our daily lives.             
-            </p>      
-            </div>
+                Art of Living
+              </a>{" "}
+              — carrying awareness into the choices that shape our daily lives.
+            </p>
+          </div>
         </ContentModal>
 
         <ContentModal
@@ -796,39 +927,46 @@ export default function SpiritualPage() {
           topImageAlt="Awareness – candle staring at its own reflection"
           onPrev={() => openStep(prevOf("self"))}
           onNext={() => openStep(nextOf("self"))}
-          stepText={`Part ${ORDER.indexOf("self")+1} of ${ORDER.length} • loops`}
+          stepText={`Part ${ORDER.indexOf("self") + 1} of ${ORDER.length} • loops`}
         >
           <div className="space-y-4 leading-relaxed">
             <p>
-              Nowadays we hear so many terms pointing us back to ourselves — the power of
-              attraction, vibrations, enlightenment, and the list goes on. Each one carries
-              a simple truth: if we were not alive to witness it, none of this would exist
-              for us. We are the awareness that makes life real.
+              Nowadays we hear so many terms pointing us back to ourselves — the
+              power of attraction, vibrations, enlightenment, and the list goes
+              on. Each one carries a simple truth: if we were not alive to
+              witness it, none of this would exist for us. We are the awareness
+              that makes life real.
             </p>
             <p>
-              Manifesting is a popular topic at the moment — picturing our dream home,
-              partner, or lifestyle, and trying to “feel it” into being. But if you’ve tried
-              this, you may have noticed it does not always work as we expect, and that can
-              feel disappointing. The truth is, it is not wrong — it is simply easier than it
-              seems. The key lies in how we approach it.
+              Manifesting is a popular topic at the moment — picturing our dream
+              home, partner, or lifestyle, and trying to “feel it” into being.
+              But if you’ve tried this, you may have noticed it does not always
+              work as we expect, and that can feel disappointing. The truth is,
+              it is not wrong — it is simply easier than it seems. The key lies
+              in how we approach it.
             </p>
             <p>
-              Imagination is powerful, and if visualising helps spark joy or good feelings,
-              then by all means use it. But the real magic is in catching the present moment —
-              those flashes of goodness, that quiet essence of simply being alive. When you
-              notice that and hold it a little longer, you begin to see the first steps of
+              Imagination is powerful, and if visualising helps spark joy or
+              good feelings, then by all means use it. But the real magic is in
+              catching the present moment — those flashes of goodness, that
+              quiet essence of simply being alive. When you notice that and hold
+              it a little longer, you begin to see the first steps of
               self-awareness taking shape.”
-            </p>              
-            <p> 
-              When you are ready to deepen this, head over to the {" "}
+            </p>
+            <p>
+              When you are ready to deepen this, head over to the{" "}
               <a
                 href="#meditation"
-                onClick={(e) => { e.preventDefault(); openStep("meditation"); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  openStep("meditation");
+                }}
                 className="text-[#a28e72] hover:underline decoration-current underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a28e72]"
               >
-                Meditation 
-              </a> section.             
-            </p>                  
+                Meditation
+              </a>{" "}
+              section.
+            </p>
           </div>
         </ContentModal>
 
@@ -840,28 +978,35 @@ export default function SpiritualPage() {
           topImageAlt="Art of Living-Ladybird on a stick"
           onPrev={() => openStep(prevOf("living"))}
           onNext={() => openStep(nextOf("living"))}
-          stepText={`Part ${ORDER.indexOf("living")+1} of ${ORDER.length} • loops`}
+          stepText={`Part ${ORDER.indexOf("living") + 1} of ${ORDER.length} • loops`}
         >
           <div className="space-y-4 leading-relaxed">
             <p>
-              The art of living can take many forms, but one thing is certain: it ought to feel joyful. 
-              From my own experience, life was never meant to be heavy or negative — it was designed 
-              to flow from a positive spark. Anything that works begins this way, and life is no 
-              different. Our story is simply how we learn to keep that spark alive.
+              The art of living can take many forms, but one thing is certain:
+              it ought to feel joyful. From my own experience, life was never
+              meant to be heavy or negative — it was designed to flow from a
+              positive spark. Anything that works begins this way, and life is
+              no different. Our story is simply how we learn to keep that spark
+              alive.
             </p>
 
             <p>
-              To live well, we first get to know ourselves. If we feel unsatisfied, unhappy, or restless, 
-              it is rarely solved by changing how we look or what we own. Instead, the real work is 
-              within. Through meditation and focused awareness we learn to sit with ourselves, to see 
-              beyond definitions, judgements, and appearances. What remains is simple: the natural state 
-              we all once knew — pure, uncomplicated, and happy.
+              To live well, we first get to know ourselves. If we feel
+              unsatisfied, unhappy, or restless, it is rarely solved by changing
+              how we look or what we own. Instead, the real work is within.
+              Through meditation and focused awareness we learn to sit with
+              ourselves, to see beyond definitions, judgements, and appearances.
+              What remains is simple: the natural state we all once knew — pure,
+              uncomplicated, and happy.
             </p>
             <p>
               If this stirs your curiosity, explore the{" "}
               <a
                 href="#books"
-                onClick={(e) => { e.preventDefault(); openStep("books"); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  openStep("books");
+                }}
                 className="text-[#a28e72] hover:underline decoration-current underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a28e72]"
               >
                 Recommended Books
@@ -879,145 +1024,158 @@ export default function SpiritualPage() {
           topImageAlt="Recommended books: Self-Awareness, Meditation, Art of Living."
           onPrev={() => openStep(prevOf("books"))}
           onNext={() => openStep(nextOf("books"))}
-          stepText={`Part ${ORDER.indexOf("books")+1} of ${ORDER.length} • loops`}
+          stepText={`Part ${ORDER.indexOf("books") + 1} of ${ORDER.length} • loops`}
         >
           <div className="space-y-4 leading-relaxed">
-          <p>Here are a few great books that have shaped my path:</p>
+            <p>Here are a few great books that have shaped my path:</p>
 
-          <ol className="list-decimal list-inside space-y-2">
-            <li>
-              <strong className="text-[#a28e72]">Tao Te Ching</strong> by Lao Tzu — Seemingly simple, yet endlessly deep. It 
-              challenges the mind and, at the same time, invites us to let go of concepts and return 
-              to what we are at the core.
-            </li>
-            <li>
-              <strong className="text-[#a28e72]">The Daily Stoic</strong> by Ryan Holiday — A practical daily guide to Stoic wisdom, built around short reflections that help you train attention, character, and resilience over time.
-            </li>  
-            <li>
-              <strong className="text-[#a28e72]">The Alchemist</strong> by Paulo Coelho — A tale that reminds us everything we 
-              seek is already close at hand, yet the journey outward is often what helps us realise it.
-            </li>
-             <li>
-              <strong className="text-[#a28e72]">The Power of Now</strong> by Eckhart Tolle — A modern classic. It brings home 
-              a simple truth: the past is gone, the future is not here, and life can only be lived now.
-            </li> 
-            <li>
-              <strong className="text-[#a28e72]">The Fear Project</strong> by Jaimal Yogis — A clear-eyed look at fear, showing 
-              how it is often misunderstood or misused, and how we can return to fear as a form of 
-              intuition rather than insecurity.
-            </li>               
-            <li>
-              <strong className="text-[#a28e72]">Think and Grow Rich</strong> by Napoleon Hill — On the surface, it’s about 
-              wealth. But beneath that, it reveals how what we manifest depends less on possessions 
-              and more on clarity, self-awareness, presence, and joy.
-            </li>
-          </ol>
+            <ol className="list-decimal list-inside space-y-2">
+              <li>
+                <strong className="text-[#a28e72]">Tao Te Ching</strong> by Lao
+                Tzu — Seemingly simple, yet endlessly deep. It challenges the
+                mind and, at the same time, invites us to let go of concepts and
+                return to what we are at the core.
+              </li>
+              <li>
+                <strong className="text-[#a28e72]">The Daily Stoic</strong> by
+                Ryan Holiday — A practical daily guide to Stoic wisdom, built
+                around short reflections that help you train attention,
+                character, and resilience over time.
+              </li>
+              <li>
+                <strong className="text-[#a28e72]">The Alchemist</strong> by
+                Paulo Coelho — A tale that reminds us everything we seek is
+                already close at hand, yet the journey outward is often what
+                helps us realise it.
+              </li>
+              <li>
+                <strong className="text-[#a28e72]">The Power of Now</strong> by
+                Eckhart Tolle — A modern classic. It brings home a simple truth:
+                the past is gone, the future is not here, and life can only be
+                lived now.
+              </li>
+              <li>
+                <strong className="text-[#a28e72]">The Fear Project</strong> by
+                Jaimal Yogis — A clear-eyed look at fear, showing how it is
+                often misunderstood or misused, and how we can return to fear as
+                a form of intuition rather than insecurity.
+              </li>
+              <li>
+                <strong className="text-[#a28e72]">Think and Grow Rich</strong>{" "}
+                by Napoleon Hill — On the surface, it’s about wealth. But
+                beneath that, it reveals how what we manifest depends less on
+                possessions and more on clarity, self-awareness, presence, and
+                joy.
+              </li>
+            </ol>
 
-          <div className="mt-12 mb-8 flex justify-center">
-            <div className="relative w-full max-w-xl">
+            <div className="mt-12 mb-8 flex justify-center">
+              <div className="relative w-full max-w-xl">
+                {/* Glow layer */}
+                <div className="absolute inset-0 -z-10 bg-white/5 blur-2xl opacity-50" />
 
-              {/* Glow layer */}
-              <div className="absolute inset-0 -z-10 bg-white/5 blur-2xl opacity-50" />
-
-              {/* Image */}
-              <img
-                src="/spiritual/content/Bottom-Book-Rec.png"
-                alt="Recommended books stack"
-                className="w-full object-contain"
-              />
-
+                {/* Image */}
+                <img
+                  src="/spiritual/content/Bottom-Book-Rec.png"
+                  alt="Recommended books stack"
+                  className="w-full object-contain"
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="mt-6">
-            <div className="flex items-center gap-4 my-6 max-w-xl">
-              <span className="flex-1 h-px bg-[#a28e72]/40"></span>
-              <h3 className="text-sm tracking-[0.25em] text-[#a28e72] uppercase whitespace-nowrap">
-                My Books
-              </h3>
-              <span className="flex-1 h-px bg-[#a28e72]/40"></span>
+            <div className="mt-6">
+              <div className="flex items-center gap-4 my-6 max-w-xl">
+                <span className="flex-1 h-px bg-[#a28e72]/40"></span>
+                <h3 className="text-sm tracking-[0.25em] text-[#a28e72] uppercase whitespace-nowrap">
+                  My Books
+                </h3>
+                <span className="flex-1 h-px bg-[#a28e72]/40"></span>
+              </div>
+
+              <p className="mt-2 text-sm text-white/85">
+                If you'd like to see my writing, you can find my books on the{" "}
+                <a
+                  href="/author"
+                  className="text-[#a28e72] hover:underline decoration-current underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a28e72]"
+                >
+                  Author page
+                </a>
+                .
+              </p>
+
+              <div className="mt-5 mx-auto grid w-full max-w-3xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 place-items-center">
+                <a
+                  href="/author"
+                  className="group relative w-full max-w-[240px] sm:max-w-[220px]"
+                >
+                  {/* soft backdrop/glow */}
+                  <div className="absolute inset-0 -z-10 rounded-2xl bg-white/10 blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
+
+                  {/* card */}
+                  <div className="p-3">
+                    <img
+                      src="/before-the-reaction-cover.png"
+                      alt="Before the Reaction — book by Frederic G. Fleron Grignard"
+                      className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
+                      loading="lazy"
+                    />
+                  </div>
+                </a>
+                <a
+                  href="/author"
+                  className="group relative w-full max-w-[240px] sm:max-w-[220px]"
+                >
+                  {/* soft backdrop/glow */}
+                  <div className="absolute inset-0 -z-10 rounded-2xl bg-white/10 blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
+
+                  {/* card */}
+                  <div className="p-3">
+                    <img
+                      src="/the-alien-in-disguise.png"
+                      alt="The Alien in Disguise — book by Frederic G. Fleron Grignard"
+                      className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
+                      loading="lazy"
+                    />
+                  </div>
+                </a>
+
+                <a
+                  href="/author"
+                  className="group relative w-full max-w-[240px] sm:max-w-[220px]"
+                >
+                  {/* soft backdrop/glow */}
+                  <div className="absolute inset-0 -z-10 rounded-2xl bg-white/10 blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
+
+                  {/* card */}
+                  <div className="p-3">
+                    <img
+                      src="/hi-i-am-dad.png"
+                      alt="Hi, I am Dad — book by Frederic G. Fleron Grignard"
+                      className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
+                      loading="lazy"
+                    />
+                  </div>
+                </a>
+              </div>
             </div>
 
-            <p className="mt-2 text-sm text-white/85">
-              If you'd like to see my writing, you can find my books on the{" "}
+            <p>
+              Books like these are not ends in themselves, but openings —
+              pointers back to your own experience. And so, in the spirit of the
+              cycle, they return us to where we began:{" "}
               <a
-                href="/author"
+                href="#self"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openStep("self");
+                }}
                 className="text-[#a28e72] hover:underline decoration-current underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a28e72]"
               >
-                Author page
+                Self-Awareness
               </a>
               .
             </p>
-
-          <div className="mt-5 mx-auto grid w-full max-w-3xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 place-items-center">
-            <a
-              href="/author"
-              className="group relative w-full max-w-[240px] sm:max-w-[220px]"
-            >
-              {/* soft backdrop/glow */}
-              <div className="absolute inset-0 -z-10 rounded-2xl bg-white/10 blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
-
-              {/* card */}
-              <div className="p-3">
-                <img
-                  src="/before-the-reaction-cover.png"
-                  alt="Before the Reaction — book by Frederic G. Fleron Grignard"
-                  className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
-                  loading="lazy"
-                />
-              </div>
-            </a>
-            <a
-              href="/author"
-              className="group relative w-full max-w-[240px] sm:max-w-[220px]"
-            >
-
-              {/* soft backdrop/glow */}
-              <div className="absolute inset-0 -z-10 rounded-2xl bg-white/10 blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
-
-              {/* card */}
-              <div className="p-3">
-                <img
-                  src="/the-alien-in-disguise.png"
-                  alt="The Alien in Disguise — book by Frederic G. Fleron Grignard"
-                  className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
-                  loading="lazy"
-                />
-              </div>
-            </a>
-
-            <a
-              href="/author"
-              className="group relative w-full max-w-[240px] sm:max-w-[220px]"
-            >
-              {/* soft backdrop/glow */}
-              <div className="absolute inset-0 -z-10 rounded-2xl bg-white/10 blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
-
-              {/* card */}
-              <div className="p-3">
-                <img
-                  src="/hi-i-am-dad.png"
-                  alt="Hi, I am Dad — book by Frederic G. Fleron Grignard"
-                  className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
-                  loading="lazy"
-                />
-              </div>
-            </a>
           </div>
-        </div>
-
-            <p> 
-              Books like these are not ends in themselves, but openings — pointers back to your own 
-              experience. And so, in the spirit of the cycle, they return us to where we began:  {" "}
-              <a
-                href="#self"
-                onClick={(e) => { e.preventDefault(); openStep("self"); }}
-                className="text-[#a28e72] hover:underline decoration-current underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a28e72]"
-              >
-                Self-Awareness 
-              </a>.             
-            </p>              
-        </div>
         </ContentModal>
       </div>
     </>
@@ -1026,9 +1184,15 @@ export default function SpiritualPage() {
 
 /* ---------- Orbit helpers ---------- */
 
-function Ring(
-  { className = "", style, children }: { className?: string; style?: CSSProperties; children: ReactNode }
-) {
+function Ring({
+  className = "",
+  style,
+  children,
+}: {
+  className?: string;
+  style?: CSSProperties;
+  children: ReactNode;
+}) {
   const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -1040,7 +1204,8 @@ function Ring(
       const btn = el.querySelector<HTMLElement>(".menu-circle");
       const btnSize = btn ? btn.getBoundingClientRect().width : 64;
       const gap = 10;
-      const radiusPx = Math.min(rect.width, rect.height) / 2 - btnSize / 2 - gap;
+      const radiusPx =
+        Math.min(rect.width, rect.height) / 2 - btnSize / 2 - gap;
       el.style.setProperty("--radius", `${Math.max(0, radiusPx)}px`);
     };
 
@@ -1056,7 +1221,6 @@ function Ring(
     </div>
   );
 }
-
 
 function RingItem({
   index,
@@ -1114,9 +1278,8 @@ function ContentModal({
   bottomImageLabel?: string;
   onPrev?: () => void;
   onNext?: () => void;
-  stepText?: string;  
+  stepText?: string;
 }) {
-
   const titleId = `modal-${title.replace(/\s+/g, "-").toLowerCase()}`;
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -1142,9 +1305,9 @@ function ContentModal({
   }, []);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
-  if (e.key === "Escape") onClose();
-  if (e.key === "ArrowRight" && onNext) onNext();
-  if (e.key === "ArrowLeft" && onPrev) onPrev();
+    if (e.key === "Escape") onClose();
+    if (e.key === "ArrowRight" && onNext) onNext();
+    if (e.key === "ArrowLeft" && onPrev) onPrev();
   };
 
   if (!open) return null;
@@ -1152,8 +1315,12 @@ function ContentModal({
   return (
     <div className="fixed inset-0 z-[100]">
       {/* backdrop */}
-      <div className="modal-overlay absolute inset-0 bg-black/60 backdrop-blur-sm animate-overlay-in z-[40]" onClick={onClose} aria-hidden />
-   
+      <div
+        className="modal-overlay absolute inset-0 bg-black/60 backdrop-blur-sm animate-overlay-in z-[40]"
+        onClick={onClose}
+        aria-hidden
+      />
+
       {/* panel */}
       <div
         ref={panelRef}
@@ -1177,26 +1344,37 @@ function ContentModal({
         {/* content */}
         <div className="modal-scroll flex flex-col">
           {topImageSrc ? (
-              <img
-                src={topImageSrc}
-                alt={topImageAlt ?? ""}
-                className="w-full aspect-[16/9] object-cover modal-child-in"
-              />
-            ) : (
-                <div className="ph aspect-[16/9] w-full grid place-items-center text-sm text-[#ffffff85] modal-child-in">
-              <span className="opacity-80">{topImageLabel ?? "Add image 1280×720"}</span>
+            <img
+              src={topImageSrc}
+              alt={topImageAlt ?? ""}
+              className="w-full aspect-[16/9] object-cover modal-child-in"
+            />
+          ) : (
+            <div className="ph aspect-[16/9] w-full grid place-items-center text-sm text-[#ffffff85] modal-child-in">
+              <span className="opacity-80">
+                {topImageLabel ?? "Add image 1280×720"}
+              </span>
             </div>
           )}
 
           <div className="px-4 py-4 md:px-6 md:py-5 modal-child-in delay-1">
             <div className="content-inner">
-              <h2 id={titleId} className="text-xl md:text-2xl font-semibold mb-3">{title}</h2>
-              <div className="text-[#ffffff85] leading-relaxed space-y-3">{children}</div>
+              <h2
+                id={titleId}
+                className="text-xl md:text-2xl font-semibold mb-3"
+              >
+                {title}
+              </h2>
+              <div className="text-[#ffffff85] leading-relaxed space-y-3">
+                {children}
+              </div>
               <p className="mt-4 text-xs opacity-70">
-              For important notes, tap the{" "}
-              <span className="inline-flex align-middle"><AlertTriangle className="h-3.5 w-3.5 -mt-0.5" /></span>
-              {" "}icon in the footer.
-            </p>
+                For important notes, tap the{" "}
+                <span className="inline-flex align-middle">
+                  <AlertTriangle className="h-3.5 w-3.5 -mt-0.5" />
+                </span>{" "}
+                icon in the footer.
+              </p>
             </div>
           </div>
 
@@ -1227,7 +1405,9 @@ function ContentModal({
 
             {stepText ? (
               <span className="text-xs opacity-70">{stepText}</span>
-            ) : <span />}
+            ) : (
+              <span />
+            )}
 
             <button
               type="button"
@@ -1240,7 +1420,6 @@ function ContentModal({
             </button>
           </div>
         )}
-
       </div>
     </div>
   );

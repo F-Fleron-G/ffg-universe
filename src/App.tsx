@@ -10,10 +10,10 @@ interface MenuItem {
 
 const MENU: MenuItem[] = [
   { label: "Author", href: "/author", external: true },
-  { label: "Philosopher", href: "/spiritual", external: true }, 
+  { label: "Philosopher", href: "/spiritual", external: true },
   { label: "Artist", href: "/artist", external: true },
-  { label: "Engineer", href: "https://github.com/F-Fleron-G", external: true},
-  { label: "Musician", href: "/musician", external: true},
+  { label: "Engineer", href: "https://github.com/F-Fleron-G", external: true },
+  { label: "Musician", href: "/musician", external: true },
 ];
 
 function useMediaQuery(query: string) {
@@ -36,7 +36,10 @@ export default function App() {
   const isTablet = useMediaQuery("(min-width: 641px) and (max-width: 1024px)");
 
   const [sending, setSending] = useState(false);
-  const [formStatus, setFormStatus] = useState<null | { type: "success" | "error"; text: string }>(null);
+  const [formStatus, setFormStatus] = useState<null | {
+    type: "success" | "error";
+    text: string;
+  }>(null);
 
   const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -78,227 +81,253 @@ export default function App() {
   }, [formStatus]);
 
   return (
+    <>
+      <PageHead
+        title="Home - Frederic G. Fleron Grignard"
+        description="Official website of Frederic G. Fleron Grignard — engineer, author, artist, musician, and philosopher. Explore books, music, art, philosophy, and software engineering projects."
+        iconHref="/favicon.ico"
+        ogImage="/og/home.jpg"
+      />
 
-     <>
-    <PageHead
-      title="Home - Frederic G. Fleron Grignard"
-      description="Official website of Frederic G. Fleron Grignard — engineer, author, artist, musician, and philosopher. Explore books, music, art, philosophy, and software engineering projects."
-      iconHref="/favicon.ico"
-      ogImage="/og/home.jpg"
-    />
-
-    <div className="min-h-screen bg-black text-slate-100 flex flex-col items-center justify-between px-6 pt-6 pb-6 gap-6 md:gap-10 relative overflow-hidden">
-      {/* Keyframes */}
-      <style>{`
+      <div className="min-h-screen bg-black text-slate-100 flex flex-col items-center justify-between px-6 pt-6 pb-6 gap-6 md:gap-10 relative overflow-hidden">
+        {/* Keyframes */}
+        <style>{`
         @keyframes drift { from { transform: translateY(0); } to { transform: translateY(100vh); } }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
       `}</style>
 
-      {/* Universe background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 38%, rgba(120,150,255,0.08), transparent 60%)" }} />
-        <StarField count={isMobile ? 60 : 140} />
-        <ShootingStars /> 
-      </div>
-
-      {/* INTRO (typewriter) */}
-      <section className="relative z-10 w-full max-w-4xl rounded-3xl border border-white/10 bg-white/5 backdrop-blur p-6 md:p-8 text-center min-h-[140px] md:min-h-[150px] overflow-hidden">
-        <h1 className="font-heading tracking-wide text-sky-300/60 text-3xl md:text-4xl mb-4">
-          Hi, I'm Frederic G. Fleron Grignard
-        </h1>
-        <TypewriterParagraph
-          text={
-            "Welcome to my Universe — a hand-built space where you can explore my work."
-          }
-        />
-      </section>
-
-      {/* HERO */}
-      <section className="relative z-10 w-full max-w-4xl rounded-3xl border border-white/10 bg-white/5 backdrop-blur p-4 md:p-8">
-        
-        {/* Info icon  */}
-        <button
-          type="button"
-          aria-label="How to use"
-          onClick={() => setShowTip((v) => !v)}
-          className="absolute top-3 left-3 z-20 h-8 w-8 rounded-full border border-sky-400/25 bg-white/5 backdrop-blur text-slate-100 flex items-center justify-center hover:border-sky-300/60 hover:bg-white/10 transition"
-        >
-          <span className="text-sm font-semibold">i</span>
-        </button>
-
-        {/* Popover */}
-        {showTip && (
+        {/* Universe background */}
+        <div className="absolute inset-0">
           <div
-            role="dialog"
-            aria-modal="false"
-            className="absolute top-12 left-3 z-20 max-w-xs rounded-xl border border-white/15 bg-black/80 text-slate-100 p-3 text-sm shadow-lg backdrop-blur flex flex-col"
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse at 50% 38%, rgba(120,150,255,0.08), transparent 60%)",
+            }}
+          />
+          <StarField count={isMobile ? 60 : 140} />
+          <ShootingStars />
+        </div>
+
+        {/* INTRO (typewriter) */}
+        <section className="relative z-10 w-full max-w-4xl rounded-3xl border border-white/10 bg-white/5 backdrop-blur p-6 md:p-8 text-center min-h-[140px] md:min-h-[150px] overflow-hidden">
+          <h1 className="font-heading tracking-wide text-sky-300/60 text-3xl md:text-4xl mb-4">
+            Hi, I'm Frederic G. Fleron Grignard
+          </h1>
+          <TypewriterParagraph
+            text={
+              "Welcome to my Universe — a hand-built space where you can explore my work."
+            }
+          />
+        </section>
+
+        {/* HERO */}
+        <section className="relative z-10 w-full max-w-4xl rounded-3xl border border-white/10 bg-white/5 backdrop-blur p-4 md:p-8">
+          {/* Info icon  */}
+          <button
+            type="button"
+            aria-label="How to use"
+            onClick={() => setShowTip((v) => !v)}
+            className="absolute top-3 left-3 z-20 h-8 w-8 rounded-full border border-sky-400/25 bg-white/5 backdrop-blur text-slate-100 flex items-center justify-center hover:border-sky-300/60 hover:bg-white/10 transition"
           >
+            <span className="text-sm font-semibold">i</span>
+          </button>
+
+          {/* Popover */}
+          {showTip && (
+            <div
+              role="dialog"
+              aria-modal="false"
+              className="absolute top-12 left-3 z-20 max-w-xs rounded-xl border border-white/15 bg-black/80 text-slate-100 p-3 text-sm shadow-lg backdrop-blur flex flex-col"
+            >
               <div className="flex flex-col gap-2">
                 <span>
-                  Tip: the labels orbiting my portrait are clickable — tap one to dive in.
+                  Tip: the labels orbiting my portrait are clickable — tap one
+                  to dive in.
                 </span>
               </div>
               <button
-            onClick={() => setShowTip(false)}
-            className="mt-2 self-end text-xs text-sky-300/60 hover:text-slate-100"
-          >
-            Got it
-          </button>
-          </div>
-        )}
-
-        {showContactModal && (
-          <div className="fixed inset-0 z-50 flex rounded-3xl border-none items-center justify-center bg-black/90 backdrop-blur-md">
-            <div className="w-full max-w-md mx-4 rounded-xl border border-sky-300/40 bg-black/80 text-slate-100 p-6 shadow-lg">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="font-heading tracking-wide text-sky-300/60 text-[22px]">
-                  Contact
-                </h2>
-
-                <button
-                  type="button"
-                  aria-label="Close contact"
-                  onClick={() => setShowContactModal(false)}
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition"
-                >
-                  <X className="h-4 w-4 text-white/70" />
-                </button>
-              </div>
-
-              <form onSubmit={handleContactSubmit} className="flex flex-col gap-3">
-
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your name"
-                  required
-                  className="w-full rounded-md bg-white/5 border border-white/10 px-3 py-2 text-sm placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-sky-300/30 focus:border-sky-300/40"
-                />
-
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your email"
-                  required
-                  className="w-full rounded-md bg-white/5 border border-white/10 px-3 py-2 text-sm placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-sky-300/30 focus:border-sky-300/40"
-                />
-
-                <textarea
-                  name="message"
-                  placeholder="Your message"
-                  required
-                  rows={4}
-                  className="w-full rounded-md bg-white/5 border border-white/10 px-3 py-2 text-sm placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-sky-300/30 focus:border-sky-300/40"
-                />
-
-                <input type="hidden" name="_subject" value="New message from LANDING page" />
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
-
-                <button
-                  type="submit"
-                  disabled={sending}
-                  className="mt-2 rounded-md bg-sky-400/20 border border-sky-300/40 px-4 py-2 text-sm text-slate-100 hover:bg-sky-400/30 transition disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  {sending ? "Sending..." : "Send"}
-                </button>
-
-                {formStatus && (
-                  <div
-                    role="status"
-                    aria-live="polite"
-                    className={`mt-2 rounded-md border px-3 py-2 text-sm flex items-center gap-2 ${
-                      formStatus.type === "success"
-                        ? "border-sky-300/30 bg-sky-400/10 text-slate-100"
-                        : "border-red-400/30 bg-red-400/10 text-slate-100"
-                    }`}
-                  >
-                    {formStatus.type === "success" && (
-                      <Check className="h-4 w-4 text-sky-300/80 shrink-0" />
-                    )}
-
-                    <span>{formStatus.text}</span>
-                  </div>
-                )}
-
-              </form>
-            </div>
-          </div>
-        )}
-
-        <div className="relative mx-auto aspect-square w-full max-w-xl">
-          {/* 3D orbit */}
-          <Orbit3D
-            items={MENU}
-            radius={isMobile ? 110 : isTablet ? 150 : 200}
-            speedDegPerSec={30}
-            centerOffsetPct={{ x: 50, y: 30 }}
-            center={
-            <div className="relative aspect-square w-[min(19rem,78vw)] sm:w-[21rem] md:w-[25rem] lg:w-[29rem] xl:w-[32rem]">
-              {/* Faint orbit ring */}
-              <div 
-                className="absolute -inset-1 rounded-full border border-sky-400/25 pointer-events-none"
-                style={{ zIndex: 10 }}
-              />
-              <div
-                className="relative rounded-full overflow-hidden border border-white/10 w-full h-full"
-                style={{ boxShadow: "0 0 70px rgba(255,255,255,0.08)" }}
+                onClick={() => setShowTip(false)}
+                className="mt-2 self-end text-xs text-sky-300/60 hover:text-slate-100"
               >
-                <picture>
-                  <img src="/me-1024px.png"
-                  srcSet="/me-512px.png 512w, /me-768px.png 768w, /me-1024px.png 1024w"
-                  sizes="(min-width: 1280px) 32rem,
+                Got it
+              </button>
+            </div>
+          )}
+
+          {showContactModal && (
+            <div className="fixed inset-0 z-50 flex rounded-3xl border-none items-center justify-center bg-black/90 backdrop-blur-md">
+              <div className="w-full max-w-md mx-4 rounded-xl border border-sky-300/40 bg-black/80 text-slate-100 p-6 shadow-lg">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="font-heading tracking-wide text-sky-300/60 text-[22px]">
+                    Contact
+                  </h2>
+
+                  <button
+                    type="button"
+                    aria-label="Close contact"
+                    onClick={() => setShowContactModal(false)}
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition"
+                  >
+                    <X className="h-4 w-4 text-white/70" />
+                  </button>
+                </div>
+
+                <form
+                  onSubmit={handleContactSubmit}
+                  className="flex flex-col gap-3"
+                >
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                    className="w-full rounded-md bg-white/5 border border-white/10 px-3 py-2 text-sm placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-sky-300/30 focus:border-sky-300/40"
+                  />
+
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Your email"
+                    required
+                    className="w-full rounded-md bg-white/5 border border-white/10 px-3 py-2 text-sm placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-sky-300/30 focus:border-sky-300/40"
+                  />
+
+                  <textarea
+                    name="message"
+                    placeholder="Your message"
+                    required
+                    rows={4}
+                    className="w-full rounded-md bg-white/5 border border-white/10 px-3 py-2 text-sm placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-sky-300/30 focus:border-sky-300/40"
+                  />
+
+                  <input
+                    type="hidden"
+                    name="_subject"
+                    value="New message from LANDING page"
+                  />
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input
+                    type="text"
+                    name="_honey"
+                    style={{ display: "none" }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+
+                  <button
+                    type="submit"
+                    disabled={sending}
+                    className="mt-2 rounded-md bg-sky-400/20 border border-sky-300/40 px-4 py-2 text-sm text-slate-100 hover:bg-sky-400/30 transition disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {sending ? "Sending..." : "Send"}
+                  </button>
+
+                  {formStatus && (
+                    <div
+                      role="status"
+                      aria-live="polite"
+                      className={`mt-2 rounded-md border px-3 py-2 text-sm flex items-center gap-2 ${
+                        formStatus.type === "success"
+                          ? "border-sky-300/30 bg-sky-400/10 text-slate-100"
+                          : "border-red-400/30 bg-red-400/10 text-slate-100"
+                      }`}
+                    >
+                      {formStatus.type === "success" && (
+                        <Check className="h-4 w-4 text-sky-300/80 shrink-0" />
+                      )}
+
+                      <span>{formStatus.text}</span>
+                    </div>
+                  )}
+                </form>
+              </div>
+            </div>
+          )}
+
+          <div className="relative mx-auto aspect-square w-full max-w-xl">
+            {/* 3D orbit */}
+            <Orbit3D
+              items={MENU}
+              radius={isMobile ? 110 : isTablet ? 150 : 200}
+              speedDegPerSec={30}
+              centerOffsetPct={{ x: 50, y: 30 }}
+              center={
+                <div className="relative aspect-square w-[min(19rem,78vw)] sm:w-[21rem] md:w-[25rem] lg:w-[29rem] xl:w-[32rem]">
+                  {/* Faint orbit ring */}
+                  <div
+                    className="absolute -inset-1 rounded-full border border-sky-400/25 pointer-events-none"
+                    style={{ zIndex: 10 }}
+                  />
+                  <div
+                    className="relative rounded-full overflow-hidden border border-white/10 w-full h-full"
+                    style={{ boxShadow: "0 0 70px rgba(255,255,255,0.08)" }}
+                  >
+                    <picture>
+                      <img
+                        src="/me-1024px.png"
+                        srcSet="/me-512px.png 512w, /me-768px.png 768w, /me-1024px.png 1024w"
+                        sizes="(min-width: 1280px) 32rem,
                         (min-width: 1024px) 29rem,
                         (min-width: 768px) 25rem,
                         (min-width: 640px) 21rem,
                         19rem"
-                  alt="Portrait" className="h-full w-full object-cover"
-                  width={1024}
-                  height={1024}
-                  />
-                </picture>
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
-              </div>
-            </div>
-          }
-          />
-        </div>
-        <div className="mt-4 md:mt-6 text-center text-sm md:text-base text-slate-300/60 font-heading tracking-wide">
-          <p>
-            Discover my books, music, art, philosophy, and software engineering through the orbit above.
-          </p>
-        </div>
-      </section>
-      
-      {/* FOOTER */}
-      <footer className="relative z-10 w-full max-w-4xl rounded-3xl border border-white/10 bg-white/5 backdrop-blur p-6 md:p-8 text-sm text-sky-300/60">
-      <div className="flex w-full flex-col md:flex-row items-center md:items-center justify-center md:justify-between gap-4 text-center md:text-left">
-        
-        <div className="space-y-1">
-          <div>© {new Date().getFullYear()} Frederic G. Fleron Grignard</div>
-          <div>All rights reserved</div>
-        </div>
-       
-          <div className="flex space-x-6 mt-2 md:mt-0">
-            <button
-              type="button"
-              onClick={() => {
-                setFormStatus(null);
-                setShowContactModal(true);
-              }}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sky-300/60 transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/50 hover:bg-sky-300/10 hover:text-slate-100"
-              aria-label="Email"
-            >
-              <Mail className="h-5 w-5" />
-            </button>
-            <a href="https://github.com/F-Fleron-G" target="_blank" rel="noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sky-300/60 transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/50 hover:bg-sky-300/10 hover:text-slate-100" aria-label="GitHub">
-              <Github className="h-5 w-5" />
-            </a>
+                        alt="Portrait"
+                        className="h-full w-full object-cover"
+                        width={1024}
+                        height={1024}
+                      />
+                    </picture>
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
+                  </div>
+                </div>
+              }
+            />
           </div>
-        </div>
-      </footer>
-    </div>
-     </>
+          <div className="mt-4 md:mt-6 text-center text-sm md:text-base text-slate-300/60 font-heading tracking-wide">
+            <p>
+              Discover my books, music, art, philosophy, and software
+              engineering through the orbit above.
+            </p>
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <footer className="relative z-10 w-full max-w-4xl rounded-3xl border border-white/10 bg-white/5 backdrop-blur p-6 md:p-8 text-sm text-sky-300/60">
+          <div className="flex w-full flex-col md:flex-row items-center md:items-center justify-center md:justify-between gap-4 text-center md:text-left">
+            <div className="space-y-1">
+              <div>
+                © {new Date().getFullYear()} Frederic G. Fleron Grignard
+              </div>
+              <div>All rights reserved</div>
+            </div>
+
+            <div className="flex space-x-6 mt-2 md:mt-0">
+              <button
+                type="button"
+                onClick={() => {
+                  setFormStatus(null);
+                  setShowContactModal(true);
+                }}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sky-300/60 transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/50 hover:bg-sky-300/10 hover:text-slate-100"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5" />
+              </button>
+              <a
+                href="https://github.com/F-Fleron-G"
+                target="_blank"
+                rel="noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sky-300/60 transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/50 hover:bg-sky-300/10 hover:text-slate-100"
+                aria-label="GitHub"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </>
   );
 }
 
@@ -306,7 +335,10 @@ export default function App() {
 const TypewriterParagraph = memo(function TypewriterParagraph({
   text,
   speed = 60,
-}: { text: string; speed?: number }) {
+}: {
+  text: string;
+  speed?: number;
+}) {
   const [i, setI] = useState(0);
   useEffect(() => {
     if (i < text.length) {
@@ -318,11 +350,14 @@ const TypewriterParagraph = memo(function TypewriterParagraph({
   const visible = text.slice(0, i);
   const parts = visible.split("\n\n");
 
-    return (
+  return (
     <div className="relative text-center md:text-center leading-relaxed whitespace-pre-line">
       <div className="invisible">
         {text.split("\n\n").map((p, idx) => (
-          <p key={idx} className={idx === 0 ? "text-lg md:text-xl" : "mt-4 text-slate-300"}>
+          <p
+            key={idx}
+            className={idx === 0 ? "text-lg md:text-xl" : "mt-4 text-slate-300"}
+          >
             {p}
           </p>
         ))}
@@ -330,7 +365,10 @@ const TypewriterParagraph = memo(function TypewriterParagraph({
 
       <div className="absolute inset-0">
         {parts.map((p, idx) => (
-          <p key={idx} className={idx === 0 ? "text-lg md:text-xl" : "mt-4 text-slate-300"}>
+          <p
+            key={idx}
+            className={idx === 0 ? "text-lg md:text-xl" : "mt-4 text-slate-300"}
+          >
             {p}
             {idx === parts.length - 1 && i < text.length && (
               <span
@@ -347,7 +385,14 @@ const TypewriterParagraph = memo(function TypewriterParagraph({
 
 function StarField({ count = 120 }: { count?: number }) {
   const stars = useMemo(() => {
-    const arr = [] as { left: number; top: number; size: number; opacity: number; delay: number; dur: number }[];
+    const arr = [] as {
+      left: number;
+      top: number;
+      size: number;
+      opacity: number;
+      delay: number;
+      dur: number;
+    }[];
     for (let i = 0; i < count; i++) {
       arr.push({
         left: Math.random() * 100,
@@ -384,7 +429,9 @@ function StarField({ count = 120 }: { count?: number }) {
 }
 
 function ShootingStars() {
-  const [stars, setStars] = useState<{ id: number; left: number; top: number }[]>([]);
+  const [stars, setStars] = useState<
+    { id: number; left: number; top: number }[]
+  >([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -438,7 +485,6 @@ function Orbit3D({
   center: React.ReactNode;
   centerOffsetPct?: { x: number; y: number };
 }) {
-
   const itemRefs = useRef<HTMLAnchorElement[]>([]);
   itemRefs.current = [];
 
@@ -452,7 +498,7 @@ function Orbit3D({
     let start = performance.now();
 
     const tick = (now: number) => {
-      const t = (now - start) / 1000;              
+      const t = (now - start) / 1000;
       const degOffset = (t * speedDegPerSec) % 360;
       const toRad = Math.PI / 180;
 
@@ -468,8 +514,8 @@ function Orbit3D({
         const y = 0;
 
         const depth = (z + radius) / (2 * radius);
-        const scale = 0.8 + depth * 0.4;             
-        const opacity = 0.6 + depth * 0.4;           
+        const scale = 0.8 + depth * 0.4;
+        const opacity = 0.6 + depth * 0.4;
 
         const zIndex = (z >= 0 ? 300 : 100) + Math.round(depth * 100);
 
@@ -487,14 +533,25 @@ function Orbit3D({
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [baseAngles, centerOffsetPct.x, centerOffsetPct.y, radius, speedDegPerSec]);
+  }, [
+    baseAngles,
+    centerOffsetPct.x,
+    centerOffsetPct.y,
+    radius,
+    speedDegPerSec,
+  ]);
 
   return (
-    <div className="absolute inset-0" style={{ perspective: 1000, transformStyle: "preserve-3d" }}>
+    <div
+      className="absolute inset-0"
+      style={{ perspective: 1000, transformStyle: "preserve-3d" }}
+    >
       {items.map((item, i) => (
         <a
           key={item.label}
-          ref={(el) => { if (el) itemRefs.current[i] = el; }}
+          ref={(el) => {
+            if (el) itemRefs.current[i] = el;
+          }}
           href={item.href}
           target={item.external ? "_blank" : undefined}
           rel={item.external ? "noopener noreferrer" : undefined}
@@ -506,7 +563,12 @@ function Orbit3D({
 
       <div
         className="absolute pointer-events-none"
-        style={{ left: "50%", top: "50%", transform: "translate(-50%, -50%)", zIndex: 200 }}
+        style={{
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+          zIndex: 200,
+        }}
       >
         {center}
       </div>
@@ -514,7 +576,13 @@ function Orbit3D({
   );
 }
 
-function Badge({ label, translucent }: { label: string; translucent?: boolean }) {
+function Badge({
+  label,
+  translucent,
+}: {
+  label: string;
+  translucent?: boolean;
+}) {
   return (
     <span
       className={
