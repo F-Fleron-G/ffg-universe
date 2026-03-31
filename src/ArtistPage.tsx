@@ -733,7 +733,7 @@ export default function ArtistPage() {
           >
             <Home className="h-5 w-5" />
           </Link>
-          <nav className="mx-auto max-w-6xl px-4 pt-3 pb-[2px] flex items-center justify-between">
+          <nav className="mx-auto max-w-6xl px-4 pt-3 pb-[2px] min-h-[72px] md:min-h-[142px] flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-2 font-semibold tracking-wide select-none">
               <img src="/FG.png" alt="FG logo" className="h-16 md:h-32 w-auto" />
@@ -768,7 +768,7 @@ export default function ArtistPage() {
             </button>
           </nav>
           {open && (
-            <div className="md:hidden border-t border-black/10 bg-white/95 backdrop-blur">
+            <div className="md:hidden border-t border-black/10 bg-white/80 backdrop-blur">
               <ul className="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3">
                 {sections.map((s) => (
                   <li key={s.id}>
