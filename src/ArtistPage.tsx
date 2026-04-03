@@ -1,6 +1,25 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Home, User, PenTool, Palette, Mail, Candy, Sparkles, Paintbrush, Ruler, Clock, Info, Wrench, X as XIcon, Image as ImageIcon, CheckCircle2, AlertCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Home,
+  User,
+  PenTool,
+  Palette,
+  Mail,
+  Candy,
+  Sparkles,
+  Paintbrush,
+  Ruler,
+  Clock,
+  Info,
+  Wrench,
+  X as XIcon,
+  Image as ImageIcon,
+  CheckCircle2,
+  AlertCircle,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import HTMLFlipBook from "react-pageflip";
 import PageHead from "./components/PageHead";
 
@@ -30,7 +49,6 @@ function FadeSlider({
   }, [images.length]);
 
   return (
-
     <div
       className={`relative w-full ${heightClass} rounded-xl overflow-hidden border-4 border-black bg-black/5 ${className}`}
     >
@@ -39,8 +57,9 @@ function FadeSlider({
           key={i}
           src={src}
           alt={`Slide ${i + 1}`}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === index ? "opacity-100" : "opacity-0"
-            }`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            i === index ? "opacity-100" : "opacity-0"
+          }`}
         />
       ))}
     </div>
@@ -115,9 +134,7 @@ function PolaroidSlider({
           widthClass,
           className,
         ].join(" ")}
-        style={
-          { ["--dur" as any]: `${totalSeconds}s` } as React.CSSProperties
-        }
+        style={{ ["--dur" as any]: `${totalSeconds}s` } as React.CSSProperties}
       >
         {images.map((src, i) => {
           const isLast = i === images.length - 1;
@@ -125,8 +142,9 @@ function PolaroidSlider({
           return (
             <div
               key={i}
-              className={`polaroid-frame${isLast ? " last" : ""}${images.length < 2 ? " no-anim" : ""
-                } cursor-pointer`}
+              className={`polaroid-frame${isLast ? " last" : ""}${
+                images.length < 2 ? " no-anim" : ""
+              } cursor-pointer`}
               style={
                 {
                   animationDelay: `-${i * 2}s`,
@@ -140,7 +158,9 @@ function PolaroidSlider({
               title="Click for details"
             >
               <img src={src} alt={frameLabel} />
-              {frameLabel && <div className="polaroid-caption">{frameLabel}</div>}
+              {frameLabel && (
+                <div className="polaroid-caption">{frameLabel}</div>
+              )}
             </div>
           );
         })}
@@ -222,7 +242,7 @@ function PolaroidSlider({
                             "border border-black/10 transition focus-visible:outline-none",
                             i === thumbIndex
                               ? "ring-2 ring-[#728ca5] ring-offset-2 ring-offset-white shadow-md -translate-y-[1px]"
-                              : "hover:shadow hover:-translate-y-[1px]"
+                              : "hover:shadow hover:-translate-y-[1px]",
                           ].join(" ")}
                           aria-label={`Select image ${i + 1}`}
                           title={`View angle ${i + 1}`}
@@ -246,7 +266,9 @@ function PolaroidSlider({
                 {labels?.[modalIndex] && (
                   <h4
                     className="text-xl font-semibold text-center pb-2 mb-3"
-                    style={{ fontFamily: '"Bradley Hand", "Comic Sans MS", cursive' }}
+                    style={{
+                      fontFamily: '"Bradley Hand", "Comic Sans MS", cursive',
+                    }}
                   >
                     {labels[modalIndex]}
                   </h4>
@@ -276,11 +298,14 @@ function PolaroidSlider({
                               Build Time &amp; Drying Tips
                             </div>
                             {d?.time && (
-                              <p className="text-sm leading-relaxed">{d.time}</p>
+                              <p className="text-sm leading-relaxed">
+                                {d.time}
+                              </p>
                             )}
                             <p className="text-xs leading-relaxed opacity-80 mt-1">
-                              For best results I let the base layers air-dry overnight,
-                              then (if needed) I use a blow-dryer to speed things up.
+                              For best results I let the base layers air-dry
+                              overnight, then (if needed) I use a blow-dryer to
+                              speed things up.
                             </p>
                           </div>
                         </div>
@@ -291,7 +316,9 @@ function PolaroidSlider({
                         <div className="flex items-start gap-2">
                           <Wrench className="shrink-0 mt-[2px]" size={18} />
                           <div>
-                            <div className="text-sm font-semibold">Materials</div>
+                            <div className="text-sm font-semibold">
+                              Materials
+                            </div>
                             <p className="text-sm leading-relaxed whitespace-pre-line">
                               {d.materials}
                             </p>
@@ -321,12 +348,17 @@ function PolaroidSlider({
           </div>
         </div>
       )}
-
     </>
   );
 }
 
-function IconBullet({ icon: Icon, children }: { icon: any; children: React.ReactNode }) {
+function IconBullet({
+  icon: Icon,
+  children,
+}: {
+  icon: any;
+  children: React.ReactNode;
+}) {
   return (
     <li className="flex items-start gap-3">
       <span className="mt-[2px] flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-black/70 bg-white">
@@ -350,17 +382,22 @@ function PageNo({ n }: { n: number }) {
 }
 
 export default function ArtistPage() {
-
   const [showTip, setShowTip] = useState(false);
 
   const [isSpread, setIsSpread] = useState(false);
 
   const [open, setOpen] = useState(false);
 
-  const [zoomedImage, setZoomedImage] = useState<null | { src: string; alt: string }>(null);
+  const [zoomedImage, setZoomedImage] = useState<null | {
+    src: string;
+    alt: string;
+  }>(null);
 
   const [sending, setSending] = useState(false);
-  const [toast, setToast] = useState<null | { type: "success" | "error"; text: string }>(null);
+  const [toast, setToast] = useState<null | {
+    type: "success" | "error";
+    text: string;
+  }>(null);
 
   const bookRef = useRef<any>(null);
 
@@ -444,12 +481,11 @@ export default function ArtistPage() {
         setToast({ type: "success", text: "Thanks! Your message was sent." });
         form.reset();
       } else {
-
         let msg = "Sorry, something went wrong. Please try again.";
         try {
           const j = await res.json();
           if (j?.message) msg = j.message;
-        } catch { }
+        } catch {}
         setToast({ type: "error", text: msg });
       }
     } catch {
@@ -468,7 +504,6 @@ export default function ArtistPage() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -480,7 +515,6 @@ export default function ArtistPage() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-
   return (
     <>
       <PageHead
@@ -490,8 +524,10 @@ export default function ArtistPage() {
         ogImage="/og/artist.jpg"
       />
 
-      <div id="top" className="artist-page min-h-screen text-neutral-900 overflow-x-hidden bg-white">
-
+      <div
+        id="top"
+        className="artist-page min-h-screen text-neutral-900 overflow-x-hidden bg-white"
+      >
         <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Patrick+Hand&display=swap');
         .artist-page h1, .artist-page h2, .artist-page h3 { font-family: "Montserrat", sans-serif; }
@@ -729,14 +765,21 @@ export default function ArtistPage() {
             aria-label="Back to landing page"
             title="Back to landing page"
             className="hidden md:flex items-center justify-center h-10 w-10 rounded-full border border-[#000000] hover:bg-black/5 transition absolute"
-            style={{ top: 12, right: "calc((100vw - min(100vw, 72rem))/2 + 1rem)" }}
+            style={{
+              top: 12,
+              right: "calc((100vw - min(100vw, 72rem))/2 + 1rem)",
+            }}
           >
             <Home className="h-5 w-5" />
           </Link>
           <nav className="mx-auto max-w-6xl px-4 pt-3 pb-[2px] min-h-[72px] md:min-h-[142px] flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-2 font-semibold tracking-wide select-none">
-              <img src="/FG.png" alt="FG logo" className="h-16 md:h-32 w-auto" />
+              <img
+                src="/FG.png"
+                alt="FG logo"
+                className="h-16 md:h-32 w-auto"
+              />
             </div>
 
             {/* Desktop nav with icons */}
@@ -762,7 +805,14 @@ export default function ArtistPage() {
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
             >
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <svg
+                className="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              >
                 <path d="M3 6h18M3 12h18M3 18h18" />
               </svg>
             </button>
@@ -772,14 +822,22 @@ export default function ArtistPage() {
               <ul className="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3">
                 {sections.map((s) => (
                   <li key={s.id}>
-                    <a href={`#${s.id}`} className="flex items-center gap-2 py-2 text-sm hover:opacity-70" onClick={() => setOpen(false)}>
+                    <a
+                      href={`#${s.id}`}
+                      className="flex items-center gap-2 py-2 text-sm hover:opacity-70"
+                      onClick={() => setOpen(false)}
+                    >
                       {s.icon}
                       {s.label}
                     </a>
                   </li>
                 ))}
                 <li className="pt-2 mt-1 border-t border-black/10">
-                  <Link to="/" className="flex items-center gap-2 py-2 text-sm hover:opacity-70" onClick={() => setOpen(false)}>
+                  <Link
+                    to="/"
+                    className="flex items-center gap-2 py-2 text-sm hover:opacity-70"
+                    onClick={() => setOpen(false)}
+                  >
                     <Home className="h-6 w-6 p-1 rounded-full border border-[#000000] hover:bg-black/5" />
                     Home
                   </Link>
@@ -805,15 +863,27 @@ export default function ArtistPage() {
                   <h1 className="text-4xl font-bold mb-6">About Me</h1>
                   <div className="space-y-4 max-w-prose leading-relaxed">
                     <p>
-                      Art is, to me, the quietest loud language. It’s the safe place where we say the unsayable, free from “good” or “bad.” My work is story-driven: I line up thought with feeling and bring what’s inside into matter.
+                      Art is, to me, the quietest loud language. It’s the safe
+                      place where we say the unsayable, free from “good” or
+                      “bad.” My work is story-driven: I line up thought with
+                      feeling and bring what’s inside into matter.
                     </p>
                     <p>
-                      In quiet, reflective moments I sketch what I feel, often a small self wandering into its own thought: a place, a person, a symbol. With a fine-tip pen I build it dot by dot, shadows and edges forming like atoms on paper.
+                      In quiet, reflective moments I sketch what I feel, often a
+                      small self wandering into its own thought: a place, a
+                      person, a symbol. With a fine-tip pen I build it dot by
+                      dot, shadows and edges forming like atoms on paper.
                     </p>
                     <p>
-                      Piñatas arise for occasions. I build the idea and let it go: used, loved, broken open, finished. They’re made to be enjoyed and to end, like everything, cracked open and complete.
+                      Piñatas arise for occasions. I build the idea and let it
+                      go: used, loved, broken open, finished. They’re made to be
+                      enjoyed and to end, like everything, cracked open and
+                      complete.
                     </p>
-                    <p className="text-2xl md:text-2xl font-semibold"> Welcome! I’m Frederic G. Fleron Grignard.</p>
+                    <p className="text-2xl md:text-2xl font-semibold">
+                      {" "}
+                      Welcome! I’m Frederic G. Fleron Grignard.
+                    </p>
                     <p className="mt-6 text-[clamp(10px,3.2vw,14px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] opacity-90 text-[#cacaca] whitespace-nowrap">
                       Expressionist · Artist · Unmuted
                     </p>
@@ -846,7 +916,7 @@ export default function ArtistPage() {
                 type="button"
                 aria-label="How to use the flipbook"
                 aria-expanded={showTip}
-                onClick={() => setShowTip(v => !v)}
+                onClick={() => setShowTip((v) => !v)}
                 className="absolute right-0 top-1/2 -translate-y-1/2 z-30 h-7 w-7 rounded-full
                         border border-[#728ca5] bg-white/80 text-[#728ca5]
                         flex items-center justify-center shadow-sm backdrop-blur
@@ -866,7 +936,8 @@ export default function ArtistPage() {
                           leading-relaxed"
                 >
                   <p className="mb-2 !text-[14px]">
-                    Tip: Click the right page or the → button to flip forward, and the left page or the ← button to flip back.
+                    Tip: Click the right page or the → button to flip forward,
+                    and the left page or the ← button to flip back.
                   </p>
                   <div className="flex justify-end">
                     <button
@@ -912,7 +983,6 @@ export default function ArtistPage() {
                 }}
                 onFlip={updateNav}
               >
-
                 {/* Page 1: Text — with title + paragraphs */}
                 <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">
                   <div className="h-full overflow-hidden pr-1">
@@ -921,13 +991,18 @@ export default function ArtistPage() {
                     </h3>
                     <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
                       <p>
-                        I drew this when life felt heavy: a small self lifting with a simple hand motion—choosing lift over gravity.
-                        Flying has always called to me; skydiving gave me the truest taste—those seconds of freefall before deploying.
+                        I drew this when life felt heavy: a small self lifting
+                        with a simple hand motion—choosing lift over gravity.
+                        Flying has always called to me; skydiving gave me the
+                        truest taste—those seconds of freefall before deploying.
                         I tried to put that feeling on paper.
                       </p>
                       <p>
-                        Earth appears as we’re taught to see it, and I raise my ring finger—not the middle, to nudge first impressions.
-                        The aim is to make you look twice: to show how easily we misread reality and how a shift in angle can change the story.
+                        Earth appears as we’re taught to see it, and I raise my
+                        ring finger—not the middle, to nudge first impressions.
+                        The aim is to make you look twice: to show how easily we
+                        misread reality and how a shift in angle can change the
+                        story.
                       </p>
                     </div>
                   </div>
@@ -935,7 +1010,11 @@ export default function ArtistPage() {
                 </div>
                 {/* Page 2: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
-                  <img src="/1.jpg" alt="Ink drawing of a small figure lifting upward against gravity with one hand raised toward the sky." className="max-h-full max-w-full object-contain mx-auto" />
+                  <img
+                    src="/1.jpg"
+                    alt="Ink drawing of a small figure lifting upward against gravity with one hand raised toward the sky."
+                    className="max-h-full max-w-full object-contain mx-auto"
+                  />
                 </div>
                 {/* Page 3: Text */}
                 <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">
@@ -945,13 +1024,18 @@ export default function ArtistPage() {
                     </h3>
                     <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
                       <p>
-                        My father was often gone, he was always working, and this represents the kind of silence kids turn into company.
-                        The monster is that emptiness shaped into form; the hug is the child’s way of saying: “stay with me, help me build.”
+                        My father was often gone, he was always working, and
+                        this represents the kind of silence kids turn into
+                        company. The monster is that emptiness shaped into form;
+                        the hug is the child’s way of saying: “stay with me,
+                        help me build.”
                       </p>
                       <p>
-                        Now, as a father, I try to be the presence I once wished for.
-                        The sandcastle is what we create in shared time—attention, small rituals, play.
-                        Even loneliness, met with tenderness, can become ally: absence softened into presence, solitude into joy.
+                        Now, as a father, I try to be the presence I once wished
+                        for. The sandcastle is what we create in shared
+                        time—attention, small rituals, play. Even loneliness,
+                        met with tenderness, can become ally: absence softened
+                        into presence, solitude into joy.
                       </p>
                     </div>
                   </div>
@@ -959,7 +1043,11 @@ export default function ArtistPage() {
                 </div>
                 {/* Page 4: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
-                  <img src="/2.jpg" alt="Ink drawing of a child hugging a large friendly monster while building a sandcastle." className="max-h-full max-w-full object-contain mx-auto" />
+                  <img
+                    src="/2.jpg"
+                    alt="Ink drawing of a child hugging a large friendly monster while building a sandcastle."
+                    className="max-h-full max-w-full object-contain mx-auto"
+                  />
                 </div>
                 {/* Page 5: Text */}
                 <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">
@@ -969,14 +1057,17 @@ export default function ArtistPage() {
                     </h3>
                     <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
                       <p>
-                        There was a season when I felt chained to survival—working to pay bills, not to live.
-                        Music was the dream I carried on my back, but fear of risk outweighed the pull of flight.
-                        Stability felt safer than freedom, even when it left me restless.
+                        There was a season when I felt chained to
+                        survival—working to pay bills, not to live. Music was
+                        the dream I carried on my back, but fear of risk
+                        outweighed the pull of flight. Stability felt safer than
+                        freedom, even when it left me restless.
                       </p>
                       <p>
-                        Looking back, I see how close the exit was, how chances hovered within reach.
-                        Yet insecurities and “what ifs” clouded my sight.
-                        This drawing reminds me: sometimes the prison is not outside us but built from doubt within.
+                        Looking back, I see how close the exit was, how chances
+                        hovered within reach. Yet insecurities and “what ifs”
+                        clouded my sight. This drawing reminds me: sometimes the
+                        prison is not outside us but built from doubt within.
                       </p>
                     </div>
                   </div>
@@ -984,7 +1075,11 @@ export default function ArtistPage() {
                 </div>
                 {/* Page 6: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
-                  <img src="/3.jpg" alt="Ink drawing of a man carrying a guitar case, walking with a ball and chain tied to his ankle." className="max-h-full max-w-full object-contain mx-auto" />
+                  <img
+                    src="/3.jpg"
+                    alt="Ink drawing of a man carrying a guitar case, walking with a ball and chain tied to his ankle."
+                    className="max-h-full max-w-full object-contain mx-auto"
+                  />
                 </div>
                 {/* Page 7: Text */}
                 <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">
@@ -994,14 +1089,18 @@ export default function ArtistPage() {
                     </h3>
                     <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
                       <p>
-                        Each day I faced the weather head-on, pedaling through rain, wind, or shine.
-                        I had other choices—a car, the tram just steps away—but the ride itself felt like a victory.
-                        It was my way of greeting the day, no matter its mood.
+                        Each day I faced the weather head-on, pedaling through
+                        rain, wind, or shine. I had other choices—a car, the
+                        tram just steps away—but the ride itself felt like a
+                        victory. It was my way of greeting the day, no matter
+                        its mood.
                       </p>
                       <p>
-                        That ritual became more than transport: it was defiance of excuses, a quiet stand against procrastination.
-                        Every ride stitched me deeper into Berlin’s rhythm, giving me a sense of place and belonging in a city that
-                        was still becoming home.
+                        That ritual became more than transport: it was defiance
+                        of excuses, a quiet stand against procrastination. Every
+                        ride stitched me deeper into Berlin’s rhythm, giving me
+                        a sense of place and belonging in a city that was still
+                        becoming home.
                       </p>
                     </div>
                   </div>
@@ -1009,7 +1108,11 @@ export default function ArtistPage() {
                 </div>
                 {/* Page 8: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
-                  <img src="/4.jpg" alt="Ink drawing of a person on a bicycle leaning into wind and rain with swirling lines around them." className="max-h-full max-w-full object-contain mx-auto" />
+                  <img
+                    src="/4.jpg"
+                    alt="Ink drawing of a person on a bicycle leaning into wind and rain with swirling lines around them."
+                    className="max-h-full max-w-full object-contain mx-auto"
+                  />
                 </div>
                 {/* Page 9: Text */}
                 <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">
@@ -1019,13 +1122,18 @@ export default function ArtistPage() {
                     </h3>
                     <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
                       <p>
-                        This drawing was inspired by 'mi hermano del alma Charlie', who loved spicy food even as it irritated him.
-                        Watching him sweat made me wonder why we call it “chili” yet describe it as “hot,” a contradiction that begged for its own story.
+                        This drawing was inspired by 'mi hermano del alma
+                        Charlie', who loved spicy food even as it irritated him.
+                        Watching him sweat made me wonder why we call it “chili”
+                        yet describe it as “hot,” a contradiction that begged
+                        for its own story.
                       </p>
                       <p>
-                        So I imagined a cycle: the sun fed with peppers until it sweats, its drops turning into steam, then clouds, then rain.
-                        The earth drinks that rain to grow more chilis, feeding the same sun again.
-                        A strange loop of fire and water, irritation and delight, all bound in taste.
+                        So I imagined a cycle: the sun fed with peppers until it
+                        sweats, its drops turning into steam, then clouds, then
+                        rain. The earth drinks that rain to grow more chilis,
+                        feeding the same sun again. A strange loop of fire and
+                        water, irritation and delight, all bound in taste.
                       </p>
                     </div>
                     <PageNo n={5} />
@@ -1033,7 +1141,11 @@ export default function ArtistPage() {
                 </div>
                 {/* Page 10: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
-                  <img src="/5.jpg" alt="Ink drawing of a person in a tree feeding chili peppers to the sun, which sweats into clouds and rain over chili plants." className="max-h-full max-w-full object-contain mx-auto" />
+                  <img
+                    src="/5.jpg"
+                    alt="Ink drawing of a person in a tree feeding chili peppers to the sun, which sweats into clouds and rain over chili plants."
+                    className="max-h-full max-w-full object-contain mx-auto"
+                  />
                 </div>
                 {/* Page 11: Text */}
                 <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">
@@ -1043,14 +1155,18 @@ export default function ArtistPage() {
                     </h3>
                     <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
                       <p>
-                        There was a time when my dreams hung by a string, ready to snap at any moment.
-                        Far from home and without shelter, I tried to hold on to hope while reaching for music and theater.
-                        Then Sabrina, Liz and Bob Lampkin opened their home to me, giving me safety and a chance to finish high school.
+                        There was a time when my dreams hung by a string, ready
+                        to snap at any moment. Far from home and without
+                        shelter, I tried to hold on to hope while reaching for
+                        music and theater. Then Sabrina, Liz and Bob Lampkin
+                        opened their home to me, giving me safety and a chance
+                        to finish high school.
                       </p>
                       <p>
-                        Without them, everything might have fallen away.
-                        Liz and Bob have since passed, but I will always hold them close to my heart as the angels who proved that
-                        compassion can change a life forever.
+                        Without them, everything might have fallen away. Liz and
+                        Bob have since passed, but I will always hold them close
+                        to my heart as the angels who proved that compassion can
+                        change a life forever.
                       </p>
                     </div>
                     <PageNo n={6} />
@@ -1058,8 +1174,11 @@ export default function ArtistPage() {
                 </div>
                 {/* Page 12: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
-                  <img src="/6.jpg" alt="Ink drawing of a figure hanging from a guitar string beneath an angelic presence, symbolizing fragile dreams saved by compassion and light."
-                    className="max-h-full max-w-full object-contain mx-auto" />
+                  <img
+                    src="/6.jpg"
+                    alt="Ink drawing of a figure hanging from a guitar string beneath an angelic presence, symbolizing fragile dreams saved by compassion and light."
+                    className="max-h-full max-w-full object-contain mx-auto"
+                  />
                 </div>
               </HTMLFlipBook>
 
@@ -1133,10 +1252,12 @@ export default function ArtistPage() {
 
           {/* Piñatas Section */}
           <section id="pinatas" className="scroll-mt-24 py-24">
-            <h2 className="text-3xl text-center mb-10">Handcrafted Piñata Art</h2>
+            <h2 className="text-3xl text-center mb-10">
+              Handcrafted Piñata Art
+            </h2>
             <p className="max-w-xl mx-auto mb-10 text-center text-gray-700">
-              Unique handmade piñatas created from my own designs.
-              Each piece is an imaginative work of art that can take several weeks to make.
+              Unique handmade piñatas created from my own designs. Each piece is
+              an imaginative work of art that can take several weeks to make.
             </p>
 
             {/* top row of images */}
@@ -1148,8 +1269,7 @@ export default function ArtistPage() {
                   labels={["Pokémon Snorlax"]}
                   details={[
                     {
-                      why:
-                        "A surprise for my oldest son's birthday party — Snorlax was his favourite Pokémon.",
+                      why: "A surprise for my oldest son's birthday party — Snorlax was his favourite Pokémon.",
                       time: "3 days overall (roughly 3 hours of work per day, allowing for drying and design time).",
                       materials:
                         "Balloons for rounded forms; newspaper strips; recycled paper for easy moulding; flour–salt–water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
@@ -1172,12 +1292,11 @@ export default function ArtistPage() {
                   labels={["N-ice Cream"]}
                   details={[
                     {
-                      why:
-                        "Made for my youngest son's July birthday — a playful nod to summer and his love of colourful cones.",
+                      why: "Made for my youngest son's July birthday — a playful nod to summer and his love of colourful cones.",
                       time: "2 days overall (roughly 3 hours of work per day, allowing for drying and design time).",
                       materials:
                         "Balloon for the scoop; rolled cardboard for the cone; newspaper strips; recycled paper for drip details & sprinkles; flour–salt–water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
-                    }
+                    },
                   ]}
                   widthClass="mx-auto w-[280px] sm:w-[320px]"
                   className="polaroid-tall"
@@ -1192,15 +1311,11 @@ export default function ArtistPage() {
               {/* Category 3 — Halloween */}
               <figure className="text-center">
                 <PolaroidSlider
-                  images={[
-                    "/Pumpkin-P.png",
-                    "/Lovely-Witch-P1.png"
-                  ]}
+                  images={["/Pumpkin-P.png", "/Lovely-Witch-P1.png"]}
                   labels={["Pumpkin Wizard", "Lovely Witch"]}
                   details={[
                     {
-                      why:
-                        "Created for a Halloween party at my daughter's request — she wanted a pumpkin with a wizard hat.",
+                      why: "Created for a Halloween party at my daughter's request — she wanted a pumpkin with a wizard hat.",
                       time: "4 days overall (roughly 3 hours of work per day, allowing for drying and design time).",
                       materials:
                         "Kitchen-roll tubes and recycled paper for the pumpkin; cardboard to shape the wizard hat; newspaper strips; flour–salt–water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
@@ -1208,7 +1323,8 @@ export default function ArtistPage() {
                     {
                       why: "Filled with humour and fun for all ages, I wanted it to feel Halloween-themed but still friendly and playful. The witch is flying on her broom, making a sharp braking motion that bends her broomstick, squashing her poor black cat flat! The cat’s cartoonish face, with its dizzy expression, added the touch of comedy I envisioned.",
                       time: "About 12 days overall (roughly 3 hours of work per day, allowing for drying and design time).",
-                      materials: "Balloons for the head and body (and the cat’s head); kitchen roll tubes for the nose and chin; cardboard sheets for the hat; newspaper strips and recycled paper for layering, shaping, and texture; flour–salt–water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging."
+                      materials:
+                        "Balloons for the head and body (and the cat’s head); kitchen roll tubes for the nose and chin; cardboard sheets for the hat; newspaper strips and recycled paper for layering, shaping, and texture; flour–salt–water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
                     },
                   ]}
                   modalImages={[
@@ -1216,8 +1332,8 @@ export default function ArtistPage() {
                     [
                       "/Lovely-Witch-P1.png",
                       "/Lovely-Witch-P2.png",
-                      "/Lovely-Witch-P3.png"
-                    ]
+                      "/Lovely-Witch-P3.png",
+                    ],
                   ]}
                   widthClass="mx-auto w-[280px] sm:w-[320px]"
                   className="polaroid-tall"
@@ -1231,7 +1347,6 @@ export default function ArtistPage() {
             </div>
 
             <div className="relative mt-8">
-
               <div
                 aria-hidden
                 className="absolute inset-0 left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#cacaca]"
@@ -1241,7 +1356,11 @@ export default function ArtistPage() {
                 <div className="relative max-w-3xl mx-auto bg-white backdrop-blur-sm border-2 border-black rounded-xl px-6 py-8 sm:px-8 sm:py-10 shadow-[6px_6px_0_0_#000]">
                   <h3 className="text-2xl text-center mb-4">The Story</h3>
                   <p className="leading-relaxed text-center max-w-prose mx-auto">
-                    I first started making piñatas as a birthday surprise for my son. What began as one fun project quickly turned into a tradition — now a piñata feels like a “must” for every special occasion that draws us together for a fun time of arts and crafts. My kids love it!
+                    I first started making piñatas as a birthday surprise for my
+                    son. What began as one fun project quickly turned into a
+                    tradition — now a piñata feels like a “must” for every
+                    special occasion that draws us together for a fun time of
+                    arts and crafts. My kids love it!
                   </p>
                 </div>
               </div>
@@ -1252,13 +1371,14 @@ export default function ArtistPage() {
               {/* FULL-BLEED: Brush (left) • Slider (center) • Text (right) */}
               <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen">
                 <div className="mx-auto max-w-[1280px] px-4">
-                  <div className="
+                  <div
+                    className="
                           grid items-start
                           gap-6 sm:gap-8 md:gap-6 lg:gap-8
                           md:[grid-template-columns:minmax(0,1fr)_minmax(300px,1fr)]
                           lg:[grid-template-columns:160px_minmax(0,1fr)_minmax(360px,1fr)]
-                        ">
-
+                        "
+                  >
                     {/* Col 1: Brush — hidden on mobile */}
                     <div className="hidden lg:flex justify-start pr-0 lg:-mr-9 lg:-mt-5 z-10">
                       <img
@@ -1274,7 +1394,12 @@ export default function ArtistPage() {
                         {/* black frame with rounded corners */}
                         <div className="rounded-xl overflow-hidden border-4 border-black">
                           <FadeSlider
-                            images={["/Mk-I.jpg", "/Mk-P.jpg", "/Mk-S.jpg", "/Mk-W.jpg"]}
+                            images={[
+                              "/Mk-I.jpg",
+                              "/Mk-P.jpg",
+                              "/Mk-S.jpg",
+                              "/Mk-W.jpg",
+                            ]}
                             heightClass="h-[88vw] sm:h-[72vw] md:h-[22rem] lg:h-[26rem] xl:h-[26rem]"
                             className="w-full"
                           />
@@ -1285,18 +1410,27 @@ export default function ArtistPage() {
                     {/* Col 3: Text */}
                     <div className="pt-2 md:pt-0">
                       <p className="leading-relaxed">
-                        Each piñata is handmade with a simple flour-and-water papier-mâché paste
-                        and lots of newspaper strips. I shape it with balloons or a custom cardboard
-                        base so it stays light yet sturdy. A little hot glue here and there and—voilà!
-                        Sometimes I reinforce them to give the kids more of a challenge… though that depends
-                        on how strong the little challengers are.
+                        Each piñata is handmade with a simple flour-and-water
+                        papier-mâché paste and lots of newspaper strips. I shape
+                        it with balloons or a custom cardboard base so it stays
+                        light yet sturdy. A little hot glue here and there
+                        and—voilà! Sometimes I reinforce them to give the kids
+                        more of a challenge… though that depends on how strong
+                        the little challengers are.
                       </p>
 
-                      <h4 className="mt-6 mb-3 font-semibold">A few of my personal twists:</h4>
+                      <h4 className="mt-6 mb-3 font-semibold">
+                        A few of my personal twists:
+                      </h4>
                       <ul className="grid gap-3">
-
-                        <IconBullet icon={Paintbrush}>I use acrylic paint for a bright, glossy finish.</IconBullet>
-                        <IconBullet icon={Candy}>Before the fun begins, I leave an opening to fill with sweets and goodies, then seal it all up for the big moment.</IconBullet>
+                        <IconBullet icon={Paintbrush}>
+                          I use acrylic paint for a bright, glossy finish.
+                        </IconBullet>
+                        <IconBullet icon={Candy}>
+                          Before the fun begins, I leave an opening to fill with
+                          sweets and goodies, then seal it all up for the big
+                          moment.
+                        </IconBullet>
                       </ul>
                     </div>
                   </div>
@@ -1309,22 +1443,40 @@ export default function ArtistPage() {
             <div className="h-12 sm:h-14 md:h-16" aria-hidden />
 
             <div className="relative max-w-3xl mx-auto rounded-xl border-2 border-black bg-white px-6 py-8 sm:px-8 sm:py-10 shadow-[6px_6px_0_0_#000]">
-              <h3 className="text-2xl text-center mb-4">Want One Made Just for You?</h3>
+              <h3 className="text-2xl text-center mb-4">
+                Want One Made Just for You?
+              </h3>
               <p className="leading-relaxed text-center max-w-prose mx-auto mb-6">
-                If you’d like a custom piñata, just send me a reference image, your preferred size, and a bit of lead time so I can craft it with care. The bigger or more detailed, the more time I’ll need. The largest one I’ve made so far was the Halloween pumpkin, measuring 55cm tall by 40cm wide — and yes, it was a hit!
+                If you’d like a custom piñata, just send me a reference image,
+                your preferred size, and a bit of lead time so I can craft it
+                with care. The bigger or more detailed, the more time I’ll need.
+                The largest one I’ve made so far was the Halloween pumpkin,
+                measuring 55cm tall by 40cm wide — and yes, it was a hit!
               </p>
               <ul className="grid gap-4 max-w-prose mx-auto">
-                <IconBullet icon={ImageIcon}>Share a reference image of what you’d like.</IconBullet>
-                <IconBullet icon={Ruler}>Tell me the approximate size you’re after.</IconBullet>
-                <IconBullet icon={Clock}>Give me enough lead time — I’ll quote you based on complexity and size.</IconBullet>
-                <IconBullet icon={Sparkles}>Use the form below to say hello — I’ll reply with details and next steps.</IconBullet>
+                <IconBullet icon={ImageIcon}>
+                  Share a reference image of what you’d like.
+                </IconBullet>
+                <IconBullet icon={Ruler}>
+                  Tell me the approximate size you’re after.
+                </IconBullet>
+                <IconBullet icon={Clock}>
+                  Give me enough lead time — I’ll quote you based on complexity
+                  and size.
+                </IconBullet>
+                <IconBullet icon={Sparkles}>
+                  Use the form below to say hello — I’ll reply with details and
+                  next steps.
+                </IconBullet>
               </ul>
             </div>
           </section>
-
         </main>
         {/* Footer */}
-        <footer id="contact" className="relative bg-neutral-900 text-neutral-100 mt-20">
+        <footer
+          id="contact"
+          className="relative bg-neutral-900 text-neutral-100 mt-20"
+        >
           <a
             href="#top"
             aria-label="Back to top"
@@ -1353,10 +1505,12 @@ export default function ArtistPage() {
 
           <div className="mx-auto max-w-6xl px-4 py-12 grid gap-10 md:grid-cols-2 items-start">
             {/* Left: small blurb + copyright */}
-            <div>
+            <div className="order-1 md:order-1">
               <h2 className="text-2xl mb-3">Let’s Talk Piñatas</h2>
-              <p className="opacity-90 mb-6 max-w-prose">Have an idea in mind? Send me a note and I’ll reply with timing and a custom quote based on size and complexity.</p>
-              <div className="text-sm opacity-80">© {new Date().getFullYear()} Frederic G. Fleron Grignard | All rights reserved</div>
+              <p className="opacity-90 mb-6 max-w-prose">
+                Have an idea in mind? Send me a note and I’ll reply with timing
+                and a custom quote based on size and complexity.
+              </p>
             </div>
 
             {/* Right: compact contact form */}
@@ -1364,7 +1518,7 @@ export default function ArtistPage() {
               action="https://formsubmit.co/5fbe1cd6ca420026a59128ebbea6c656"
               method="POST"
               onSubmit={handleArtistSubmit}
-              className="md:justify-self-end w-full max-w-md grid grid-cols-1 gap-3"
+              className="order-2 md:order-2 md:justify-self-end w-full max-w-md grid grid-cols-1 gap-3"
             >
               <input
                 type="text"
@@ -1399,21 +1553,39 @@ export default function ArtistPage() {
               />
 
               {/* hidden config */}
-              <input type="hidden" name="_subject" value="New message from ARTIST page" />
+              <input
+                type="hidden"
+                name="_subject"
+                value="New message from ARTIST page"
+              />
               <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://www.ffg-universe.com/artist#contact" />
+              <input
+                type="hidden"
+                name="_next"
+                value="https://www.ffg-universe.com/artist#contact"
+              />
 
-              <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+              <input
+                type="text"
+                name="_honey"
+                style={{ display: "none" }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
 
               <button
                 type="submit"
                 disabled={sending}
-                className="justify-self-start px-5 py-2 rounded-full bg-neutral-100 text-neutral-900 border-2 border-[#728ca5] hover:bg-white/90 hover:border-4 hover:border-|#728ca5] transition text-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                className="justify-self-start px-5 py-2 rounded-full bg-neutral-100 text-neutral-900 border-2 border-[#728ca5] hover:bg-white/90 hover:border-4 hover:border-[#728ca5] transition text-sm disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {sending ? "Sending..." : "Send"}
               </button>
             </form>
+          </div>
 
+          <div className="mx-auto max-w-6xl px-4 pb-6 text-left text-sm">
+            © {new Date().getFullYear()} Frederic G. Fleron Grignard | All
+            rights reserved
           </div>
         </footer>
 
@@ -1433,11 +1605,11 @@ export default function ArtistPage() {
               )}
               <div className="min-w-0 flex-1">
                 <div className="font-medium">
-                  {toast.type === "success" ? "Message sent" : "Something went wrong"}
+                  {toast.type === "success"
+                    ? "Message sent"
+                    : "Something went wrong"}
                 </div>
-                <div className="opacity-80 break-words">
-                  {toast.text}
-                </div>
+                <div className="opacity-80 break-words">{toast.text}</div>
               </div>
 
               <button

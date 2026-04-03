@@ -669,107 +669,18 @@ export default function SpiritualPage() {
           {/* Footer / Contact */}
           <footer id="contact" className="mt-10 md:mt-14">
             <div className="mx-auto max-w-6xl px-0 pt-8 pb-6 grid gap-10 md:grid-cols-2 items-start">
-              <div>
+              <div className="order-1 md:order-1">
                 <h2 className="text-2xl mb-3">Reach Out</h2>
                 <p className="opacity-90 mb-6 max-w-prose">
                   If you're curious or simply seeking a nudge toward stillness —
                   send me a note and I'll get back to you.
                 </p>
-
-                {/* Icons row + disclosure popover */}
-                <div className="mt-4 mb-8 md:mb-12 relative" ref={popRef}>
-                  <div className="flex items-center gap-3">
-                    {/* Disclosure icon (opens pop-up) */}
-                    <button
-                      type="button"
-                      aria-label="Important disclosure"
-                      aria-expanded={showDisclosure}
-                      onClick={() => setShowDisclosure((v) => !v)}
-                      className="btn-orbit btn-orbit--sm text-neutral-900"
-                    >
-                      <AlertTriangle className="h-5 w-5" />
-                    </button>
-
-                    {/* Artist link */}
-                    <a
-                      href="https://www.ffg-universe.com/artist"
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="Artist page"
-                      className="btn-orbit btn-orbit--sm text-neutral-900"
-                      title="Artist"
-                    >
-                      <Palette className="h-5 w-5" />
-                    </a>
-
-                    {/* Author link */}
-                    <a
-                      href="https://www.ffg-universe.com/author"
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="Author page"
-                      className="btn-orbit btn-orbit--sm text-neutral-900"
-                      title="Author"
-                    >
-                      <BookOpen className="h-5 w-5" />
-                    </a>
-
-                    {/* Musician link */}
-                    <a
-                      href="https://www.ffg-universe.com/musician"
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="Musician page"
-                      className="btn-orbit btn-orbit--sm text-neutral-900"
-                      title="Musician"
-                    >
-                      <Music4 className="h-5 w-5" />
-                    </a>
-                  </div>
-
-                  {/* Small pop-up card */}
-                  {showDisclosure && (
-                    <div
-                      role="dialog"
-                      aria-label="Important disclosure"
-                      className="smoke-panel absolute bottom-[120%] left-0 w-[min(90vw,36rem)] rounded-xl p-4 md:p-5 z-[60]"
-                      style={{
-                        animation:
-                          "modal-in var(--modal-dur) var(--modal-ease) both",
-                      }}
-                    >
-                      <button
-                        type="button"
-                        aria-label="Close disclosure"
-                        onClick={() => setShowDisclosure(false)}
-                        className="absolute right-2 top-2 inline-flex items-center justify-center h-8 w-8 rounded-full btn-orbit btn-orbit--xs text-neutral-900"
-                      >
-                        <X className="h-4 w-4" />
-                      </button>
-
-                      <h3 className="text-1xl mb-3">IMPORTANT PLEASE READ</h3>
-                      <p className="text-sm leading-relaxed pr-8">
-                        I am not a psychologist, psychiatrist, or medical
-                        doctor. If you need medical or mental-health support,
-                        please consult a qualified professional. What I share
-                        here comes from personal experience, reflection, and
-                        study, and is offered simply as a space for thought and
-                        open conversation.
-                      </p>
-                    </div>
-                  )}
-                </div>
-                <div className="mt-6 text-sm text-[#ffffff85] opacity-80">
-                  © {new Date().getFullYear()} Frederic G. Fleron Grignard | All
-                  rights reserved
-                </div>
               </div>
-
               <form
                 action="https://formsubmit.co/5fbe1cd6ca420026a59128ebbea6c656"
                 method="POST"
                 onSubmit={handleSpiritualSubmit}
-                className="md:justify-self-end w-full max-w-md grid grid-cols-1 gap-3"
+                className="order-2 md:order-2 md:justify-self-end w-full max-w-md grid grid-cols-1 gap-3"
               >
                 <input
                   type="text"
@@ -819,15 +730,97 @@ export default function SpiritualPage() {
                 <button
                   type="submit"
                   disabled={sending}
-                  className="justify-self-start px-5 py-2 rounded-full bg-[#ffffff73] text-neutral-900
-                            border-4 border-[#a28e72] hover:border-[#a28e72] border-transparent
-                            hover:bg-[#ffffff92] transition-colors duration-200 text-sm 
-                            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a28e72]
-                            disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="justify-self-start px-5 py-2 rounded-full bg-[#ffffff73] text-neutral-900 border border-[#a28e72] hover:bg-[#ffffff92] transition-colors duration-200 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a28e72] disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {sending ? "Sending..." : "Send"}
                 </button>
               </form>
+            </div>
+            {/* Icons row + disclosure popover */}
+            <div className="mt-4 mb-2 md:mb-12 relative" ref={popRef}>
+              <div className="flex items-center gap-3">
+                {/* Disclosure icon (opens pop-up) */}
+                <button
+                  type="button"
+                  aria-label="Important disclosure"
+                  aria-expanded={showDisclosure}
+                  onClick={() => setShowDisclosure((v) => !v)}
+                  className="btn-orbit btn-orbit--sm text-neutral-900"
+                >
+                  <AlertTriangle className="h-5 w-5" />
+                </button>
+
+                {/* Artist link */}
+                <a
+                  href="https://www.ffg-universe.com/artist"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Artist page"
+                  className="btn-orbit btn-orbit--sm text-neutral-900"
+                  title="Artist"
+                >
+                  <Palette className="h-5 w-5" />
+                </a>
+
+                {/* Author link */}
+                <a
+                  href="https://www.ffg-universe.com/author"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Author page"
+                  className="btn-orbit btn-orbit--sm text-neutral-900"
+                  title="Author"
+                >
+                  <BookOpen className="h-5 w-5" />
+                </a>
+
+                {/* Musician link */}
+                <a
+                  href="https://www.ffg-universe.com/musician"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Musician page"
+                  className="btn-orbit btn-orbit--sm text-neutral-900"
+                  title="Musician"
+                >
+                  <Music4 className="h-5 w-5" />
+                </a>
+              </div>
+
+              {/* Small pop-up card */}
+              {showDisclosure && (
+                <div
+                  role="dialog"
+                  aria-label="Important disclosure"
+                  className="smoke-panel absolute bottom-[120%] left-0 w-[min(90vw,36rem)] rounded-xl p-4 md:p-5 z-[60]"
+                  style={{
+                    animation:
+                      "modal-in var(--modal-dur) var(--modal-ease) both",
+                  }}
+                >
+                  <button
+                    type="button"
+                    aria-label="Close disclosure"
+                    onClick={() => setShowDisclosure(false)}
+                    className="absolute right-2 top-2 inline-flex items-center justify-center h-8 w-8 rounded-full btn-orbit btn-orbit--xs text-neutral-900"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+
+                  <h3 className="text-1xl mb-3">IMPORTANT PLEASE READ</h3>
+                  <p className="text-sm leading-relaxed pr-8">
+                    I am not a psychologist, psychiatrist, or medical doctor. If
+                    you need medical or mental-health support, please consult a
+                    qualified professional. What I share here comes from
+                    personal experience, reflection, and study, and is offered
+                    simply as a space for thought and open conversation.
+                  </p>
+                </div>
+              )}
+            </div>
+            <div className="mx-auto max-w-6xl px-0 mt-6 text-sm text-[#ffffff85] opacity-80">
+              © {new Date().getFullYear()} Frederic G. Fleron Grignard | All
+              rights reserved
             </div>
           </footer>
 

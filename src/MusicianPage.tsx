@@ -1118,7 +1118,7 @@ export default function MusicianPage() {
         <div className="mx-auto max-w-6xl px-6 py-20">
           <div className="grid gap-8 md:grid-cols-3 md:items-center">
             {/* Left: extra touch */}
-            <div className="flex items-center justify-center md:justify-start gap-3 text-xs opacity-80">
+            <div className="order-1 md:order-1 flex items-center justify-center md:justify-start gap-3 text-xs opacity-80">
               <Music4 className="h-4 w-4 shrink-0 opacity-80" />
               <div className="italic leading-snug">
                 More songs will come
@@ -1128,7 +1128,7 @@ export default function MusicianPage() {
             </div>
 
             {/* Center: copyright */}
-            <div className="text-center text-xs opacity-90">
+            <div className="order-3 md:order-2 text-center text-xs opacity-80">
               <div>
                 © {new Date().getFullYear()} Frederic G. Fleron Grignard
               </div>
@@ -1136,7 +1136,7 @@ export default function MusicianPage() {
             </div>
 
             {/* Right: Legal */}
-            <div className="flex justify-center md:justify-end">
+            <div className="order-2 md:order-3 flex justify-center md:justify-end">
               <button
                 type="button"
                 onClick={() => setLegalOpen(true)}
