@@ -1583,7 +1583,7 @@ export default function ArtistPage() {
             </form>
           </div>
 
-          <div className="mx-auto max-w-6xl px-4 pb-6 text-left text-sm">
+          <div className="mx-auto max-w-6xl px-4 pb-6 text-left text-sm opacity-80">
             © {new Date().getFullYear()} Frederic G. Fleron Grignard | All
             rights reserved
           </div>

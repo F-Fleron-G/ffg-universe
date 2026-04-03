@@ -1009,7 +1009,7 @@ export default function AuthorPage() {
             text-xs md:text-sm italic leading-snug
             text-center md:text-left
             pl-4 sm:pl-5 border-l-2 border-[#c4c3c0]/40
-            space-y-1
+            space-y-1 opacity-80
           "
             >
               <p className="m-0">“Stories written. Stories shared.</p>
@@ -1017,7 +1017,7 @@ export default function AuthorPage() {
             </blockquote>
 
             {/* Center: copyright */}
-            <div className="order-2 md:order-2 text-center text-sm">
+            <div className="order-2 md:order-2 text-center text-sm opacity-80">
               <p> © {new Date().getFullYear()} Frederic G. Fleron Grignard</p>
               <p>All rights reserved</p>
             </div>
