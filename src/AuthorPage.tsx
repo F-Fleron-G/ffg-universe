@@ -1005,7 +1005,7 @@ export default function AuthorPage() {
           <div className="mx-auto max-w-6xl px-4 py-12 md:py-16 grid gap-6 md:grid-cols-3 items-center">
             <blockquote
               className="
-            order-3 md:order-1 mx-auto md:mx-0 max-w-[28ch] md:max-w-none
+            order-2 md:order-1 mx-auto md:mx-0 max-w-[28ch] md:max-w-none
             text-xs md:text-sm italic leading-snug
             text-center md:text-left
             pl-4 sm:pl-5 border-l-2 border-[#c4c3c0]/40
@@ -1017,7 +1017,7 @@ export default function AuthorPage() {
             </blockquote>
 
             {/* Center: copyright */}
-            <div className="order-2 md:order-2 text-center text-sm opacity-80">
+            <div className="order-3 md:order-2 text-center text-sm opacity-80">
               <p> © {new Date().getFullYear()} Frederic G. Fleron Grignard</p>
               <p>All rights reserved</p>
             </div>
