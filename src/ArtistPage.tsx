@@ -1593,7 +1593,7 @@ export default function ArtistPage() {
           <div className="grid gap-6 md:grid-cols-3 md:items-center">
             {/* Left quote */}
             <div className="order-2 md:order-1 flex items-center justify-center md:justify-start gap-4">
-              <span className="h-14 w-px bg-black/20" aria-hidden="true" />
+              <span className="h-14 w-px bg-[#cacaca]" aria-hidden="true" />
               <p className="italic leading-relaxed text-center md:text-left">
                 “Art lets silence speak,
                 <br />

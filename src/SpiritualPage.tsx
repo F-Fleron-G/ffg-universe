@@ -810,7 +810,7 @@ export default function SpiritualPage() {
               <div className="grid gap-6 md:grid-cols-3 md:items-center">
                 {/* Left quote */}
                 <div className="order-2 md:order-1 flex items-center justify-center md:justify-start gap-4">
-                  <span className="h-14 w-px bg-white/20" aria-hidden="true" />
+                  <span className="h-14 w-px bg-[#858585]" aria-hidden="true" />
                   <p className="italic leading-relaxed">
                     "The quieter we become,
                     <br />
