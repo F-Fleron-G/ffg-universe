@@ -2,7 +2,6 @@ import { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import {
   Home,
-  Music4,
   Info,
   X,
   Mail,
