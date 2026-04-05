@@ -183,10 +183,10 @@ function PolaroidSlider({
             {/* Close */}
             <button
               onClick={closeModal}
-              className="absolute top-2 right-2 z-20 w-6 h-6 rounded-full bg-black text-white grid place-items-center shadow hover:opacity-90"
+              className="absolute top-4 right-4 z-20 h-8 w-8 rounded-full bg-black text-white grid place-items-center shadow hover:opacity-90"
               aria-label="Close"
             >
-              <XIcon size={14} />
+              <XIcon size={16} />
             </button>
 
             {/* Responsive layout */}
@@ -216,14 +216,14 @@ function PolaroidSlider({
                       <button
                         onClick={prevModal}
                         aria-label="Previous image"
-                        className="absolute left-2 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-white/90 text-black grid place-items-center shadow hover:bg-white"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-white/90 text-black grid place-items-center shadow border border-neutral-900 hover:bg-white"
                       >
                         ‹
                       </button>
                       <button
                         onClick={nextModal}
                         aria-label="Next image"
-                        className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-white/90 text-black grid place-items-center shadow hover:bg-white"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-white/90 text-black grid place-items-center shadow border border-neutral-900 hover:bg-white"
                       >
                         ›
                       </button>
@@ -243,7 +243,7 @@ function PolaroidSlider({
                             "shrink-0 rounded-lg p-[2px] bg-white",
                             "border border-black/10 transition focus-visible:outline-none",
                             i === thumbIndex
-                              ? "ring-2 ring-[#728ca5] ring-offset-2 ring-offset-white shadow-md -translate-y-[1px]"
+                              ? "ring-1 ring-neutral-900 ring-offset-2 ring-offset-white shadow-md -translate-y-[1px]"
                               : "hover:shadow hover:-translate-y-[1px]",
                           ].join(" ")}
                           aria-label={`Select image ${i + 1}`}
