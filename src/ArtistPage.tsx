@@ -13,6 +13,8 @@ import {
   Clock,
   Info,
   Wrench,
+  BookOpen,
+  Music4,
   X as XIcon,
   Image as ImageIcon,
   CheckCircle2,
@@ -1472,37 +1474,11 @@ export default function ArtistPage() {
             </div>
           </section>
         </main>
-        {/* Footer */}
-        <footer
-          id="contact"
-          className="relative bg-neutral-900 text-neutral-100 mt-20"
-        >
-          <a
-            href="#top"
-            aria-label="Back to top"
-            title="Back to top"
-            className="
-            absolute left-1/2 -translate-x-1/2 -top-6 z-20
-            inline-flex items-center justify-center h-12 w-12 rounded-full
-            bg-[#728ca5] text-[#171717] border-2 border-[#171717]
-            hover:bg-[#5f788f] transition-colors
-            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#728ca5]
-          "
-          >
-            <svg
-              className="h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M5 15l7-7 7 7" />
-            </svg>
-          </a>
 
+        <section
+          id="contact"
+          className="relative bg-[#728ca5] text-neutral-900"
+        >
           <div className="mx-auto max-w-6xl px-4 py-12 grid gap-10 md:grid-cols-2 items-start">
             {/* Left: small blurb + copyright */}
             <div className="order-1 md:order-1">
@@ -1518,14 +1494,14 @@ export default function ArtistPage() {
               action="https://formsubmit.co/5fbe1cd6ca420026a59128ebbea6c656"
               method="POST"
               onSubmit={handleArtistSubmit}
-              className="order-2 md:order-2 md:justify-self-end w-full max-w-md grid grid-cols-1 gap-3"
+              className="order-2 md:order-2 md:justify-self-end w-full max-w-md grid grid-cols-1 gap-3 mb-5"
             >
               <input
                 type="text"
                 name="name"
                 required
-                className="rounded-md border-2 border-[#728ca5] bg-white/95 text-neutral-900 p-2 text-sm
-                        focus:outline-none focus:ring-2 focus:ring-[#728ca5] focus:border-[#728ca5] transition"
+                className="rounded-md border-2 border-neutral-900 bg-white/95 text-neutral-900 p-2 text-sm
+                        focus:outline-none focus:ring-2 focus:ring-white/95 focus:border-neutral-900 transition"
                 placeholder="Your Name"
               />
               <input
@@ -1533,22 +1509,22 @@ export default function ArtistPage() {
                 name="email"
                 required
                 autoComplete="email"
-                className="rounded-md border-2 border-[#728ca5] bg-white/95 text-neutral-900 p-2 text-sm
-                        focus:outline-none focus:ring-2 focus:ring-[#728ca5] focus:border-[#728ca5] transition"
+                className="rounded-md border-2 border-neutral-900 bg-white/95 text-neutral-900 p-2 text-sm
+                        focus:outline-none focus:ring-2 focus:ring-white/95 focus:border-neutral-900 transition"
                 placeholder="Your Email *"
               />
               <input
                 type="text"
                 name="subject"
-                className="rounded-md border-2 border-[#728ca5] bg-white/95 text-neutral-900 p-2 text-sm
-                        focus:outline-none focus:ring-2 focus:ring-[#728ca5] focus:border-[#728ca5] transition"
+                className="rounded-md border-2 border-neutral-900 bg-white/95 text-neutral-900 p-2 text-sm
+                        focus:outline-none focus:ring-2 focus:ring-white/95] focus:border-neutral-900 transition"
                 placeholder="Subject"
               />
               <textarea
                 name="message"
                 required
-                className="rounded-md border-2 border-[#728ca5] bg-white/95 text-neutral-900 p-2 h-28 resize-y text-sm
-                        focus:outline-none focus:ring-2 focus:ring-[#728ca5] focus:border-[#728ca5] transition"
+                className="rounded-md border-2 border-neutral-900 bg-white/95 text-neutral-900 p-2 h-28 resize-y text-sm
+                        focus:outline-none focus:ring-2 focus:ring-white/95 focus:border-neutral-900 transition"
                 placeholder="What's on your mind?"
               />
 
@@ -1576,54 +1552,134 @@ export default function ArtistPage() {
               <button
                 type="submit"
                 disabled={sending}
-                className="justify-self-start px-5 py-2 rounded-full bg-neutral-100 text-neutral-900 border-2 border-[#728ca5] hover:bg-white/90 hover:border-4 hover:border-[#728ca5] transition text-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                className="justify-self-start px-5 py-2 rounded-full bg-neutral-900 text-white/95 border-2 border-neutral-900 hover:bg-white/95 hover:text-neutral-900 hover:border-2 hover:border-neutral-900 transition text-sm disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {sending ? "Sending..." : "Send"}
               </button>
             </form>
           </div>
+        </section>
+      </div>
 
-          <div className="mx-auto max-w-6xl px-4 pb-6 text-left text-sm opacity-80">
-            © {new Date().getFullYear()} Frederic G. Fleron Grignard | All
-            rights reserved
-          </div>
-        </footer>
-
-        {/* Toast */}
-        {toast && (
-          <div
-            role="status"
-            aria-live="polite"
-            aria-atomic="true"
-            className="fixed z-[100] bottom-[max(1rem,env(safe-area-inset-bottom))] left-3 right-3 sm:left-auto sm:right-4 sm:bottom-4"
+      {/* Footer */}
+      <footer className="relative bg-neutral-900 text-[#cacaca] mt-0">
+        <a
+          href="#top"
+          aria-label="Back to top"
+          title="Back to top"
+          className="
+              absolute left-1/2 -translate-x-1/2 -top-6 z-20
+              inline-flex items-center justify-center h-12 w-12 rounded-full
+              bg-white/95 text-neutral-900 border-2 border-neutral-900
+              hover:bg-[#cacaca] transition-colors
+              focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#728ca5]
+            "
+        >
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
           >
-            <div className="flex items-start gap-3 rounded-xl border border-[#728ca5] bg-white/90 text-neutral-900 shadow-lg backdrop-blur px-4 py-3">
-              {toast.type === "success" ? (
-                <CheckCircle2 size={18} aria-hidden className="shrink-0" />
-              ) : (
-                <AlertCircle size={18} aria-hidden className="shrink-0" />
-              )}
-              <div className="min-w-0 flex-1">
-                <div className="font-medium">
-                  {toast.type === "success"
-                    ? "Message sent"
-                    : "Something went wrong"}
-                </div>
-                <div className="opacity-80 break-words">{toast.text}</div>
-              </div>
+            <path d="M5 15l7-7 7 7" />
+          </svg>
+        </a>
 
-              <button
-                type="button"
-                onClick={() => setToast(null)}
-                className="ml-2 underline text-sm shrink-0"
-                aria-label="Close notification"
+        <div className="mx-auto max-w-6xl px-4 pt-20 pb-10 md:pt-20 md:pb-12 text-sm">
+          <div className="grid gap-6 md:grid-cols-3 md:items-center">
+            {/* Left quote */}
+            <div className="order-2 md:order-1 flex items-center justify-center md:justify-start gap-4">
+              <span className="h-14 w-px bg-black/20" aria-hidden="true" />
+              <p className="italic leading-relaxed text-center md:text-left">
+                “Art lets silence speak,
+                <br />
+                and feeling take form.”
+              </p>
+            </div>
+
+            {/* Center copyright */}
+            <div className="order-3 md:order-2 text-center leading-relaxed">
+              <div>
+                © {new Date().getFullYear()} Frederic G. Fleron Grignard
+              </div>
+              <div>All rights reserved</div>
+            </div>
+
+            {/* Right page links */}
+            <div className="order-1 md:order-3 flex items-center justify-center md:justify-end gap-5">
+              <Link
+                to="/author"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Author page"
+                title="Author page"
+                className="text-[#cacaca] hover:text-white/95 transition"
               >
-                Close
-              </button>
+                <BookOpen className="h-5 w-5" />
+              </Link>
+              <Link
+                to="/spiritual"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Philosopher page"
+                title="Philosopher page"
+                className="text-[#cacaca] hover:text-white/95 transition"
+              >
+                <Sparkles className="h-5 w-5" />
+              </Link>
+              <Link
+                to="/musician"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Musician page"
+                title="Musician page"
+                className="text-[#cacaca] hover:text-white/95 transition"
+              >
+                <Music4 className="h-5 w-5" />
+              </Link>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      </footer>
+
+      {/* Toast */}
+      {toast && (
+        <div
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className="fixed z-[100] bottom-[max(1rem,env(safe-area-inset-bottom))] left-3 right-3 sm:left-auto sm:right-4 sm:bottom-4"
+        >
+          <div className="flex items-start gap-3 rounded-xl border border-[#728ca5] bg-white/90 text-neutral-900 shadow-lg backdrop-blur px-4 py-3">
+            {toast.type === "success" ? (
+              <CheckCircle2 size={18} aria-hidden className="shrink-0" />
+            ) : (
+              <AlertCircle size={18} aria-hidden className="shrink-0" />
+            )}
+            <div className="min-w-0 flex-1">
+              <div className="font-medium">
+                {toast.type === "success"
+                  ? "Message sent"
+                  : "Something went wrong"}
+              </div>
+              <div className="opacity-80 break-words">{toast.text}</div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setToast(null)}
+              className="ml-2 underline text-sm shrink-0"
+              aria-label="Close notification"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
       {zoomedImage && (
         <div

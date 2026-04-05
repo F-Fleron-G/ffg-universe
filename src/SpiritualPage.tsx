@@ -499,7 +499,7 @@ export default function SpiritualPage() {
         </header>
 
         {/* MAIN */}
-        <main className="spiritual relative mx-auto max-w-6xl px-4 pt-14 md:pt-16 pb-28 md:pb-36 flex-1">
+        <main className="spiritual relative mx-auto max-w-6xl px-4 pt-14 md:pt-16 pb-0 flex-1">
           <div
             aria-hidden
             className="absolute inset-0 -z-10"
@@ -634,193 +634,232 @@ export default function SpiritualPage() {
             </div>
           </section>
 
-          <div className="relative mx-auto max-w-6xl px-4 mt-16 md:mt-24">
-            {/* thin separator line */}
-            <span className="block h-px bg-white/10 rounded-full" />
-
-            {/* Back to top button */}
-            <a
-              href="#top"
-              aria-label="Back to top"
-              title="Back to top"
-              className="
-                absolute left-1/2 -translate-x-1/2
-                -top-5 md:-top-6 z-20
-                inline-flex items-center justify-center h-12 w-12 rounded-full
-                bg-[#a28e72] text-[#171717] border-2 border-[#171717]
-                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a28e72]
-              "
-            >
-              <svg
-                className="h-5 w-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M5 15l7-7 7 7" />
-              </svg>
-            </a>
+          {/* Divider above CONTACT */}
+          <div className="mx-auto max-w-6xl px-4 mt-12 md:mt-16">
+            <div className="flex items-center justify-center">
+              <span className="h-px flex-1 bg-white/10 rounded-full mr-3" />
+              <span className="inline-flex items-center justify-center h-9 w-9 bg-black/30 backdrop-blur-sm">
+                <img
+                  src="/spiritual/icons/separator.svg"
+                  alt="Lotus"
+                  className="h-5 w-5 object-contain"
+                />
+              </span>
+              <span className="h-px flex-1 bg-white/10 rounded-full ml-3" />
+            </div>
           </div>
 
-          {/* Footer / Contact */}
-          <footer id="contact" className="mt-10 md:mt-14">
-            <div className="mx-auto max-w-6xl px-0 pt-8 pb-6 grid gap-10 md:grid-cols-2 items-start">
-              <div className="order-1 md:order-1">
-                <h2 className="text-2xl mb-3">Reach Out</h2>
-                <p className="opacity-90 mb-6 max-w-prose">
+          {/* Reach Out */}
+          <section
+            id="contact"
+            className="mx-auto max-w-6xl px-4 py-12 md:py-20 scroll-mt-24"
+          >
+            <div className="grid gap-8 md:grid-cols-2 md:items-stretch">
+              {/* Left */}
+              <div className="text-left max-w-xl self-start pt-1">
+                <h2 className="text-2xl font-semibold mb-4 text-white">
+                  Reach Out
+                </h2>
+
+                <p className="leading-relaxed text-white/90">
                   If you're curious or simply seeking a nudge toward stillness —
                   send me a note and I'll get back to you.
                 </p>
-              </div>
-              <form
-                action="https://formsubmit.co/5fbe1cd6ca420026a59128ebbea6c656"
-                method="POST"
-                onSubmit={handleSpiritualSubmit}
-                className="order-2 md:order-2 md:justify-self-end w-full max-w-md grid grid-cols-1 gap-3"
-              >
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60"
-                  placeholder="Your Name"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  autoComplete="email"
-                  className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60"
-                  placeholder="Your Email *"
-                />
-                <input
-                  type="text"
-                  name="subject"
-                  className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60"
-                  placeholder="Subject"
-                />
-                <textarea
-                  name="message"
-                  required
-                  className="rounded-md border-2 border-[#000000] bg-[#ffffff73] text-neutral-900 p-2 h-28 resize-y text-sm focus:outline-none focus:ring-1 focus:ring-[#a28e72] focus:border-[#a28e72] transition placeholder:text-neutral-900/60"
-                  placeholder="What would you like to share?"
-                />
-                <input
-                  type="hidden"
-                  name="_subject"
-                  value="New message from SPIRITUAL page"
-                />
-                <input type="hidden" name="_captcha" value="false" />
-                <input
-                  type="hidden"
-                  name="_next"
-                  value="https://www.ffg-universe.com/spiritual#contact"
-                />
-                <input
-                  type="text"
-                  name="_honey"
-                  style={{ display: "none" }}
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
-                <button
-                  type="submit"
-                  disabled={sending}
-                  className="justify-self-start px-5 py-2 rounded-full bg-[#ffffff73] text-neutral-900 border border-[#a28e72] hover:bg-[#ffffff92] transition-colors duration-200 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a28e72] disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  {sending ? "Sending..." : "Send"}
-                </button>
-              </form>
-            </div>
-            {/* Icons row + disclosure popover */}
-            <div className="mt-4 mb-2 md:mb-12 relative" ref={popRef}>
-              <div className="flex items-center gap-3">
-                {/* Disclosure icon (opens pop-up) */}
-                <button
-                  type="button"
-                  aria-label="Important disclosure"
-                  aria-expanded={showDisclosure}
-                  onClick={() => setShowDisclosure((v) => !v)}
-                  className="btn-orbit btn-orbit--sm text-neutral-900"
-                >
-                  <AlertTriangle className="h-5 w-5" />
-                </button>
 
-                {/* Artist link */}
-                <a
-                  href="https://www.ffg-universe.com/artist"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Artist page"
-                  className="btn-orbit btn-orbit--sm text-neutral-900"
-                  title="Artist"
-                >
-                  <Palette className="h-5 w-5" />
-                </a>
-
-                {/* Author link */}
-                <a
-                  href="https://www.ffg-universe.com/author"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Author page"
-                  className="btn-orbit btn-orbit--sm text-neutral-900"
-                  title="Author"
-                >
-                  <BookOpen className="h-5 w-5" />
-                </a>
-
-                {/* Musician link */}
-                <a
-                  href="https://www.ffg-universe.com/musician"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Musician page"
-                  className="btn-orbit btn-orbit--sm text-neutral-900"
-                  title="Musician"
-                >
-                  <Music4 className="h-5 w-5" />
-                </a>
-              </div>
-
-              {/* Small pop-up card */}
-              {showDisclosure && (
-                <div
-                  role="dialog"
-                  aria-label="Important disclosure"
-                  className="smoke-panel absolute bottom-[120%] left-0 w-[min(90vw,36rem)] rounded-xl p-4 md:p-5 z-[60]"
-                  style={{
-                    animation:
-                      "modal-in var(--modal-dur) var(--modal-ease) both",
-                  }}
-                >
+                <div className="relative mt-6 inline-block" ref={popRef}>
                   <button
                     type="button"
-                    aria-label="Close disclosure"
-                    onClick={() => setShowDisclosure(false)}
-                    className="absolute right-2 top-2 inline-flex items-center justify-center h-8 w-8 rounded-full btn-orbit btn-orbit--xs text-neutral-900"
+                    onClick={() => setShowDisclosure((v) => !v)}
+                    className="inline-flex items-center gap-2 text-sm text-[#a28e72] hover:text-[#b39c7d] transition"
+                    aria-label="Important disclosure"
+                    aria-expanded={showDisclosure}
                   >
-                    <X className="h-4 w-4" />
+                    <span>Important disclosure please click here:</span>
+                    <AlertTriangle className="h-4 w-4 shrink-0" />
                   </button>
 
-                  <h3 className="text-1xl mb-3">IMPORTANT PLEASE READ</h3>
-                  <p className="text-sm leading-relaxed pr-8">
-                    I am not a psychologist, psychiatrist, or medical doctor. If
-                    you need medical or mental-health support, please consult a
-                    qualified professional. What I share here comes from
-                    personal experience, reflection, and study, and is offered
-                    simply as a space for thought and open conversation.
+                  {showDisclosure && (
+                    <div
+                      role="dialog"
+                      aria-label="Important disclosure"
+                      className="smoke-panel absolute left-0 top-full mt-5 w-[min(calc(100vw-4rem),32rem)] md:w-[min(90vw,32rem)] rounded-2xl px-5 py-5 md:px-8 md:py-7 z-[60] animate-modal-in"
+                    >
+                      <button
+                        type="button"
+                        aria-label="Close disclosure"
+                        onClick={() => setShowDisclosure(false)}
+                        className="absolute right-3 top-3 inline-flex items-center justify-center h-9 w-9 rounded-full btn-orbit btn-orbit--xs text-neutral-900 z-[60]"
+                      >
+                        <X className="h-5 w-5" />
+                      </button>
+
+                      <h3 className="text-1xl mb-4 pr-12">
+                        IMPORTANT PLEASE READ
+                      </h3>
+
+                      <p className="text-sm leading-relaxed pr-6 text-[#858585]">
+                        I am not a psychologist, psychiatrist, or medical
+                        doctor. If you need medical or mental-health support,
+                        please consult a qualified professional. What I share
+                        here comes from personal experience, reflection, and
+                        study, and is offered simply as a space for thought and
+                        open conversation.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Right */}
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 md:p-6">
+                <form
+                  action="https://formsubmit.co/5fbe1cd6ca420026a59128ebbea6c656"
+                  method="POST"
+                  onSubmit={handleSpiritualSubmit}
+                  className="grid gap-3"
+                >
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    placeholder="Your Name"
+                    className="rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white placeholder:text-[#858585] focus:outline-none focus:ring-2 focus:ring-[#a28e72]"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    autoComplete="email"
+                    placeholder="Your Email *"
+                    className="rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white placeholder:text-[#858585] focus:outline-none focus:ring-2 focus:ring-[#a28e72]"
+                  />
+                  <input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                    className="rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white placeholder:text-[#858585] focus:outline-none focus:ring-2 focus:ring-[#a28e72]"
+                  />
+                  <textarea
+                    name="message"
+                    required
+                    placeholder="What's on your mind?"
+                    className="h-32 resize-y rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white placeholder:text-[#858585] focus:outline-none focus:ring-2 focus:ring-[#a28e72]"
+                  />
+
+                  <input
+                    type="hidden"
+                    name="_subject"
+                    value="New message from PHILOSOPHER page"
+                  />
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input
+                    type="hidden"
+                    name="_next"
+                    value="https://www.ffg-universe.com/philosopher#contact"
+                  />
+                  <input
+                    type="text"
+                    name="_honey"
+                    style={{ display: "none" }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+
+                  <button
+                    type="submit"
+                    disabled={sending}
+                    className="inline-flex w-fit items-center gap-2 rounded-full border border-[#a28e72] bg-black/20 px-5 py-2 text-sm text-[#858585] hover:bg-[#b39c7d] hover:text-black transition disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {sending ? "Sending..." : "Send"}
+                  </button>
+                </form>
+              </div>
+            </div>
+          </section>
+
+          <footer className="relative mt-16 md:mt-24 text-sm text-[#858585]">
+            <div className="mx-auto max-w-6xl px-4">
+              <span className="block h-px bg-white/10 rounded-full" />
+
+              <a
+                href="#top"
+                aria-label="Back to top"
+                title="Back to top"
+                className="absolute left-1/2 -translate-x-1/2 -top-5 md:-top-6 z-20
+                inline-flex items-center justify-center h-12 w-12 rounded-full
+                bg-[#a28e72] text-black border border-black/60
+                hover:bg-[#b39c7d] transition-colors
+                "
+              >
+                <svg
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m18 15-6-6-6 6" />
+                </svg>
+              </a>
+            </div>
+
+            <div className="mx-auto max-w-6xl px-4 pt-16 pb-10 md:pt-20 md:pb-12">
+              <div className="grid gap-6 md:grid-cols-3 md:items-center">
+                {/* Left quote */}
+                <div className="order-2 md:order-1 flex items-center justify-center md:justify-start gap-4">
+                  <span className="h-14 w-px bg-white/20" aria-hidden="true" />
+                  <p className="italic leading-relaxed">
+                    "The quieter we become,
+                    <br />
+                    the more we begin to hear."
                   </p>
                 </div>
-              )}
-            </div>
-            <div className="mx-auto max-w-6xl px-0 mt-6 text-sm text-[#ffffff85] opacity-80">
-              © {new Date().getFullYear()} Frederic G. Fleron Grignard | All
-              rights reserved
+
+                {/* Center copyright */}
+                <div className="order-3 md:order-2 text-center leading-relaxed">
+                  <div>
+                    © {new Date().getFullYear()} Frederic G. Fleron Grignard
+                  </div>
+                  <div>All rights reserved</div>
+                </div>
+
+                {/* Right page links */}
+                <div className="order-1 md:order-3 flex items-center justify-center md:justify-end gap-5">
+                  <Link
+                    to="/artist"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Artist page"
+                    title="Artist page"
+                    className="text-[#858585] hover:text-[#a28e72] transition"
+                  >
+                    <Palette className="h-5 w-5" />
+                  </Link>
+                  <Link
+                    to="/musician"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Musician page"
+                    title="Musician page"
+                    className="text-[#858585] hover:text-[#a28e72] transition"
+                  >
+                    <Music4 className="h-5 w-5" />
+                  </Link>
+                  <Link
+                    to="/author"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Author page"
+                    title="Author page"
+                    className="text-[#858585] hover:text-[#a28e72] transition"
+                  >
+                    <BookOpen className="h-5 w-5" />
+                  </Link>
+                </div>
+              </div>
             </div>
           </footer>
 
