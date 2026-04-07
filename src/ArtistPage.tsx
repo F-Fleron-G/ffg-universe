@@ -1517,7 +1517,7 @@ export default function ArtistPage() {
                 type="text"
                 name="subject"
                 className="rounded-md border-2 border-neutral-900 bg-white/95 text-neutral-900 p-2 text-sm
-                        focus:outline-none focus:ring-2 focus:ring-white/95] focus:border-neutral-900 transition"
+                        focus:outline-none focus:ring-2 focus:ring-white/95 focus:border-neutral-900 transition"
                 placeholder="Subject"
               />
               <textarea
