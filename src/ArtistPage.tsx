@@ -88,11 +88,12 @@ function PolaroidSlider({
   widthClass?: string;
   className?: string;
 }) {
-  const totalSeconds = Math.max(2, images.length * 2);
+  const totalSeconds = Math.max(8, images.length * 6);
   const count = Math.min(Math.max(images.length, 1), 4);
   const tilts = ["-2deg", "1.5deg", "-1deg", "2deg"];
 
   const [modalIndex, setModalIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   // const openModal = (i: number) => setModalIndex(i);
   const closeModal = () => setModalIndex(null);
 
@@ -133,14 +134,16 @@ function PolaroidSlider({
         className={[
           "polaroid-gallery",
           `polaroid-${count}`,
+          "no-anim", // 👈 add this
           widthClass,
           className,
         ].join(" ")}
-        style={{ ["--dur" as any]: `${totalSeconds}s` } as React.CSSProperties}
       >
         {images.map((src, i) => {
           const isLast = i === images.length - 1;
           const frameLabel = labels?.[i] ?? `Polaroid ${i + 1}`;
+          const isActive = i === activeIndex;
+
           return (
             <div
               key={i}
@@ -152,6 +155,9 @@ function PolaroidSlider({
                   animationDelay: `-${i * 2}s`,
                   animationDuration: `${totalSeconds}s`,
                   ["--rot" as any]: tilts[i % tilts.length],
+                  zIndex: isActive ? images.length + 1 : images.length - i,
+                  opacity: isActive ? 1 : 0.92,
+                  pointerEvents: isActive ? "auto" : "none",
                 } as React.CSSProperties
               }
               onClick={() => openModal(i)}
@@ -167,6 +173,40 @@ function PolaroidSlider({
           );
         })}
       </div>
+
+      {images.length > 1 && (
+        <div className="mt-3 flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={() =>
+              setActiveIndex((p) => (p - 1 + images.length) % images.length)
+            }
+            className="inline-flex h-5 w-5 items-center justify-center rounded-full
+            bg-black/70 text-white/90 shadow-sm backdrop-blur-sm
+            hover:bg-black/80 transition animate-pulse"
+            aria-label="Show previous piñata"
+            title="Previous"
+          >
+            ‹
+          </button>
+
+          <div className="text-xs text-neutral-700 min-w-[88px] text-center">
+            {activeIndex + 1} / {images.length}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setActiveIndex((p) => (p + 1) % images.length)}
+            className="inline-flex h-5 w-5 items-center justify-center rounded-full
+            bg-black/70 text-white/90 shadow-sm backdrop-blur-sm
+            hover:bg-black/80 transition animate-pulse"
+            aria-label="Show next piñata"
+            title="Next"
+          >
+            ›
+          </button>
+        </div>
+      )}
 
       {/* --- Compact Modal --- */}
       {modalIndex !== null && (
@@ -583,6 +623,13 @@ export default function ArtistPage() {
         }
         .polaroid-gallery .polaroid-frame.no-anim {
           animation: none;
+        }
+        .polaroid-gallery.no-anim .polaroid-frame {
+          animation: none !important;
+        }
+        .polaroid-gallery.no-anim .polaroid-caption {
+          animation: none !important;
+          opacity: 1 !important;
         }
         .polaroid-gallery .polaroid-frame img {
           position: absolute;
@@ -1264,25 +1311,36 @@ export default function ArtistPage() {
 
             {/* top row of images */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
-              {/* Category 1 — Pokémon-inspired */}
+              {/* Category 1 — Character-inspired */}
               <figure className="text-center">
                 <PolaroidSlider
-                  images={["/Snorlax-P.png"]}
-                  labels={["Pokémon Snorlax"]}
+                  images={["/Snorlax-P.png", "/Roblox-P1.png"]}
+                  labels={["Pokémon Snorlax", "Roblox Noon"]}
                   details={[
                     {
                       why: "A surprise for my oldest son's birthday party — Snorlax was his favourite Pokémon.",
                       time: "3 days overall (roughly 3 hours of work per day, allowing for drying and design time).",
                       materials:
-                        "Balloons for rounded forms; newspaper strips; recycled paper for easy moulding; flour–salt–water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
+                        "Balloons for rounded forms; newspaper strips; recycled paper for easy moulding; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
                     },
+                    {
+                      why: "Made for my son's 12th birthday — Noon is his favourite Roblox character, and I wanted to bring that world into something he could actually hold, see, and celebrate.",
+                      time: "3 days overall (roughly 3-4 hours of work per day, allowing for design and natural drying time without using a dryer).",
+                      materials:
+                        "Cardboard as the main structure (no balloon this time); newspaper strips and recycled paper for shaping; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and finished with a long, thin cotton rope for hanging.",
+                      
+                    },
+                  ]}
+                  modalImages={[
+                    ["/Snorlax-P.png"],
+                    ["/Roblox-P1.png", "/Roblox-P2.png"],
                   ]}
                   widthClass="mx-auto w-[280px] sm:w-[320px]"
                   className="polaroid-tall"
                 />
                 <figcaption className="mt-2 text-center">
                   <h3 className="text-sm sm:text-base font-medium tracking-wide text-neutral-800">
-                    Pokémon-Inspired Piñatas
+                    Character-Inspired Piñatas
                   </h3>
                 </figcaption>
               </figure>
@@ -1297,7 +1355,7 @@ export default function ArtistPage() {
                       why: "Made for my youngest son's July birthday — a playful nod to summer and his love of colourful cones.",
                       time: "2 days overall (roughly 3 hours of work per day, allowing for drying and design time).",
                       materials:
-                        "Balloon for the scoop; rolled cardboard for the cone; newspaper strips; recycled paper for drip details & sprinkles; flour–salt–water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
+                        "Balloon for the scoop; rolled cardboard for the cone; newspaper strips; recycled paper for drip details & sprinkles; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
                     },
                   ]}
                   widthClass="mx-auto w-[280px] sm:w-[320px]"
@@ -1320,13 +1378,13 @@ export default function ArtistPage() {
                       why: "Created for a Halloween party at my daughter's request — she wanted a pumpkin with a wizard hat.",
                       time: "4 days overall (roughly 3 hours of work per day, allowing for drying and design time).",
                       materials:
-                        "Kitchen-roll tubes and recycled paper for the pumpkin; cardboard to shape the wizard hat; newspaper strips; flour–salt–water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
+                        "Kitchen-roll tubes and recycled paper for the pumpkin; cardboard to shape the wizard hat; newspaper strips; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
                     },
                     {
-                      why: "Filled with humour and fun for all ages, I wanted it to feel Halloween-themed but still friendly and playful. The witch is flying on her broom, making a sharp braking motion that bends her broomstick, squashing her poor black cat flat! The cat’s cartoonish face, with its dizzy expression, added the touch of comedy I envisioned.",
+                      why: "Filled with humour and fun for all ages, I wanted it to feel Halloween-themed but still friendly and playful. The witch is flying on her broom, making a sharp braking motion that bends her broomstick, squashing her poor black cat flat! The cat's cartoonish face, with its dizzy expression, added the touch of comedy I envisioned.",
                       time: "About 12 days overall (roughly 3 hours of work per day, allowing for drying and design time).",
                       materials:
-                        "Balloons for the head and body (and the cat’s head); kitchen roll tubes for the nose and chin; cardboard sheets for the hat; newspaper strips and recycled paper for layering, shaping, and texture; flour–salt–water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
+                        "Balloons for the head and body (and the cat's head); kitchen roll tubes for the nose and chin; cardboard sheets for the hat; newspaper strips and recycled paper for layering, shaping, and texture; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
                     },
                   ]}
                   modalImages={[
@@ -1401,6 +1459,7 @@ export default function ArtistPage() {
                               "/Mk-P.jpg",
                               "/Mk-S.jpg",
                               "/Mk-W.jpg",
+                              "/Mk-R.jpg",
                             ]}
                             heightClass="h-[88vw] sm:h-[72vw] md:h-[22rem] lg:h-[26rem] xl:h-[26rem]"
                             className="w-full"
