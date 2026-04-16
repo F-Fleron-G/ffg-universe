@@ -1315,7 +1315,7 @@ export default function ArtistPage() {
               <figure className="text-center">
                 <PolaroidSlider
                   images={["/Snorlax-P.png", "/Roblox-P1.png"]}
-                  labels={["Pokémon Snorlax", "Roblox Nood"]}
+                  labels={["Pokémon Snorlax", "Roblox Noob"]}
                   details={[
                     {
                       why: "A surprise for my oldest son's birthday party — Snorlax was his favourite Pokémon.",
@@ -1324,7 +1324,7 @@ export default function ArtistPage() {
                         "Balloons for rounded forms; newspaper strips; recycled paper for easy moulding; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
                     },
                     {
-                      why: "Made for my son's 12th birthday — Nood is his favourite Roblox character, and I wanted to bring that world into something he could actually hold, see, and celebrate.",
+                      why: "Made for my oldest son's 12th birthday — Noob is his favourite Roblox character, and I wanted to bring that world into something he could actually hold, see, and celebrate.",
                       time: "3 days overall (roughly 3-4 hours of work per day, allowing for design and natural drying time without using a dryer).",
                       materials:
                         "Cardboard as the main structure (no balloon this time); newspaper strips and recycled paper for shaping; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and finished with a long, thin cotton rope for hanging.",
