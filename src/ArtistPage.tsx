@@ -1325,7 +1325,7 @@ export default function ArtistPage() {
                     },
                     {
                       why: "Made for my oldest son's 12th birthday — Noob is his favourite Roblox character, and I wanted to bring that world into something he could actually hold, see, and celebrate.",
-                      time: "3 days overall (roughly 3-4 hours of work per day, allowing for design and natural drying time without using a dryer).",
+                      time: "3 days overall (roughly 3 hours of work per day, allowing for drying and design time).",
                       materials:
                         "Cardboard as the main structure (no balloon this time); newspaper strips and recycled paper for shaping; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and finished with a long, thin cotton rope for hanging.",
                       
