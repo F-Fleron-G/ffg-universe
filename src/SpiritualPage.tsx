@@ -154,7 +154,9 @@ export default function SpiritualPage() {
         try {
           const j = await res.json();
           if (j?.message) msg = j.message;
-        } catch {}
+        } catch {
+          // ignore malformed response body
+        }
         setToast({ type: "error", text: msg });
       }
     } catch {
@@ -539,7 +541,7 @@ export default function SpiritualPage() {
               className="ring absolute inset-0 rounded-full z-50"
               style={{
                 transform: `rotate(${deg}deg)`,
-                ["--rot" as any]: `${deg}deg`,
+                "--rot": `${deg}deg`,
                 animation: "none",
               }}
             >
@@ -1269,7 +1271,7 @@ function RingItem({
 }) {
   const angle = (index / total) * 360;
   return (
-    <div className="ring-slot" style={{ ["--angle" as any]: `${angle}deg` }}>
+    <div className="ring-slot" style={{ "--angle": `${angle}deg` }}>
       <button
         type="button"
         onClick={onClick}

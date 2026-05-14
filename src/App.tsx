@@ -491,11 +491,11 @@ function Orbit3D({
   const baseAngles = useMemo(() => {
     const step = 360 / Math.max(items.length, 1);
     return items.map((_, i) => i * step);
-  }, [items.length]);
+  }, [items]);
 
   useEffect(() => {
     let raf = 0;
-    let start = performance.now();
+    const start = performance.now();
 
     const tick = (now: number) => {
       const t = (now - start) / 1000;

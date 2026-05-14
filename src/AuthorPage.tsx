@@ -56,7 +56,9 @@ export default function AuthorPage() {
         try {
           const j = await res.json();
           if (j?.message) msg = j.message;
-        } catch {}
+        } catch {
+          // ignore malformed response body
+        }
         setToast({ type: "error", text: msg });
       }
     } catch {

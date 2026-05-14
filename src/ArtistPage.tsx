@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type ComponentType } from "react";
 import { Link } from "react-router-dom";
 import {
   Home,
@@ -24,6 +24,18 @@ import {
 } from "lucide-react";
 import HTMLFlipBook from "react-pageflip";
 import PageHead from "./components/PageHead";
+
+type PageFlipApi = {
+  flipPrev: () => void;
+  flipNext: () => void;
+  getOrientation?: () => "portrait" | "landscape";
+  getCurrentPageIndex?: () => number;
+  getPageCount?: () => number;
+};
+
+type FlipBookRef = {
+  pageFlip?: () => PageFlipApi;
+};
 
 const sections = [
   { id: "about", icon: <User className="h-5 w-5" />, label: "About Me" },
@@ -154,7 +166,7 @@ function PolaroidSlider({
                 {
                   animationDelay: `-${i * 2}s`,
                   animationDuration: `${totalSeconds}s`,
-                  ["--rot" as any]: tilts[i % tilts.length],
+                  "--rot": tilts[i % tilts.length],
                   zIndex: isActive ? images.length + 1 : images.length - i,
                   opacity: isActive ? 1 : 0.92,
                   pointerEvents: isActive ? "auto" : "none",
@@ -332,7 +344,7 @@ function PolaroidSlider({
                       )}
 
                       {/* Build time + tips */}
-                      {(d?.time || true) && (
+                      {(d?.time || d?.materials?.length) && (
                         <div className="flex items-start gap-2">
                           <Clock className="shrink-0 mt-[2px]" size={18} />
                           <div>
@@ -398,7 +410,7 @@ function IconBullet({
   icon: Icon,
   children,
 }: {
-  icon: any;
+  icon: ComponentType<{ className?: string }>;
   children: React.ReactNode;
 }) {
   return (
@@ -441,7 +453,7 @@ export default function ArtistPage() {
     text: string;
   }>(null);
 
-  const bookRef = useRef<any>(null);
+  const bookRef = useRef<FlipBookRef | null>(null);
 
   const [page, setPage] = useState(0);
   const [pageCount, setPageCount] = useState(0);
@@ -527,7 +539,9 @@ export default function ArtistPage() {
         try {
           const j = await res.json();
           if (j?.message) msg = j.message;
-        } catch {}
+        } catch {
+          // ignore malformed response body
+        }
         setToast({ type: "error", text: msg });
       }
     } catch {
