@@ -1362,8 +1362,8 @@ export default function ArtistPage() {
               {/* Category 2 — Personal/Birthday */}
               <figure className="text-center">
                 <PolaroidSlider
-                  images={["/ice-cream-p.png"]}
-                  labels={["N-ice Cream"]}
+                  images={["/ice-cream-p.png", "/Capybara-Stitch1.png"]}
+                  labels={["N-ice Cream", "Singing Capybara"]}
                   details={[
                     {
                       why: "Made for my youngest son's July birthday — a playful nod to summer and his love of colourful cones.",
@@ -1371,6 +1371,20 @@ export default function ArtistPage() {
                       materials:
                         "Balloon for the scoop; rolled cardboard for the cone; newspaper strips; recycled paper for drip details & sprinkles; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
                     },
+                    {
+                      why: "Made for my daughter's 8th birthday after she asked for a capybara piñata. She loves singing into her microphone while swinging indoors, so I created a capybara sitting on a swing, happily singing into a microphone. But while I was secretly building it, I hid the unfinished head behind a large piece of cardboard on top of our living-room furniture… which immediately made her suspicious. That's when she suddenly announced: “Papa… you know Stitch is actually my favourite character!” For a brief moment I thought I had completely failed the mission. Then inspiration struck — instead of starting over, I decided to add a white t-shirt with a hand-painted “Happy Birthday Stitch” design, somehow managing to combine both of her wishes into one very happy singing capybara.",
+                      time: "5 days overall, built in stages to allow the papier-mâché layers, shaping details, paint, and final decoration to dry properly.",
+                      materials:
+                        "Balloon and papier-mâché for the rounded body and head; cardboard for structure and swing details; newspaper strips and recycled paper for shaping; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and finished with rope for hanging.",
+                    },
+                  ]}
+                  modalImages={[
+                    ["/ice-cream-p.png"],
+                    [
+                      "/Capybara-Stitch1.png",
+                      "/Capybara-Stitch2.png",
+                      "/Capybara-Stitch3.png",
+                    ],
                   ]}
                   widthClass="mx-auto w-[280px] sm:w-[320px]"
                   className="polaroid-tall"
@@ -1471,6 +1485,7 @@ export default function ArtistPage() {
                             images={[
                               "/Mk-I.jpg",
                               "/Mk-P.jpg",
+                              "/Mk-C.jpg",
                               "/Mk-S.jpg",
                               "/Mk-W.jpg",
                               "/Mk-R.jpg",
