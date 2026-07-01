@@ -926,10 +926,10 @@ export default function ArtistPage() {
                   <h1 className="text-4xl font-bold mb-6">About Me</h1>
                   <div className="space-y-4 max-w-prose leading-relaxed">
                     <p>
-                      Art is, to me, the quietest loud language. It’s the safe
+                      Art is, to me, the quietest loud language. It's the safe
                       place where we say the unsayable, free from “good” or
                       “bad.” My work is story-driven: I line up thought with
-                      feeling and bring what’s inside into matter.
+                      feeling and bring what's inside into matter.
                     </p>
                     <p>
                       In quiet, reflective moments I sketch what I feel, often a
@@ -939,13 +939,13 @@ export default function ArtistPage() {
                     </p>
                     <p>
                       Piñatas arise for occasions. I build the idea and let it
-                      go: used, loved, broken open, finished. They’re made to be
+                      go: used, loved, broken open, finished. They're made to be
                       enjoyed and to end, like everything, cracked open and
                       complete.
                     </p>
                     <p className="text-2xl md:text-2xl font-semibold">
                       {" "}
-                      Welcome! I’m Frederic G. Fleron Grignard.
+                      Welcome! I'm Frederic G. Fleron Grignard.
                     </p>
                     <p className="mt-6 text-[clamp(10px,3.2vw,14px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] opacity-90 text-[#cacaca] whitespace-nowrap">
                       Expressionist · Artist · Unmuted
@@ -1061,7 +1061,7 @@ export default function ArtistPage() {
                         I tried to put that feeling on paper.
                       </p>
                       <p>
-                        Earth appears as we’re taught to see it, and I raise my
+                        Earth appears as we're taught to see it, and I raise my
                         ring finger—not the middle, to nudge first impressions.
                         The aim is to make you look twice: to show how easily we
                         misread reality and how a shift in angle can change the
@@ -1090,7 +1090,7 @@ export default function ArtistPage() {
                         My father was often gone, he was always working, and
                         this represents the kind of silence kids turn into
                         company. The monster is that emptiness shaped into form;
-                        the hug is the child’s way of saying: “stay with me,
+                        the hug is the child's way of saying: “stay with me,
                         help me build.”
                       </p>
                       <p>
@@ -1161,7 +1161,7 @@ export default function ArtistPage() {
                       <p>
                         That ritual became more than transport: it was defiance
                         of excuses, a quiet stand against procrastination. Every
-                        ride stitched me deeper into Berlin’s rhythm, giving me
+                        ride stitched me deeper into Berlin's rhythm, giving me
                         a sense of place and belonging in a city that was still
                         becoming home.
                       </p>
@@ -1338,7 +1338,7 @@ export default function ArtistPage() {
                         "Balloons for rounded forms; newspaper strips; recycled paper for easy moulding; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
                     },
                     {
-                      why: "Made for my oldest son's 12th birthday — Noob is his favourite Roblox character, and I wanted to bring that world into something he could actually hold, see, and celebrate.",
+                      why: "Made for my oldest son's 12th birthday — Noob was his favourite Roblox character, and I wanted to bring that world into something he could actually hold, see, and celebrate.",
                       time: "3 days overall (roughly 3 hours of work per day, allowing for drying and design time).",
                       materials:
                         "Cardboard as the main structure (no balloon this time); newspaper strips and recycled paper for shaping; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and finished with a long, thin cotton rope for hanging.",
@@ -1362,8 +1362,8 @@ export default function ArtistPage() {
               {/* Category 2 — Personal/Birthday */}
               <figure className="text-center">
                 <PolaroidSlider
-                  images={["/ice-cream-p.png", "/Capybara-Stitch1.png"]}
-                  labels={["N-ice Cream", "Singing Capybara"]}
+                  images={["/ice-cream-p.png", "/Capybara-Stitch1.png", "/Josua-1.png"]}
+                  labels={["N-ice Cream", "Singing Capybara", "Airborne Josua"]}
                   details={[
                     {
                       why: "Made for my youngest son's July birthday — a playful nod to summer and his love of colourful cones.",
@@ -1377,6 +1377,12 @@ export default function ArtistPage() {
                       materials:
                         "Balloon and papier-mâché for the rounded body and head; cardboard for structure and swing details; newspaper strips and recycled paper for shaping; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and finished with rope for hanging.",
                     },
+                    {
+                      why: "Made for my son Josua's birthday, this piñata brings together the things he loves most: BMX tricks, football, and Cristiano Ronaldo. I imagined him mid-air on his BMX, doing a no-foot jump while kicking a football, wearing Portugal's number 7 shirt — but with Josua on the back to make it truly his own.",
+                      time: "About 9 days overall, roughly 3 hours of work per day.",
+                      materials:
+                        "Flour-and-water papier-mâché paste; newspaper strips; balloons for the head, helmet, and football; cardboard for the BMX structure; hot glue for assembly; acrylic paint; and rope for hanging. Sweets were hidden inside the head, body, BMX wheels, and football.",
+                    },
                   ]}
                   modalImages={[
                     ["/ice-cream-p.png"],
@@ -1384,6 +1390,10 @@ export default function ArtistPage() {
                       "/Capybara-Stitch1.png",
                       "/Capybara-Stitch2.png",
                       "/Capybara-Stitch3.png",
+                    ],
+                    [
+                      "/Josua-1.png",
+                      "/Josua-2.png",
                     ],
                   ]}
                   widthClass="mx-auto w-[280px] sm:w-[320px]"
@@ -1537,25 +1547,25 @@ export default function ArtistPage() {
                 Want One Made Just for You?
               </h3>
               <p className="leading-relaxed text-center max-w-prose mx-auto mb-6">
-                If you’d like a custom piñata, just send me a reference image,
+                If you'd like a custom piñata, just send me a reference image,
                 your preferred size, and a bit of lead time so I can craft it
-                with care. The bigger or more detailed, the more time I’ll need.
-                The largest one I’ve made so far was the Halloween pumpkin,
+                with care. The bigger or more detailed, the more time I'll need.
+                The largest one I've made so far was the Halloween pumpkin,
                 measuring 55cm tall by 40cm wide — and yes, it was a hit!
               </p>
               <ul className="grid gap-4 max-w-prose mx-auto">
                 <IconBullet icon={ImageIcon}>
-                  Share a reference image of what you’d like.
+                  Share a reference image of what you'd like.
                 </IconBullet>
                 <IconBullet icon={Ruler}>
-                  Tell me the approximate size you’re after.
+                  Tell me the approximate size you're after.
                 </IconBullet>
                 <IconBullet icon={Clock}>
-                  Give me enough lead time — I’ll quote you based on complexity
+                  Give me enough lead time — I'll quote you based on complexity
                   and size.
                 </IconBullet>
                 <IconBullet icon={Sparkles}>
-                  Use the form below to say hello — I’ll reply with details and
+                  Use the form below to say hello — I'll reply with details and
                   next steps.
                 </IconBullet>
               </ul>
@@ -1570,9 +1580,9 @@ export default function ArtistPage() {
           <div className="mx-auto max-w-6xl px-4 py-12 grid gap-10 md:grid-cols-2 items-start">
             {/* Left: small blurb + copyright */}
             <div className="order-1 md:order-1">
-              <h2 className="text-2xl mb-3">Let’s Talk Piñatas</h2>
+              <h2 className="text-2xl mb-3">Let's Talk Piñatas</h2>
               <p className="opacity-90 mb-6 max-w-prose">
-                Have an idea in mind? Send me a note and I’ll reply with timing
+                Have an idea in mind? Send me a note and I'll reply with timing
                 and a custom quote based on size and complexity.
               </p>
             </div>
