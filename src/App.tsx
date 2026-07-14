@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from "react";
-import { Mail, Github, X, Check } from "lucide-react";
+import { Mail, Github, Linkedin, X, Check } from "lucide-react";
 import PageHead from "./components/PageHead";
 
 interface MenuItem {
@@ -322,6 +322,15 @@ export default function App() {
                 aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/frederic-fleron-grignard"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sky-300/60 transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/50 hover:bg-sky-300/10 hover:text-slate-100"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-5 w-5" aria-hidden="true" />
               </a>
             </div>
           </div>
