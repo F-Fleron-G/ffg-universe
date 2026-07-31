@@ -235,7 +235,7 @@ function PolaroidSlider({
             {/* Close */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 z-20 h-8 w-8 rounded-full bg-black text-white grid place-items-center shadow hover:opacity-90"
+              className="absolute top-4 right-4 z-50 h-8 w-8 rounded-full bg-black text-white grid place-items-center shadow hover:opacity-90"
               aria-label="Close"
             >
               <XIcon size={16} />
@@ -315,7 +315,15 @@ function PolaroidSlider({
               </div>
 
               {/* RIGHT/BOTTOM: details */}
-              <div className="p-5 md:p-6 overflow-auto text-left text-black space-y-5">
+              <div className="relative overflow-hidden bg-white text-left text-black">
+                <img
+                  src="/Desc_bck.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 top-0 z-20 w-full"
+                />
+
+                <div className="relative z-10 h-full overflow-y-auto space-y-5 p-5 pt-32 md:p-6 md:pt-40">
                 {/* centered title */}
                 {labels?.[modalIndex] && (
                   <h4
@@ -394,9 +402,10 @@ function PolaroidSlider({
                     strokeWidth="2"
                     strokeLinecap="round"
                   >
-                    <path d="M2 10 C 40 2, 80 18, 200 10 S 360 18, 398 10" />
+                    <path d="M2 18 C12 18, 18 9, 45 12 C145 15, 255 9, 355 12 C378 15, 390 7, 398 2" />
                   </svg>
                 </div>
+              </div>
               </div>
             </div>
           </div>
