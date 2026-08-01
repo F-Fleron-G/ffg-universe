@@ -146,7 +146,7 @@ function PolaroidSlider({
         className={[
           "polaroid-gallery",
           `polaroid-${count}`,
-          "no-anim", // 👈 add this
+          "no-anim",
           widthClass,
           className,
         ].join(" ")}
@@ -242,9 +242,9 @@ function PolaroidSlider({
             </button>
 
             {/* Responsive layout */}
-            <div className="grid h-full grid-rows-[minmax(0,52vh)_minmax(0,1fr)] md:grid-rows-1 md:grid-cols-2">
+            <div className="grid h-full grid-rows-[minmax(0,1fr)_minmax(0,52vh)] md:grid-rows-1 md:grid-cols-2">
               {/* LEFT/TOP: big image + (optional) thumbnails for this item only */}
-              <div className="relative bg-white flex flex-col">
+              <div className="order-2 relative flex flex-col bg-white md:order-1">
                 {/* Big image pane */}
                 <div className="flex-1 p-3 md:p-5 overflow-auto flex items-center justify-center select-none">
                   {(() => {
@@ -315,7 +315,7 @@ function PolaroidSlider({
               </div>
 
               {/* RIGHT/BOTTOM: details */}
-              <div className="relative overflow-hidden bg-white text-left text-black">
+              <div className="order-1 relative overflow-hidden bg-white text-left text-black md:order-2">
                 <img
                   src="/Desc_bck.png"
                   alt=""
@@ -1333,12 +1333,26 @@ export default function ArtistPage() {
             </p>
 
             {/* top row of images */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
-              {/* Category 1 — Character-inspired */}
-              <figure className="text-center">
+            <div className="grid grid-cols-1 gap-12 mb-16 md:grid-cols-2">
+              {/* Category 1 — Birthday Piñatas */}
+              <figure className="w-full max-w-[380px] mx-auto text-center">
                 <PolaroidSlider
-                  images={["/Snorlax-P.png", "/Roblox-P1.png"]}
-                  labels={["Pokémon Snorlax", "Roblox Noob"]}
+                  images={[
+                    "/Snorlax-P.png",
+                    "/Roblox-P1.png",
+                    "/ice-cream-p.png",
+                    "/Capybara-Stitch1.png",
+                    "/Josua-1.png",
+                    "/Niki-P1.png",
+                  ]}
+                  labels={[
+                    "Pokémon Snorlax",
+                    "Roblox Noob",
+                    "N-ice Cream",
+                    "Singing Capybara",
+                    "Airborne Josua",
+                    "Nicole's Polaroid Stage",
+                  ]}
                   details={[
                     {
                       why: "A surprise for my oldest son's birthday party — Snorlax was his favourite Pokémon.",
@@ -1353,27 +1367,6 @@ export default function ArtistPage() {
                         "Cardboard as the main structure (no balloon this time); newspaper strips and recycled paper for shaping; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and finished with a long, thin cotton rope for hanging.",
                       
                     },
-                  ]}
-                  modalImages={[
-                    ["/Snorlax-P.png"],
-                    ["/Roblox-P1.png", "/Roblox-P2.png"],
-                  ]}
-                  widthClass="mx-auto w-[280px] sm:w-[320px]"
-                  className="polaroid-tall"
-                />
-                <figcaption className="mt-2 text-center">
-                  <h3 className="text-sm sm:text-base font-medium tracking-wide text-neutral-800">
-                    Character-Inspired Piñatas
-                  </h3>
-                </figcaption>
-              </figure>
-
-              {/* Category 2 — Personal/Birthday */}
-              <figure className="text-center">
-                <PolaroidSlider
-                  images={["/ice-cream-p.png", "/Capybara-Stitch1.png", "/Josua-1.png"]}
-                  labels={["N-ice Cream", "Singing Capybara", "Airborne Josua"]}
-                  details={[
                     {
                       why: "Made for my youngest son's July birthday — a playful nod to summer and his love of colourful cones.",
                       time: "2 days overall (roughly 3 hours of work per day, allowing for drying and design time).",
@@ -1392,8 +1385,16 @@ export default function ArtistPage() {
                       materials:
                         "Flour-and-water papier-mâché paste; newspaper strips; balloons for the head, helmet, and football; cardboard for the BMX structure; hot glue for assembly; acrylic paint; and rope for hanging. Sweets were hidden inside the head, body, BMX wheels, and football.",
                     },
+                    {
+                      why: "My first piñata made to travel: a gift for my niece Nicole's 18th birthday, created from my sister's design request. It brings together Nicole's love of drumming and her place in the youth fire brigade: Nicole on stage, with the brigade's symbol on the bass drum.",
+                      time: "7 days overall (roughly 3 hours of work per day, allowing for drying, shaping, paint, and finishing time).",
+                      materials:
+                        "Cardboard structure; newspaper strips and recycled paper; flour-and-water papier-mâché paste; thin clay layers to soften the facial features; carefully cut sponge pieces for the audience's hands; acrylic paint; hot glue; rope for hanging; and a purpose-built rear filling door with a double-sided-tape lid, designed to stay secure during shipping.",
+                    },
                   ]}
                   modalImages={[
+                    ["/Snorlax-P.png"],
+                    ["/Roblox-P1.png", "/Roblox-P2.png"],
                     ["/ice-cream-p.png"],
                     [
                       "/Capybara-Stitch1.png",
@@ -1404,19 +1405,24 @@ export default function ArtistPage() {
                       "/Josua-1.png",
                       "/Josua-2.png",
                     ],
+                    [
+                      "/Niki-P1.png",
+                      "/Niki-P2.png",
+                      "/Niki-P3.png",
+                    ],
                   ]}
-                  widthClass="mx-auto w-[280px] sm:w-[320px]"
+                  widthClass="w-full"
                   className="polaroid-tall"
                 />
                 <figcaption className="mt-2 text-center">
                   <h3 className="text-sm sm:text-base font-medium tracking-wide text-neutral-800">
-                    Personalised Birthday Piñatas
+                    Birthday Piñatas
                   </h3>
                 </figcaption>
               </figure>
 
-              {/* Category 3 — Halloween */}
-              <figure className="text-center">
+              {/* Category 2 — Halloween Piñatas */}
+              <figure className="w-full max-w-[380px] mx-auto text-center">
                 <PolaroidSlider
                   images={["/Pumpkin-P.png", "/Lovely-Witch-P1.png"]}
                   labels={["Pumpkin Wizard", "Lovely Witch"]}
@@ -1442,7 +1448,7 @@ export default function ArtistPage() {
                       "/Lovely-Witch-P3.png",
                     ],
                   ]}
-                  widthClass="mx-auto w-[280px] sm:w-[320px]"
+                  widthClass="w-full"
                   className="polaroid-tall"
                 />
                 <figcaption className="mt-2 text-center">
@@ -1462,13 +1468,22 @@ export default function ArtistPage() {
               <div className="relative pt-12 pb-12 sm:pt-16 sm:pb-16">
                 <div className="relative max-w-3xl mx-auto bg-white backdrop-blur-sm border-2 border-black rounded-xl px-6 py-8 sm:px-8 sm:py-10 shadow-[6px_6px_0_0_#000]">
                   <h3 className="text-2xl text-center mb-4">The Story</h3>
-                  <p className="leading-relaxed text-center max-w-prose mx-auto">
-                    I first started making piñatas as a birthday surprise for my
-                    son. What began as one fun project quickly turned into a
-                    tradition — now a piñata feels like a “must” for every
-                    special occasion that draws us together for a fun time of
-                    arts and crafts. My kids love it!
-                  </p>
+                  <div className="max-w-prose mx-auto space-y-4 text-center leading-relaxed">
+                    <p>
+                      I began making piñatas when my wife asked me to create a birthday
+                      surprise for our son. Since that first one, they have become part of
+                      our family celebrations.
+                    </p>
+
+                    <p>
+                      Only later did I learn that piñatas carry a much older story:
+                      seed-filled figures, wishes for abundance, and traditions shaped across
+                      cultures into the joyful Mexican celebration we know today. It can be
+                      difficult to watch something made with such care be broken open—but that
+                      is the point. I make each one with love: a small wish for laughter,
+                      sweetness, and a memory worth keeping.
+                    </p>
+                  </div>
                 </div>
               </div>
 
