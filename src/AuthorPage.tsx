@@ -218,13 +218,13 @@ export default function AuthorPage() {
           id="home"
           className="scroll-mt-24 py-20 bg-[#5b5a59] text-[#c4c3c0]"
         >
-          <div className="mx-auto max-w-4xl px-4">
-            <div className="grid md:grid-cols-2 items-center gap-12 md:gap-16">
+          <div className="mx-auto max-w-6xl px-4">
+            <div className="grid md:grid-cols-2 items-center gap-12 md:gap-x-24 md:gap-y-16">
               {/* Portrait image first on mobile */}
-              <div className="order-1 md:order-2 flex justify-center md:justify-end">
-                <div className="w-[72vw] sm:w-72 md:w-80 aspect-[4/5] rounded-xl shadow-md overflow-hidden">
+             <div className="order-1 md:order-1 flex justify-center md:justify-end xl:translate-x-8">
+                <div>
                   <img
-                    src="/Author_image.jpg"
+                    src="/Author_Image.png"
                     alt="Author portrait of Frederic G. Fleron Grignard"
                     width={800}
                     height={1000}
@@ -237,7 +237,7 @@ export default function AuthorPage() {
               </div>
 
               {/* Text beneath on mobile */}
-              <div className="order-2 md:order-1 text-center md:text-left">
+              <div className="order-2 md:order-2 text-center md:text-left xl:translate-x-11">
                 <blockquote
                   className="
                 mx-auto md:mx-0 max-w-[28ch] md:max-w-none
