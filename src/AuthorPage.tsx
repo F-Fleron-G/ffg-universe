@@ -284,7 +284,7 @@ export default function AuthorPage() {
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#dec09a]" />
-                  Available in eBook, paperback, and hardcover
+                  Available in eBook and paperback
                 </span>
               </div>
 
@@ -394,7 +394,7 @@ export default function AuthorPage() {
                         className="h-4 w-4 text-[#5b5a59]"
                         aria-hidden="true"
                       />
-                      <span>Available in all formats</span>
+                      <span>Available in eBook & Paperback</span>
                     </div>
                   </div>
 
