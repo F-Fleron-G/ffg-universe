@@ -454,7 +454,7 @@ export default function AuthorPage() {
                 <div className="mt-8 flex flex-col items-center gap-3">
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                     <a
-                      href="https://www.amazon.com/dp/B0GRNKW2ZK"
+                      href="https://www.amazon.com/dp/B0GS8G5648"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={CTA}
