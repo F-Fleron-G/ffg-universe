@@ -242,11 +242,11 @@ function PolaroidSlider({
             </button>
 
             {/* Responsive layout */}
-            <div className="grid h-full grid-rows-[minmax(0,1fr)_minmax(0,52vh)] md:grid-rows-1 md:grid-cols-2">
+            <div className="grid h-full bg-white grid-rows-[minmax(0,1fr)_minmax(0,38vh)] md:grid-rows-1 md:grid-cols-2">
               {/* LEFT/TOP: big image + (optional) thumbnails for this item only */}
-              <div className="order-2 relative flex flex-col bg-white md:order-1">
+              <div className="relative flex flex-col bg-white pb-8 md:pb-0 md:order-1">
                 {/* Big image pane */}
-                <div className="flex-1 p-3 md:p-5 overflow-auto flex items-center justify-center select-none">
+                <div className="flex-1 pt-14 px-3 pb-3 md:p-5 overflow-auto flex items-center justify-center select-none">
                   {(() => {
                     const set = getModalSet(modalIndex);
                     const src = set[thumbIndex];
@@ -312,18 +312,27 @@ function PolaroidSlider({
                     </div>
                   </div>
                 )}
+
+                {/* Wave divider between image and text (mobile only) */}
+                <svg
+                  aria-hidden
+                  viewBox="0 0 1000 100"
+                  preserveAspectRatio="none"
+                  className="absolute inset-x-0 bottom-0 w-full h-8 md:hidden"
+                >
+                  <path
+                    d="M0,50 Q250,10 500,50 T1000,50"
+                    fill="none"
+                    stroke="#000"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                  />
+                </svg>
               </div>
 
               {/* RIGHT/BOTTOM: details */}
-              <div className="order-1 relative overflow-hidden bg-white text-left text-black md:order-2">
-                <img
-                  src="/Desc_bck.png"
-                  alt=""
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-0 top-0 z-20 w-full"
-                />
-
-                <div className="relative z-10 h-full overflow-y-auto space-y-5 p-5 pt-32 md:p-6 md:pt-40">
+              <div className="relative overflow-hidden bg-white text-left text-black md:order-2">
+                <div className="relative z-10 h-full overflow-y-auto space-y-5 p-5 pt-6 md:p-6 md:pt-8">
                 {/* centered title */}
                 {labels?.[modalIndex] && (
                   <h4
@@ -391,20 +400,6 @@ function PolaroidSlider({
                   );
                 })()}
 
-                {/* Decorative closing line */}
-                <div className="pt-3 flex justify-center">
-                  <svg
-                    viewBox="0 0 400 20"
-                    preserveAspectRatio="none"
-                    className="w-32 h-4 text-black/60"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  >
-                    <path d="M2 18 C12 18, 18 9, 45 12 C145 15, 255 9, 355 12 C378 15, 390 7, 398 2" />
-                  </svg>
-                </div>
               </div>
               </div>
             </div>
@@ -976,6 +971,16 @@ export default function ArtistPage() {
                 </div>
               </div>
             </div>
+
+            <svg
+              aria-hidden
+              viewBox="0 0 1000 100"
+              preserveAspectRatio="none"
+              className="absolute bottom-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-20 block z-10"
+              style={{ marginBottom: "-1px" }}
+            >
+              <path d="M0,50 Q250,10 500,50 T1000,50 L1000,100 L0,100 Z" fill="#fff" stroke="none" />
+            </svg>
           </section>
 
           {/* Drawings Section */}
@@ -1462,10 +1467,28 @@ export default function ArtistPage() {
             <div className="relative mt-8">
               <div
                 aria-hidden
-                className="absolute inset-0 left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#cacaca]"
+                className="absolute inset-0 left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#F0E9DD]"
               />
+              <svg
+                aria-hidden
+                viewBox="0 0 1000 100"
+                preserveAspectRatio="none"
+                className="absolute top-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-16 sm:h-20 block z-10"
+                style={{ marginTop: "-1px" }}
+              >
+                <path d="M0,50 Q250,90 500,50 T1000,50 L1000,0 L0,0 Z" fill="#fff" stroke="none" />
+              </svg>
+              <svg
+                aria-hidden
+                viewBox="0 0 1000 100"
+                preserveAspectRatio="none"
+                className="absolute bottom-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-16 sm:h-20 block z-10"
+                style={{ marginBottom: "-1px" }}
+              >
+                <path d="M0,50 Q250,10 500,50 T1000,50 L1000,100 L0,100 Z" fill="#fff" stroke="none" />
+              </svg>
               {/* Inner padding */}
-              <div className="relative pt-12 pb-12 sm:pt-16 sm:pb-16">
+              <div className="relative pt-20 pb-12 sm:pt-24 sm:pb-16">
                 <div className="relative max-w-3xl mx-auto bg-white backdrop-blur-sm border-2 border-black rounded-xl px-6 py-8 sm:px-8 sm:py-10 shadow-[6px_6px_0_0_#000]">
                   <h3 className="text-2xl text-center mb-4">The Story</h3>
                   <div className="max-w-prose mx-auto space-y-4 text-center leading-relaxed">
@@ -1561,7 +1584,7 @@ export default function ArtistPage() {
                 </div>
               </div>
 
-              <div className="h-10 sm:h-12" aria-hidden />
+              <div className="h-16 sm:h-20" aria-hidden />
             </div>
 
             <div className="h-12 sm:h-14 md:h-16" aria-hidden />
@@ -1601,7 +1624,17 @@ export default function ArtistPage() {
           id="contact"
           className="relative bg-[#728ca5] text-neutral-900"
         >
-          <div className="mx-auto max-w-6xl px-4 py-12 grid gap-10 md:grid-cols-2 items-start">
+          <svg
+            aria-hidden
+            viewBox="0 0 1000 100"
+            preserveAspectRatio="none"
+            className="absolute top-0 left-0 right-0 w-full h-20 block z-10"
+            style={{ marginTop: "-1px" }}
+          >
+            <path d="M0,50 Q250,90 500,50 T1000,50 L1000,0 L0,0 Z" fill="#fff" stroke="none" />
+          </svg>
+
+          <div className="mx-auto max-w-6xl px-4 pt-24 pb-12 grid gap-10 md:grid-cols-2 items-start">
             {/* Left: small blurb + copyright */}
             <div className="order-1 md:order-1">
               <h2 className="text-2xl mb-3">Let's Talk Piñatas</h2>
