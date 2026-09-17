@@ -868,7 +868,7 @@ export default function AuthorPage() {
                 <span className="h-px w-10 bg-[#c4c3c0]/25" aria-hidden="true" />
                 <span className="inline-flex items-center gap-2">
                   <BookOpen className="h-4 w-4" aria-hidden="true" />
-                  Upcoming Release
+                  Notes &amp; Reflections
                 </span>
                 <span className="h-px w-10 bg-[#c4c3c0]/25" aria-hidden="true" />
               </div>
@@ -890,10 +890,10 @@ export default function AuthorPage() {
                 Consciousness · Identity · Being
               </p>
 
-              <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-end sm:gap-6">
+              <div className="relative flex flex-col items-center gap-4 sm:block sm:mx-auto sm:max-w-[780px]">
                 <div
                   aria-hidden={philosophyBookOpened}
-                  className={`text-center transition-opacity duration-500 sm:max-w-[160px] sm:text-right ${
+                  className={`text-center transition-opacity duration-500 sm:absolute sm:right-0 sm:top-full sm:mt-3 sm:text-right ${
                     philosophyBookOpened
                       ? "opacity-0 pointer-events-none"
                       : "opacity-100"
@@ -904,20 +904,20 @@ export default function AuthorPage() {
                   </p>
                 </div>
 
-                <div className="relative w-full" style={{ maxWidth: 900 }}>
+                <div className="relative w-full" style={{ maxWidth: 780 }}>
                   <div
                     aria-hidden
                     className="absolute inset-0 -z-10 bg-[#f4efe4]"
                   />
                   <HTMLFlipBook
                     ref={philosophyBookRef}
-                    width={480}
-                    height={680}
+                    width={420}
+                    height={600}
                     size="stretch"
-                    minWidth={360}
-                    maxWidth={900}
-                    minHeight={520}
-                    maxHeight={1120}
+                    minWidth={330}
+                    maxWidth={780}
+                    minHeight={470}
+                    maxHeight={1115}
                     maxShadowOpacity={0.4}
                     showCover={true}
                     mobileScrollSupport={true}
