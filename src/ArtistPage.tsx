@@ -439,6 +439,37 @@ function PageNo({ n }: { n: number }) {
   );
 }
 
+function Swash({ flip = false }: { flip?: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 800 100"
+      preserveAspectRatio="none"
+      className={`h-2 w-7 sm:w-9 text-neutral-500 ${flip ? "-scale-x-100" : ""}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="6"
+      strokeLinecap="round"
+    >
+      <path d="M0 10 C 20 100, 300 100, 450 50 S 5 100, 800 100" />
+    </svg>
+  );
+}
+
+function DrawingCaption({ title }: { title: string }) {
+  return (
+    <div
+      className="pointer-events-none absolute bottom-2 left-1/2 flex -translate-x-1/2
+                 items-center gap-2 whitespace-nowrap opacity-50"
+    >
+      <Swash />
+      <span className="text-[10px] sm:text-xs md:text-sm tracking-wide text-neutral-600">
+        {title}
+      </span>
+      <Swash flip />
+    </div>
+  );
+}
+
 export default function ArtistPage() {
   const [showTip, setShowTip] = useState(false);
 
@@ -493,11 +524,15 @@ export default function ArtistPage() {
   ] as const;
 
   const getCurrentDrawing = () => {
-    if (page % 2 === 1) {
-      return drawingPages[Math.floor(page / 2)] ?? null;
+    // Pages are offset by 1 to account for the front-cover page (Portfolio-front.png).
+    if (page >= 2 && page % 2 === 0) {
+      return drawingPages[page / 2 - 1] ?? null;
     }
     return null;
   };
+
+  const portfolioClosed = page === 0;
+  const portfolioOnBackCover = pageCount > 0 && page === pageCount - 1;
 
   const updateSpread = () => {
     const api = bookRef.current?.pageFlip?.();
@@ -609,6 +644,14 @@ export default function ArtistPage() {
           background-size: cover;
           background-position: center;
           font-family: Patrick Hand, cursive;
+        }
+
+        .drawings-paper-bg {
+          background-color: #e7e7e4;
+          background-image: url('/paper_bg.jpg');
+          background-size: cover;
+          background-position: center;
+          background-blend-mode: multiply;
         }
 
         /* ---------- Polaroid slider (infinite, CSS-only) ---------- */
@@ -983,49 +1026,101 @@ export default function ArtistPage() {
             </svg>
           </section>
 
+          {/* White breathing-room gap before the Stories in Ink section */}
+          <div className="h-1 sm:h-[5px]" aria-hidden />
+
           {/* Drawings Section */}
-          <section id="drawings" className="scroll-mt-24 py-24">
-            <div className="relative mb-10">
-              <h2 className="text-3xl text-center">Ink Drawings</h2>
+          <section id="drawings" className="relative scroll-mt-24">
+            {/* Full-bleed grey paper background */}
+            <div
+              aria-hidden
+              className="drawings-paper-bg absolute inset-0 left-1/2 right-1/2 -mx-[50vw] w-screen"
+            />
+            <svg
+              aria-hidden
+              viewBox="0 0 1000 100"
+              preserveAspectRatio="none"
+              className="absolute top-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-16 sm:h-20 block z-10"
+              style={{ marginTop: "-1px" }}
+            >
+              <path d="M0,50 Q250,10 500,50 T1000,50 L1000,0 L0,0 Z" fill="#fff" stroke="none" />
+            </svg>
+            <svg
+              aria-hidden
+              viewBox="0 0 1000 100"
+              preserveAspectRatio="none"
+              className="absolute bottom-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-16 sm:h-20 block z-10"
+              style={{ marginBottom: "-1px" }}
+            >
+              <path d="M0,50 Q250,10 500,50 T1000,50 L1000,100 L0,100 Z" fill="#fff" stroke="none" />
+            </svg>
 
-              {/* Info button */}
-              <button
-                type="button"
-                aria-label="How to use the flipbook"
-                aria-expanded={showTip}
-                onClick={() => setShowTip((v) => !v)}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-30 h-7 w-7 rounded-full
-                        border border-[#728ca5] bg-white/80 text-[#728ca5]
-                        flex items-center justify-center shadow-sm backdrop-blur
-                        hover:bg-white transition
-                        focus:outline-none focus-visible:ring-2 focus-visible:ring-[#728ca5]/60"
-              >
-                <span className="text-[11px] font-semibold">i</span>
-              </button>
+            <div className="relative z-10 pt-20 pb-20 sm:pt-24 sm:pb-24">
+            <div className="mb-10">
+              {/* Eyebrow */}
+              <div className="mb-4 flex items-center justify-center gap-3 text-[12px] tracking-[0.22em] uppercase text-neutral-600">
+                <Swash />
+                <span className="inline-flex items-center gap-2">
+                  <PenTool className="h-4 w-4" aria-hidden="true" />
+                  Artist Collection
+                </span>
+                <Swash flip />
+              </div>
 
-              {/* Tip popover */}
-              {showTip && (
-                <div
-                  role="dialog"
-                  aria-modal="false"
-                  className="absolute right-0 top-full mt-2 z-30 max-w-xs rounded-xl border border-[#728ca5]
-                          bg-white/95 text-[#728ca5] p-3 text-xs sm:text-sm shadow-lg backdrop-blur
-                          leading-relaxed"
+              <div className="relative">
+                <h2 className="text-3xl text-center">Stories in Ink</h2>
+
+                {/* Info button */}
+                <button
+                  type="button"
+                  aria-label="How to use the flipbook"
+                  aria-expanded={showTip}
+                  onClick={() => setShowTip((v) => !v)}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-30 h-7 w-7 rounded-full
+                          border border-[#728ca5] bg-white/80 text-[#728ca5]
+                          flex items-center justify-center shadow-sm backdrop-blur
+                          hover:bg-white transition
+                          focus:outline-none focus-visible:ring-2 focus-visible:ring-[#728ca5]/60"
                 >
-                  <p className="mb-2 !text-[14px]">
-                    Tip: Click the right page or the → button to flip forward,
-                    and the left page or the ← button to flip back.
-                  </p>
-                  <div className="flex justify-end">
-                    <button
-                      onClick={() => setShowTip(false)}
-                      className="!text-[11px] sm:text-xs text-[#728ca5] hover:text-neutral-900 underline"
-                    >
-                      Got it
-                    </button>
+                  <span className="text-[11px] font-semibold">i</span>
+                </button>
+
+                {/* Tip popover */}
+                {showTip && (
+                  <div
+                    role="dialog"
+                    aria-modal="false"
+                    className="absolute right-0 top-full mt-2 z-30 max-w-xs rounded-xl border border-[#728ca5]
+                            bg-white/95 text-[#728ca5] p-3 text-xs sm:text-sm shadow-lg backdrop-blur
+                            leading-relaxed"
+                  >
+                    <p className="mb-2 !text-[14px]">
+                      Tip: Click the right page or the → button to flip forward,
+                      and the left page or the ← button to flip back.
+                    </p>
+                    <div className="flex justify-end">
+                      <button
+                        onClick={() => setShowTip(false)}
+                        className="!text-[11px] sm:text-xs text-[#728ca5] hover:text-neutral-900 underline"
+                      >
+                        Got it
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
+
+              <p className="mx-auto mt-4 max-w-2xl text-center text-[15px] sm:text-base leading-relaxed text-neutral-700">
+                Each drawing began as a dot, revealing itself through the
+                rhythm of my pen. Every mark carries an emotion—memories that
+                guided where my hand moved, how intense each stroke became.
+                These aren't just illustrations; they're moments I relived,
+                dotted back into existence on paper.
+              </p>
+
+              <p className="mt-4 text-center text-[clamp(10px,3.2vw,14px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] text-neutral-600 opacity-50 whitespace-nowrap">
+                Ink Art &middot; Philosophical &middot; Storytelling
+              </p>
             </div>
 
             <div className="relative flex justify-center">
@@ -1040,9 +1135,11 @@ export default function ArtistPage() {
                 minHeight={400}
                 maxHeight={800}
                 maxShadowOpacity={0.3}
-                showCover={false}
+                showCover={true}
                 mobileScrollSupport={true}
-                className="shadow-2xl"
+                className={
+                  portfolioClosed || portfolioOnBackCover ? "" : "shadow-2xl"
+                }
                 startPage={0}
                 drawShadow={true}
                 flippingTime={700}
@@ -1060,27 +1157,37 @@ export default function ArtistPage() {
                 }}
                 onFlip={updateNav}
               >
+                {/* Front cover: Portfolio */}
+                <div className="h-full w-full bg-[#728ca5] shadow-2xl">
+                  <img
+                    src="/Portfolio-front.png"
+                    alt="Portfolio — front cover"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
                 {/* Page 1: Text — with title + paragraphs */}
                 <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">
-                  <div className="h-full overflow-hidden pr-1">
-                    <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
-                      Assumptions
-                    </h3>
-                    <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
-                      <p>
-                        I drew this when life felt heavy: a small self lifting
-                        with a simple hand motion—choosing lift over gravity.
-                        Flying has always called to me; skydiving gave me the
-                        truest taste—those seconds of freefall before deploying.
-                        I tried to put that feeling on paper.
-                      </p>
-                      <p>
-                        Earth appears as we're taught to see it, and I raise my
-                        ring finger—not the middle, to nudge first impressions.
-                        The aim is to make you look twice: to show how easily we
-                        misread reality and how a shift in angle can change the
-                        story.
-                      </p>
+                  <div className="flex h-full flex-col overflow-y-auto pr-1">
+                    <div className="flex flex-1 flex-col items-center justify-center">
+                      <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
+                        Assumptions
+                      </h3>
+                      <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
+                        <p>
+                          I drew this when life felt heavy: a small self lifting
+                          with a simple hand motion—choosing lift over gravity.
+                          Flying has always called to me; skydiving gave me the
+                          truest taste—those seconds of freefall before deploying.
+                          I tried to put that feeling on paper.
+                        </p>
+                        <p>
+                          Earth appears as we're taught to see it, and I raise my
+                          ring finger—not the middle, to nudge first impressions.
+                          The aim is to make you look twice: to show how easily we
+                          misread reality and how a shift in angle can change the
+                          story.
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <PageNo n={1} />
@@ -1092,28 +1199,31 @@ export default function ArtistPage() {
                     alt="Ink drawing of a small figure lifting upward against gravity with one hand raised toward the sky."
                     className="max-h-full max-w-full object-contain mx-auto"
                   />
+                  <DrawingCaption title="Assumptions" />
                 </div>
                 {/* Page 3: Text */}
                 <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">
-                  <div className="h-full overflow-hidden pr-1">
-                    <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
-                      Lonely Companion
-                    </h3>
-                    <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
-                      <p>
-                        My father was often gone, he was always working, and
-                        this represents the kind of silence kids turn into
-                        company. The monster is that emptiness shaped into form;
-                        the hug is the child's way of saying: “stay with me,
-                        help me build.”
-                      </p>
-                      <p>
-                        Now, as a father, I try to be the presence I once wished
-                        for. The sandcastle is what we create in shared
-                        time—attention, small rituals, play. Even loneliness,
-                        met with tenderness, can become ally: absence softened
-                        into presence, solitude into joy.
-                      </p>
+                  <div className="flex h-full flex-col overflow-y-auto pr-1">
+                    <div className="flex flex-1 flex-col items-center justify-center">
+                      <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
+                        Lonely Companion
+                      </h3>
+                      <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
+                        <p>
+                          My father was often gone, he was always working, and
+                          this represents the kind of silence kids turn into
+                          company. The monster is that emptiness shaped into form;
+                          the hug is the child's way of saying: “stay with me,
+                          help me build.”
+                        </p>
+                        <p>
+                          Now, as a father, I try to be the presence I once wished
+                          for. The sandcastle is what we create in shared
+                          time—attention, small rituals, play. Even loneliness,
+                          met with tenderness, can become ally: absence softened
+                          into presence, solitude into joy.
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <PageNo n={2} />
@@ -1125,27 +1235,30 @@ export default function ArtistPage() {
                     alt="Ink drawing of a child hugging a large friendly monster while building a sandcastle."
                     className="max-h-full max-w-full object-contain mx-auto"
                   />
+                  <DrawingCaption title="Lonely Companion" />
                 </div>
                 {/* Page 5: Text */}
                 <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">
-                  <div className="h-full overflow-hidden pr-1">
-                    <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
-                      Shackled Notes
-                    </h3>
-                    <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
-                      <p>
-                        There was a season when I felt chained to
-                        survival—working to pay bills, not to live. Music was
-                        the dream I carried on my back, but fear of risk
-                        outweighed the pull of flight. Stability felt safer than
-                        freedom, even when it left me restless.
-                      </p>
-                      <p>
-                        Looking back, I see how close the exit was, how chances
-                        hovered within reach. Yet insecurities and “what ifs”
-                        clouded my sight. This drawing reminds me: sometimes the
-                        prison is not outside us but built from doubt within.
-                      </p>
+                  <div className="flex h-full flex-col overflow-y-auto pr-1">
+                    <div className="flex flex-1 flex-col items-center justify-center">
+                      <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
+                        Shackled Notes
+                      </h3>
+                      <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
+                        <p>
+                          There was a season when I felt chained to
+                          survival—working to pay bills, not to live. Music was
+                          the dream I carried on my back, but fear of risk
+                          outweighed the pull of flight. Stability felt safer than
+                          freedom, even when it left me restless.
+                        </p>
+                        <p>
+                          Looking back, I see how close the exit was, how chances
+                          hovered within reach. Yet insecurities and “what ifs”
+                          clouded my sight. This drawing reminds me: sometimes the
+                          prison is not outside us but built from doubt within.
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <PageNo n={3} />
@@ -1157,28 +1270,31 @@ export default function ArtistPage() {
                     alt="Ink drawing of a man carrying a guitar case, walking with a ball and chain tied to his ankle."
                     className="max-h-full max-w-full object-contain mx-auto"
                   />
+                  <DrawingCaption title="Shackled Notes" />
                 </div>
                 {/* Page 7: Text */}
                 <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">
-                  <div className="h-full overflow-hidden pr-1">
-                    <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
-                      Riding Weather
-                    </h3>
-                    <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
-                      <p>
-                        Each day I faced the weather head-on, pedaling through
-                        rain, wind, or shine. I had other choices—a car, the
-                        tram just steps away—but the ride itself felt like a
-                        victory. It was my way of greeting the day, no matter
-                        its mood.
-                      </p>
-                      <p>
-                        That ritual became more than transport: it was defiance
-                        of excuses, a quiet stand against procrastination. Every
-                        ride stitched me deeper into Berlin's rhythm, giving me
-                        a sense of place and belonging in a city that was still
-                        becoming home.
-                      </p>
+                  <div className="flex h-full flex-col overflow-y-auto pr-1">
+                    <div className="flex flex-1 flex-col items-center justify-center">
+                      <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
+                        Riding Weather
+                      </h3>
+                      <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
+                        <p>
+                          Each day I faced the weather head-on, pedaling through
+                          rain, wind, or shine. I had other choices—a car, the
+                          tram just steps away—but the ride itself felt like a
+                          victory. It was my way of greeting the day, no matter
+                          its mood.
+                        </p>
+                        <p>
+                          That ritual became more than transport: it was defiance
+                          of excuses, a quiet stand against procrastination. Every
+                          ride stitched me deeper into Berlin's rhythm, giving me
+                          a sense of place and belonging in a city that was still
+                          becoming home.
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <PageNo n={4} />
@@ -1190,31 +1306,34 @@ export default function ArtistPage() {
                     alt="Ink drawing of a person on a bicycle leaning into wind and rain with swirling lines around them."
                     className="max-h-full max-w-full object-contain mx-auto"
                   />
+                  <DrawingCaption title="Riding Weather" />
                 </div>
                 {/* Page 9: Text */}
                 <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">
-                  <div className="h-full overflow-hidden pr-1">
-                    <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
-                      Chili Cycle
-                    </h3>
-                    <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
-                      <p>
-                        This drawing was inspired by 'mi hermano del alma
-                        Charlie', who loved spicy food even as it irritated him.
-                        Watching him sweat made me wonder why we call it “chili”
-                        yet describe it as “hot,” a contradiction that begged
-                        for its own story.
-                      </p>
-                      <p>
-                        So I imagined a cycle: the sun fed with peppers until it
-                        sweats, its drops turning into steam, then clouds, then
-                        rain. The earth drinks that rain to grow more chilis,
-                        feeding the same sun again. A strange loop of fire and
-                        water, irritation and delight, all bound in taste.
-                      </p>
+                  <div className="flex h-full flex-col overflow-y-auto pr-1">
+                    <div className="flex flex-1 flex-col items-center justify-center">
+                      <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
+                        Chili Cycle
+                      </h3>
+                      <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
+                        <p>
+                          This drawing was inspired by 'mi hermano del alma
+                          Charlie', who loved spicy food even as it irritated him.
+                          Watching him sweat made me wonder why we call it “chili”
+                          yet describe it as “hot,” a contradiction that begged
+                          for its own story.
+                        </p>
+                        <p>
+                          So I imagined a cycle: the sun fed with peppers until it
+                          sweats, its drops turning into steam, then clouds, then
+                          rain. The earth drinks that rain to grow more chilis,
+                          feeding the same sun again. A strange loop of fire and
+                          water, irritation and delight, all bound in taste.
+                        </p>
+                      </div>
                     </div>
-                    <PageNo n={5} />
                   </div>
+                  <PageNo n={5} />
                 </div>
                 {/* Page 10: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
@@ -1223,31 +1342,34 @@ export default function ArtistPage() {
                     alt="Ink drawing of a person in a tree feeding chili peppers to the sun, which sweats into clouds and rain over chili plants."
                     className="max-h-full max-w-full object-contain mx-auto"
                   />
+                  <DrawingCaption title="Chili Cycle" />
                 </div>
                 {/* Page 11: Text */}
                 <div className="page-paper py-6 px-8 sm:px-10 border border-neutral-300 h-full">
-                  <div className="h-full overflow-hidden pr-1">
-                    <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
-                      Guardian Light
-                    </h3>
-                    <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
-                      <p>
-                        There was a time when my dreams hung by a string, ready
-                        to snap at any moment. Far from home and without
-                        shelter, I tried to hold on to hope while reaching for
-                        music and theater. Then Sabrina, Liz and Bob Lampkin
-                        opened their home to me, giving me safety and a chance
-                        to finish high school.
-                      </p>
-                      <p>
-                        Without them, everything might have fallen away. Liz and
-                        Bob have since passed, but I will always hold them close
-                        to my heart as the angels who proved that compassion can
-                        change a life forever.
-                      </p>
+                  <div className="flex h-full flex-col overflow-y-auto pr-1">
+                    <div className="flex flex-1 flex-col items-center justify-center">
+                      <h3 className="text-base sm:text-lg font-semibold text-center underline decoration-neutral-800 decoration-[3px] underline-offset-[12px] mb-7 sm:mb-8">
+                        Guardian Light
+                      </h3>
+                      <div className="mx-auto max-w-[58ch] sm:max-w-[60ch] text-sm text-center leading-[1.7] space-y-5 mt-1 px-1">
+                        <p>
+                          There was a time when my dreams hung by a string, ready
+                          to snap at any moment. Far from home and without
+                          shelter, I tried to hold on to hope while reaching for
+                          music and theater. Then Sabrina, Liz and Bob Lampkin
+                          opened their home to me, giving me safety and a chance
+                          to finish high school.
+                        </p>
+                        <p>
+                          Without them, everything might have fallen away. Liz and
+                          Bob have since passed, but I will always hold them close
+                          to my heart as the angels who proved that compassion can
+                          change a life forever.
+                        </p>
+                      </div>
                     </div>
-                    <PageNo n={6} />
                   </div>
+                  <PageNo n={6} />
                 </div>
                 {/* Page 12: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
@@ -1256,8 +1378,37 @@ export default function ArtistPage() {
                     alt="Ink drawing of a figure hanging from a guitar string beneath an angelic presence, symbolizing fragile dreams saved by compassion and light."
                     className="max-h-full max-w-full object-contain mx-auto"
                   />
+                  <DrawingCaption title="Guardian Light" />
+                </div>
+                {/* Back cover: Portfolio */}
+                <div className="h-full w-full bg-[#728ca5] shadow-2xl">
+                  <img
+                    src="/Portfolio-back.png"
+                    alt="Portfolio — back cover"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
               </HTMLFlipBook>
+
+              {portfolioClosed && (
+                <div className="absolute -bottom-10 right-0 z-10 text-right">
+                  <p className="text-[11px] italic text-neutral-600 animate-pulse">
+                    Tap the portfolio to open it
+                  </p>
+                </div>
+              )}
+
+              {portfolioOnBackCover && (
+                <div
+                  className={`absolute -bottom-10 z-10 text-right ${
+                    isSpread ? "right-1/2" : "right-0"
+                  }`}
+                >
+                  <p className="text-[11px] italic text-neutral-600 animate-pulse">
+                    Tap the portfolio to go back
+                  </p>
+                </div>
+              )}
 
               {getCurrentDrawing() && (
                 <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 z-10">
@@ -1310,35 +1461,67 @@ export default function ArtistPage() {
               )}
             </div>
             <div className="h-10" aria-hidden />
+            </div>
           </section>
 
-          {/* Separator — centered only */}
-          <div className="my-8 sm:my-12 flex justify-center">
-            <svg
-              viewBox="0 0 800 100"
-              preserveAspectRatio="none"
-              className="w-[min(80%,48rem)] h-10 sm:h-12 text-neutral-900"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="4"
-              strokeLinecap="round"
-            >
-              <path d="M0 10 C 20 100, 300 100, 450 50 S 5 100, 800 100" />
-            </svg>
-          </div>
+          {/* White breathing-room gap before the Piñatas section */}
+          <div className="h-1 sm:h-[5px]" aria-hidden />
 
           {/* Piñatas Section */}
-          <section id="pinatas" className="scroll-mt-24 py-24">
-            <h2 className="text-3xl text-center mb-10">
-              Handcrafted Piñata Art
-            </h2>
-            <p className="max-w-xl mx-auto mb-10 text-center text-gray-700">
-              Unique handmade piñatas created from my own designs. Each piece is
-              an imaginative work of art that can take several weeks to make.
-            </p>
+          <section id="pinatas" className="relative scroll-mt-24">
+            {/* Full-bleed warm cream background */}
+            <div
+              aria-hidden
+              className="absolute inset-0 left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#F0E9DD]"
+            />
+            <svg
+              aria-hidden
+              viewBox="0 0 1000 100"
+              preserveAspectRatio="none"
+              className="absolute top-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-16 sm:h-20 block z-10"
+              style={{ marginTop: "-1px" }}
+            >
+              <path d="M0,50 Q250,10 500,50 T1000,50 L1000,0 L0,0 Z" fill="#fff" stroke="none" />
+            </svg>
+            <svg
+              aria-hidden
+              viewBox="0 0 1000 100"
+              preserveAspectRatio="none"
+              className="absolute bottom-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-16 sm:h-20 block z-10"
+              style={{ marginBottom: "-1px" }}
+            >
+              <path d="M0,50 Q250,10 500,50 T1000,50 L1000,100 L0,100 Z" fill="#fff" stroke="none" />
+            </svg>
+
+            <div className="relative z-10 pt-20 pb-20 sm:pt-24 sm:pb-24">
+            <div className="mb-10">
+              {/* Eyebrow */}
+              <div className="mb-4 flex items-center justify-center gap-3 text-[12px] tracking-[0.22em] uppercase text-neutral-600">
+                <Swash />
+                <span className="inline-flex items-center gap-2">
+                  <Palette className="h-4 w-4" aria-hidden="true" />
+                  Personalized Celebrations
+                </span>
+                <Swash flip />
+              </div>
+
+              <h2 className="text-3xl text-center">Handcrafted Piñata Art</h2>
+
+              <p className="mx-auto mt-4 max-w-2xl text-center text-[15px] sm:text-base leading-relaxed text-neutral-700">
+                Handmade piñatas created from my own designs, tailored to
+                celebrate who you are. I listen for the threads that make you
+                unique—your passions, interests, the details that matter—then
+                weave them carefully into every element. Made over weeks, each
+                piece becomes a personalized work of art that's truly yours.
+              </p>
+
+              <p className="mt-4 text-center text-[clamp(10px,3.2vw,14px)] md:text-base tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.3em] text-neutral-600 opacity-50 whitespace-nowrap">
+                Bespoke &middot; Personalized Pi&ntilde;atas &middot; Handcrafted
+              </p>
+            </div>
 
             {/* top row of images */}
-            <div className="grid grid-cols-1 gap-12 mb-16 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-12 mb-12 sm:mb-14 md:mb-16 md:grid-cols-2">
               {/* Category 1 — Birthday Piñatas */}
               <figure className="w-full max-w-[380px] mx-auto text-center">
                 <PolaroidSlider
@@ -1464,31 +1647,7 @@ export default function ArtistPage() {
               </figure>
             </div>
 
-            <div className="relative mt-8">
-              <div
-                aria-hidden
-                className="absolute inset-0 left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#F0E9DD]"
-              />
-              <svg
-                aria-hidden
-                viewBox="0 0 1000 100"
-                preserveAspectRatio="none"
-                className="absolute top-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-16 sm:h-20 block z-10"
-                style={{ marginTop: "-1px" }}
-              >
-                <path d="M0,50 Q250,90 500,50 T1000,50 L1000,0 L0,0 Z" fill="#fff" stroke="none" />
-              </svg>
-              <svg
-                aria-hidden
-                viewBox="0 0 1000 100"
-                preserveAspectRatio="none"
-                className="absolute bottom-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-16 sm:h-20 block z-10"
-                style={{ marginBottom: "-1px" }}
-              >
-                <path d="M0,50 Q250,10 500,50 T1000,50 L1000,100 L0,100 Z" fill="#fff" stroke="none" />
-              </svg>
-              {/* Inner padding */}
-              <div className="relative pt-20 pb-12 sm:pt-24 sm:pb-16">
+            <div className="mt-12 sm:mt-14 md:mt-16">
                 <div className="relative max-w-3xl mx-auto bg-white backdrop-blur-sm border-2 border-black rounded-xl px-6 py-8 sm:px-8 sm:py-10 shadow-[6px_6px_0_0_#000]">
                   <h3 className="text-2xl text-center mb-4">The Story</h3>
                   <div className="max-w-prose mx-auto space-y-4 text-center leading-relaxed">
@@ -1508,7 +1667,6 @@ export default function ArtistPage() {
                     </p>
                   </div>
                 </div>
-              </div>
 
               {/* Breathing room between story and slider */}
               <div className="h-12 sm:h-14 md:h-16" aria-hidden />
@@ -1583,8 +1741,6 @@ export default function ArtistPage() {
                   </div>
                 </div>
               </div>
-
-              <div className="h-16 sm:h-20" aria-hidden />
             </div>
 
             <div className="h-12 sm:h-14 md:h-16" aria-hidden />
@@ -1617,7 +1773,11 @@ export default function ArtistPage() {
                 </IconBullet>
               </ul>
             </div>
+            </div>
           </section>
+
+          {/* White breathing-room gap after the Piñatas section */}
+          <div className="h-1 sm:h-[5px]" aria-hidden />
         </main>
 
         <section
@@ -1631,7 +1791,7 @@ export default function ArtistPage() {
             className="absolute top-0 left-0 right-0 w-full h-20 block z-10"
             style={{ marginTop: "-1px" }}
           >
-            <path d="M0,50 Q250,90 500,50 T1000,50 L1000,0 L0,0 Z" fill="#fff" stroke="none" />
+            <path d="M0,50 Q250,10 500,50 T1000,50 L1000,0 L0,0 Z" fill="#fff" stroke="none" />
           </svg>
 
           <div className="mx-auto max-w-6xl px-4 pt-24 pb-12 grid gap-10 md:grid-cols-2 items-start">
