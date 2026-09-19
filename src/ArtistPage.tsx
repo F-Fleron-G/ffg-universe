@@ -1019,10 +1019,10 @@ export default function ArtistPage() {
               aria-hidden
               viewBox="0 0 1000 100"
               preserveAspectRatio="none"
-              className="absolute bottom-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-20 block z-10"
-              style={{ marginBottom: "-1px" }}
+              className="absolute bottom-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-2 sm:h-4 block z-10"
+              style={{ marginBottom: "-1px", overflow: "visible" }}
             >
-              <path d="M0,50 Q250,10 500,50 T1000,50 L1000,100 L0,100 Z" fill="#fff" stroke="none" />
+              <path d="M0,50 Q250,-48 500,50 T1000,50 L1000,100 L0,100 Z" fill="#fff" stroke="none" />
             </svg>
           </section>
 
@@ -1040,19 +1040,19 @@ export default function ArtistPage() {
               aria-hidden
               viewBox="0 0 1000 100"
               preserveAspectRatio="none"
-              className="absolute top-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-16 sm:h-20 block z-10"
-              style={{ marginTop: "-1px" }}
+              className="absolute top-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-2 sm:h-4 block z-10"
+              style={{ marginTop: "-1px", overflow: "visible" }}
             >
-              <path d="M0,50 Q250,10 500,50 T1000,50 L1000,0 L0,0 Z" fill="#fff" stroke="none" />
+              <path d="M0,50 Q250,-48 500,50 T1000,50 L1000,0 L0,0 Z" fill="#fff" stroke="none" />
             </svg>
             <svg
               aria-hidden
               viewBox="0 0 1000 100"
               preserveAspectRatio="none"
-              className="absolute bottom-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-16 sm:h-20 block z-10"
-              style={{ marginBottom: "-1px" }}
+              className="absolute bottom-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-2 sm:h-4 block z-10"
+              style={{ marginBottom: "-1px", overflow: "visible" }}
             >
-              <path d="M0,50 Q250,10 500,50 T1000,50 L1000,100 L0,100 Z" fill="#fff" stroke="none" />
+              <path d="M0,50 Q250,-48 500,50 T1000,50 L1000,100 L0,100 Z" fill="#fff" stroke="none" />
             </svg>
 
             <div className="relative z-10 pt-20 pb-20 sm:pt-24 sm:pb-24">
@@ -1478,19 +1478,19 @@ export default function ArtistPage() {
               aria-hidden
               viewBox="0 0 1000 100"
               preserveAspectRatio="none"
-              className="absolute top-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-16 sm:h-20 block z-10"
-              style={{ marginTop: "-1px" }}
+              className="absolute top-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-2 sm:h-4 block z-10"
+              style={{ marginTop: "-1px", overflow: "visible" }}
             >
-              <path d="M0,50 Q250,10 500,50 T1000,50 L1000,0 L0,0 Z" fill="#fff" stroke="none" />
+              <path d="M0,50 Q250,-48 500,50 T1000,50 L1000,0 L0,0 Z" fill="#fff" stroke="none" />
             </svg>
             <svg
               aria-hidden
               viewBox="0 0 1000 100"
               preserveAspectRatio="none"
-              className="absolute bottom-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-16 sm:h-20 block z-10"
-              style={{ marginBottom: "-1px" }}
+              className="absolute bottom-0 left-1/2 right-1/2 -mx-[50vw] w-screen h-2 sm:h-4 block z-10"
+              style={{ marginBottom: "-1px", overflow: "visible" }}
             >
-              <path d="M0,50 Q250,10 500,50 T1000,50 L1000,100 L0,100 Z" fill="#fff" stroke="none" />
+              <path d="M0,50 Q250,-48 500,50 T1000,50 L1000,100 L0,100 Z" fill="#fff" stroke="none" />
             </svg>
 
             <div className="relative z-10 pt-20 pb-20 sm:pt-24 sm:pb-24">
@@ -1788,10 +1788,10 @@ export default function ArtistPage() {
             aria-hidden
             viewBox="0 0 1000 100"
             preserveAspectRatio="none"
-            className="absolute top-0 left-0 right-0 w-full h-20 block z-10"
-            style={{ marginTop: "-1px" }}
+            className="absolute top-0 left-0 right-0 w-full h-2 sm:h-4 block z-10"
+            style={{ marginTop: "-1px", overflow: "visible" }}
           >
-            <path d="M0,50 Q250,10 500,50 T1000,50 L1000,0 L0,0 Z" fill="#fff" stroke="none" />
+            <path d="M0,50 Q250,-48 500,50 T1000,50 L1000,0 L0,0 Z" fill="#fff" stroke="none" />
           </svg>
 
           <div className="mx-auto max-w-6xl px-4 pt-24 pb-12 grid gap-10 md:grid-cols-2 items-start">
