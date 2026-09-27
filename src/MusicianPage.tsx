@@ -685,7 +685,7 @@ export default function MusicianPage() {
           {/* Logo */}
           <div className="flex items-center gap-2 font-semibold tracking-wide select-none">
             <img
-              src="/music/logo.png"
+              src="/music/logo.webp"
               alt="Musician logo"
               className="h-16 md:h-32 w-auto"
             />
@@ -817,7 +817,7 @@ export default function MusicianPage() {
           <div className="md:justify-self-end">
             <div className="rounded-3xl border border-black/10 bg-white/40 p-3 shadow-sm">
               <img
-                src="/music/cover.jpg"
+                src="/music/cover-900.webp"
                 alt="Album cover — It sounds like you"
                 className="w-full max-w-[420px] rounded-2xl object-cover"
               />
@@ -837,8 +837,9 @@ export default function MusicianPage() {
               {/* Profile image */}
               <div className="flex justify-center md:justify-start items-end -mb-10 md:-mb-10">
                 <img
-                  src="/music/about.png"
+                  src="/music/about.webp"
                   alt="Frederic G. Fleron Grignard"
+                  loading="lazy"
                   className="w-full max-w-[600px] h-auto"
                 />
               </div>
