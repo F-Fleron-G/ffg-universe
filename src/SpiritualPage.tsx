@@ -413,7 +413,7 @@ export default function SpiritualPage() {
             {/* Logo */}
             <div className="flex items-center gap-2 select-none">
               <img
-                src="/spiritual/content/FG-Atom-Logo.png"
+                src="/spiritual/content/FG-Atom-Logo.webp"
                 alt="FGF logo"
                 className="h-10 md:h-[84px] w-auto"
                 loading="lazy"
@@ -529,7 +529,7 @@ export default function SpiritualPage() {
           >
             <div className="absolute inset-0 rounded-full overflow-hidden">
               <img
-                src="/spiritual/content/spiritual-frederic.png"
+                src="/spiritual/content/spiritual-frederic.webp"
                 alt="Frederic meditating in lotus pose"
                 className="w-full h-full object-cover bg-[rgba(20,20,24,0.7)]"
               />
@@ -627,7 +627,7 @@ export default function SpiritualPage() {
                 {/* RIGHT — IMAGE */}
                 <div className="flex justify-center md:justify-end">
                   <img
-                    src="/spiritual/content/about-fatherhood.jpg"
+                    src="/spiritual/content/about-fatherhood.webp"
                     alt="Walking uphill with my son in the forest"
                     className="w-full max-w-md rounded-lg object-cover"
                   />
@@ -905,7 +905,7 @@ export default function SpiritualPage() {
           open={active === "meditation"}
           onClose={closeStep}
           title="Meditation"
-          topImageSrc="/spiritual/content/Meditation-Bg.png"
+          topImageSrc="/spiritual/content/Meditation-Bg.webp"
           topImageAlt="Meditation-Hands resiting in meditation"
           onPrev={() => openStep(prevOf("meditation"))}
           onNext={() => openStep(nextOf("meditation"))}
@@ -957,7 +957,7 @@ export default function SpiritualPage() {
           open={active === "self"}
           onClose={closeStep}
           title="Self-Awareness"
-          topImageSrc="/spiritual/content/Awareness-Bg.png"
+          topImageSrc="/spiritual/content/Awareness-Bg.webp"
           topImageAlt="Awareness – candle staring at its own reflection"
           onPrev={() => openStep(prevOf("self"))}
           onNext={() => openStep(nextOf("self"))}
@@ -1008,7 +1008,7 @@ export default function SpiritualPage() {
           open={active === "living"}
           onClose={closeStep}
           title="Art of Living"
-          topImageSrc="/spiritual/content/AOL-Bg.png"
+          topImageSrc="/spiritual/content/AOL-Bg.webp"
           topImageAlt="Art of Living-Ladybird on a stick"
           onPrev={() => openStep(prevOf("living"))}
           onNext={() => openStep(nextOf("living"))}
@@ -1054,7 +1054,7 @@ export default function SpiritualPage() {
           open={active === "books"}
           onClose={closeStep}
           title="Recommended Books"
-          topImageSrc="/spiritual/content/Book-Bg.png"
+          topImageSrc="/spiritual/content/Book-Bg.webp"
           topImageAlt="Recommended books: Self-Awareness, Meditation, Art of Living."
           onPrev={() => openStep(prevOf("books"))}
           onNext={() => openStep(nextOf("books"))}
@@ -1110,7 +1110,7 @@ export default function SpiritualPage() {
 
                 {/* Image */}
                 <img
-                  src="/spiritual/content/Bottom-Book-Rec.png"
+                  src="/spiritual/content/Bottom-Book-Rec.webp"
                   alt="Recommended books stack"
                   className="w-full object-contain"
                 />
