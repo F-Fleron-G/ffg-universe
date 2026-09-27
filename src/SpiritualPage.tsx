@@ -1148,7 +1148,7 @@ export default function SpiritualPage() {
                   {/* card */}
                   <div className="p-3">
                     <img
-                      src="/before-the-reaction-cover.png"
+                      src="/before-the-reaction-cover.webp"
                       alt="Before the Reaction — book by Frederic G. Fleron Grignard"
                       className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
                       loading="lazy"
@@ -1165,7 +1165,7 @@ export default function SpiritualPage() {
                   {/* card */}
                   <div className="p-3">
                     <img
-                      src="/the-alien-in-disguise.png"
+                      src="/the-alien-in-disguise.webp"
                       alt="The Alien in Disguise — book by Frederic G. Fleron Grignard"
                       className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
                       loading="lazy"
@@ -1183,7 +1183,7 @@ export default function SpiritualPage() {
                   {/* card */}
                   <div className="p-3">
                     <img
-                      src="/hi-i-am-dad.png"
+                      src="/hi-i-am-dad.webp"
                       alt="Hi, I am Dad — book by Frederic G. Fleron Grignard"
                       className="w-full rounded-xl object-cover shadow-sm transition-transform duration-300 group-hover:scale-[1.02]"
                       loading="lazy"

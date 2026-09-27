@@ -453,7 +453,7 @@ export default function AuthorPage() {
              <div className="order-1 md:order-1 flex justify-center md:justify-end xl:translate-x-8">
                 <div>
                   <img
-                    src="/Author_Image.png"
+                    src="/Author_Image.webp"
                     alt="Author portrait of Frederic G. Fleron Grignard"
                     width={800}
                     height={1000}
@@ -617,7 +617,7 @@ export default function AuthorPage() {
                   <div className="flex flex-col items-center md:items-start justify-start p-3 overflow-hidden -mt-6 sm:-mt-5 md:-mt-6">
                     <div className="w-full max-w-[360px]">
                       <img
-                        src="/before-the-reaction-cover.png"
+                        src="/before-the-reaction-cover.webp"
                         alt="Before the Reaction — Book cover"
                         className="w-full object-contain"
                         loading="lazy"
@@ -758,7 +758,7 @@ export default function AuthorPage() {
                   <div className="flex flex-col items-center md:items-start justify-start p-3 overflow-hidden -mt-6 sm:-mt-5 md:-mt-6">
                     <div className="w-full max-w-[360px]">
                       <img
-                        src="/the-alien-in-disguise.png"
+                        src="/the-alien-in-disguise.webp"
                         alt="The Alien In Disguise — Book cover"
                         className="w-full object-contain"
                         loading="lazy"
@@ -940,7 +940,7 @@ export default function AuthorPage() {
                     {/* Cover */}
                     <div className="h-full w-full bg-[#151a21]">
                       <img
-                        src="/philosophy-flipbook-cover.png"
+                        src="/philosophy-flipbook-cover.webp"
                         alt="Philosophy From My Soul — book cover"
                         className="h-full w-full object-cover"
                       />
@@ -1421,7 +1421,7 @@ export default function AuthorPage() {
                 <div className="flex flex-col items-center md:items-start justify-start p-3 overflow-hidden -mt-6 sm:-mt-5 md:-mt-6">
                   <div className="w-full max-w-[360px]">
                     <img
-                      src="/el-alien-disfrazado.png"
+                      src="/el-alien-disfrazado.webp"
                       alt="El Alien Disfrazado — Spanish edition of The Alien in Disguise (book cover)"
                       className="w-full object-contain"
                       loading="lazy"
@@ -1554,7 +1554,7 @@ export default function AuthorPage() {
                 <div className="flex flex-col items-center md:items-start justify-start p-3 overflow-hidden -mt-6 sm:-mt-5 md:-mt-6">
                   <div className="w-full max-w-[360px]">
                     <img
-                      src="/hi-i-am-dad.png"
+                      src="/hi-i-am-dad.webp"
                       alt="Hi, I am Dad — book cover"
                       className="w-full object-contain"
                       loading="lazy"
