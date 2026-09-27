@@ -71,6 +71,7 @@ function FadeSlider({
           key={i}
           src={src}
           alt={`Slide ${i + 1}`}
+          loading="lazy"
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
             i === index ? "opacity-100" : "opacity-0"
           }`}
@@ -177,7 +178,7 @@ function PolaroidSlider({
               aria-label={`Open details: ${frameLabel}`}
               title="Click for details"
             >
-              <img src={src} alt={frameLabel} />
+              <img src={src} alt={frameLabel} loading="lazy" />
               {frameLabel && (
                 <div className="polaroid-caption">{frameLabel}</div>
               )}
@@ -498,27 +499,27 @@ export default function ArtistPage() {
 
   const drawingPages = [
     {
-      src: "/1.jpg",
+      src: "/1.webp",
       alt: "Ink drawing of a small figure lifting upward against gravity with one hand raised toward the sky.",
     },
     {
-      src: "/2.jpg",
+      src: "/2.webp",
       alt: "Ink drawing of a child hugging a large friendly monster while building a sandcastle.",
     },
     {
-      src: "/3.jpg",
+      src: "/3.webp",
       alt: "Ink drawing of a man carrying a guitar case, walking with a ball and chain tied to his ankle.",
     },
     {
-      src: "/4.jpg",
+      src: "/4.webp",
       alt: "Ink drawing of a person on a bicycle leaning into wind and rain with swirling lines around them.",
     },
     {
-      src: "/5.jpg",
+      src: "/5.webp",
       alt: "Ink drawing of a person in a tree feeding chili peppers to the sun, which sweats into clouds and rain over chili plants.",
     },
     {
-      src: "/6.jpg",
+      src: "/6.webp",
       alt: "Ink drawing of a figure hanging from a guitar string beneath an angelic presence, symbolizing fragile dreams saved by compassion and light.",
     },
   ] as const;
@@ -1161,7 +1162,7 @@ export default function ArtistPage() {
                 {/* Front cover: Portfolio */}
                 <div className="h-full w-full bg-[#728ca5] shadow-2xl">
                   <img
-                    src="/Portfolio-front.png"
+                    src="/Portfolio-front.webp"
                     alt="Portfolio — front cover"
                     className="h-full w-full object-cover"
                   />
@@ -1196,7 +1197,7 @@ export default function ArtistPage() {
                 {/* Page 2: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                   <img
-                    src="/1.jpg"
+                    src="/1.webp"
                     alt="Ink drawing of a small figure lifting upward against gravity with one hand raised toward the sky."
                     className="max-h-full max-w-full object-contain mx-auto"
                   />
@@ -1232,7 +1233,7 @@ export default function ArtistPage() {
                 {/* Page 4: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                   <img
-                    src="/2.jpg"
+                    src="/2.webp"
                     alt="Ink drawing of a child hugging a large friendly monster while building a sandcastle."
                     className="max-h-full max-w-full object-contain mx-auto"
                   />
@@ -1267,7 +1268,7 @@ export default function ArtistPage() {
                 {/* Page 6: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                   <img
-                    src="/3.jpg"
+                    src="/3.webp"
                     alt="Ink drawing of a man carrying a guitar case, walking with a ball and chain tied to his ankle."
                     className="max-h-full max-w-full object-contain mx-auto"
                   />
@@ -1303,7 +1304,7 @@ export default function ArtistPage() {
                 {/* Page 8: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                   <img
-                    src="/4.jpg"
+                    src="/4.webp"
                     alt="Ink drawing of a person on a bicycle leaning into wind and rain with swirling lines around them."
                     className="max-h-full max-w-full object-contain mx-auto"
                   />
@@ -1339,7 +1340,7 @@ export default function ArtistPage() {
                 {/* Page 10: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                   <img
-                    src="/5.jpg"
+                    src="/5.webp"
                     alt="Ink drawing of a person in a tree feeding chili peppers to the sun, which sweats into clouds and rain over chili plants."
                     className="max-h-full max-w-full object-contain mx-auto"
                   />
@@ -1375,7 +1376,7 @@ export default function ArtistPage() {
                 {/* Page 12: Drawing */}
                 <div className="page-paper flex items-center justify-center p-6 border border-neutral-300">
                   <img
-                    src="/6.jpg"
+                    src="/6.webp"
                     alt="Ink drawing of a figure hanging from a guitar string beneath an angelic presence, symbolizing fragile dreams saved by compassion and light."
                     className="max-h-full max-w-full object-contain mx-auto"
                   />
@@ -1384,7 +1385,7 @@ export default function ArtistPage() {
                 {/* Back cover: Portfolio */}
                 <div className="h-full w-full bg-[#728ca5] shadow-2xl">
                   <img
-                    src="/Portfolio-back.png"
+                    src="/Portfolio-back.webp"
                     alt="Portfolio — back cover"
                     className="h-full w-full object-cover"
                   />
@@ -1527,12 +1528,12 @@ export default function ArtistPage() {
               <figure className="w-full max-w-[380px] mx-auto text-center">
                 <PolaroidSlider
                   images={[
-                    "/Snorlax-P.png",
-                    "/Roblox-P1.png",
-                    "/ice-cream-p.png",
-                    "/Capybara-Stitch1.png",
-                    "/Josua-1.png",
-                    "/Niki-P1.png",
+                    "/Snorlax-P.webp",
+                    "/Roblox-P1.webp",
+                    "/ice-cream-p.webp",
+                    "/Capybara-Stitch1.webp",
+                    "/Josua-1.webp",
+                    "/Niki-P1.webp",
                   ]}
                   labels={[
                     "Pokémon Snorlax",
@@ -1582,22 +1583,22 @@ export default function ArtistPage() {
                     },
                   ]}
                   modalImages={[
-                    ["/Snorlax-P.png"],
-                    ["/Roblox-P1.png", "/Roblox-P2.png"],
-                    ["/ice-cream-p.png"],
+                    ["/Snorlax-P.webp"],
+                    ["/Roblox-P1.webp", "/Roblox-P2.webp"],
+                    ["/ice-cream-p.webp"],
                     [
-                      "/Capybara-Stitch1.png",
-                      "/Capybara-Stitch2.png",
-                      "/Capybara-Stitch3.png",
+                      "/Capybara-Stitch1.webp",
+                      "/Capybara-Stitch2.webp",
+                      "/Capybara-Stitch3.webp",
                     ],
                     [
-                      "/Josua-1.png",
-                      "/Josua-2.png",
+                      "/Josua-1.webp",
+                      "/Josua-2.webp",
                     ],
                     [
-                      "/Niki-P1.png",
-                      "/Niki-P2.png",
-                      "/Niki-P3.png",
+                      "/Niki-P1.webp",
+                      "/Niki-P2.webp",
+                      "/Niki-P3.webp",
                     ],
                   ]}
                   widthClass="w-full"
@@ -1613,7 +1614,7 @@ export default function ArtistPage() {
               {/* Category 2 — Halloween Piñatas */}
               <figure className="w-full max-w-[380px] mx-auto text-center">
                 <PolaroidSlider
-                  images={["/Pumpkin-P.png", "/Lovely-Witch-P1.png"]}
+                  images={["/Pumpkin-P.webp", "/Lovely-Witch-P1.webp"]}
                   labels={["Pumpkin Wizard", "Lovely Witch"]}
                   details={[
                     {
@@ -1630,11 +1631,11 @@ export default function ArtistPage() {
                     },
                   ]}
                   modalImages={[
-                    ["/Pumpkin-P.png"],
+                    ["/Pumpkin-P.webp"],
                     [
-                      "/Lovely-Witch-P1.png",
-                      "/Lovely-Witch-P2.png",
-                      "/Lovely-Witch-P3.png",
+                      "/Lovely-Witch-P1.webp",
+                      "/Lovely-Witch-P2.webp",
+                      "/Lovely-Witch-P3.webp",
                     ],
                   ]}
                   widthClass="w-full"
@@ -1699,12 +1700,12 @@ export default function ArtistPage() {
                         <div className="rounded-xl overflow-hidden border-4 border-black">
                           <FadeSlider
                             images={[
-                              "/Mk-I.jpg",
-                              "/Mk-P.jpg",
-                              "/Mk-C.jpg",
-                              "/Mk-S.jpg",
-                              "/Mk-W.jpg",
-                              "/Mk-R.jpg",
+                              "/Mk-I.webp",
+                              "/Mk-P.webp",
+                              "/Mk-C.webp",
+                              "/Mk-S.webp",
+                              "/Mk-W.webp",
+                              "/Mk-R.webp",
                             ]}
                             heightClass="h-[88vw] sm:h-[72vw] md:h-[22rem] lg:h-[26rem] xl:h-[26rem]"
                             className="w-full"
