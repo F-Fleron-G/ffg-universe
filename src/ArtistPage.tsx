@@ -1001,14 +1001,15 @@ export default function ArtistPage() {
                 </div>
                 <div className="order-1 md:order-2 flex justify-center">
                   <img
-                    src="/Art_me_1024px.png"
-                    srcSet="/Art_me_512px.png 512w, /Art_me_768px.png 768w, /Art_me_1024px.png 1024w"
+                    src="/Art_me_1024px.webp"
+                    srcSet="/Art_me_512px.webp 512w, /Art_me_768px.webp 768w, /Art_me_1024px.webp 1024w"
                     sizes="(min-width: 1536px) 640px, (min-width: 1280px) 560px, (min-width: 1024px) 500px, (min-width: 768px) 460px, 92vw"
                     width="1024"
                     height="1024"
                     alt="Artist portrait"
                     className="w-[92vw] sm:w-[82vw] md:w-[460px] lg:w-[560px] xl:w-[640px] h-auto"
-                    loading="lazy"
+                    loading="eager"
+                    fetchPriority="high"
                     decoding="async"
                   />
                 </div>
