@@ -543,7 +543,7 @@ export default function SpiritualPage() {
                 transform: `rotate(${deg}deg)`,
                 "--rot": `${deg}deg`,
                 animation: "none",
-              }}
+              } as CSSProperties}
             >
               {TABS.map((t, idx) => (
                 <RingItem
@@ -1271,7 +1271,7 @@ function RingItem({
 }) {
   const angle = (index / total) * 360;
   return (
-    <div className="ring-slot" style={{ "--angle": `${angle}deg` }}>
+    <div className="ring-slot" style={{ "--angle": `${angle}deg` } as CSSProperties}>
       <button
         type="button"
         onClick={onClick}
