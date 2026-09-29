@@ -616,10 +616,10 @@ export default function MusicianPage() {
       <div id="home" />
       <PageHead
         title="Musician — Frederic G. Fleron Grignard"
-        description="Short previews of original songs by Frederic G. Fleron Grignard. Listen to 35–45 second clips and request to purchase a song or the full 6-song album."
+        description="Short previews of original songs by Frederic G. Fleron Grignard. Listen to 35–45 second clips and request a song or the complete album, free of charge, for your media projects (CC BY 4.0)."
         canonicalHref="https://www.ffg-universe.com/musician"
         ogTitle="Musician — It sounds like you"
-        ogDescription="Short previews of original songs by Frederic G. Fleron Grignard. Listen to 35–45 second clips and request to purchase a song or the full 6-song album."
+        ogDescription="Short previews of original songs by Frederic G. Fleron Grignard. Listen to 35–45 second clips and request a song or the complete album, free of charge, for your media projects (CC BY 4.0)."
         ogImage="https://www.ffg-universe.com/og/musician.jpg"
         jsonLd={{
           "@context": "https://schema.org",
@@ -782,10 +782,10 @@ export default function MusicianPage() {
             </h1>
             <div className="mt-4 flex items-start gap-2 max-w-xl text-black/80">
               <p className="mt-4 max-w-xl text-black/80">
-                Short previews of original songs — written to give voice, tone,
-                and melody to the things life puts us through. If something
-                resonates, you can request to purchase a song or the full 6-song
-                album.
+                Original songs — written to give voice, tone, and melody to the
+                things life puts us through. If something resonates, you're
+                welcome to request a full song or the complete album, at no
+                cost, for use in your own media projects.
                 <button
                   type="button"
                   onClick={() => setHowItWorksOpen(true)}
@@ -808,7 +808,7 @@ export default function MusicianPage() {
                 onClick={() => scrollTo(sections.contact)}
                 className="rounded-full border border-black/15 bg-black/5 px-5 py-2 text-sm hover:bg-black/10 transition"
               >
-                Request purchase
+                Request songs
               </button>
             </div>
           </div>
@@ -886,8 +886,8 @@ export default function MusicianPage() {
         <h2 className="text-3xl md:text-4xl">Preview Tracks</h2>
         <div className="flex items-center justify-between gap-4 text-sm md:text-base text-black/70">
           <p>
-            35-45 second previews. Full tracks are shared privately upon
-            purchase.
+            35–45 second previews. Full tracks are shared personally, free of
+            charge, on request.
           </p>
 
           <button
@@ -936,10 +936,16 @@ export default function MusicianPage() {
 
               <div className="mt-4 flex flex-wrap gap-2">
                 <button
-                  onClick={() => scrollTo(sections.contact)}
+                  onClick={() => {
+                    setContactPreset({
+                      subject: `Request: ${t.title}`,
+                      message: `Hi Frederic,\n\nI would love to receive ${t.title}. Here is briefly how I plan to use it:\n\n\nThank you,`,
+                    });
+                    scrollTo(sections.contact);
+                  }}
                   className="rounded-full border border-black/15 bg-white/60 px-4 py-2 text-sm hover:bg-white/80 transition"
                 >
-                  Inquire about this song
+                  Request this song
                 </button>
 
                 <button
@@ -963,7 +969,7 @@ export default function MusicianPage() {
           {/* Album */}
           <section ref={sections.album} className="h-full">
             <div className="h-full rounded-3xl border border-black/10 bg-black/5 p-6 md:p-10 shadow-sm">
-              <h2 className="text-2xl md:text-3xl">Full 6-song album</h2>
+              <h2 className="text-2xl md:text-3xl">The complete album</h2>
               <p className="mt-4 text-black/80 max-w-md">
                 This debut collection brings together six original songs written
                 and recorded independently. Created as part of an ongoing
@@ -971,12 +977,12 @@ export default function MusicianPage() {
                 personal narrative through minimal production.
               </p>
               <p className="mt-3 opacity-80">
-                Want the full set of six songs? Send a request using the contact
-                form. After payment, the full album will be delivered personally
-                as a private download.
+                Want the complete album? Send a request using the contact form
+                and let me know how you'd like to use it. The full tracks will
+                be sent to you personally, at no cost.
               </p>
               <p className="mt-3 text-xs text-black/60">
-                For Pricing & Delivery see{" "}
+                To see how it works, click{" "}
                 <button
                   type="button"
                   onClick={() => setHowItWorksOpen(true)}
@@ -989,15 +995,15 @@ export default function MusicianPage() {
               <button
                 onClick={() => {
                   setContactPreset({
-                    subject: "Album purchase request",
+                    subject: "Request: Complete album",
                     message:
-                      "Hi Frederic,\n\nI would love to purchase the full 6-song album. Please let me know the details.\n\nThank you,",
+                      "Hi Frederic,\n\nI would love to receive the complete album. Here is briefly how I plan to use it:\n\n\nThank you,",
                   });
                   scrollTo(sections.contact);
                 }}
                 className="mt-6 rounded-full border border-black/15 bg-white/60 px-5 py-2 text-sm hover:bg-white/80 transition"
               >
-                Request album purchase
+                Request the full album
               </button>
             </div>
           </section>
@@ -1055,7 +1061,7 @@ export default function MusicianPage() {
                 <input
                   type="hidden"
                   name="_subject"
-                  value="New message from MUSICIAN page"
+                  value="Song request from the Musician page"
                 />
                 <input type="hidden" name="_captcha" value="false" />
                 <input
@@ -1078,10 +1084,7 @@ export default function MusicianPage() {
                   <div className="flex h-4 w-4 items-center justify-center">
                     <CircleCheckBig size={14} strokeWidth={1.5} />
                   </div>
-                  <p>
-                    After you submit your request, you will receive a secure
-                    PayPal link by email.
-                  </p>
+                  <p>I'll reply to you personally by email.</p>
                 </div>
               </form>
             </div>
@@ -1132,7 +1135,7 @@ export default function MusicianPage() {
               <div>
                 © {new Date().getFullYear()} Frederic G. Fleron Grignard
               </div>
-              <div>All rights reserved</div>
+              <div>Songs shared under CC BY 4.0</div>
             </div>
 
             {/* Right: Legal */}
@@ -1252,7 +1255,7 @@ export default function MusicianPage() {
                 <p className="text-xs uppercase tracking-[0.22em] opacity-70">
                   Legal
                 </p>
-                <h3 className="mt-2 text-2xl">Terms of Use &amp; Copyright</h3>
+                <h3 className="mt-2 text-2xl">Terms of Use &amp; Licence</h3>
               </div>
 
               <button
@@ -1268,31 +1271,56 @@ export default function MusicianPage() {
             <div className="mt-6 border-t border-black/10 pt-6 pb-6 max-h-[calc(100dvh-10rem)] overflow-y-auto pr-3">
               <div className="space-y-4 text-[15px] md:text-[16px] text-black/80">
                 <p className="leading-relaxed opacity-90">
-                  <strong>Preview-only listening:</strong> The audio on this
-                  page consists of short previews intended for evaluation. Full
-                  tracks are shared privately upon purchase.
+                  <strong>Why these songs are free</strong> — These songs are
+                  my way of sharing the music I make with the world. They are
+                  offered free of charge; no payment is ever requested.
                 </p>
 
                 <p className="leading-relaxed opacity-90">
-                  <strong>Copyright:</strong> All music, lyrics, and recordings
-                  are protected by copyright. No part of these previews may be
-                  reproduced, redistributed, sampled, or used in other works
-                  without written permission.
+                  <strong>Previews</strong> — The audio on this page consists
+                  of shortened previews. Full tracks are sent personally on
+                  request through the contact form.
                 </p>
 
                 <p className="leading-relaxed opacity-90">
-                  <strong>Purchasing:</strong> Purchased songs are provided for
-                  personal listening only.
-                </p>
-                <p className="leading-relaxed opacity-90">
-                  <strong>Licensing:</strong> Licensing for film, video, or
-                  other projects is available upon request. Terms and pricing
-                  are confirmed privately.
+                  <strong>Licence</strong> — The full songs are shared under
+                  the{" "}
+                  <a
+                    href="https://creativecommons.org/licenses/by/4.0/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-4 hover:no-underline transition"
+                  >
+                    Creative Commons Attribution 4.0 International licence
+                  </a>{" "}
+                  (CC BY 4.0). You may use, share, adapt, remix and re-version
+                  them, including in your own media projects, as long as you
+                  give credit.
                 </p>
 
                 <p className="leading-relaxed opacity-90">
-                  <strong>Respectful use:</strong> Please do not upload these
-                  previews to other platforms or share direct files publicly.
+                  <strong>How to credit</strong> — Please include: Music: [Song
+                  title] by Frederic G. Fleron Grignard —
+                  ffg-universe.com/musician — CC BY 4.0. If you changed or
+                  re-versioned the song, please say so, for example: Adapted
+                  from [Song title] by Frederic G. Fleron Grignard.
+                </p>
+
+                <p className="leading-relaxed opacity-90">
+                  <strong>Copyright</strong> — I remain the author and
+                  copyright holder of all music, lyrics and recordings. Please
+                  do not present the songs as your own, and do not suggest that
+                  I endorse you or your project without asking me first.
+                </p>
+
+                <p className="leading-relaxed opacity-90">
+                  <strong>A kind request</strong> — If you use one of my songs,
+                  I would love to hear about it. Just drop me a line through the
+                  contact form.
+                </p>
+
+                <p className="leading-relaxed opacity-90">
+                  The songs are provided as they are, without any warranty.
                 </p>
               </div>
             </div>
@@ -1311,15 +1339,15 @@ export default function MusicianPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/60 backdrop-blur-md" />
 
           <div
-            className="relative w-full max-w-2xl rounded-3xl bg-[#fbfaf7] ring-1 ring-black/10 shadow-[0_35px_110px_-40px_rgba(0,0,0,0.65)] p-6 md:p-8"
+            className="relative flex w-full max-w-2xl max-h-[calc(100dvh-2rem)] flex-col rounded-3xl bg-[#fbfaf7] ring-1 ring-black/10 shadow-[0_35px_110px_-40px_rgba(0,0,0,0.65)] p-6 md:p-8"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs uppercase tracking-[0.22em] opacity-70">
-                  How it works
+                  Songs on request
                 </p>
-                <h3 className="mt-2 text-2xl">Pricing & Delivery</h3>
+                <h3 className="mt-2 text-2xl">How it works</h3>
               </div>
 
               <button
@@ -1332,36 +1360,17 @@ export default function MusicianPage() {
               </button>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-black/10">
+            <div className="mt-6 pt-6 border-t border-black/10 min-h-0 overflow-y-auto">
               <div className="space-y-4 text-[15px] md:text-[16px] text-black/80">
-                <div className="rounded-2xl border border-black/10 bg-[#efe5d8] p-4">
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="font-medium">Single song</span>
-                    <span>€3</span>
-                  </div>
-                  <div className="mt-1 flex items-center justify-between gap-4">
-                    <span className="font-medium">Full 6-song album</span>
-                    <span>€10</span>
-                  </div>
-                </div>
-
-                <div className="mt-3 flex items-center justify-end gap-2 text-xs opacity-60">
-                  <img
-                    src="/paypal-mark.svg"
-                    alt="PayPal"
-                    className="h-3 w-auto opacity-70"
-                  />
-                  <span>Secure payment</span>
-                </div>
-
-                <div className="pt-5 space-y-3">
+                <div className="space-y-3">
                   <div className="flex gap-3">
                     <div className="mt-[2px] flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full ring-1 ring-black/10 bg-white/70 text-xs opacity-80">
                       1
                     </div>
                     <div className="leading-relaxed opacity-90">
-                      Send a request using the contact form (single song or full
-                      album).
+                      Send a request using the contact form. Let me know which
+                      song you'd like, or whether you'd like the complete album,
+                      and briefly how you plan to use it.
                     </div>
                   </div>
 
@@ -1370,8 +1379,7 @@ export default function MusicianPage() {
                       2
                     </div>
                     <div className="leading-relaxed opacity-90">
-                      You'll receive a secure PayPal link by email with the
-                      details.
+                      I'll reply to you personally by email.
                     </div>
                   </div>
 
@@ -1380,7 +1388,7 @@ export default function MusicianPage() {
                       3
                     </div>
                     <div className="leading-relaxed opacity-90">
-                      After payment, your download is delivered privately.
+                      The full tracks are sent to you directly, free of charge.
                     </div>
                   </div>
                 </div>
@@ -1389,7 +1397,21 @@ export default function MusicianPage() {
                   <div className="flex h-4 w-4 items-center justify-center">
                     <CircleAlert size={14} strokeWidth={1.5} />
                   </div>
-                  <p>Preview clips on this page are shortened versions.</p>
+                  <p>
+                    Preview clips on this page are shortened versions. Full
+                    songs are shared under a CC BY 4.0 licence — see{" "}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setHowItWorksOpen(false);
+                        setLegalOpen(true);
+                      }}
+                      className="underline underline-offset-4 hover:no-underline transition"
+                    >
+                      Terms
+                    </button>
+                    .
+                  </p>
                 </div>
               </div>
             </div>

@@ -31,10 +31,10 @@ A custom animated orbit interface where each identity completes the phrase:
 
 ### Musician Page
 
-Includes a complete purchase flow for original guitar compositions:
+Original songs offered free, on request, for use in media projects under CC BY 4.0:
 
-- PayPal.me payment link
-- Direct artist delivery via email
+- Request via contact form (single song or complete album)
+- Full tracks sent personally by email
 - SEO redirect stub and OG preview image
 - Embedded audio previews
 
@@ -118,3 +118,5 @@ This repository is publicly visible for educational and portfolio purposes only.
 You may explore and learn from the code, but you may not copy, reproduce, distribute, or reuse the creative content without explicit written permission.
 
 All rights reserved.
+
+Exception: the songs on the Musician page are shared under the [Creative Commons Attribution 4.0 International licence (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
