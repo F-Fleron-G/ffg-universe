@@ -1528,22 +1528,28 @@ export default function ArtistPage() {
               <figure className="w-full max-w-[380px] mx-auto text-center">
                 <PolaroidSlider
                   images={[
+                    "/Capybara-Stitch1.webp",
                     "/Snorlax-P.webp",
                     "/Roblox-P1.webp",
                     "/ice-cream-p.webp",
-                    "/Capybara-Stitch1.webp",
                     "/Josua-1.webp",
                     "/Niki-P1.webp",
                   ]}
                   labels={[
+                    "Singing Capybara",
                     "Pokémon Snorlax",
                     "Roblox Noob",
                     "N-ice Cream",
-                    "Singing Capybara",
                     "Airborne Josua",
                     "Nicole's Polaroid Stage",
                   ]}
                   details={[
+                    {
+                      why: "Made for my daughter's 8th birthday after she asked for a capybara piñata. She loves singing into her microphone while swinging indoors, so I created a capybara sitting on a swing, happily singing into a microphone. But while I was secretly building it, I hid the unfinished head behind a large piece of cardboard on top of our living-room furniture… which immediately made her suspicious. That's when she suddenly announced: “Papa… you know Stitch is actually my favourite character!” For a brief moment I thought I had completely failed the mission. Then inspiration struck — instead of starting over, I decided to add a white t-shirt with a hand-painted “Happy Birthday Stitch” design, somehow managing to combine both of her wishes into one very happy singing capybara.",
+                      time: "5 days overall, built in stages to allow the papier-mâché layers, shaping details, paint, and final decoration to dry properly.",
+                      materials:
+                        "Balloon and papier-mâché for the rounded body and head; cardboard for structure and swing details; newspaper strips and recycled paper for shaping; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and finished with rope for hanging.",
+                    },
                     {
                       why: "A surprise for my oldest son's birthday party — Snorlax was his favourite Pokémon.",
                       time: "3 days overall (roughly 3 hours of work per day, allowing for drying and design time).",
@@ -1564,12 +1570,6 @@ export default function ArtistPage() {
                         "Balloon for the scoop; rolled cardboard for the cone; newspaper strips; recycled paper for drip details & sprinkles; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and a long, thin cotton rope for hanging.",
                     },
                     {
-                      why: "Made for my daughter's 8th birthday after she asked for a capybara piñata. She loves singing into her microphone while swinging indoors, so I created a capybara sitting on a swing, happily singing into a microphone. But while I was secretly building it, I hid the unfinished head behind a large piece of cardboard on top of our living-room furniture… which immediately made her suspicious. That's when she suddenly announced: “Papa… you know Stitch is actually my favourite character!” For a brief moment I thought I had completely failed the mission. Then inspiration struck — instead of starting over, I decided to add a white t-shirt with a hand-painted “Happy Birthday Stitch” design, somehow managing to combine both of her wishes into one very happy singing capybara.",
-                      time: "5 days overall, built in stages to allow the papier-mâché layers, shaping details, paint, and final decoration to dry properly.",
-                      materials:
-                        "Balloon and papier-mâché for the rounded body and head; cardboard for structure and swing details; newspaper strips and recycled paper for shaping; flour-salt-water paste and hot glue to hold everything together; painted with acrylics and finished with rope for hanging.",
-                    },
-                    {
                       why: "Made for my son Josua's birthday, this piñata brings together the things he loves most: BMX tricks, football, and Cristiano Ronaldo. I imagined him mid-air on his BMX, doing a no-foot jump while kicking a football, wearing Portugal's number 7 shirt — but with Josua on the back to make it truly his own.",
                       time: "About 9 days overall, roughly 3 hours of work per day.",
                       materials:
@@ -1583,14 +1583,14 @@ export default function ArtistPage() {
                     },
                   ]}
                   modalImages={[
-                    ["/Snorlax-P.webp"],
-                    ["/Roblox-P1.webp", "/Roblox-P2.webp"],
-                    ["/ice-cream-p.webp"],
                     [
                       "/Capybara-Stitch1.webp",
                       "/Capybara-Stitch2.webp",
                       "/Capybara-Stitch3.webp",
                     ],
+                    ["/Snorlax-P.webp"],
+                    ["/Roblox-P1.webp", "/Roblox-P2.webp"],
+                    ["/ice-cream-p.webp"],
                     [
                       "/Josua-1.webp",
                       "/Josua-2.webp",
@@ -1614,9 +1614,19 @@ export default function ArtistPage() {
               {/* Category 2 — Halloween Piñatas */}
               <figure className="w-full max-w-[380px] mx-auto text-center">
                 <PolaroidSlider
-                  images={["/Pumpkin-P.webp", "/Lovely-Witch-P1.webp"]}
-                  labels={["Pumpkin Wizard", "Lovely Witch"]}
+                  images={[
+                    "/Zombie-P1.webp",
+                    "/Pumpkin-P.webp",
+                    "/Lovely-Witch-P1.webp",
+                  ]}
+                  labels={["Friendly Zombie", "Pumpkin Wizard", "Lovely Witch"]}
                   details={[
+                    {
+                      why: "My youngest daughter asked for \"Ein gruselig Zombie aber nicht böser\" — a creepy zombie, but not a mean one. To add some humour to the scene, my youngest son came up with the blind rat's sign: \"Help find his bottom\".",
+                      time: "Approximately 13–14 hours overall, with extra drying time. I experimented with toilet paper and a water spray bottle for the base instead of the usual flour paste. Building the base was much faster, but the toilet paper was weaker, so it needed several layers. Those layers needed more time to settle, and a hair dryer only lifted the paper. In the end I didn't save any time, but I had fun trying a new technique, and the result was quite good.",
+                      materials:
+                        "Balloons for the zombie's and the rat's heads and the rat's body; cardboard to strengthen the frame; toilet paper and papier-mâché to build it up; painted with acrylics and a cotton rope for hanging. This one is quite heavy, as it is filled with lots of sweets!",
+                    },
                     {
                       why: "Created for a Halloween party at my daughter's request — she wanted a pumpkin with a wizard hat.",
                       time: "4 days overall (roughly 3 hours of work per day, allowing for drying and design time).",
@@ -1631,6 +1641,12 @@ export default function ArtistPage() {
                     },
                   ]}
                   modalImages={[
+                    [
+                      "/Zombie-P1.webp",
+                      "/Zombie-P2.webp",
+                      "/Zombie-P3.webp",
+                      "/Zombie-P4.webp",
+                    ],
                     ["/Pumpkin-P.webp"],
                     [
                       "/Lovely-Witch-P1.webp",
